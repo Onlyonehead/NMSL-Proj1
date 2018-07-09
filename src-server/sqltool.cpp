@@ -12,11 +12,11 @@ void SQLTool::connection(){
     db.setPort(3306);
     db.setUserName("root");
     db.setPassword("abcd1234");
-    db.setDatabaseName("proj1_main");
+    db.setDatabaseName("project1");
     if(!db.open()){
         qDebug() << "Unable to open database" << endl;
     }else{
-        qDebug() << "Open database proj1_main" << endl;
+        qDebug() << "Open database project1" << endl;
     }
 
 //    QSqlDatabase db2 = QSqlDatabase::addDatabase("QMYSQL","db2");
@@ -215,6 +215,22 @@ void SQLTool::search(QSqlQuery &query, QString s, QStringList list){
         qDebug()  << "fail to exec:  ";
     }
     qDebug()  << sql << endl;
+}
+
+/**
+ * @brief SQLTool::fuzzySearch
+ * E.g. "select * from userdata where username like '%dong%'"
+ */
+void SQLTool::fuzzySearch(QSqlQuery &query, QString s1, QString s2, QString s3)
+{
+    QString sql = "select * from " + s1 + " where " + s2 + " like '" + "%" + s3 + "%'";
+    query.exec(sql);
+
+    if(!query.isActive()){
+        qDebug() << "fail to exec:  ";
+    }
+    qDebug() << sql << endl;
+
 }
 
 /**

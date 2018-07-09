@@ -1,6 +1,5 @@
 #include "staff.h"
 #include "sqltool.h"
-#include "systemcenter.h"
 #include <QDebug>
 #include <QList>
 #include <QSqlQuery>
@@ -62,32 +61,6 @@ void Staff::Info(QVector<QStringList> &staffInfo)
 
 
 /**
-  * return staff inforamtion by username or email
-  *
-  * @author Yihan Dong
-  * @return information
-*/
-
-
-void Staff::Info(QString searchAttribute, QString searchValue, QStringList &staffInfo)
-{
-    QSqlQuery query;
-    SQLTool::search(query, "userdata", searchAttribute, searchValue);
-    if(query.next()){
-        staffInfo.append(query.value(0).toString());
-        staffInfo.append(query.value(1).toString());
-        staffInfo.append(query.value(2).toString());
-        staffInfo.append(query.value(3).toString());
-        staffInfo.append(query.value(4).toString());
-        staffInfo.append(query.value(5).toString());
-        staffInfo.append(query.value(6).toString());
-
-    }
-
-}
-
-
-/**
   * return staff inforamtion by other attributes
   *
   * @author Yihan Dong
@@ -99,7 +72,7 @@ void Staff::Info(QString searchAttribute, QString searchValue, QVector<QStringLi
 {
     QSqlQuery query;
     QStringList list;
-    SQLTool::search(query, "userdata", searchAttribute, searchValue);
+    SQLTool::fuzzySearch(query, "userdata", searchAttribute, searchValue);
     while (query.next()) {
         list.clear();
         list.append(query.value(0).toString());
@@ -124,9 +97,6 @@ void Staff::Info(QString searchAttribute, QString searchValue, QVector<QStringLi
 
 void Staff::updateStaffInfo(QString username, QString alterAttribute, QString alterValue)
 {
-    QStringList staffInfo;
-    Staff::Info("username", username, staffInfo);
-    qDebug() << staffInfo;
     QStringList alterUsername;
     alterUsername.append("username");
     alterUsername.append(username);

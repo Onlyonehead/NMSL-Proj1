@@ -79,8 +79,6 @@ private slots:
 
     void on_pushButton_showGarment_clicked();
 
-    void on_pushButton_clearGarment_clicked();
-
     void on_pushButton_setGPic_clicked();
 
     void on_pushButton_3_clicked();
@@ -131,6 +129,14 @@ private slots:
     void on_lineEdit_addNewEmail_editingFinished();
 
     void on_pushButton_cancelNewStaff_clicked();
+
+    void on_clearGarment_clicked();
+
+    void on_pushButton_updateProviderInfo_clicked();
+
+    void timer_deal_slot_function();
+
+    void on_tableWidget_providerInfo_cellClicked(int row, int column);
 
 signals:
     void stringReturn(QString);

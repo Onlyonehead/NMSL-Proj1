@@ -1,7 +1,5 @@
 #include "systemcenter.h"
 #include "sqltool.h"
-#include "garment.h"
-#include "order.h"
 #include "ui_systemcenter.h"
 #include <QDebug>
 #include <QTableWidget>
@@ -27,27 +25,9 @@
 
 void SystemCenter::on_pushButton_3_clicked()
 {
-    ui->tableWidget_generateOrder->setRowCount(0);
-    ui->tableWidget_generateOrder->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_generateOrder->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_generateOrder->setAlternatingRowColors(true);
-    ui->tableWidget_generateOrder->verticalHeader()->setVisible(false);
-    int i = 0;
-    QVector<QStringList> garmentInfo;
-    Garment::Info(garmentInfo);
-    int n = garmentInfo.size();
-    ui->tableWidget_generateOrder->setRowCount(garmentInfo.size());
-    while (n) {
-        ui->tableWidget_generateOrder->setItem(i, 0, new QTableWidgetItem(garmentInfo.at(i).at(0)));
-        ui->tableWidget_generateOrder->setItem(i, 1, new QTableWidgetItem(garmentInfo.at(i).at(1)));
-        ui->tableWidget_generateOrder->setItem(i, 2, new QTableWidgetItem(garmentInfo.at(i).at(2)));
-        ui->tableWidget_generateOrder->setItem(i, 3, new QTableWidgetItem(garmentInfo.at(i).at(3)));
-        ui->tableWidget_generateOrder->setItem(i, 4, new QTableWidgetItem(garmentInfo.at(i).at(4)));
-        i++;
-        n--;
-    }
-    ui->tableWidget_generateOrder->setRowCount(i);
-    progressBar();
+    QStringList list;
+    list.append("pcp_sg");
+    sendMessage(list);
 }
 
 /**
@@ -72,7 +52,6 @@ void SystemCenter::on_pushButton_addGarment_clicked()
     int rowIndex = ui->tableWidget_generateOrder->currentRow();
     orderDatetime = ui->label_showOrderTime->text();
     orderID = orderDatetime;
-    ui->tableWidget_generateOrder->setStyleSheet("selection-background-color::lightblue");
     garmentID = ui->tableWidget_generateOrder->item(rowIndex, 0)->text().toInt();
     garmentNum = ui->spinBox_garmentNum->value();
     static QVector<QStringList> orderInfo;
@@ -174,8 +153,8 @@ void SystemCenter::on_pushButton_deleteGarment_clicked()
 *
 * @author Yihan Dong
 * @return void
-* done
-*
+* undone
+* need to redo
 */
 
 void SystemCenter::on_pushButton_ConfirmOrder_clicked()
@@ -189,9 +168,9 @@ void SystemCenter::on_pushButton_ConfirmOrder_clicked()
         productInfo.append(ui->tableWidget_orderGarment->item(rowIndex, 1)->text());
         rowIndex++;
     }
-    Order order(1, datetime, productInfo);
+//    Order order(1, datetime, productInfo);
 
-    Order::saveOrder(order);
+//    Order::saveOrder(order);
 }
 
 
@@ -219,4 +198,24 @@ void SystemCenter::on_pushButton_cancelOrder_clicked()
     ui->tableWidget_orderGarment->setHorizontalHeaderLabels(orderGarmentHeader);
     ui->spinBox_garmentNum->clear();
 
+}
+
+
+
+
+/**
+ * @brief SystemCenter::timer_deal_slot_function
+ *
+ * show current time automocally
+ * @author Yihan Dong
+ */
+void SystemCenter::timer_deal_slot_function()
+{
+    QDateTime datetime = QDateTime::currentDateTime();
+    int y = datetime.date().year();
+    int m = datetime.date().month();
+    int d = datetime.date().day();
+    QString strTime = datetime.time().toString();
+    ui->label_showOrderTime->setText(QString::number(y) + "/" + QString::number(m) +
+                                     "/" + QString::number(d) + " " + strTime);
 }

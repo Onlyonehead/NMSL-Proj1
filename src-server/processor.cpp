@@ -230,6 +230,108 @@ void Processor::work ()
         out << function;
         out << result;
     }
+    //system page show garment
+    if(function == "sp_sg"){
+        QVector<QStringList> result;
+        Garment::Info(result);
+        out << function;
+        out << result;
+
+    }
+    //providerpage show provider info
+    if(function == "pp_sp"){
+        QVector<QStringList> result;
+        Provider::Info(result);
+        out << function;
+        out << result;
+    }
+    //providerpage change provider info
+    if(function == "pp_cpi"){
+        QString tempID = list.at(0);
+        int providerID = tempID.toInt();
+        QString alterAttribute, alterValue;
+        alterAttribute = "address";
+        alterValue = list.at(1);
+        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        alterAttribute = "name";
+        alterValue = list.at(2);
+        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        alterAttribute = "productInfo";
+        alterValue = list.at(3);
+        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        out << function;
+    }
+    //personnel page 1 show staff info
+    if(function == "pp1_ss"){
+        QVector<QStringList> result;
+        Staff::Info(result);
+        out << function;
+        out << result;
+    }
+    // personnel page 1 search staff info multi results
+    if(function == "pp1_ssi"){
+        QVector<QStringList> result;
+        QString searchAttribute, searchValue;
+        searchAttribute = list.at(0);
+        searchValue = list.at(1);
+        Staff::Info(searchAttribute, searchValue, result);
+        out << function;
+        out << result;
+    }
+    //personnel page 1 delete staff info
+    if(function == "pp1_dsi"){
+        QString username = list.at(0);
+        Staff::deleteStaffInfo(username);
+        out << function;
+    }
+    //personnel page 2 add new staff username
+    if(function == "pp2_anu"){
+        QString username = list.at(0);
+        bool isExisted;
+        if(Staff::isUsernameExisted(username)){
+            isExisted = true;
+        }else {
+            isExisted = false;
+        }
+        out << function;
+        out << isExisted;
+    }
+    //personnel page 2 check password
+    if(function == "pp2_rp"){
+        QString password, repeatPassword;
+        password = list.at(0);
+        repeatPassword = list.at(1);
+        bool isSame;
+        if(password == repeatPassword){
+            isSame = true;
+        }else {
+            isSame = false;
+        }
+        out << function;
+        out << isSame;
+    }
+    //personnel page 2 add new email
+    if(function == "pp2_ane"){
+        QString email = list.at(0);
+        bool isExisted;
+        if(Staff::isEmailExisted(email)){
+            isExisted = true;
+        }else {
+            isExisted = false;
+        }
+        out << function;
+        out << isExisted;
+    }
+    // purchase page show garment info
+    if(function == "pcp_sg"){
+        QVector<QStringList> result;
+        Garment::Info(result);
+        out << function;
+        out << result;
+    }
+
+
+
 
     out.device()->seek(0);
     out << (quint16) (message.size() - sizeof(quint16));

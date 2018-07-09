@@ -25,6 +25,9 @@
 #include "sqltool.h"
 #include "warehouse.h"
 #include "tool.h"
+#include "garment.h"
+#include "provider.h"
+#include "staff.h"
 
 class Processor : public QObject
 {

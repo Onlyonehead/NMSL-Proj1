@@ -1,7 +1,6 @@
 #include "systemcenter.h"
 #include "sqltool.h"
 #include "ui_systemcenter.h"
-#include "login.h"
 #include "garment.h"
 #include <QPixmap>
 #include <QVector>
@@ -27,23 +26,9 @@ void SystemCenter::on_pushButton_showGarment_clicked()
     ui->tableWidget_garmentInfo->setRowCount(0);
     ui->tableWidget_garmentInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_garmentInfo->verticalHeader()->setVisible(false);
-    QVector<QStringList> garmentInfo;
-    Garment::Info(garmentInfo);
-    int i = 0;
-    int n = garmentInfo.size();
-    ui->tableWidget_garmentInfo->setRowCount(garmentInfo.size());
-    while (n) {
-        ui->tableWidget_garmentInfo->setItem(i, 0, new QTableWidgetItem(garmentInfo.at(i).at(0)));
-        ui->tableWidget_garmentInfo->setItem(i, 1, new QTableWidgetItem(garmentInfo.at(i).at(1)));
-        ui->tableWidget_garmentInfo->setItem(i, 2, new QTableWidgetItem(garmentInfo.at(i).at(2)));
-        ui->tableWidget_garmentInfo->setItem(i, 3, new QTableWidgetItem(garmentInfo.at(i).at(3)));
-        ui->tableWidget_garmentInfo->setItem(i, 4, new QTableWidgetItem(garmentInfo.at(i).at(4)));
-        i++;
-        n--;
-    }
-    ui->tableWidget_garmentInfo->setRowCount(i);
-
-    progressBar();
+    QStringList list;
+    list.append("sp_sg");
+    sendMessage(list);
 }
 
 /**
@@ -53,14 +38,15 @@ void SystemCenter::on_pushButton_showGarment_clicked()
  * @return void
  */
 
-void SystemCenter::on_pushButton_clearGarment_clicked()
+void SystemCenter::on_clearGarment_clicked()
 {
+    qDebug() << "clear garment info";
     ui->tableWidget_garmentInfo->clear();
     ui->tableWidget_garmentInfo->setRowCount(0);
     QStringList header;
+
     header << tr("服装编号") << tr("服装样式") << tr("服装大小") << tr("服装图片") << tr("服装价格");
     ui->tableWidget_garmentInfo->setHorizontalHeaderLabels(header);
-
 }
 
 /**
@@ -68,13 +54,17 @@ void SystemCenter::on_pushButton_clearGarment_clicked()
  *
  * @author Yihan Dong
  * @return information
- * undone!
- * todo:insert complete with SIGNAL & SLOTS
+ * done
  */
 
 
 void SystemCenter::on_pushButton_confirmAddG_clicked()
 {
+    QStringList list;
+    list.append("sp_confirmAddG");
+    sendMessage(list);
+
+
     QString garmentStyle;
     QString garmentSize;
     QString garmentPic;
@@ -109,12 +99,18 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
  *
  * @author Yihan Dong
  * @return void
- * ubdone
+ * done
  * todo:add to server
  */
 
 void SystemCenter::on_pushButton_setGPic_clicked()
 {
+    QStringList list;
+    list.append("sp_setGPic");
+    sendMessage(list);
+
+
+
     QString picture = QFileDialog::getOpenFileName(this, tr("文件对话框"),
                                                        "C:\\Users\\Dong9\\Pictures\\Saved Pictures",
                                                        tr("图片文件(*png *jpg)"));
