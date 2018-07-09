@@ -3,25 +3,9 @@
 
 #include <QWidget>
 #include <QtNetwork>
-#include <QWidget>
-#include <QDebug>
-#include <QBitmap>
-#include <QPainter>
-#include <QMessageBox>
-#include <QSqlQuery>
-#include <QFontDatabase>
-#include <QFile>
-#include <QIODevice>
-#include <QTextStream>
-#include <QFileInfo>
-#include <QCryptographicHash>
-#include <QDateTime>
-#include <QTime>
-#include <QDate>
-
-#include "login.h"
-#include "forgetpassword.h"
 #include "sqltool.h"
+#include "myserver.h"
+
 
 class TCPConnection : public QWidget
 {
@@ -29,15 +13,10 @@ class TCPConnection : public QWidget
 
 public:
     TCPConnection(QWidget *parent = 0);
-    void sendMessage(QStringList);
 
 private:
-    QTcpSocket *m_tcpsocket;
-    QTcpServer *m_tcpserver;
 
 private slots:
-    void newConnect();
-    void readMessage();
 
 };
 
