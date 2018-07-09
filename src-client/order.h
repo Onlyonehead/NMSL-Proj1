@@ -29,7 +29,7 @@ public:
 private:
     int orderID;
 
-    int id;
+    int id; // 提交订单的 门店/仓库 的id
 
     QString datetime;
 

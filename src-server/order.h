@@ -9,10 +9,10 @@ class Order
 {
 
 public:
-    Order(int id, QString datetime, QStringList productInfo);
+    Order(QString id, QString datetime, QStringList productInfo);
     Order();
 
-    void editInfo(int id, QString datetime, QStringList productInfo);
+    void editInfo(QString id, QString datetime, QStringList productInfo);
 
     void toString(QStringList &);
 
@@ -26,10 +26,12 @@ public:
 
     static void info(QVector<QStringList> &orderInformation);//return all order info
 
-private:
-    int orderID;
+    QString getId();
 
-    int id;
+private:
+    QString orderID;
+
+    QString id;
 
     QString datetime;
 

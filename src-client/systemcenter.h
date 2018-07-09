@@ -89,7 +89,9 @@ private slots:
 
     void on_tableWidget_B_itemClicked(QTableWidgetItem *item);
 
-    void warehouseEditComplete3();
+    void on_tableWidget_D1_itemClicked(QTableWidgetItem *item);
+
+    void on_tableWidget_D2_itemClicked(QTableWidgetItem *item);
 
     void on_pushButton_9_clicked();
 
@@ -138,6 +140,16 @@ private slots:
 
     void on_tableWidget_providerInfo_cellClicked(int row, int column);
 
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_clothes_ADD_clicked();
+
+    void on_order_send_clicked();
+
+    void on_icon_search_D_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -149,6 +161,13 @@ private:
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;
+
+    QVector<QStringList> stock;
+    QVector<QStringList> arriving;
+    QVector<QStringList> clothes;
+    QVector<QStringList> warehouse;
+    QMap<QString,QMap<QString, QString>> stock_map;
+    QMap<QString, QMap<QString, QStringList>> arriving_map;
 
 };
 

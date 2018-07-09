@@ -444,10 +444,10 @@ QPushButton:hover{
  <tabstops>
   <tabstop>lineEdit</tabstop>
   <tabstop>lineEdit_2</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>checkBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>

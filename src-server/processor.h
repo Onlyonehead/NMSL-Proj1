@@ -28,6 +28,7 @@
 #include "garment.h"
 #include "provider.h"
 #include "staff.h"
+#include "order.h"
 
 class Processor : public QObject
 {

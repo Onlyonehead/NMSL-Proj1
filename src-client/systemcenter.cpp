@@ -68,7 +68,6 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 {
     this->show();
     ui->pushButton_switch->setEnabled(false);
-    ui->pushButton_quit->setEnabled(false);
 
     ui->tabWidget->setCurrentIndex(0);
     on_tabWidget_tabBarClicked(0);
@@ -170,6 +169,41 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_41->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
 
+    ui->label_66->setFont(font);
+    ui->label_66->setText(QChar(0xf02d));
+    ui->label_66->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    QApplication::processEvents();
+
+    ui->label_67->setFont(font);
+    ui->label_67->setText(QChar(0xf471));
+    ui->label_67->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_68->setFont(font);
+    ui->label_68->setText(QChar(0xf155));
+    ui->label_68->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_70->setFont(font);
+    ui->label_70->setText(QChar(0xf022));
+    ui->label_70->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_77->setFont(font);
+    ui->label_77->setText(QChar(0xf4de));
+    ui->label_77->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_102->setFont(font);
+    ui->label_102->setText(QChar(0xf1de));
+    ui->label_102->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_104->setFont(font);
+    ui->label_104->setText(QChar(0xf55f));
+    ui->label_104->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
 
     //initialize search icon
 
@@ -192,6 +226,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search_C->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
+    ui->icon_search_D->setFont(icon_search);
+    ui->icon_search_D->setText(QChar(0xf35a));
+    ui->icon_search_D->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
+                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+
     QApplication::processEvents();
 
     //set size of tablewidget
@@ -212,6 +251,20 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_C2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C2->horizontalHeader()->setStretchLastSection(true);
 
+    ui->tableWidget_D1->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_D1->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_D1->verticalHeader()->setDefaultSectionSize(50);
+
+    ui->tableWidget_D2->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_D2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_D2->verticalHeader()->setDefaultSectionSize(50);
+
+    ui->tableWidget_D3->horizontalHeader()->setDefaultSectionSize(93);
+    ui->tableWidget_D3->horizontalHeader()->setStretchLastSection(true);
+
+    ui->tableWidget_D4->horizontalHeader()->setDefaultSectionSize(102);
+    ui->tableWidget_D4->horizontalHeader()->setStretchLastSection(true);
+
 
     QApplication::processEvents();
     //fuzzy search
@@ -222,6 +275,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     connect(ui->warehouse_search_C, SIGNAL(returnPressed()), ui->icon_search_C, SIGNAL(clicked()), Qt::UniqueConnection);
 
+    connect(ui->warehouse_search_D, SIGNAL(returnPressed()), ui->icon_search_D, SIGNAL(clicked()), Qt::UniqueConnection);
+
+    connect(ui->quantity_D, SIGNAL(returnPressed()), ui->clothes_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
     QApplication::processEvents();
 
     /**
@@ -280,29 +336,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 //    //initialize furry search
 
     warehouseEditComplete();
-
-    t.start();
-    while(t.elapsed()<1000)
-        QCoreApplication::processEvents();
-
-    warehouseEditComplete3();
+    m_tcpsocket->flush();
 
 
     t.start();
     while(t.elapsed()<1000)
         QCoreApplication::processEvents();
+
 
     //initialize arriving table
     transfer();
+    m_tcpsocket->flush();
 
-
-    t.start();
-    while(t.elapsed()<1000)
-        QCoreApplication::processEvents();
-
-
-    //initialize warehouse_C ui
-    init_warehouse_C();
 }
 
 

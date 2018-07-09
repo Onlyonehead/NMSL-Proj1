@@ -1,4 +1,5 @@
 #include "processor.h"
+#include <QDateTime>
 
 Processor::Processor(QTcpSocket* socket)
 {
@@ -36,6 +37,10 @@ void Processor::work ()
      * H-ZC
      *
      */
+
+    if(function == "Default"){
+        out << "Default";
+    }
 
     if(function == "login"){
         QString username = list.at(0);
@@ -75,14 +80,26 @@ void Processor::work ()
     }
     if(function == "transfer"){
         Warehouse::transfer();
-        out << function;
-    }
 
-    if(function == "info_pB4"){
-        QVector<QStringList> result;
-        Warehouse::info(result);
+        QVector<QStringList> stock;
+        Warehouse::stock(stock);
+        QVector<QStringList> arriving;
+        Warehouse::arriving(arriving);
+        QVector<QStringList> clothes;
+        Warehouse::GInfo(clothes);
+        QVector<QStringList> warehouse;
+        Warehouse::info(warehouse);
+        QMap<QString, QMap<QString, QString>> stock_map;
+        Warehouse::stock(stock_map);
+        QMap<QString, QMap<QString, QStringList>> arriving_map;
+        Warehouse::arriving(arriving_map);
         out << function;
-        out << result;
+        out << stock;
+        out << arriving;
+        out << clothes;
+        out << warehouse;
+        out << stock_map;
+        out << arriving_map;
     }
 
     if(function == "info_whEC"){
@@ -102,17 +119,26 @@ void Processor::work ()
             wordlist2 << list.at(0) << list.at(1);
         }
         Tool::QStringList_removeDuplicates(&wordlist2);
+
+        QVector<QStringList> result2;
+        Warehouse::GInfo(result2);
+
+        QStringList wordlist3;
+
+        for (QStringList list : result2){
+            wordlist3 << list.at(0) << list.at(1);
+        }
+        Tool::QStringList_removeDuplicates(&wordlist3);
+
+        QStringList wordlist4 = wordlist2 + wordlist3;
+        Tool::QStringList_removeDuplicates(&wordlist4);
+
         out << function;
         out << wordlist1;
         out << wordlist2;
+        out << wordlist3;
+        out << wordlist4;
     }
-    if(function == "info_isA"){
-        QVector<QStringList> result;
-        Warehouse::info(result);
-        out << function;
-        out << result;
-    }
-
     if(function == "isC"){
         QVector<QStringList> w;
         Warehouse::info(w);
@@ -135,47 +161,19 @@ void Processor::work ()
         QMap<QString, QStringList> arriving;
         Warehouse::arriving(id, arriving);
 
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
-
         out << function;
         out << warehouse;
         out << stock;
         out << arriving;
-        out << clothes;
     }
 
     if(function == "pB5"){
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
 
-        QVector<QMap<QString, QString>> stock;
-        Warehouse::stock(stock);
-
-        QVector<QMap<QString, QStringList>> arriving;
-        Warehouse::arriving(arriving);
-
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
 
         out << function;
         out << warehouse;
-        out << stock;
-        out << arriving;
-        out << clothes;
-    }
-
-    if(function == "iwhC"){
-        QVector<QStringList> stock;
-        Warehouse::stock(stock);
-        QVector<QStringList> arriving;
-        Warehouse::arriving(arriving);
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
-        out << function;
-        out << stock;
-        out << arriving;
-        out << clothes;
     }
 
     if(function == "pB8"){
@@ -194,41 +192,117 @@ void Processor::work ()
         out << result;
     }
 
-    if(function == "info_whEC3"){
-        QVector<QStringList> result;
-        Warehouse::GInfo(result);
-
-        QStringList wordlist;
-
-        for (QStringList list : result){
-            wordlist << list.at(0) << list.at(1);
-        }
-        Tool::QStringList_removeDuplicates(&wordlist);
-        out << function;
-        out << wordlist;
-    }
 
     if(function == "tWBiC"){
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
-        QVector<QStringList> stock;
-        Warehouse::stock(stock);
         QString s = list.at(0);
 
         QStringList result;
         Warehouse::GInfo(s.toInt(), result);
         out << function;
         out << warehouse;
-        out << stock;
         out << result;
 
     }
 
-    if(function == "isB"){
-        QVector<QStringList> result;
-        Warehouse::GInfo(result);
+    if(function == "sendOrder"){
+        QString orderID = list.at(0);
+        list.removeFirst();
+        QString datetime = list.at(0);
+        list.removeFirst();
+        QStringList productInfo;
+        for(QString s : list){
+            productInfo.append(s);
+        }
+
+        Order order(orderID, datetime, productInfo);
+        Warehouse::sendRequirement(order);
+        out << function;
+        out << QString("done");
+    }
+
+    if(function == "pB10"){
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QStringList result1;
+
+        for(QStringList l : g){
+            result1.append("   " + l.at(0) + " - "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result1);
+
+        QVector<QStringList> w;
+        Warehouse::info(w);
+
+        QStringList result2;
+
+        for(QStringList l : w){
+            result2.append("   " + l.at(0) + " - "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result2);
+
+
+        out << function;
+        out << result1;
+        out << result2;
+    }
+
+    if(function == "tWD1iC"){
+        QString s = list.at(0);
+
+        QStringList result;
+        Warehouse::GInfo(s.toInt(), result);
         out << function;
         out << result;
+
+    }
+
+    if(function == "tWD2iC"){
+        QString s = list.at(0);
+
+        QMap<QString, QString> result;
+        Warehouse::stock(s.toInt(), result);
+
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QMap<QString, QString> result1;
+
+        for(QStringList l : g){
+            result1.insert(l.at(0), l.at(1));
+        }
+        out << function;
+        out << result;
+        out << result1;
+    }
+    if(function == "order_send"){
+        QMap<QString, QMap<QString, QString>> orders;
+        in >> orders;
+
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString time = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+
+        for(QMap<QString, QMap<QString, QString>>::const_iterator i
+            = orders.begin(); i != orders.end(); ++i){
+            QStringList productInfo;
+            for(QMap<QString, QString>::const_iterator j
+                = i.value().begin(); j != i.value().end(); ++j){
+                productInfo.append(j.key());
+                productInfo.append(j.value());
+            }
+            Order order(i.key(), time, productInfo);
+            Warehouse::sendRequirement(order);
+
+        }
+        QString msg = "Done";
+        out << function;
+        out << msg;
     }
     //system page show garment
     if(function == "sp_sg"){
