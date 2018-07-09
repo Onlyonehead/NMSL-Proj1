@@ -1,7 +1,7 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
 #include "login.h"
-#include "sqltool.h"
+#include "QElapsedTimer"
 
 /**
  * SystemCenter UI initialize
@@ -13,6 +13,13 @@ SystemCenter::SystemCenter(QWidget *parent) :
     ui(new Ui::SystemCenter)
 {
     ui->setupUi(this);
+
+    m_tcpsocket = new QTcpSocket;
+    m_tcpsocket->connectToHost(QHostAddress::LocalHost,8848);//设置客户端的端口号
+    connect(m_tcpsocket,SIGNAL(readyRead()),
+            this,SLOT(readMessage()));//用于接受数据
+
+
     this->setAttribute(Qt::WA_DeleteOnClose);
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowMinimizeButtonHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
@@ -24,7 +31,6 @@ SystemCenter::SystemCenter(QWidget *parent) :
      * for slow start
      *
      */
-
 }
 
 /**
@@ -45,7 +51,6 @@ SystemCenter::~SystemCenter()
  */
 void SystemCenter::on_pushButton_quit_clicked()
 {
-    SQLTool::disconnection();
     this->close();
 }
 
@@ -214,13 +219,10 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     QApplication::processEvents();
     //fuzzy search
 
-    connect(ui->warehouse_search_A, SIGNAL(editingFinished()), this, SLOT(warehouseEditComplete1()));
     connect(ui->warehouse_search_A, SIGNAL(returnPressed()), ui->icon_search, SIGNAL(clicked()), Qt::UniqueConnection);
 
-    connect(ui->warehouse_search_B, SIGNAL(editingFinished()), this, SLOT(warehouseEditComplete3()));
     connect(ui->warehouse_search_B, SIGNAL(returnPressed()), ui->icon_search_B, SIGNAL(clicked()), Qt::UniqueConnection);
 
-    connect(ui->warehouse_search_C, SIGNAL(editingFinished()), this, SLOT(warehouseEditComplete2()));
     connect(ui->warehouse_search_C, SIGNAL(returnPressed()), ui->icon_search_C, SIGNAL(clicked()), Qt::UniqueConnection);
 
     QApplication::processEvents();
@@ -271,38 +273,35 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
 
+    QElapsedTimer t;
 
 
+//    //initialize furry search
 
+    warehouseEditComplete();
 
-
-    //initialize furry search
-    warehouseEditComplete1();
-
-    QApplication::processEvents();
-
-    warehouseEditComplete2();
-
-    QApplication::processEvents();
+    t.start();
+    while(t.elapsed()<1000)
+        QCoreApplication::processEvents();
 
     warehouseEditComplete3();
 
-    QApplication::processEvents();
+
+    t.start();
+    while(t.elapsed()<1000)
+        QCoreApplication::processEvents();
 
     //initialize arriving table
     transfer();
-    QApplication::processEvents();
+
+
+    t.start();
+    while(t.elapsed()<1000)
+        QCoreApplication::processEvents();
+
 
     //initialize warehouse_C ui
     init_warehouse_C();
-    QApplication::processEvents();
-
-
-
-    progressBar_fast();
-
-    ui->pushButton_switch->setEnabled(true);
-    ui->pushButton_quit->setEnabled(true);
 }
 
 
@@ -575,5 +574,3 @@ void SystemCenter::replyFinished(QNetworkReply *reply)
         qDebug() << "Error\n";
     }
 }
-
-

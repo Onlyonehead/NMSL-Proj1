@@ -23,9 +23,9 @@
 #include <QDateTime>
 #include <QDate>
 #include "garment.h"
-
-#include "tool.h"
-#include "warehouse.h"
+#include <QCompleter>
+#include <QStringListModel>
+#include <QtNetwork>
 
 
 namespace Ui {
@@ -45,7 +45,12 @@ public:
 
 
 private slots:
+    void sendMessage(QStringList);
+
+    void readMessage();
+
     void showString(QString s1, QString s2, QString s3, QString s4, QString s5, QString s6);
+
     void on_tabWidget_tabBarClicked(int index);
 
     void on_pushButton_B_clicked();
@@ -60,9 +65,7 @@ private slots:
 
     void on_pushButton_6_clicked();
 
-    void warehouseEditComplete1();
-
-    void warehouseEditComplete2();
+    void warehouseEditComplete();
 
     void on_icon_search_clicked();
 
@@ -139,6 +142,7 @@ private:
     void init_warehouse_C();
     QNetworkAccessManager netManager;
     QString filepath;
+    QTcpSocket *m_tcpsocket;
 
 };
 

@@ -225,14 +225,28 @@ void Login::sendMessage(QStringList list)
     QByteArray message;
     QDataStream out(&message,QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_7);
+    out << (quint16) 0;
     out << list;
+    out.device()->seek(0);
+    out << (quint16) (message.size() - sizeof(quint16));
     m_tcpsocket->write(message);
+    m_tcpsocket->flush();
 }
 
 void Login::readMessage()
 {
     QDataStream in(m_tcpsocket);
     in.setVersion(QDataStream::Qt_5_7);
+    quint16 blocksize = 0;
+    if (m_tcpsocket->bytesAvailable() < (int)sizeof(quint16)){
+        return;
+
+    }
+    in >> blocksize;
+
+    if(m_tcpsocket->bytesAvailable() < blocksize){
+        return;
+    }
     QString from;
     in >> from;
     qDebug() << from << endl;
@@ -304,4 +318,6 @@ void Login::readMessage()
 
         this->close();
     }
+
+//    m_tcpsocket->disconnectFromHost();
 }

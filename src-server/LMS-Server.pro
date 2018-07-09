@@ -28,16 +28,34 @@ SOURCES += main.cpp\
     sqltool.cpp \
     TCPConnection.cpp \
     forgetpassword.cpp \
+<<<<<<< HEAD
     store.cpp \
     record.cpp
+=======
+    warehouse.cpp \
+    tool.cpp \
+    order.cpp \
+    myserver.cpp \
+    socketthread.cpp \
+    processor.cpp
+>>>>>>> faaffdc84f655b4ee4ea3631e05215d153568b5a
 
 HEADERS  += \
     login.h \
     sqltool.h \
     TCPConnection.h \
     forgetpassword.h \
+<<<<<<< HEAD
     store.h \
     record.h
+=======
+    warehouse.h \
+    tool.h \
+    order.h \
+    myserver.h \
+    socketthread.h \
+    processor.h
+>>>>>>> faaffdc84f655b4ee4ea3631e05215d153568b5a
 
 win32{
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../packages/build-SMTPEmail-Desktop_Qt_5_7_1_MinGW_32bit-Debug/release/ -lSMTPEmail
