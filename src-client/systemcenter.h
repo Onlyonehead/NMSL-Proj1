@@ -130,6 +130,14 @@ private slots:
 
     void on_pushButton_cancelNewStaff_clicked();
 
+    void on_pushButton_showStores_clicked();
+
+    void on_lineEdit_sell_search_textChanged(const QString &arg1);
+
+    void on_tableWidget_stores_cellClicked(int row, int column);
+
+    void on_pushButton_clearStores_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -138,6 +146,10 @@ private:
     void progressBar_fast();
     void progressBar();
     void init_warehouse_C();
+
+    void searchTableWidget(QTableWidget*, const QString&, QVector<int>&);
+    void setTableWidgetItemHidden(QTableWidget*, const QString&);
+
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;

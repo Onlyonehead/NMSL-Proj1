@@ -13,6 +13,7 @@
 #include <QSpinBox>
 #include <QDateTime>
 #include <QTableWidget>
+#include <QElapsedTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     tabSignal = false;
     tabInit();
+    ui->progressBar_sell->setVisible(false);
 
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowMinimizeButtonHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
@@ -390,6 +392,8 @@ void MainWindow::replyFinished(QNetworkReply *reply)
  */
 void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QString s5, QString s6)
 {
+    QElapsedTimer t;
+
     this->show();
 
     ui->progressBar->setRange(0, 100);//设置进度条范围
@@ -411,13 +415,19 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     sendMessage(qsl);
     ui->progressBar->setValue(10);
 
+    m_tcpsocket->flush();
+    t.start();
+    while(t.elapsed()<1000)
+        QCoreApplication::processEvents();
+
+
     QApplication::processEvents();
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(removeSubTab(int)));
     ui->frame_exit->installEventFilter(this);
     addFont();
     setCursor();
     connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
-    ui->progressBar->setValue(30);
+    ui->progressBar->setValue(20);
 
     QApplication::processEvents();
     download("http://39.108.155.50/project1/users/" + s6, "./" + s6);
@@ -428,27 +438,16 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     QApplication::processEvents();
     ui->label_user->setScaledContents(true);
     ui->label_user->setPixmap(*pixmap);
-    ui->progressBar->setValue(60);
+    ui->progressBar->setValue(40);
 
     QApplication::processEvents();
     qsl.clear();
-    qsl.append("getAllClothes");
-    sendMessage(qsl);
-    ui->progressBar->setValue(70);
-
-    QApplication::processEvents();
-    qsl.clear();
-    qsl.append("getStock");
+    qsl.append("MainWindowInit");
     qsl.append(storeId);
     sendMessage(qsl);
-    ui->progressBar->setValue(80);
+    ui->progressBar->setValue(50);
 
-    QApplication::processEvents();
-    qsl.clear();
-    qsl.append("getRecord");
-    qsl.append(storeId);
-    sendMessage(qsl);
-    ui->progressBar->setValue(100);
+    m_tcpsocket->flush();
 
 }
 
@@ -502,8 +501,12 @@ void MainWindow::sendMessage(QStringList list)
 
     QByteArray message;
     QDataStream out(&message,QIODevice::WriteOnly);
+
     out.setVersion(QDataStream::Qt_5_7);
+    out << (quint16) 0;
     out << list;
+    out.device()->seek(0);
+    out << (quint16) (message.size() - sizeof(quint16));
     m_tcpsocket->write(message);
 }
 
@@ -512,6 +515,16 @@ void MainWindow::readMessage()
 {
     QDataStream in(m_tcpsocket);
     in.setVersion(QDataStream::Qt_5_7);
+    quint16 blocksize = 0;
+    if (m_tcpsocket->bytesAvailable() < (int)sizeof(quint16)){
+        return;
+
+    }
+    in >> blocksize;
+
+    if(m_tcpsocket->bytesAvailable() < blocksize){
+        return;
+    }
     QString from;
     in >> from;
     qDebug() << from << endl;
@@ -549,11 +562,38 @@ void MainWindow::readMessage()
 
     if(from == "getStock"){
 
+        qv_stock.clear();
         in >> qv_stock;
     }
 
     if(from == "sellGoods"){
+        QString message;
+        in >> message;
+        qDebug()<<message;
+        ui->progressBar_sell->setValue(60);
 
+        qv_stock.clear();
+        in >> qv_stock;
+
+        int qv_size;//获取QVector的大小
+        QString id_trans;
+        QString id_store;
+        QString date;
+        QString prices;
+        QMap<QString, QString> m;
+        in >> qv_size;
+        qDebug()<<"记录大小："<<qv_size;
+        qv_record.clear();
+        for(int i=0; i<qv_size; ++i){
+            in >> id_trans >> id_store >> date >> prices >> m;
+            Record r(id_trans, id_store, date, prices);
+            r.loadDetails(m);
+            qv_record.append(r);
+        }
+        in >> record_size;
+        ui->progressBar_sell->setValue(100);
+        ui->progressBar_sell->setVisible(false);
+        setTableWidget_sellGoods();//刷新页面
     }
 
     //有两个地方调用
@@ -579,14 +619,28 @@ void MainWindow::readMessage()
         }
     }
 
-    if(from == "sellGoods"){
-        QString message;
-        in >> message;
-        qDebug()<<message;
-    }
-
-    if(from == "getAllClothes"){
+    if(from == "MainWindowInit"){
         in >> qv_clothes;
+        ui->progressBar->setValue(70);
+        in >> qv_stock;
+        ui->progressBar->setValue(80);
+
+        int qv_size;//获取QVector的大小
+        QString id_trans;
+        QString id_store;
+        QString date;
+        QString prices;
+        QMap<QString, QString> m;
+        in >> qv_size;
+        qDebug()<<"记录大小："<<qv_size;
+        for(int i=0; i<qv_size; ++i){
+            in >> id_trans >> id_store >> date >> prices >> m;
+            Record r(id_trans, id_store, date, prices);
+            r.loadDetails(m);
+            qv_record.append(r);
+        }
+        in >> record_size;
+        ui->progressBar->setValue(100);
     }
 }
 

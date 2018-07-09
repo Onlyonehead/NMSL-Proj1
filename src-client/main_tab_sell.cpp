@@ -62,12 +62,11 @@ void MainWindow::on_pushButton_sell_clicked()
     if("0"!=ui->label_sell_totalCount->text()){
         QString message = "交易总额为"+ui->label_sell_totalPrice->text()+"，共有"+ui->label_sell_totalCount->text()+"件服装。";
         if(QMessageBox::Yes==QMessageBox::question(this, tr("交易确认"), message, QMessageBox::Yes, QMessageBox::No)) {
+            QElapsedTimer t;
 
             //交易进度条
-            QProgressDialog dialog(tr("交易进度"), tr("取消"), 0, 100, this);
-            dialog.setWindowTitle(tr("交易进行中"));
-            dialog.setWindowModality(Qt::WindowModal);
-            dialog.show();
+            ui->progressBar_sell->setVisible(true);
+            ui->progressBar_sell->setValue(0);
 
             qsl.clear();
             qsl.append("sellGoods");
@@ -81,27 +80,11 @@ void MainWindow::on_pushButton_sell_clicked()
             }
             qsl<<"#";
             sendMessage(qsl);
-            dialog.setValue(10);
-
-            //QVector<Record> Store::getRecord(int id_store, int& size)
-            QApplication::processEvents();
-            qsl.clear();
-            qsl.append("getRecord");
-            qsl.append(storeId);
-            sendMessage(qsl);
-            dialog.setValue(40);
-
-            //QVector<QVector<QString> > Store::getStock(int store_id)
-            QApplication::processEvents();
-            qsl.clear();
-            qsl.append("getStock");
-            qsl.append(storeId);
-            sendMessage(qsl);
-            dialog.setValue(70);
+            ui->progressBar_sell->setValue(10);
+            m_tcpsocket->flush();
 
             QApplication::processEvents();
-            setTableWidget_sellGoods();//刷新页面
-            dialog.setValue(100);
+            ui->progressBar_sell->setValue(20);
         } else {
             qDebug()<<"放弃";
         }

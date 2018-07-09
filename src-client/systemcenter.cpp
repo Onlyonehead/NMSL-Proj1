@@ -1,6 +1,7 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
 #include "login.h"
+#include "record.h"
 #include "QElapsedTimer"
 
 /**
@@ -215,6 +216,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_C2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C2->horizontalHeader()->setStretchLastSection(true);
 
+    ui->tableWidget_stores->horizontalHeader()->setDefaultSectionSize(93);
+    ui->tableWidget_stores->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_stores->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
 
     QApplication::processEvents();
     //fuzzy search
@@ -385,8 +391,8 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
 
-        ui->pushButton_A->setText("");
-        ui->pushButton_B->setText("");
+        ui->pushButton_A->setText("Record");
+        ui->pushButton_B->setText("Delivery");
         ui->pushButton_C->setText("");
         ui->pushButton_D->setText("");
 

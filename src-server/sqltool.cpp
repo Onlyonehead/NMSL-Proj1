@@ -12,7 +12,7 @@ void SQLTool::connection(){
     db.setPort(3306);
     db.setUserName("root");
     db.setPassword("abcd1234");
-    db.setDatabaseName("proj1_main");
+    db.setDatabaseName("project1");
     if(!db.open()){
         qDebug() << "Unable to open database" << endl;
     }else{

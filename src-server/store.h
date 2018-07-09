@@ -9,11 +9,12 @@ class Store{
 public:
     static QString getPicPath(QString);
     static QString getClothStyle(QString id);
-    static QStringList getClothDetail(QString id);
+    static void getClothDetail(QString id, QStringList&);
     static void getAllClothes(QVector<QStringList>&);
-    static QVector<QString> getStoreInfo(QString, QString);
-    static QVector<QVector<QString>> getStock(QString);
-    static QVector<Record> getRecord(int ,int&);
+    static void getStoreInfo(QString, QString, QVector<QString>&);
+    static void getStock(QString, QVector<QVector<QString>>&);
+    static void getRecord(int ,int&, QVector<Record>&);
+    static void getStores(QVector<QStringList>&);
     static bool sellGoods(QString, QString, QVector<int>);
 };
 

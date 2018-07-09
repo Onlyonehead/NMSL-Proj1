@@ -51,7 +51,8 @@ SOURCES += main.cpp \
     main_tab_delivery.cpp \
     sqltool.cpp \
     systemcenter_msg.cpp \
-    order.cpp
+    order.cpp \
+    sell_a.cpp
 
 
 
