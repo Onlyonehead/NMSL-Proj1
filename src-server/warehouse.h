@@ -19,6 +19,7 @@
 #include <QStringListModel>
 #include "sqltool.h"
 #include "order.h"
+#include "logistics.h"
 
 
 class Warehouse{
@@ -66,7 +67,10 @@ public:
 
 
     //补货
-    static void replenish(int, QVector<Order>&);
+    static void replenish(QString, Order&);
+
+    //发送订单请求
+    static void sendRequirement(Order &order);
 
     static void GInfo(QVector<QStringList> &);
     static void GInfo(int, QStringList &);

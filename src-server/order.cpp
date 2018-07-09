@@ -5,29 +5,29 @@
 
 
 
-Order::Order(int orderID, QString datetime, QStringList productInfo)
+Order::Order(QString id, QString datetime, QStringList productInfo)
 {
-    this->id = orderID;
+    this->id = id;
     this->datetime = datetime;
     this->productInfo = productInfo;
     QSqlQuery query;
     SQLTool::search(query, "ID", "orderInfo");
     query.last();
-    this->orderID = query.value(0).toInt();
+    this->orderID = query.value(0).toString();
 }
 
 Order::Order(){
 
 }
 
-void Order::editInfo(int id, QString datetime, QStringList productInfo){
+void Order::editInfo(QString id, QString datetime, QStringList productInfo){
     this->id = id;
     this->datetime = datetime;
     this->productInfo = productInfo;
 }
 
 void Order::toString(QStringList &list){
-    list.append(QString::number(id));
+    list.append(id);
     list.append(datetime);
     int n = this->productInfo.size();
 
@@ -47,6 +47,10 @@ void Order::getProductInfo(QStringList &list){
     }
 }
 
+QString Order::getId(){
+    return this->id;
+}
+
 QString Order::getDatetime(){
     return this->datetime;
 }
@@ -57,6 +61,7 @@ void Order::saveOrder(Order &order)
     QString productInformation;
     productInformation = order.productInfo.join("#");
     list.append("0");
+    list.append(order.id);
     list.append(order.datetime);
     list.append(productInformation);
     qDebug() << list;

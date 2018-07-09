@@ -91,6 +91,10 @@ private slots:
 
     void on_tableWidget_B_itemClicked(QTableWidgetItem *item);
 
+    void on_tableWidget_D1_itemClicked(QTableWidgetItem *item);
+
+    void on_tableWidget_D2_itemClicked(QTableWidgetItem *item);
+
     void on_pushButton_9_clicked();
 
     void replyFinished(QNetworkReply *reply);
@@ -129,6 +133,14 @@ private slots:
     void on_lineEdit_addNewEmail_editingFinished();
 
     void on_pushButton_cancelNewStaff_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_clothes_ADD_clicked();
+
+    void on_order_send_clicked();
 
 signals:
     void stringReturn(QString);

@@ -170,24 +170,28 @@ void Warehouse::arriving(QMap<QString, QMap<QString, QStringList>> &result){
     }
 }
 
-void Warehouse::replenish(int id, QVector<Order>& orders){
-    for(Order order : orders){
-        QStringList list;
-        order.getProductInfo(list);
-        QString date_time = order.getDatetime();
-        int n = list.size();
-        while(n){
-            QString clothes_id = list.at(n-2);
-            QString quantity = list.at(n-1);
-            QStringList result;
-            result.append(QString::number(id));
-            result.append(clothes_id);
-            result.append(quantity);
-            result.append(date_time);
-            SQLTool::insert("arriving", result);
+void Warehouse::sendRequirement(Order &order){
+    Logistics::receiveOrder(order);
+}
 
-            n -= 2;
-        }
+void Warehouse::replenish(QString id, Order& order){
+    QStringList list;
+    order.getProductInfo(list);
+    QString date_time = order.getDatetime();
+    QString from_id = order.getId();
+    int n = list.size();
+    while(n){
+        QString clothes_id = list.at(n-2);
+        QString quantity = list.at(n-1);
+        QStringList result;
+        result.append(id);
+        result.append(clothes_id);
+        result.append(quantity);
+        result.append(date_time);
+        result.append(from_id);
+        SQLTool::insert("arriving", result);
+
+        n -= 2;
     }
 }
 

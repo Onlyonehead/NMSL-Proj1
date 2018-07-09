@@ -33,6 +33,8 @@ void SystemCenter::readMessage()
     in >> from;
     qDebug() << "From: " << from << endl;
     if(from == "transfer"){
+
+        ui->progressBar->setValue(50);
         int count1 = 0;
         int count2 = 0;
 
@@ -48,10 +50,14 @@ void SystemCenter::readMessage()
             count1 += list.at(2).toInt();
         }
 
+        ui->progressBar->setValue(60);
+
 
         for(QStringList list: arriving){
             count2 += list.at(2).toInt();
         }
+
+        ui->progressBar->setValue(80);
 
         ui->label_20->setText(QString::number(count1));
         ui->label_27->setText(QString::number(count2));
@@ -60,11 +66,59 @@ void SystemCenter::readMessage()
 
         ui->label_22->setText(QString::number(clothes.size()));
 
-
-        progressBar_fast();
+        ui->progressBar->setValue(100);
 
         ui->pushButton_switch->setEnabled(true);
         ui->pushButton_quit->setEnabled(true);
+    }
+
+    if(from == "info_whEC"){
+        ui->progressBar->setRange(0, 100);
+
+        QStringList wordlist;
+        in >> wordlist;
+        QApplication::processEvents();
+        QCompleter *completer = new QCompleter(this);
+        QStringListModel *string_list_model = new QStringListModel(wordlist, this);
+        completer->setCaseSensitivity(Qt::CaseInsensitive);
+        completer->setModel(string_list_model);
+        completer->popup()->setStyleSheet("border: 2px solid rgb(169, 169, 169);border-radius:0px;"
+                                          "background:rgba(255, 255, 255,200);"
+                                          "color: rgb(76, 76, 76);"
+                                          "	font: 17pt \"Times\" bold;");
+        ui->warehouse_search_A->setCompleter(completer);
+
+        ui->progressBar->setValue(15);
+
+        wordlist.clear();
+        in >> wordlist;
+        completer = new QCompleter(this);
+        string_list_model = new QStringListModel(wordlist, this);
+        completer->setCaseSensitivity(Qt::CaseInsensitive);
+        completer->setModel(string_list_model);
+        completer->popup()->setStyleSheet("border: 2px solid rgb(169, 169, 169);border-radius:0px;"
+                                          "background:rgba(255, 255, 255,200);"
+                                          "color: rgb(76, 76, 76);"
+                                          "	font: 17pt \"Times\" bold;");
+        ui->warehouse_search_C->setCompleter(completer);
+
+        ui->progressBar->setValue(30);
+
+
+        wordlist.clear();
+        in >> wordlist;
+
+        completer = new QCompleter(this);
+        string_list_model = new QStringListModel(wordlist, this);
+        completer->setCaseSensitivity(Qt::CaseInsensitive);
+        completer->setModel(string_list_model);
+        completer->popup()->setStyleSheet("border: 2px solid rgb(169, 169, 169);border-radius:0px;"
+                                          "background:rgba(255, 255, 255,200);"
+                                          "color: rgb(76, 76, 76);"
+                                          "	font: 17pt \"Times\" bold;");
+        ui->warehouse_search_B->setCompleter(completer);
+
+        ui->progressBar->setValue(45);
     }
     if(from == "info_pB4"){
         QVector<QStringList> result;
@@ -83,46 +137,7 @@ void SystemCenter::readMessage()
         ui->tableWidget->setRowCount(i);
         progressBar();
     }
-    if(from == "info_whEC"){
-        QStringList wordlist;
-        in >> wordlist;
-        QApplication::processEvents();
-        QCompleter *completer = new QCompleter(this);
-        QStringListModel *string_list_model = new QStringListModel(wordlist, this);
-        completer->setCaseSensitivity(Qt::CaseInsensitive);
-        completer->setModel(string_list_model);
-        completer->popup()->setStyleSheet("border: 2px solid rgb(169, 169, 169);border-radius:0px;"
-                                          "background:rgba(255, 255, 255,200);"
-                                          "color: rgb(76, 76, 76);"
-                                          "	font: 17pt \"Times\" bold;");
-        ui->warehouse_search_A->setCompleter(completer);
 
-        wordlist.clear();
-        in >> wordlist;
-        completer = new QCompleter(this);
-        string_list_model = new QStringListModel(wordlist, this);
-        completer->setCaseSensitivity(Qt::CaseInsensitive);
-        completer->setModel(string_list_model);
-        completer->popup()->setStyleSheet("border: 2px solid rgb(169, 169, 169);border-radius:0px;"
-                                          "background:rgba(255, 255, 255,200);"
-                                          "color: rgb(76, 76, 76);"
-                                          "	font: 17pt \"Times\" bold;");
-        ui->warehouse_search_C->setCompleter(completer);
-
-
-        wordlist.clear();
-        in >> wordlist;
-
-        completer = new QCompleter(this);
-        string_list_model = new QStringListModel(wordlist, this);
-        completer->setCaseSensitivity(Qt::CaseInsensitive);
-        completer->setModel(string_list_model);
-        completer->popup()->setStyleSheet("border: 2px solid rgb(169, 169, 169);border-radius:0px;"
-                                          "background:rgba(255, 255, 255,200);"
-                                          "color: rgb(76, 76, 76);"
-                                          "	font: 17pt \"Times\" bold;");
-        ui->warehouse_search_B->setCompleter(completer);
-    }
 
     if(from == "info_isA"){
         ui->tableWidget->setRowCount(0);
@@ -401,6 +416,115 @@ void SystemCenter::readMessage()
             }
         }
         ui->tableWidget_B->setRowCount(i);
+    }
+    if(from == "pB10"){
+        ui->tableWidget_D1->setRowCount(0);
+
+        QStringList list;
+
+        in >> list;
+
+        int n = list.size();
+
+        while(n){
+            QApplication::processEvents();
+            ui->tableWidget_D1->insertRow(list.size()-n);
+            ui->tableWidget_D1->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_D1->setRowCount(list.size());
+
+        ui->tableWidget_D2->setRowCount(0);
+
+        list.clear();
+
+        in >> list;
+
+        n = list.size();
+
+        while(n){
+            QApplication::processEvents();
+            ui->tableWidget_D2->insertRow(list.size()-n);
+            ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_D2->setRowCount(list.size());
+
+        progressBar_fast();
+    }
+    if(from == "tWD1iC"){
+        QStringList result;
+        in >> result;
+
+
+        QString id = result.at(0);
+        QString style = result.at(1);
+        QString size = result.at(2);
+        QString path = result.at(3);
+        QString price = result.at(4);
+
+        QApplication::processEvents();
+        QPixmap *pixmap = new QPixmap("./" + path);
+        if(pixmap->isNull()){
+            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        }
+
+        if (pixmap->isNull()){
+            pixmap = new QPixmap(":/default.jpg");
+        }
+        QApplication::processEvents();
+        ui->label_clothes_D->setScaledContents(true);
+        ui->label_clothes_D->setPixmap(*pixmap);
+        delete pixmap;
+        QApplication::processEvents();
+
+        ui->label_72->setText(id);
+        ui->label_73->setText(style);
+        ui->label_74->setText(price);
+        ui->label_75->setText(size);
+        QApplication::processEvents();
+
+        progressBar_fast();
+    }
+
+    if(from == "tWD2iC"){
+        ui->tableWidget_D3->setRowCount(0);
+        QMap<QString, QString> stock;
+        in >> stock;
+
+        QMap<QString, QString> clothes;
+        in >> clothes;
+
+        QApplication::processEvents();
+
+        int count = 0;
+        for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
+            QString clothes_name;
+            clothes_name = clothes.value(i.key());
+            QApplication::processEvents();
+            ui->tableWidget_D3->insertRow(count);
+            ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() + " - " + clothes_name));
+            ui->tableWidget_D3->setItem(count, 1, new QTableWidgetItem(i.value()));
+
+            QApplication::processEvents();
+            count++;
+        }
+
+        ui->tableWidget_D3->setRowCount(count);
+
+
+        progressBar_fast();
+    }
+
+    if(from == "order_send"){
+        QString msg;
+        in >> msg;
+        if(msg == "Done"){
+            QMessageBox::information(this,"完成", "\n提交订单成功！",QMessageBox::Ok);
+            ui->tableWidget_D4->setRowCount(0);
+        }
     }
 
 //    m_tcpsocket->disconnectFromHost();
