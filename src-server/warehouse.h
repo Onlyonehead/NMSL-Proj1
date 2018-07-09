@@ -72,6 +72,9 @@ public:
     //发送订单请求
     static void sendRequirement(Order &order);
 
+    //发货
+    static void deliverGoods(QString, Order&);
+
     static void GInfo(QVector<QStringList> &);
     static void GInfo(int, QStringList &);
 };

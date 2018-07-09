@@ -1412,7 +1412,7 @@ QPushButton:hover{
          <x>37</x>
          <y>120</y>
          <width>651</width>
-         <height>411</height>
+         <height>221</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1791,6 +1791,296 @@ background: none;
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_106">
+       <property name="geometry">
+        <rect>
+         <x>136</x>
+         <y>362</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>History </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_107">
+       <property name="geometry">
+        <rect>
+         <x>106</x>
+         <y>375</y>
+         <width>18</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="w_search_A">
+       <property name="geometry">
+        <rect>
+         <x>57</x>
+         <y>485</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_108">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>416</y>
+         <width>91</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Warehouse
+  id:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_id">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>425</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_A">
+       <property name="geometry">
+        <rect>
+         <x>276</x>
+         <y>375</y>
+         <width>411</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>list</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+      </widget>
+      <widget class="QPushButton" name="w_search_A_3">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>485</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>All</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </widget>
@@ -5227,10 +5517,10 @@ to send:</string>
        </property>
       </widget>
      </widget>
-     <zorder>frame_2A</zorder>
      <zorder>frame_2C</zorder>
-     <zorder>frame_2D</zorder>
      <zorder>frame_2B</zorder>
+     <zorder>frame_2D</zorder>
+     <zorder>frame_2A</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">

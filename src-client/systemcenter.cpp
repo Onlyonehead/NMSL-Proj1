@@ -2,6 +2,7 @@
 #include "ui_systemcenter.h"
 #include "login.h"
 #include "QElapsedTimer"
+#include <QHeaderView>
 
 /**
  * SystemCenter UI initialize
@@ -203,6 +204,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_104->setText(QChar(0xf55f));
     ui->label_104->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_107->setFont(font);
+    ui->label_107->setText(QChar(0xf56e));
+    ui->label_107->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
 
     //initialize search icon
@@ -237,33 +241,47 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     ui->tableWidget->horizontalHeader()->setDefaultSectionSize(105);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    ui->tableWidget_A->setColumnWidth(0, 185);
+    ui->tableWidget_A->setColumnWidth(1, 70);
+    ui->tableWidget_A->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_A->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_B->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_B->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_B->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_B->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_B_2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_B_2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_B_2->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_C1->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C1->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_C2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_D1->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_D1->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D1->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_D1->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_D2->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_D2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D2->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_D2->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_D3->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_D3->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_D3->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->tableWidget_D4->horizontalHeader()->setDefaultSectionSize(102);
     ui->tableWidget_D4->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_D4->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
     QApplication::processEvents();
@@ -278,6 +296,8 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     connect(ui->warehouse_search_D, SIGNAL(returnPressed()), ui->icon_search_D, SIGNAL(clicked()), Qt::UniqueConnection);
 
     connect(ui->quantity_D, SIGNAL(returnPressed()), ui->clothes_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
+
+    connect(ui->warehouse_id, SIGNAL(returnPressed()), ui->w_search_A, SIGNAL(clicked()), Qt::UniqueConnection);
     QApplication::processEvents();
 
     /**
@@ -326,10 +346,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
 
-    QElapsedTimer t;
 
 
 //    //initialize furry search
+
+    QElapsedTimer t;
 
     warehouseEditComplete();
     m_tcpsocket->flush();
@@ -616,3 +637,4 @@ void SystemCenter::replyFinished(QNetworkReply *reply)
         qDebug() << "Error\n";
     }
 }
+

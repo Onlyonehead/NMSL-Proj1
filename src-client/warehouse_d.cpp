@@ -16,6 +16,8 @@ void SystemCenter::on_pushButton_11_clicked()
     ui->warehouse_search_D->clear();
     ui->tableWidget_D1->setRowCount(0);
     ui->tableWidget_D2->setRowCount(0);
+    ui->tableWidget_D3->setRowCount(0);
+    ui->tableWidget_D4->setRowCount(0);
     QPixmap *pixmap = new QPixmap(":/default.jpg");
     QApplication::processEvents();
     ui->label_clothes_D->setScaledContents(true);
@@ -27,6 +29,8 @@ void SystemCenter::on_pushButton_11_clicked()
     ui->label_73->clear();
     ui->label_74->clear();
     ui->label_75->clear();
+    ui->warehouse_label_D->clear();
+    ui->quantity_D->clear();
 
     QApplication::processEvents();
 }
@@ -63,6 +67,26 @@ void SystemCenter::on_tableWidget_D2_itemClicked(QTableWidgetItem *item){
 void SystemCenter::on_clothes_ADD_clicked()
 {
 
+    QString quantity = ui->quantity_D->text();
+    if(quantity.trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入数量！",QMessageBox::Close);
+        return;
+    }
+    QByteArray ba = quantity.toLatin1();
+    const char *s = ba.data();
+    while(*s && *s>='0' && *s<='9') s++;
+
+    if (*s)
+    { //不是纯数字
+        QMessageBox::warning(this,"警告", "\n请输入纯数字！",QMessageBox::Close);
+        return;
+    }
+
+    if(!ui->tableWidget_D2->currentItem() || !ui->tableWidget_D1->currentItem()){
+        QMessageBox::warning(this,"警告", "\n请选中仓库和货物！",QMessageBox::Close);
+        return;
+    }
+
     int count = ui->tableWidget_D4->rowCount();
     for(int i = 0; i < count; i++){
         if(ui->tableWidget_D4->item(i, 0)->text().trimmed() ==
@@ -70,7 +94,7 @@ void SystemCenter::on_clothes_ADD_clicked()
                 ui->tableWidget_D4->item(i, 1)->text().trimmed() ==
                 ui->tableWidget_D1->currentItem()->text().trimmed()){
             ui->tableWidget_D4->item(i, 2)->setText(
-                        QString::number(ui->quantity_D->text().toInt() +
+                        QString::number(quantity.toInt() +
                         ui->tableWidget_D4->item(i, 2)->text().toInt()));
             return ;
         }
@@ -90,6 +114,10 @@ void SystemCenter::on_clothes_ADD_clicked()
 
 void SystemCenter::on_order_send_clicked()
 {
+    if(ui->tableWidget_D4->rowCount() == 0){
+        QMessageBox::warning(this,"警告", "\n请添加订单！",QMessageBox::Close);
+        return;
+    }
     QMap<QString, QMap<QString, QString>> orders;
     int count = ui->tableWidget_D4->rowCount();
     for(int i = 0; i < count; i++){
@@ -123,5 +151,36 @@ void SystemCenter::on_order_send_clicked()
 
 void SystemCenter::on_icon_search_D_clicked()
 {
+    ui->tableWidget_D1->setRowCount(0);;
+    QString text = ui->warehouse_search_D->text();
 
+    if(text.trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入关键字！",QMessageBox::Close);
+        return ;
+    }
+
+    QVector<QStringList> result = this->clothes;
+
+    int i = 0;
+    for(QStringList list : result){
+        if(list.at(0) == text || list.at(1) == text){
+            ui->tableWidget_D1->insertRow(i);
+            ui->tableWidget_D1->setItem(i, 0, new QTableWidgetItem(list.at(0) + " - " + list.at(1)));
+            i++;
+            QApplication::processEvents();
+        }
+    }
+    ui->tableWidget_D1->setRowCount(i);
+
+    result = this->warehouse;
+    i = 0;
+    for(QStringList list : result){
+        if(list.at(0) == text || list.at(1) == text){
+            ui->tableWidget_D2->insertRow(i);
+            ui->tableWidget_D2->setItem(i, 0, new QTableWidgetItem(list.at(0) + " - " + list.at(1)));
+            i++;
+            QApplication::processEvents();
+        }
+    }
+    ui->tableWidget_D2->setRowCount(i);
 }

@@ -176,6 +176,7 @@ void Warehouse::sendRequirement(Order &order){
 
 void Warehouse::replenish(QString id, Order& order){
     QStringList list;
+    QString goods;
     order.getProductInfo(list);
     QString date_time = order.getDatetime();
     QString from_id = order.getId();
@@ -192,7 +193,51 @@ void Warehouse::replenish(QString id, Order& order){
         SQLTool::insert("arriving", result);
 
         n -= 2;
+
+        QStringList l2;
+        Warehouse::GInfo(clothes_id.toInt(),l2);
+        goods += clothes_id + " - " + l2.at(1) + "  quantity: " + quantity + "\n";
     }
+
+    QStringList sqlist;
+    sqlist.append(order.getDatetime());
+    sqlist.append(order.getId());
+    sqlist.append(id);
+    sqlist.append(goods);
+    SQLTool::insert("wh_history",sqlist);
+}
+
+void Warehouse::deliverGoods(QString id, Order& order){
+    QStringList list;
+    QString goods;
+    order.getProductInfo(list);
+    int n = list.size();
+    while(n){
+        QSqlQuery query;
+        QString clothes_id = list.at(n-2);
+        QString quantity = list.at(n-1);
+        QStringList l;
+        l.append("warehouse_id");
+        l.append(id);
+        l.append("clothes_id");
+        l.append(clothes_id);
+        SQLTool::search(query,"quantity", "stock", l);
+        query.next();
+        SQLTool::update("stock", "quantity",QString::number(
+                            query.value(0).toInt() - quantity.toInt()), l);
+        n -= 2;
+        QStringList l2;
+        Warehouse::GInfo(clothes_id.toInt(),l2);
+        goods += clothes_id + " - " + l2.at(1) + "  quantity: " + quantity + "\n";
+    }
+
+
+    QStringList sqlist;
+    sqlist.append(order.getDatetime());
+    sqlist.append(id);
+    sqlist.append(order.getId());
+    sqlist.append(goods);
+    SQLTool::insert("wh_history",sqlist);
 }
 
 

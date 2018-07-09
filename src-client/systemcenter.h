@@ -144,6 +144,12 @@ private slots:
 
     void on_icon_search_D_clicked();
 
+    void on_w_search_A_clicked();
+
+    void on_tableWidget_A_itemDoubleClicked(QTableWidgetItem *item);
+
+    void on_w_search_A_3_clicked();
+
 signals:
     void stringReturn(QString);
 

@@ -305,6 +305,51 @@ void Processor::work ()
         out << msg;
     }
 
+    if(function == "wh_history"){
+        QString id = list.at(0);
+        QVector<QStringList> result;
+        QSqlQuery query1;
+        SQLTool::search(query1, "wh_history", "from_id", id);
+        QSqlQuery query2;
+        SQLTool::search(query2, "wh_history", "to_id", id);
+
+        while(query1.next()){
+            QStringList l;
+            l.append(query1.value(0).toString());
+            l.append(query1.value(1).toString());
+            l.append(query1.value(2).toString());
+            l.append(query1.value(3).toString());
+            result.append(l);
+        }
+        while(query2.next()){
+            QStringList l;
+            l.append(query2.value(0).toString());
+            l.append(query2.value(1).toString());
+            l.append(query2.value(2).toString());
+            l.append(query2.value(3).toString());
+            result.append(l);
+        }
+
+        out << function;
+        out << result;
+    }
+    if(function == "wh_history_all"){
+        QVector<QStringList> result;
+        QSqlQuery query;
+        SQLTool::search(query, "wh_history");
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            result.append(l);
+        }
+        out << function;
+        out << result;
+    }
+
     out.device()->seek(0);
     out << (quint16) (message.size() - sizeof(quint16));
     qDebug() << function << endl;

@@ -486,6 +486,35 @@ void SystemCenter::readMessage()
             ui->tableWidget_D4->setRowCount(0);
         }
     }
+    if(from == "wh_history"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
+                                                                  + "from id " + result.at(i).at(1) + " -> "
+                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
+                                                                  result.at(i).at(3)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+    }
+
+    if(from == "wh_history_all"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
+                                                                  + "from id " + result.at(i).at(1) + " -> "
+                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
+                                                                  result.at(i).at(3)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+    }
 
 //    m_tcpsocket->disconnectFromHost();
 }

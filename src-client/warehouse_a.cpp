@@ -34,6 +34,8 @@ void SystemCenter::on_pushButton_6_clicked()
 {
     ui->warehouse_search_A->clear();
     ui->tableWidget->setRowCount(0);
+    ui->tableWidget_A->setRowCount(0);
+    ui->warehouse_id->clear();
 }
 
 /**
@@ -83,3 +85,39 @@ void SystemCenter::on_icon_search_clicked()
     ui->tableWidget->setRowCount(i);
 }
 
+
+
+void SystemCenter::on_w_search_A_clicked()
+{
+    QString text = ui->warehouse_id->text();
+
+    if(text.trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入id！",QMessageBox::Close);
+        return;
+    }
+    QByteArray ba = text.toLatin1();
+    const char *s = ba.data();
+    while(*s && *s>='0' && *s<='9') s++;
+
+    if (*s)
+    { //不是纯数字
+        QMessageBox::warning(this,"警告", "\n请输入纯数字！",QMessageBox::Close);
+        return;
+    }
+
+    QStringList msg;
+    msg.append("wh_history");
+    msg.append(text);
+    sendMessage(msg);
+}
+
+void SystemCenter::on_tableWidget_A_itemDoubleClicked(QTableWidgetItem *item){
+    QMessageBox::information(this,"历史", item->text(), QMessageBox::Close);
+}
+
+void SystemCenter::on_w_search_A_3_clicked()
+{
+    QStringList msg;
+    msg.append("wh_history_all");
+    sendMessage(msg);
+}

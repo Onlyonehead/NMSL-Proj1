@@ -11,7 +11,7 @@ Order::Order(QString id, QString datetime, QStringList productInfo)
     this->datetime = datetime;
     this->productInfo = productInfo;
     QSqlQuery query;
-    SQLTool::search(query, "ID", "orderInfo");
+    SQLTool::search(query, "order_id", "orderInfo");
     query.last();
     this->orderID = query.value(0).toString();
 }
