@@ -120,3 +120,8 @@ void SystemCenter::on_order_send_clicked()
     out << (quint16) (message.size() - sizeof(quint16));
     m_tcpsocket->write(message);
 }
+
+void SystemCenter::on_icon_search_D_clicked()
+{
+
+}

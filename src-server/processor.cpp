@@ -87,17 +87,19 @@ void Processor::work ()
         Warehouse::arriving(arriving);
         QVector<QStringList> clothes;
         Warehouse::GInfo(clothes);
+        QVector<QStringList> warehouse;
+        Warehouse::info(warehouse);
+        QMap<QString, QMap<QString, QString>> stock_map;
+        Warehouse::stock(stock_map);
+        QMap<QString, QMap<QString, QStringList>> arriving_map;
+        Warehouse::arriving(arriving_map);
         out << function;
         out << stock;
         out << arriving;
         out << clothes;
-    }
-
-    if(function == "info_pB4"){
-        QVector<QStringList> result;
-        Warehouse::info(result);
-        out << function;
-        out << result;
+        out << warehouse;
+        out << stock_map;
+        out << arriving_map;
     }
 
     if(function == "info_whEC"){
@@ -127,18 +129,16 @@ void Processor::work ()
             wordlist3 << list.at(0) << list.at(1);
         }
         Tool::QStringList_removeDuplicates(&wordlist3);
+
+        QStringList wordlist4 = wordlist2 + wordlist3;
+        Tool::QStringList_removeDuplicates(&wordlist4);
+
         out << function;
         out << wordlist1;
         out << wordlist2;
         out << wordlist3;
+        out << wordlist4;
     }
-    if(function == "info_isA"){
-        QVector<QStringList> result;
-        Warehouse::info(result);
-        out << function;
-        out << result;
-    }
-
     if(function == "isC"){
         QVector<QStringList> w;
         Warehouse::info(w);
@@ -161,34 +161,19 @@ void Processor::work ()
         QMap<QString, QStringList> arriving;
         Warehouse::arriving(id, arriving);
 
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
-
         out << function;
         out << warehouse;
         out << stock;
         out << arriving;
-        out << clothes;
     }
 
     if(function == "pB5"){
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
 
-        QMap<QString, QMap<QString, QString>> stock;
-        Warehouse::stock(stock);
-
-        QMap<QString, QMap<QString, QStringList>> arriving;
-        Warehouse::arriving(arriving);
-
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
 
         out << function;
         out << warehouse;
-        out << stock;
-        out << arriving;
-        out << clothes;
     }
 
     if(function == "pB8"){
@@ -211,24 +196,14 @@ void Processor::work ()
     if(function == "tWBiC"){
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
-        QVector<QStringList> stock;
-        Warehouse::stock(stock);
         QString s = list.at(0);
 
         QStringList result;
         Warehouse::GInfo(s.toInt(), result);
         out << function;
         out << warehouse;
-        out << stock;
         out << result;
 
-    }
-
-    if(function == "isB"){
-        QVector<QStringList> result;
-        Warehouse::GInfo(result);
-        out << function;
-        out << result;
     }
 
     if(function == "sendOrder"){

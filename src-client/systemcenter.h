@@ -142,6 +142,8 @@ private slots:
 
     void on_order_send_clicked();
 
+    void on_icon_search_D_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -153,6 +155,13 @@ private:
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;
+
+    QVector<QStringList> stock;
+    QVector<QStringList> arriving;
+    QVector<QStringList> clothes;
+    QVector<QStringList> warehouse;
+    QMap<QString,QMap<QString, QString>> stock_map;
+    QMap<QString, QMap<QString, QStringList>> arriving_map;
 
 };
 
