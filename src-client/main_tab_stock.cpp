@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "store.h"
-
+#include "sqltool.h"
 #include <QVector>
 
 

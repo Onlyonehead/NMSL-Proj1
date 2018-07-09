@@ -3,7 +3,7 @@
 
 #include "TCPConnection.h"
 
-class Login : public QWidget
+class Login
 {
 public:
     static int login(QString username, QString password);

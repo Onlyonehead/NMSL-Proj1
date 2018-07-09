@@ -32,12 +32,9 @@ SOURCES += main.cpp \
     systemcenter.cpp \
     forgetpassword.cpp \
     mainwindow.cpp\
-    tool.cpp \
     warehouse_a.cpp \
     warehouse_c.cpp \
     store.cpp \
-    warehouse.cpp \
-    order.cpp \
     purchasepage.cpp \
     systempage.cpp \
     garment.cpp \
@@ -53,7 +50,9 @@ SOURCES += main.cpp \
     main_tab_stock.cpp \
     main_tab_record.cpp \
     main_tab_delivery.cpp \
-    sqltool.cpp
+    sqltool.cpp \
+    systemcenter_msg.cpp \
+    order.cpp
 
 
 
@@ -62,17 +61,15 @@ HEADERS  += \
     systemcenter.h \
     forgetpassword.h \
     mainwindow.h\
-    tool.h \
     store.h \
-    warehouse.h \
     garment.h \
-    order.h \
     provider.h \
     record.h \
     staff.h \
     logistics.h \
     stable.h \
-    sqltool.h
+    sqltool.h \
+    order.h
 
 
 
