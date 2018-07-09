@@ -4810,10 +4810,10 @@ in stock:</string>
        </property>
       </widget>
      </widget>
-     <zorder>frame_2B</zorder>
      <zorder>frame_2D</zorder>
      <zorder>frame_2A</zorder>
      <zorder>frame_2C</zorder>
+     <zorder>frame_2B</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">
@@ -5132,20 +5132,6 @@ QPushButton:hover{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <zorder>label_81</zorder>
-      <zorder>pushButton_12</zorder>
-      <zorder>warehouse_search_A_2</zorder>
-      <zorder>pushButton_13</zorder>
-      <zorder>icon_search_2</zorder>
-      <zorder>label_81</zorder>
-      <zorder>pushButton_12</zorder>
-      <zorder>warehouse_search_A_2</zorder>
-      <zorder>pushButton_13</zorder>
-      <zorder>icon_search_2</zorder>
-      <zorder>label_82</zorder>
-      <zorder>tableWidget_2</zorder>
-      <zorder>tableWidget_3</zorder>
-      <zorder>label_83</zorder>
      </widget>
      <widget class="QFrame" name="frame_sell_B">
       <property name="geometry">

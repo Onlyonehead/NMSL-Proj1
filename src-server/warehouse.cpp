@@ -117,6 +117,22 @@ void Warehouse::stock(QVector<QStringList> &result){
     }
 }
 
+/**
+ * return all warehouses' stock information with classification
+ *
+ * @author Zicun Hang
+ * @return information
+ */
+void Warehouse::stock(QVector<QMap<QString, QString>> &result){
+    QMap<QString, QString> map;
+    QSqlQuery query;
+    SQLTool::search(query, "warehouse");
+    while(query.next()){
+        stock(query.value(0).toInt(), map);
+        result.append(map);
+    }
+}
+
 
 /**
  * return all warehouses' arriving information
@@ -140,6 +156,21 @@ void Warehouse::arriving(QVector<QStringList> &result){
     }
 }
 
+/**
+ * return all warehouses' arriving information with classification
+ *
+ * @author Zicun Hang
+ * @return information
+ */
+void Warehouse::arriving(QVector<QMap<QString, QStringList>> &result){
+    QMap<QString, QStringList> map;
+    QSqlQuery query;
+    SQLTool::search(query, "warehouse");
+    while(query.next()){
+        arriving(query.value(0).toInt(), map);
+        result.append(map);
+    }
+}
 
 void Warehouse::replenish(int id, QVector<Order>& orders){
     for(Order order : orders){
@@ -163,10 +194,90 @@ void Warehouse::replenish(int id, QVector<Order>& orders){
 }
 
 
+/**
+ * transfer arriving clothes to stock
+ *
+ * @author Zicun Hang
+ */
+void Warehouse::transfer(){
+    QDateTime current_date_time = QDateTime::currentDateTime();
+    QString till_time = current_date_time.addSecs(300).toString("yyyy-MM-dd hh:mm:ss");
 
+    QSqlQuery query, query2;
 
+    SQLTool::search(query, "arriving");
+    while(query.next()){
 
+        QString arrive_date = query.value(3).toString();
 
+        QStringList s = arrive_date.split(QRegExp("[-A-Z:]"));
+        int year = s[0].toInt();
+        int month = s[1].toInt();
+        int day = s[2].toInt();
+        int hour = s[3].toInt();
+        int minute = s[4].toInt();
+        int second = s[5].toInt();
+        QTime time;
+        time.setHMS(hour,minute,second);
+        QDate date;
+        date.setDate(year, month, day);
+        QDateTime arrive_datetime;
+        arrive_datetime.setDate(date);
+        arrive_datetime.setTime(time);
+
+        if(arrive_datetime < current_date_time){
+            QString warehouse_id = query.value(0).toString();
+            QString clothes_id = query.value(1).toString();
+            int quantity = query.value(2).toInt();
+            QStringList list;
+            list.append("warehouse_id");
+            list.append(warehouse_id);
+            list.append("clothes_id");
+            list.append(clothes_id);
+            SQLTool::search(query2, "quantity", "stock", list);
+            if(query2.next()){
+                int stock = query2.value(0).toInt();
+                SQLTool::update("stock", "quantity",
+                                QString::number(stock + quantity), list);
+                SQLTool::del("arriving", list);
+            }else{
+                qDebug() << "Update arriving failed!" << endl;
+            }
+
+        }
+
+    }
+}
+
+void Warehouse::GInfo(QVector<QStringList> &garmentInfo)
+{
+    QSqlQuery query;
+    SQLTool::search(query, "clothes");
+    QStringList list;
+    while (query.next()) {
+        list.clear();
+        list.append(query.value(0).toString());
+        list.append(query.value(1).toString());
+        list.append(query.value(2).toString());
+        list.append(query.value(3).toString());
+        list.append(query.value(4).toString());
+        garmentInfo.append(list);
+    }
+}
+
+void Warehouse::GInfo(int i, QStringList &garmentInfo)
+{
+    QString ID = QString::number(i, 10);
+    QSqlQuery query;
+    SQLTool::search(query, "clothes", "ID", ID);
+    if(query.next()){
+        garmentInfo.append(query.value(0).toString());
+        garmentInfo.append(query.value(1).toString());
+        garmentInfo.append(query.value(2).toString());
+        garmentInfo.append(query.value(3).toString());
+        garmentInfo.append(query.value(4).toString());
+    }
+}
 
 
 
