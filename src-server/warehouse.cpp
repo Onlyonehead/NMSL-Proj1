@@ -65,8 +65,6 @@ void Warehouse::info(int id, QStringList &result){
  */
 void Warehouse::stock(int id, QMap<QString, QString> &result){
 
-    QStringList list;
-
     QSqlQuery query;
     SQLTool::search(query, "stock", "warehouse_id", QString::number(id));
 
@@ -82,9 +80,6 @@ void Warehouse::stock(int id, QMap<QString, QString> &result){
  * @return information
  */
 void Warehouse::arriving(int id, QMap<QString,QStringList> &result){
-    QStringList list;
-
-
     QSqlQuery query;
     SQLTool::search(query, "arriving", "warehouse_id", QString::number(id));
 
@@ -93,6 +88,7 @@ void Warehouse::arriving(int id, QMap<QString,QStringList> &result){
         list.append(query.value(2).toString());
         list.append(query.value(3).toString());
         result.insert(query.value(1).toString(), list);
+        list.clear();
     }
 }
 
@@ -104,16 +100,16 @@ void Warehouse::arriving(int id, QMap<QString,QStringList> &result){
  * @return information
  */
 void Warehouse::stock(QVector<QStringList> &result){
-    QStringList list;
 
+    QStringList list;
     QSqlQuery query;
     SQLTool::search(query, "stock");
     while(query.next()){
-        list.clear();
         list.append(query.value(0).toString());
         list.append(query.value(1).toString());
         list.append(query.value(2).toString());
         result.append(list);
+        list.clear();
     }
 }
 
@@ -123,13 +119,14 @@ void Warehouse::stock(QVector<QStringList> &result){
  * @author Zicun Hang
  * @return information
  */
-void Warehouse::stock(QVector<QMap<QString, QString>> &result){
+void Warehouse::stock(QMap<QString,QMap<QString, QString>> &result){
     QMap<QString, QString> map;
     QSqlQuery query;
     SQLTool::search(query, "warehouse");
     while(query.next()){
         stock(query.value(0).toInt(), map);
-        result.append(map);
+        result.insert(query.value(0).toString(), map);
+        map.clear();
     }
 }
 
@@ -162,13 +159,14 @@ void Warehouse::arriving(QVector<QStringList> &result){
  * @author Zicun Hang
  * @return information
  */
-void Warehouse::arriving(QVector<QMap<QString, QStringList>> &result){
+void Warehouse::arriving(QMap<QString, QMap<QString, QStringList>> &result){
     QMap<QString, QStringList> map;
     QSqlQuery query;
     SQLTool::search(query, "warehouse");
     while(query.next()){
         arriving(query.value(0).toInt(), map);
-        result.append(map);
+        result.insert(query.value(0).toString(), map);
+        map.clear();
     }
 }
 

@@ -276,29 +276,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 //    //initialize furry search
 
     warehouseEditComplete();
-
-    t.start();
-    while(t.elapsed()<1000)
-        QCoreApplication::processEvents();
-
-    warehouseEditComplete3();
+    m_tcpsocket->flush();
 
 
     t.start();
     while(t.elapsed()<1000)
         QCoreApplication::processEvents();
+
 
     //initialize arriving table
     transfer();
+    m_tcpsocket->flush();
 
-
-    t.start();
-    while(t.elapsed()<1000)
-        QCoreApplication::processEvents();
-
-
-    //initialize warehouse_C ui
-    init_warehouse_C();
 }
 
 
