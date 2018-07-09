@@ -6,7 +6,7 @@ TCPConnection::TCPConnection(QWidget *parent)
     MyServer *server = new MyServer;
     server->listen(QHostAddress::Any,8848);//监听的端口号
 }
-<<<<<<< HEAD
+
 void TCPConnection::newConnect()
 {
     qDebug() << "Now connecting with client" << endl;
@@ -149,7 +149,3 @@ void TCPConnection::sendMessage(QStringList list)
     qDebug() << function << endl;
     m_tcpsocket->write(message);
 }
-
-
-=======
->>>>>>> faaffdc84f655b4ee4ea3631e05215d153568b5a

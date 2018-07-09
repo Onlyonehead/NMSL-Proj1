@@ -442,7 +442,7 @@ QPushButton{
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>7</number>
     </property>
     <property name="tabsClosable">
      <bool>true</bool>
@@ -887,7 +887,7 @@ QPushButton:hover{
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">border-radius:3px; </string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
