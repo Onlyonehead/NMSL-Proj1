@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include "sqltool.h"
 #include "login.h"
-#include "store.h"
 #include "record.h"
 
 #include <QPainter>
@@ -20,6 +19,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    m_tcpsocket = new QTcpSocket(this);
+    m_tcpsocket->abort();
+    m_tcpsocket->connectToHost(QHostAddress::LocalHost,8848);//设置客户端的端口号
+    connect(m_tcpsocket,SIGNAL(readyRead()),
+            this,SLOT(readMessage()));//用于接受数据'
+
     sellSignal = false;
     purchaseSignal = false;
 
@@ -395,33 +401,25 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     ui->pushButton_user->setText(s2+QString(" | ")+s3);
     ui->label_gender->setText(s4);
     ui->label_mail->setText(s5);
+
     QApplication::processEvents();
     //初始化店铺信息
-    QVector<QString> qv;
-    Store::getStoreInfo(s1, 5, qv);
-    ui->pushButton_shop->setText(qv.at(1));
-
-    storeId = qv.at(0).toInt();//储存店铺id
-    ui->label_province->setText(qv.at(2));
-    ui->label_city->setText(qv.at(3));
-    ui->label_address->setText(qv.at(4));
-
-    ui->progressBar->setValue(10);//设置进度条进度
+    qsl.clear();
+    qsl.append("getStoreInfo");
+    qsl.append(s1);
+    qsl.append(QString::number(5, 10));
+    sendMessage(qsl);
+    ui->progressBar->setValue(10);
 
     QApplication::processEvents();
-    //初始化
-    //Tab页面关闭事件
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(removeSubTab(int)));
-    //退出标签安装事件过滤器
     ui->frame_exit->installEventFilter(this);
-    addFont();//添加FontAwesome图标
-    setCursor();//修改鼠标外形
+    addFont();
+    setCursor();
     connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
-
-    ui->progressBar->setValue(30);//设置进度条进度
+    ui->progressBar->setValue(30);
 
     QApplication::processEvents();
-    //下载并显示用户头像
     download("http://39.108.155.50/project1/users/" + s6, "./" + s6);
     QPixmap *pixmap = new QPixmap("./" + s6);
     if (pixmap->isNull()){
@@ -430,24 +428,28 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     QApplication::processEvents();
     ui->label_user->setScaledContents(true);
     ui->label_user->setPixmap(*pixmap);
-
-    ui->progressBar->setValue(60);//设置进度条进度
-
-    QApplication::processEvents();
-    //预加载销售记录信息
-    Store::getRecord(storeId, record_size, qv_record);
-
-    ui->progressBar->setValue(70);//设置进度条进度
+    ui->progressBar->setValue(60);
 
     QApplication::processEvents();
-    Garment::Info(qv_clothes);//预读取全部服装数据
-
-    ui->progressBar->setValue(80);//设置进度条进度
+    qsl.clear();
+    qsl.append("getAllClothes");
+    sendMessage(qsl);
+    ui->progressBar->setValue(70);
 
     QApplication::processEvents();
-    Store::getStock(storeId, qv_stock);//预读取全部库存
+    qsl.clear();
+    qsl.append("getStock");
+    qsl.append(storeId);
+    sendMessage(qsl);
+    ui->progressBar->setValue(80);
 
-    ui->progressBar->setValue(100);//设置进度条进度
+    QApplication::processEvents();
+    qsl.clear();
+    qsl.append("getRecord");
+    qsl.append(storeId);
+    sendMessage(qsl);
+    ui->progressBar->setValue(100);
+
 }
 
 /**
@@ -494,3 +496,98 @@ void MainWindow::setTableWidgetItemHidden(QTableWidget *table, const QString &ar
         }
     }
 }
+
+void MainWindow::sendMessage(QStringList list)
+{
+
+    QByteArray message;
+    QDataStream out(&message,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << list;
+    m_tcpsocket->write(message);
+}
+
+
+void MainWindow::readMessage()
+{
+    QDataStream in(m_tcpsocket);
+    in.setVersion(QDataStream::Qt_5_7);
+    QString from;
+    in >> from;
+    qDebug() << from << endl;
+
+    if(from == "getRecord"){
+        int qv_size;//获取QVector的大小
+        QString id_trans;
+        QString id_store;
+        QString date;
+        QString prices;
+        QMap<QString, QString> m;
+        in >> qv_size;
+        qDebug()<<"记录大小："<<qv_size;
+        for(int i=0; i<qv_size; ++i){
+            in >> id_trans >> id_store >> date >> prices >> m;
+            Record r(id_trans, id_store, date, prices);
+            r.loadDetails(m);
+            qv_record.append(r);
+        }
+        in >> record_size;
+
+    }
+
+    if(from == "getStoreInfo"){
+
+        QVector<QString> qv;
+        in >> qv;
+        ui->pushButton_shop->setText(qv.at(1));
+
+        storeId = qv.at(0);//储存店铺id
+        ui->label_province->setText(qv.at(2));
+        ui->label_city->setText(qv.at(3));
+        ui->label_address->setText(qv.at(4));
+    }
+
+    if(from == "getStock"){
+
+        in >> qv_stock;
+    }
+
+    if(from == "sellGoods"){
+
+    }
+
+    //有两个地方调用
+    if(from == "getPicPath"){
+        QString tab, path;
+        in >> tab >> path;
+
+        QPixmap *pixmap = new QPixmap("./" + path);
+        if (pixmap->isNull()){
+            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        }
+        if (pixmap->isNull()){
+            pixmap = new QPixmap(":/default.jpg");
+        }
+
+        if(tab == "delivery"){
+            ui->label_delivery_pic->setScaledContents(true);
+            ui->label_delivery_pic->setPixmap(*pixmap);
+        }
+        if(tab == "warehouse"){
+            ui->label_store_clothPic->setScaledContents(true);
+            ui->label_store_clothPic->setPixmap(*pixmap);
+        }
+    }
+
+    if(from == "sellGoods"){
+        QString message;
+        in >> message;
+        qDebug()<<message;
+    }
+
+    if(from == "getAllClothes"){
+        in >> qv_clothes;
+    }
+}
+
+

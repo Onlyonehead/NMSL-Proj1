@@ -27,13 +27,17 @@ SOURCES += main.cpp\
     login.cpp \
     sqltool.cpp \
     TCPConnection.cpp \
-    forgetpassword.cpp
+    forgetpassword.cpp \
+    store.cpp \
+    record.cpp
 
 HEADERS  += \
     login.h \
     sqltool.h \
     TCPConnection.h \
-    forgetpassword.h
+    forgetpassword.h \
+    store.h \
+    record.h
 
 win32{
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../packages/build-SMTPEmail-Desktop_Qt_5_7_1_MinGW_32bit-Debug/release/ -lSMTPEmail

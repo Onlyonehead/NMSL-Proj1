@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "store.h"
 
 #include <QVector>
 #include <QProgressDialog>
@@ -27,31 +26,34 @@ void MainWindow::setTableWidget_sellGoods(){
     QVector<QVector<QString>>::iterator iter;
     for(iter=qv_stock.begin(); iter!=qv_stock.end(); iter++) {
         QApplication::processEvents();
-        QSqlQuery sq_cloth;
-        SQLTool::search(sq_cloth, "clothes", "ID", iter->at(0));
-        sq_cloth.next();
+        //        SQLTool::search(sq_cloth, "clothes", "ID", iter->at(0));
 
-        //从左到右 check id style size quantity price
-        //插入复选框
-        QTableWidgetItem *check = new QTableWidgetItem();
-        check->setCheckState(Qt::Unchecked);
-        ui->tableWidget_sellGoods->setItem(i,0,check);
+        QVector<QStringList>::iterator it;
+        for(it=qv_clothes.begin(); it!=qv_clothes.end(); ++it){
+            if(iter->at(0)==it->at(0)){
+                //从左到右 check id style size quantity price
+                //插入复选框
+                QTableWidgetItem *check = new QTableWidgetItem();
+                check->setCheckState(Qt::Unchecked);
+                ui->tableWidget_sellGoods->setItem(i,0,check);
 
-        ui->tableWidget_sellGoods->setItem(i,1,new QTableWidgetItem(sq_cloth.value(0).toString()));
-        ui->tableWidget_sellGoods->setItem(i,2,new QTableWidgetItem(QIcon(":/new/prefix1/"+sq_cloth.value(3).toString()), sq_cloth.value(1).toString()));
-        ui->tableWidget_sellGoods->setItem(i,3,new QTableWidgetItem(sq_cloth.value(2).toString()));
-        ui->tableWidget_sellGoods->setItem(i,4,new QTableWidgetItem(iter->at(1)));
-        ui->tableWidget_sellGoods->setItem(i,5,new QTableWidgetItem(sq_cloth.value(4).toString()));
-        ui->tableWidget_sellGoods->setItem(i,6,new QTableWidgetItem("0"));
+                ui->tableWidget_sellGoods->setItem(i,1,new QTableWidgetItem(it->at(0)));
+                ui->tableWidget_sellGoods->setItem(i,2,new QTableWidgetItem(it->at(1)));
+                ui->tableWidget_sellGoods->setItem(i,3,new QTableWidgetItem(it->at(2)));
+                ui->tableWidget_sellGoods->setItem(i,4,new QTableWidgetItem(iter->at(1)));
+                ui->tableWidget_sellGoods->setItem(i,5,new QTableWidgetItem(it->at(4)));
+                ui->tableWidget_sellGoods->setItem(i,6,new QTableWidgetItem("0"));
 
-        if(0==iter->at(1).toInt())
-            ui->tableWidget_sellGoods->item(i, 0)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_sellGoods->item(i, 1)->setFlags(Qt::ItemIsEnabled);
-        ui->tableWidget_sellGoods->item(i, 2)->setFlags(Qt::ItemIsEnabled);
-        ui->tableWidget_sellGoods->item(i, 3)->setFlags(Qt::ItemIsEnabled);
-        ui->tableWidget_sellGoods->item(i, 4)->setFlags(Qt::ItemIsEnabled);
-        ui->tableWidget_sellGoods->item(i, 5)->setFlags(Qt::ItemIsEnabled);
-        ++i;
+                if(0==iter->at(1).toInt())
+                    ui->tableWidget_sellGoods->item(i, 0)->setFlags(Qt::NoItemFlags);
+                ui->tableWidget_sellGoods->item(i, 1)->setFlags(Qt::ItemIsEnabled);
+                ui->tableWidget_sellGoods->item(i, 2)->setFlags(Qt::ItemIsEnabled);
+                ui->tableWidget_sellGoods->item(i, 3)->setFlags(Qt::ItemIsEnabled);
+                ui->tableWidget_sellGoods->item(i, 4)->setFlags(Qt::ItemIsEnabled);
+                ui->tableWidget_sellGoods->item(i, 5)->setFlags(Qt::ItemIsEnabled);
+                ++i;
+            }
+        }
     }
     sellSignal = true;
 }
@@ -68,32 +70,39 @@ void MainWindow::on_pushButton_sell_clicked()
             dialog.setWindowModality(Qt::WindowModal);
             dialog.show();
 
+            qsl.clear();
+            qsl.append("sellGoods");
+            qsl.append(storeId);
+            qsl.append(ui->label_sell_totalPrice->text());
             //存入服装Id和数量信息
-            QVector<int> qv;
             for (int i=0; i<ui->tableWidget_sellGoods->rowCount(); ++i) {
                 if(Qt::Checked==ui->tableWidget_sellGoods->item(i, 0)->checkState()){
-                    qv<<ui->tableWidget_sellGoods->item(i, 1)->text().toInt()<<ui->tableWidget_sellGoods->item(i, 6)->text().toInt();
+                    qsl<<ui->tableWidget_sellGoods->item(i, 1)->text()<<ui->tableWidget_sellGoods->item(i, 6)->text();
                 }
             }
-            if(Store::sellGoods(storeId, ui->label_sell_totalPrice->text().toDouble(), qv)){
-                qDebug()<<"交易成功";
-                dialog.setValue(10);
+            qsl<<"#";
+            sendMessage(qsl);
+            dialog.setValue(10);
 
-                QApplication::processEvents();
-                Store::getRecord(storeId, record_size, qv_record);//重新获取交易记录
-                dialog.setValue(40);
+            //QVector<Record> Store::getRecord(int id_store, int& size)
+            QApplication::processEvents();
+            qsl.clear();
+            qsl.append("getRecord");
+            qsl.append(storeId);
+            sendMessage(qsl);
+            dialog.setValue(40);
 
-                QApplication::processEvents();
-                Store::getStock(storeId, qv_stock);//重新获取库存
-                dialog.setValue(70);
+            //QVector<QVector<QString> > Store::getStock(int store_id)
+            QApplication::processEvents();
+            qsl.clear();
+            qsl.append("getStock");
+            qsl.append(storeId);
+            sendMessage(qsl);
+            dialog.setValue(70);
 
-                QApplication::processEvents();
-                setTableWidget_sellGoods();//刷新页面
-                dialog.setValue(100);
-            } else{
-                qDebug()<<"交易失败";
-            }
-
+            QApplication::processEvents();
+            setTableWidget_sellGoods();//刷新页面
+            dialog.setValue(100);
         } else {
             qDebug()<<"放弃";
         }

@@ -22,6 +22,8 @@
 #include "login.h"
 #include "forgetpassword.h"
 #include "sqltool.h"
+#include "record.h"
+#include "store.h"
 
 class TCPConnection : public QWidget
 {

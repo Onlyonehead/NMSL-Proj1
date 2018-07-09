@@ -236,6 +236,7 @@ void Login::readMessage()
     QString from;
     in >> from;
     qDebug() << from << endl;
+
     if(from == "login"){
 
         int status;

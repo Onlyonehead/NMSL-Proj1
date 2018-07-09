@@ -187,6 +187,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search_C->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
+    ui->pushButton_font_sellSearch->setFont(icon_search);
+    ui->pushButton_font_sellSearch->setText(QChar(0xf35a));
+
     QApplication::processEvents();
 
     //set size of tablewidget
