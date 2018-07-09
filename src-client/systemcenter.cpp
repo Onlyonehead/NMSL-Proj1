@@ -295,9 +295,6 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
      *
      * @author Yihan Dong
      */
-    ui->spinBox_garmentNum->setMaximum(1000);
-    ui->spinBox_garmentNum->setSingleStep(50);
-    ui->spinBox_garmentNum->setWrapping(true);
     ui->tableWidget_generateOrder->setRowCount(0);
     ui->tableWidget_generateOrder->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_generateOrder->setSelectionBehavior(QAbstractItemView::SelectRows);

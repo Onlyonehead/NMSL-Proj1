@@ -485,7 +485,7 @@ void SystemCenter::readMessage()
             QMessageBox::information(this,"完成", "\n提交订单成功！",QMessageBox::Ok);
             ui->tableWidget_D4->setRowCount(0);
         }
-        ui->tableWidget_B->setRowCount(i);
+        ui->tableWidget_B->setRowCount(0);
     } //systempage show garment info
     if(from == "sp_sg"){
         QVector<QStringList> result;
@@ -631,6 +631,25 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_generateOrder->setRowCount(i);
         progressBar();
+    } // purchase page show garment detailed information 没了？？？
+    if(from == "pcp_sgdi"){
+        QStringList result;
+        in >> result;
+        QString path = result.at(3);
+        QApplication::processEvents();
+        QPixmap *pixmap = new QPixmap("./" + path);
+        if(pixmap->isNull()){
+            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        }
+
+        if (pixmap->isNull()){
+            pixmap = new QPixmap(":/default.jpg");
+        }
+        QApplication::processEvents();
+        ui->label_purchaseShowPic->setScaledContents(true);
+        ui->label_purchaseShowPic->setPixmap(*pixmap);
+        delete pixmap;
+        QApplication::processEvents();
     }
 
 

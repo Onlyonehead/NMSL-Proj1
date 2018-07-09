@@ -403,6 +403,14 @@ void Processor::work ()
         out << function;
         out << result;
     }
+    //purchase page show garment detailed information
+    if(function == "pcp_sgdi"){
+        QStringList result;
+        QString ID = list.at(0);
+        Garment::Info(ID.toInt(), result);
+        out << function;
+        out << result;
+    }
 
 
 

@@ -150,6 +150,8 @@ private slots:
 
     void on_icon_search_D_clicked();
 
+    void on_tableWidget_generateOrder_cellClicked(int row, int column);
+
 signals:
     void stringReturn(QString);
 
