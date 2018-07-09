@@ -1,6 +1,7 @@
 #include "systemcenter.h"
 #include "sqltool.h"
 #include "ui_systemcenter.h"
+#include "login.h"
 #include "garment.h"
 #include <QPixmap>
 #include <QVector>
@@ -41,6 +42,7 @@ void SystemCenter::on_pushButton_showGarment_clicked()
         n--;
     }
     ui->tableWidget_garmentInfo->setRowCount(i);
+
     progressBar();
 }
 
