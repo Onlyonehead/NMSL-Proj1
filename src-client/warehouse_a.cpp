@@ -9,9 +9,20 @@
 void SystemCenter::on_pushButton_4_clicked()
 {
     ui->tableWidget->setRowCount(0);
-    QStringList list;
-    list.append("info_pB4");
-    sendMessage(list);
+    QVector<QStringList> result = warehouse;
+    int i = 0;
+    for(QStringList list : result){
+        ui->tableWidget->insertRow(i);
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+        ui->tableWidget->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+        ui->tableWidget->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+        ui->tableWidget->setItem(i, 5, new QTableWidgetItem(list.at(5)));
+        i++;
+    }
+    ui->tableWidget->setRowCount(i);
+    progressBar();
 }
 
 /**
@@ -51,8 +62,24 @@ void SystemCenter::on_icon_search_clicked()
         return ;
     }
 
-    QStringList list;
-    list.append("info_isA");
-    sendMessage(list);
+    ui->tableWidget->setRowCount(0);
+    QVector<QStringList> result = warehouse;
+    int i = 0;
+    for(QStringList list: result){
+        qDebug() << list.at(0) << endl;
+        if(list.at(0) == text || list.at(1) == text ||
+                list.at(2) == text || list.at(3) == text ||
+                list.at(4) == text || list.at(5) == text) {
+            ui->tableWidget->insertRow(i);
+            ui->tableWidget->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+            ui->tableWidget->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+            ui->tableWidget->setItem(i, 5, new QTableWidgetItem(list.at(5)));
+            i++;
+        }
+    }
+    ui->tableWidget->setRowCount(i);
 }
 

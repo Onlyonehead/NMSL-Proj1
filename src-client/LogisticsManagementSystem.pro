@@ -43,7 +43,6 @@ SOURCES += main.cpp \
     record.cpp \
     staff.cpp \
     providerpage.cpp \
-    logistics.cpp \
     personnelpage_1.cpp \
     personnelpage_2.cpp \
     main_tab_sell.cpp \
@@ -52,7 +51,8 @@ SOURCES += main.cpp \
     main_tab_delivery.cpp \
     sqltool.cpp \
     systemcenter_msg.cpp \
-    order.cpp
+    order.cpp \
+    warehouse_d.cpp
 
 
 
@@ -66,7 +66,6 @@ HEADERS  += \
     provider.h \
     record.h \
     staff.h \
-    logistics.h \
     stable.h \
     sqltool.h \
     order.h
