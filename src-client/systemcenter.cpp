@@ -3,6 +3,7 @@
 #include "login.h"
 #include "QElapsedTimer"
 #include <QHeaderView>
+#include <QMovie>
 
 /**
  * SystemCenter UI initialize
@@ -364,6 +365,10 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     //initialize arriving table
     transfer();
     m_tcpsocket->flush();
+
+//    QMovie *movie = new QMovie(":/movie.gif");
+//    ui->label_title->setMovie(movie);
+//    movie->start();
 
 }
 
