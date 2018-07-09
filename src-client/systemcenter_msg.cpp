@@ -493,7 +493,7 @@ void SystemCenter::readMessage()
         for(int i = result.size()-1; i > -1; i--){
             ui->tableWidget_A->insertRow(result.size()-i-1);
             QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
-            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n  "
                                                                   + "from id " + result.at(i).at(1) + " -> "
                                                                   + "to id " + result.at(i).at(2) + "\n\n" +
                                                                   result.at(i).at(3)));
