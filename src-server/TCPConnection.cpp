@@ -3,11 +3,10 @@
 TCPConnection::TCPConnection(QWidget *parent)
     : QWidget(parent)
 {
-    m_tcpserver = new QTcpServer(this);
-    m_tcpsocket = new QTcpSocket(this);
-    m_tcpserver->listen(QHostAddress::Any,8848);//监听的端口号
-    connect(m_tcpserver,SIGNAL(newConnection()),this,SLOT(newConnect()));
+    MyServer *server = new MyServer;
+    server->listen(QHostAddress::Any,8848);//监听的端口号
 }
+<<<<<<< HEAD
 void TCPConnection::newConnect()
 {
     qDebug() << "Now connecting with client" << endl;
@@ -152,3 +151,5 @@ void TCPConnection::sendMessage(QStringList list)
 }
 
 
+=======
+>>>>>>> faaffdc84f655b4ee4ea3631e05215d153568b5a

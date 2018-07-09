@@ -4812,8 +4812,11 @@ in stock:</string>
      </widget>
      <zorder>frame_2D</zorder>
      <zorder>frame_2C</zorder>
+<<<<<<< HEAD
      <zorder>frame_2A</zorder>
+=======
      <zorder>frame_2B</zorder>
+>>>>>>> faaffdc84f655b4ee4ea3631e05215d153568b5a
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">
