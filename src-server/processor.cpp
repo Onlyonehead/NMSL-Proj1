@@ -37,6 +37,10 @@ void Processor::work ()
      *
      */
 
+    if(function == "Default"){
+        out << "Default";
+    }
+
     if(function == "login"){
         QString username = list.at(0);
         QString password = list.at(1);
@@ -75,7 +79,17 @@ void Processor::work ()
     }
     if(function == "transfer"){
         Warehouse::transfer();
+
+        QVector<QStringList> stock;
+        Warehouse::stock(stock);
+        QVector<QStringList> arriving;
+        Warehouse::arriving(arriving);
+        QVector<QStringList> clothes;
+        Warehouse::GInfo(clothes);
         out << function;
+        out << stock;
+        out << arriving;
+        out << clothes;
     }
 
     if(function == "info_pB4"){
@@ -102,9 +116,20 @@ void Processor::work ()
             wordlist2 << list.at(0) << list.at(1);
         }
         Tool::QStringList_removeDuplicates(&wordlist2);
+
+        QVector<QStringList> result2;
+        Warehouse::GInfo(result2);
+
+        QStringList wordlist3;
+
+        for (QStringList list : result2){
+            wordlist3 << list.at(0) << list.at(1);
+        }
+        Tool::QStringList_removeDuplicates(&wordlist3);
         out << function;
         out << wordlist1;
         out << wordlist2;
+        out << wordlist3;
     }
     if(function == "info_isA"){
         QVector<QStringList> result;
@@ -149,10 +174,10 @@ void Processor::work ()
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
 
-        QVector<QMap<QString, QString>> stock;
+        QMap<QString, QMap<QString, QString>> stock;
         Warehouse::stock(stock);
 
-        QVector<QMap<QString, QStringList>> arriving;
+        QMap<QString, QMap<QString, QStringList>> arriving;
         Warehouse::arriving(arriving);
 
         QVector<QStringList> clothes;
@@ -160,19 +185,6 @@ void Processor::work ()
 
         out << function;
         out << warehouse;
-        out << stock;
-        out << arriving;
-        out << clothes;
-    }
-
-    if(function == "iwhC"){
-        QVector<QStringList> stock;
-        Warehouse::stock(stock);
-        QVector<QStringList> arriving;
-        Warehouse::arriving(arriving);
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
-        out << function;
         out << stock;
         out << arriving;
         out << clothes;
@@ -194,19 +206,6 @@ void Processor::work ()
         out << result;
     }
 
-    if(function == "info_whEC3"){
-        QVector<QStringList> result;
-        Warehouse::GInfo(result);
-
-        QStringList wordlist;
-
-        for (QStringList list : result){
-            wordlist << list.at(0) << list.at(1);
-        }
-        Tool::QStringList_removeDuplicates(&wordlist);
-        out << function;
-        out << wordlist;
-    }
 
     if(function == "tWBiC"){
         QMap<QString, QString> warehouse;

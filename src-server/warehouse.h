@@ -46,7 +46,7 @@ public:
     static void stock(QVector<QStringList>&);
 
     //返回所有仓库的库存(按id归类)
-    static void stock(QVector<QMap<QString, QString>> &);
+    static void stock(QMap<QString,QMap<QString, QString>> &);
 
 
 
@@ -58,7 +58,7 @@ public:
     static void arriving(QVector<QStringList>&);
 
     //返回所有仓库的即将到货(按id归类)
-    static void arriving(QVector<QMap<QString, QStringList>> &);
+    static void arriving(QMap<QString, QMap<QString, QStringList>> &);
 
     //transfer arriving clothes to stock
     static void transfer();

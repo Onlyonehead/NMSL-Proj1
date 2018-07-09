@@ -12,12 +12,6 @@ void SystemCenter::on_pushButton_8_clicked()
 
 }
 
-void SystemCenter::warehouseEditComplete3(){
-    QStringList msg;
-    msg.append("info_whEC3");
-    sendMessage(msg);
-}
-
 void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
 
     ui->tableWidget_B_2->setRowCount(0);

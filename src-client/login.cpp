@@ -135,8 +135,6 @@ void Login::on_pushButton_2_clicked()
     list.append(username);
     list.append(password);
     sendMessage(list);
-
-
 }
 
 

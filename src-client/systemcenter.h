@@ -91,8 +91,6 @@ private slots:
 
     void on_tableWidget_B_itemClicked(QTableWidgetItem *item);
 
-    void warehouseEditComplete3();
-
     void on_pushButton_9_clicked();
 
     void replyFinished(QNetworkReply *reply);
