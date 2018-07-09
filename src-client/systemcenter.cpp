@@ -465,7 +465,6 @@ void SystemCenter::on_pushButton_B_clicked()
 void SystemCenter::on_pushButton_C_clicked()
 {
     ui->frame_2C->raise();
-    ui->frame_sell_C->raise();
 
 }
 

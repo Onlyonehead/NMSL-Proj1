@@ -256,7 +256,7 @@ void SystemCenter::readMessage()
 
         }
 
-        progressBar();
+        progressBar_fast();
         QApplication::processEvents();
         ui->tableWidget_C1->setRowCount(count_i);
         ui->tableWidget_C2->setRowCount(count_j);

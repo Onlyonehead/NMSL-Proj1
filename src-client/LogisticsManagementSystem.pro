@@ -34,9 +34,6 @@ SOURCES += main.cpp \
     mainwindow.cpp\
     warehouse_a.cpp \
     warehouse_c.cpp \
-    warehouse.cpp \
-    order.cpp \
-    store.cpp \
     purchasepage.cpp \
     systempage.cpp \
     garment.cpp \
@@ -63,9 +60,6 @@ HEADERS  += \
     systemcenter.h \
     forgetpassword.h \
     mainwindow.h\
-    tool.h \
-    warehouse.h \
-    store.h \
     garment.h \
     provider.h \
     record.h \
