@@ -485,6 +485,171 @@ void SystemCenter::readMessage()
             QMessageBox::information(this,"完成", "\n提交订单成功！",QMessageBox::Ok);
             ui->tableWidget_D4->setRowCount(0);
         }
+        ui->tableWidget_B->setRowCount(0);
+    } //systempage show garment info
+    if(from == "sp_sg"){
+        QVector<QStringList> result;
+        in >> result;
+        int i = 0;
+        for(QStringList list : result){
+            ui->tableWidget_garmentInfo->insertRow(i);
+            ui->tableWidget_garmentInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_garmentInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+            ui->tableWidget_garmentInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_garmentInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_garmentInfo->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+            i++;
+        }
+        ui->tableWidget_garmentInfo->setRowCount(i);
+        progressBar();
+    } //providerpage show provider info
+    if(from == "pp_sp"){
+        ui->tableWidget_providerInfo->setRowCount(0);
+        int i = 0;
+        QVector<QStringList> result;
+        in >> result;
+        for(QStringList list : result) {
+            ui->tableWidget_providerInfo->insertRow(i);
+            ui->tableWidget_providerInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_providerInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+            ui->tableWidget_providerInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_providerInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+            QTableWidgetItem *item = ui->tableWidget_providerInfo->item(i, 0);
+            item->setFlags(item->flags() & (Qt::ItemIsEditable));
+            i++;
+        }
+        ui->tableWidget_providerInfo->setRowCount(i);
+        progressBar();
+    } // providerpage hange provider info
+    if(from == "pp_cpi"){
+        qDebug() << "Change information successfully";
+    } // personnelpage1 show staff info
+    if(from == "pp1_ss"){
+        QVector<QStringList> result;
+        in >> result;
+        int i = 0;
+        for(QStringList list : result) {
+            ui->tableWidget_showStaffInfo->insertRow(i);
+            ui->tableWidget_showStaffInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_showStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_showStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_showStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(4)));
+            ui->tableWidget_showStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(5)));
+            i++;
+        }
+        ui->tableWidget_showStaffInfo->setRowCount(i);
+        progressBar();
+    }  //personnel page 1 search staff info multi results
+    if(from == "pp1_ssi"){
+        QVector<QStringList> result;
+        in >> result;
+        ui->tableWidget_showStaffInfo->clear();
+        QStringList showStaffInfoHeader;
+        showStaffInfoHeader << "用户名" << "姓名" << "性别" << "职位" << "邮箱";
+        ui->tableWidget_showStaffInfo->setHorizontalHeaderLabels(showStaffInfoHeader);
+        ui->tableWidget_showStaffInfo->setAlternatingRowColors(true);
+        ui->tableWidget_showStaffInfo->verticalHeader()->setVisible(false);
+        int i = 0;
+        for(QStringList list : result){
+            ui->tableWidget_showStaffInfo->insertRow(i);
+            ui->tableWidget_showStaffInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_showStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_showStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_showStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(4)));
+            ui->tableWidget_showStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(5)));
+            i++;
+        }
+        ui->tableWidget_showStaffInfo->setRowCount(i);
+        progressBar();
+    } // perspnnel page 1 delete staff info
+    if(from == "pp1_dsi"){
+        qDebug() << "Delete staff infomation successfully";
+    } // personnel page 2 ad  neu staff name
+    if(from == "pp2_anu"){
+        bool isExisted;
+        in >> isExisted;
+        if(isExisted == true){
+            ui->label_newStaffUsernameTip->setVisible(true);
+            ui->lineEdit_addNewPassword->setEnabled(false);
+            ui->lineEdit_repeatPassword->setEnabled(false);
+            ui->lineEdit_addNewName->setEnabled(false);
+            ui->lineEdit_addNewEmail->setEnabled(false);
+            ui->pushButton_addNewPortrait->setEnabled(false);
+            ui->pushButton_confirmNewStaff->setEnabled(false);
+        }else {
+            ui->label_newStaffUsernameTip->setVisible(false);
+            ui->lineEdit_addNewPassword->setEnabled(true);
+            ui->lineEdit_repeatPassword->setEnabled(true);
+            ui->lineEdit_addNewName->setEnabled(true);
+            ui->lineEdit_addNewEmail->setEnabled(true);
+            ui->pushButton_addNewPortrait->setEnabled(true);
+            ui->pushButton_confirmNewStaff->setEnabled(true);
+        }
+    } //personnel page 2 check password and repeatpassword
+    if(from == "pp2_rp"){
+        bool isSame;
+        in >> isSame;
+        if(!isSame){
+            ui->label_repeatPasswordTip->setVisible(true);
+            ui->lineEdit_addNewName->setEnabled(false);
+            ui->lineEdit_addNewEmail->setEnabled(false);
+            ui->pushButton_addNewPortrait->setEnabled(false);
+            ui->pushButton_confirmNewStaff->setEnabled(false);
+        }else {
+            ui->label_repeatPasswordTip->setVisible(false);
+            ui->lineEdit_addNewName->setEnabled(true);
+            ui->lineEdit_addNewEmail->setEnabled(true);
+            ui->pushButton_addNewPortrait->setEnabled(true);
+            ui->pushButton_confirmNewStaff->setEnabled(true);
+        }
+    } // personnel page 2 add new email
+    if(from == "pp2_ane"){
+        bool isExisted;
+        in >> isExisted;
+        if(isExisted){
+            ui->label_newStaffEmailTip->setVisible(true);
+            ui->pushButton_addNewPortrait->setEnabled(false);
+            ui->pushButton_confirmNewStaff->setEnabled(false);
+        }else {
+            ui->label_newStaffEmailTip->setVisible(false);
+            ui->pushButton_addNewPortrait->setEnabled(true);
+            ui->pushButton_confirmNewStaff->setEnabled(true);
+        }
+    } // purchase page show garment info
+    if(from == "pcp_sg"){
+        int i = 0;
+        QVector<QStringList> result;
+        in >> result;
+        for(QStringList list : result) {
+            ui->tableWidget_generateOrder->insertRow(i);
+            ui->tableWidget_generateOrder->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_generateOrder->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+            ui->tableWidget_generateOrder->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_generateOrder->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_generateOrder->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+            i++;
+        }
+        ui->tableWidget_generateOrder->setRowCount(i);
+        progressBar();
+    } // purchase page show garment detailed information 没了？？？
+    if(from == "pcp_sgdi"){
+        QStringList result;
+        in >> result;
+        QString path = result.at(3);
+        QApplication::processEvents();
+        QPixmap *pixmap = new QPixmap("./" + path);
+        if(pixmap->isNull()){
+            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        }
+
+        if (pixmap->isNull()){
+            pixmap = new QPixmap(":/default.jpg");
+        }
+        QApplication::processEvents();
+        ui->label_purchaseShowPic->setScaledContents(true);
+        ui->label_purchaseShowPic->setPixmap(*pixmap);
+        delete pixmap;
+        QApplication::processEvents();
     }
     if(from == "wh_history"){
         ui->tableWidget_A->setRowCount(0);
@@ -515,6 +680,8 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_A->setRowCount(result.size());
     }
+
+
 
 //    m_tcpsocket->disconnectFromHost();
 }

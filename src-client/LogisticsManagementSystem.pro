@@ -41,7 +41,6 @@ SOURCES += main.cpp \
     provider.cpp \
     warehouse_b.cpp \
     record.cpp \
-    staff.cpp \
     providerpage.cpp \
     personnelpage_1.cpp \
     personnelpage_2.cpp \
@@ -65,6 +64,7 @@ HEADERS  += \
     garment.h \
     provider.h \
     record.h \
+    logistics.h \
     staff.h \
     stable.h \
     sqltool.h \

@@ -218,6 +218,22 @@ void SQLTool::search(QSqlQuery &query, QString s, QStringList list){
 }
 
 /**
+ * @brief SQLTool::fuzzySearch
+ * E.g. "select * from userdata where username like '%dong%'"
+ */
+void SQLTool::fuzzySearch(QSqlQuery &query, QString s1, QString s2, QString s3)
+{
+    QString sql = "select * from " + s1 + " where " + s2 + " like '" + "%" + s3 + "%'";
+    query.exec(sql);
+
+    if(!query.isActive()){
+        qDebug() << "fail to exec:  ";
+    }
+    qDebug() << sql << endl;
+
+}
+
+/**
  * E.g. "select till_time from blacklist where username='koushizon' and password='123'"
  *
  * @author Zicun Hang
