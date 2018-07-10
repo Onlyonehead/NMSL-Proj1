@@ -34,6 +34,32 @@ QString Store::getClothStyle(QString id){
     return sq.value(0).toString()+"  "+sq.value(1).toString();
 }
 
+void Store::getClothDetail(QString id, QStringList& qsl){
+    QSqlQuery sq_cloth;
+    SQLTool::search(sq_cloth, "clothes", "ID", id);
+    sq_cloth.next();
+    qsl<<sq_cloth.value(0).toString()<<sq_cloth.value(1).toString()
+        <<sq_cloth.value(2).toString()<<sq_cloth.value(3).toString()
+        <<sq_cloth.value(4).toString();
+}
+
+void Store::getAllClothes(QVector<QStringList>& clothes){
+    QSqlDatabase db = QSqlDatabase::database();
+    QSqlQuery query(db);
+    SQLTool::search(query, "clothes");
+    QStringList list;
+    while (query.next()) {
+        list.clear();
+        list.append(query.value(0).toString());
+        list.append(query.value(1).toString());
+        list.append(query.value(2).toString());
+        list.append(query.value(3).toString());
+        list.append(query.value(4).toString());
+        qDebug()<<list;
+        clothes.append(list);
+    }
+}
+
 /**
  * get store info
  *
@@ -42,12 +68,12 @@ QString Store::getClothStyle(QString id){
  * @param size number of values
  * @return
  */
-void Store::getStoreInfo(QString username, int size, QVector<QString>& qv){
+void Store::getStoreInfo(QString username, QString s_size, QVector<QString>& qv){
     QSqlDatabase db = QSqlDatabase::database();
     QSqlQuery sq(db);
     SQLTool::search(sq, "store", "username", username);
     sq.next();
-    qv.clear();
+    int size = s_size.toInt();
     for(int i=0; i<size; ++i){
         qv<<sq.value(i).toString();
     }
@@ -60,13 +86,12 @@ void Store::getStoreInfo(QString username, int size, QVector<QString>& qv){
  * @param warehouse_n table name of the warehouse
  * @return groups of cloth's id and amount
  */
-void Store::getStock(int store_id, QVector<QVector<QString> >&qv){
+void Store::getStock(QString store_id, QVector<QVector<QString> >& qv){
     QStringList qsl;
     qsl.append("clothes_id");
     qsl.append("quantity");
     QSqlQuery sq;
-    qv.clear();
-    SQLTool::search(sq, qsl, "store_warehouse", "store_id", QString::number(store_id, 10));//读取店铺库存信息
+    SQLTool::search(sq, qsl, "store_warehouse", "store_id", store_id);//读取店铺库存信息
     while(sq.next()){
         QVector<QString> qv2;
         qv2<<sq.value(0).toString()<<sq.value(1).toString();
@@ -81,7 +106,7 @@ void Store::getStock(int store_id, QVector<QVector<QString> >&qv){
  * @param id_store the id of the store
  * @param size the total amount of record.(decide the row number of table)
  */
-void Store::getRecord(int &id_store, int &size, QVector<Record>& qv){
+void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
     int count = 0;
     QSqlQuery sq;
     SQLTool::search(sq, "transrecord", "id_store", QString::number(id_store, 10));
@@ -89,7 +114,6 @@ void Store::getRecord(int &id_store, int &size, QVector<Record>& qv){
     QStringList qsl;
     qsl.append("id_cloth");
     qsl.append("amount");
-    qv.clear();
     while(sq.next()){
         Record re(sq.value(0).toString(), sq.value(1).toString(),
                   sq.value(2).toString(), sq.value(3).toString());
@@ -117,7 +141,7 @@ void Store::getRecord(int &id_store, int &size, QVector<Record>& qv){
  * @param clothes_amount the amount of clothes in this transaction
  * @return
  */
-bool Store::sellGoods(int storeId, double totalPrices, QVector<int> clothes_amount){
+bool Store::sellGoods(QString storeId, QString totalPrices, QVector<int> clothes_amount){
     QSqlQuery sq;
 
     //获取交易时间
@@ -127,9 +151,9 @@ bool Store::sellGoods(int storeId, double totalPrices, QVector<int> clothes_amou
     //添加一条交易记录
     QStringList qsl;
     qsl.append("0");
-    qsl.append(QString::number(storeId, 10));
+    qsl.append(storeId);
     qsl.append(current_date);
-    qsl.append(QString::number(totalPrices));
+    qsl.append(totalPrices);
     SQLTool::insert(sq, "transrecord", qsl);//添加一条交易记录
 
     //获得交易记录id
@@ -147,7 +171,7 @@ bool Store::sellGoods(int storeId, double totalPrices, QVector<int> clothes_amou
         int amount = clothes_amount.value(i++);//服装数量
 
         QStringList qsl4;//用于查询和更新服装数量
-        qsl4.append("store_id");qsl4.append(QString::number(storeId, 10));
+        qsl4.append("store_id");qsl4.append(storeId);
         qsl4.append("clothes_id");qsl4.append(QString::number(clothId, 10));
 
         //获取在库服装数量
@@ -163,4 +187,17 @@ bool Store::sellGoods(int storeId, double totalPrices, QVector<int> clothes_amou
         SQLTool::insert(sq, "transdetail", qsl3);
     }
     return true;
+}
+
+void Store::getStores(QVector<QStringList> &qv){
+    QStringList qsl;
+    QSqlQuery sq;
+    SQLTool::search(sq, "store");
+    while(sq.next()){
+        qsl.clear();
+        for(int i=0; i<6; ++i){
+            qsl<<sq.value(i).toString();
+        }
+        qv.append(qsl);
+    }
 }

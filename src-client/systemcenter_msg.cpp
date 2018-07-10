@@ -1,5 +1,6 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
+#include "record.h"
 
 void SystemCenter::sendMessage(QStringList list)
 {
@@ -682,6 +683,70 @@ void SystemCenter::readMessage()
     }
 
 
+
+    //sissyVI--Start
+
+    if(from == "showStores"){
+        QVector<QStringList> qv_stores;
+        in >> qv_stores;
+
+        qDebug()<<"门店数量："<<qv_stores.size();
+        ui->tableWidget_stores->setRowCount(qv_stores.size());
+        int i=0;
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_stores.constBegin(); it!=qv_stores.constEnd(); ++it){
+            for(int j=0; j<6; ++j){
+                ui->tableWidget_stores->setItem(i, j, new QTableWidgetItem(it->at(j)));
+            }
+            ++i;
+        }
+    }
+
+    if(from == "storesClicked"){
+        int record_size;
+        int qv_size;//获取QVector的大小
+        QString id_trans;
+        QString id_store;
+        QString date;
+        QString prices;
+        QMap<QString, QString> m;
+        in >> record_size;
+        in >> qv_size;
+
+        ui->tableWidget_storeRecord->clear();
+        ui->tableWidget_storeRecord->setRowCount(record_size);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 115); //设置列的宽度
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(1, 230);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 115);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(3, 115);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(4, 115);
+
+        int i=0;
+        for(int num=0; num<qv_size; ++num){
+            in >> id_trans >> id_store >> date >> prices >> m;
+
+            QMap<QString, QString>::iterator it2;
+
+            ui->tableWidget_storeRecord->setItem(i,0,new QTableWidgetItem(id_trans)); //id_trans
+            ui->tableWidget_storeRecord->setItem(i,1,new QTableWidgetItem(date)); //date
+            ui->tableWidget_storeRecord->setItem(i,2,new QTableWidgetItem(prices)); //prices
+
+            if(m.size()>1){
+                ui->tableWidget_storeRecord->setSpan(i, 0, m.size(), 1);
+                ui->tableWidget_storeRecord->setSpan(i, 1, m.size(), 1);
+                ui->tableWidget_storeRecord->setSpan(i, 2, m.size(), 1);
+            }
+
+            for(it2=m.begin(); it2!=m.end(); ++it2){
+                QApplication::processEvents();
+                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(it2.key())); //style
+                ui->tableWidget_storeRecord->setItem(i,4,new QTableWidgetItem(it2.value())); //amount
+                ++i;
+            }
+        }
+    }
+
+    //sissyVI--Finish
 
 //    m_tcpsocket->disconnectFromHost();
 }
