@@ -351,7 +351,9 @@ void Processor::work ()
     }
 
     if(function == "orderinfo"){
-
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo");
+        QString
     }
 
 

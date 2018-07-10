@@ -264,7 +264,9 @@ void SystemCenter::readMessage()
                 QApplication::processEvents();
             }
             if(j.value().size() > 1){
+//                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C1->setSpan(count_i-j.value().size(), 0, j.value().size(), 1);
+
             }
         }
 
@@ -295,7 +297,9 @@ void SystemCenter::readMessage()
                 count_j++;
             }
             if(j.value().size() > 1){
+//                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C2->setSpan(count_j-j.value().size(), 0, j.value().size(), 1);
+
             }
 
         }
@@ -715,11 +719,12 @@ void SystemCenter::readMessage()
 
         ui->tableWidget_storeRecord->clear();
         ui->tableWidget_storeRecord->setRowCount(record_size);
-        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 115); //设置列的宽度
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 80); //设置列的宽度
         ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(1, 230);
-        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 115);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 100);
         ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(3, 115);
-        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(4, 115);
+        ui->tableWidget_storeRecord->horizontalHeader()->setStretchLastSection(true);
+
 
         int i=0;
         for(int num=0; num<qv_size; ++num){
