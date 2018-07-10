@@ -216,12 +216,16 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
-    sp_font.setPointSize(18);
+    sp_font.setPointSize(20);
 
     ui->pushButton_font_sellSearch->setFont(sp_font);
     ui->pushButton_font_sellSearch->setText(QChar(0xf0d0));
     ui->pushButton_font_sellSearch->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+
+    ui->label_navigator->setFont(sp_font);
+    ui->label_navigator->setText(QChar(0xf59f));
+    ui->label_navigator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
 
     //initialize search icon

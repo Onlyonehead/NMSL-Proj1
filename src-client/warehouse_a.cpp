@@ -111,7 +111,7 @@ void SystemCenter::on_w_search_A_clicked()
     sendMessage(msg);
 }
 
-void SystemCenter::on_tableWidget_A_itemDoubleClicked(QTableWidgetItem *item){
+void SystemCenter::on_tableWidget_A_itemClicked(QTableWidgetItem *item){
     QString s;
     s += "\n";
     s += ui->tableWidget_A->item(item->row(), 2)->text();

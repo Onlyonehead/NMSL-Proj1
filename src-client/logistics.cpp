@@ -17,6 +17,6 @@ void SystemCenter::on_pushButton_12_clicked()
     ui->tableWidget_logistics_A->setRowCount(0);
 }
 
-void SystemCenter::on_tableWidget_logistics_A_itemDoubleClicked(QTableWidgetItem *item){
+void SystemCenter::on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item){
 
 }
