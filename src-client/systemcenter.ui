@@ -638,7 +638,7 @@ background: none;
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px solid white;</string>
+       <string notr="true">border: 1px solid rgb(220, 220, 220);</string>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="iconSize">
      <size>
@@ -5771,10 +5771,10 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_D3">
        <property name="geometry">
         <rect>
-         <x>220</x>
-         <y>346</y>
+         <x>213</x>
+         <y>320</y>
          <width>191</width>
-         <height>181</height>
+         <height>210</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -6103,9 +6103,9 @@ QPushButton:hover{
       <widget class="QLabel" name="label_80">
        <property name="geometry">
         <rect>
-         <x>290</x>
-         <y>296</y>
-         <width>61</width>
+         <x>261</x>
+         <y>276</y>
+         <width>121</width>
          <height>41</height>
         </rect>
        </property>
@@ -6127,8 +6127,7 @@ background: none;
 }</string>
        </property>
        <property name="text">
-        <string>Quantity
-in stock:</string>
+        <string>Quantity in stock:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -6137,8 +6136,8 @@ in stock:</string>
       <widget class="QLabel" name="label_77">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>310</y>
+         <x>234</x>
+         <y>289</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -6270,10 +6269,10 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_D4">
        <property name="geometry">
         <rect>
-         <x>430</x>
-         <y>346</y>
+         <x>428</x>
+         <y>320</y>
          <width>271</width>
-         <height>151</height>
+         <height>177</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -6355,8 +6354,8 @@ QTableWidget::item{
       <widget class="QLabel" name="label_104">
        <property name="geometry">
         <rect>
-         <x>520</x>
-         <y>310</y>
+         <x>493</x>
+         <y>289</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -6381,9 +6380,9 @@ QTableWidget::item{
       <widget class="QLabel" name="label_105">
        <property name="geometry">
         <rect>
-         <x>550</x>
-         <y>296</y>
-         <width>61</width>
+         <x>520</x>
+         <y>276</y>
+         <width>111</width>
          <height>41</height>
         </rect>
        </property>
@@ -6405,8 +6404,7 @@ background: none;
 }</string>
        </property>
        <property name="text">
-        <string>Order
-to send:</string>
+        <string>Order to send:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
