@@ -1,7 +1,6 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
 #include "sqltool.h"
-#include "staff.h"
 #include <QDebug>
 #include <QTableWidget>
 #include <QAbstractItemView>
@@ -21,24 +20,11 @@
 
 void SystemCenter::on_lineEdit_addNewUsername_editingFinished()
 {
+    QStringList list;
+    list.append("pp2_anu");
     QString username = ui->lineEdit_addNewUsername->text();
-    if(Staff::isUsernameExisted(username)){
-        ui->label_newStaffUsernameTip->setVisible(true);
-        ui->lineEdit_addNewPassword->setEnabled(false);
-        ui->lineEdit_repeatPassword->setEnabled(false);
-        ui->lineEdit_addNewName->setEnabled(false);
-        ui->lineEdit_addNewEmail->setEnabled(false);
-        ui->pushButton_addNewPortrait->setEnabled(false);
-        ui->pushButton_confirmNewStaff->setEnabled(false);
-    }else {
-        ui->label_newStaffUsernameTip->setVisible(false);
-        ui->lineEdit_addNewPassword->setEnabled(true);
-        ui->lineEdit_repeatPassword->setEnabled(true);
-        ui->lineEdit_addNewName->setEnabled(true);
-        ui->lineEdit_addNewEmail->setEnabled(true);
-        ui->pushButton_addNewPortrait->setEnabled(true);
-        ui->pushButton_confirmNewStaff->setEnabled(true);
-    }
+    list.append(username);
+    sendMessage(list);
 
 }
 
@@ -53,22 +39,13 @@ void SystemCenter::on_lineEdit_addNewUsername_editingFinished()
 
 void SystemCenter::on_lineEdit_repeatPassword_editingFinished()
 {
+    QStringList list;
     QString repeatPassword = ui->lineEdit_repeatPassword->text();
     QString password = ui->lineEdit_addNewPassword->text();
-    if(repeatPassword != password){
-        ui->label_repeatPasswordTip->setVisible(true);
-        ui->lineEdit_addNewName->setEnabled(false);
-        ui->lineEdit_addNewEmail->setEnabled(false);
-        ui->pushButton_addNewPortrait->setEnabled(false);
-        ui->pushButton_confirmNewStaff->setEnabled(false);
-    }else {
-        ui->label_repeatPasswordTip->setVisible(false);
-        ui->lineEdit_addNewName->setEnabled(true);
-        ui->lineEdit_addNewEmail->setEnabled(true);
-        ui->pushButton_addNewPortrait->setEnabled(true);
-        ui->pushButton_confirmNewStaff->setEnabled(true);
+    list.append("pp2_rp");
+    list.append(password);
+    list.append(repeatPassword);
 
-    }
 }
 
 /**
@@ -82,16 +59,12 @@ void SystemCenter::on_lineEdit_repeatPassword_editingFinished()
 
 void SystemCenter::on_lineEdit_addNewEmail_editingFinished()
 {
+    QStringList list;
+    list.append("pp2_ane");
     QString email = ui->lineEdit_addNewEmail->text();
-    if(Staff::isEmailExisted(email)){
-        ui->label_newStaffEmailTip->setVisible(true);
-        ui->pushButton_addNewPortrait->setEnabled(false);
-        ui->pushButton_confirmNewStaff->setEnabled(false);
-    }else {
-        ui->label_newStaffEmailTip->setVisible(false);
-        ui->pushButton_addNewPortrait->setEnabled(true);
-        ui->pushButton_confirmNewStaff->setEnabled(true);
-    }
+    list.append(email);
+    sendMessage(list);
+
 }
 
 /**

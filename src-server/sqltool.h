@@ -39,6 +39,9 @@ public:
     //E.g. "select * from blacklist where username='koushizon' and password='123'"
     static void search(QSqlQuery &, QString, QStringList);
 
+    //E.g. "select * from staff where username like '%dong%'"
+    static void fuzzySearch(QSqlQuery &, QString, QString, QString);
+
     //E.g : "delete from blacklist where username='koushizon'"
     static void del(QSqlQuery&, QString, QString, QString);
 

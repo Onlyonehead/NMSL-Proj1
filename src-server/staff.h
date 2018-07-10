@@ -17,11 +17,11 @@ public:
     //return all staffs' information
     static void Info(QVector<QStringList> &staffInfo);
 
-    //return staff information by username||email
-    static void Info(QString searchAttribute, QString searchValue, QStringList &staffInfo);
-
-    //return staff information by other attribute
+    //return staff information multi
     static void Info(QString searchAttribute, QString searchValue, QVector<QStringList> &staffInfo);
+
+    //return staff information signle
+    static void Info(QString searchAttribute, QString searchValue, QStringList &staffInfo);
 
     //update staff information by username
     static void updateStaffInfo(QString username, QString alterAttribute, QString alterValue);

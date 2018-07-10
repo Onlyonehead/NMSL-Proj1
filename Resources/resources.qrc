@@ -17,6 +17,7 @@
         <file>background10</file>
         <file>default.jpg</file>
         <file>background11</file>
+        <file>movie.gif</file>
     </qresource>
     <qresource prefix="/font">
         <file>fa-brands-400.ttf</file>

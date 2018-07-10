@@ -50,7 +50,24 @@ void SystemCenter::on_pushButton_9_clicked()
 void SystemCenter::on_icon_search_B_clicked()
 {
 
-    QStringList msg;
-    msg.append("isB");
-    sendMessage(msg);
+    ui->tableWidget_B->setRowCount(0);;
+    QString text = ui->warehouse_search_B->text();
+
+    if(text.trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入关键字！",QMessageBox::Close);
+        return ;
+    }
+
+    QVector<QStringList> result = this->clothes;
+
+    int i = 0;
+    for(QStringList list : result){
+        if(list.at(0) == text || list.at(1) == text){
+            ui->tableWidget_B->insertRow(i);
+            ui->tableWidget_B->setItem(i, 0, new QTableWidgetItem(list.at(0) + " - " + list.at(1)));
+            i++;
+            QApplication::processEvents();
+        }
+    }
+    ui->tableWidget_B->setRowCount(i);
 }

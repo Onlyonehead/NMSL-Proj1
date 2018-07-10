@@ -35,8 +35,13 @@ SOURCES += main.cpp\
     order.cpp \
     myserver.cpp \
     socketthread.cpp \
-    processor.cpp
+    processor.cpp \
+    garment.cpp \
+    provider.cpp \
+    staff.cpp \
+    logistics.cpp
 
+	
 HEADERS  += \
     login.h \
     sqltool.h \
@@ -49,7 +54,11 @@ HEADERS  += \
     order.h \
     myserver.h \
     socketthread.h \
-    processor.h
+    processor.h \
+    garment.h \
+    provider.h \
+    staff.h \
+    logistics.h
 
 win32{
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../packages/build-SMTPEmail-Desktop_Qt_5_7_1_MinGW_32bit-Debug/release/ -lSMTPEmail

@@ -1,4 +1,5 @@
 #include "processor.h"
+#include <QDateTime>
 
 Processor::Processor(QTcpSocket* socket)
 {
@@ -86,17 +87,19 @@ void Processor::work ()
         Warehouse::arriving(arriving);
         QVector<QStringList> clothes;
         Warehouse::GInfo(clothes);
+        QVector<QStringList> warehouse;
+        Warehouse::info(warehouse);
+        QMap<QString, QMap<QString, QString>> stock_map;
+        Warehouse::stock(stock_map);
+        QMap<QString, QMap<QString, QStringList>> arriving_map;
+        Warehouse::arriving(arriving_map);
         out << function;
         out << stock;
         out << arriving;
         out << clothes;
-    }
-
-    if(function == "info_pB4"){
-        QVector<QStringList> result;
-        Warehouse::info(result);
-        out << function;
-        out << result;
+        out << warehouse;
+        out << stock_map;
+        out << arriving_map;
     }
 
     if(function == "info_whEC"){
@@ -126,18 +129,16 @@ void Processor::work ()
             wordlist3 << list.at(0) << list.at(1);
         }
         Tool::QStringList_removeDuplicates(&wordlist3);
+
+        QStringList wordlist4 = wordlist2 + wordlist3;
+        Tool::QStringList_removeDuplicates(&wordlist4);
+
         out << function;
         out << wordlist1;
         out << wordlist2;
         out << wordlist3;
+        out << wordlist4;
     }
-    if(function == "info_isA"){
-        QVector<QStringList> result;
-        Warehouse::info(result);
-        out << function;
-        out << result;
-    }
-
     if(function == "isC"){
         QVector<QStringList> w;
         Warehouse::info(w);
@@ -160,34 +161,19 @@ void Processor::work ()
         QMap<QString, QStringList> arriving;
         Warehouse::arriving(id, arriving);
 
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
-
         out << function;
         out << warehouse;
         out << stock;
         out << arriving;
-        out << clothes;
     }
 
     if(function == "pB5"){
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
 
-        QMap<QString, QMap<QString, QString>> stock;
-        Warehouse::stock(stock);
-
-        QMap<QString, QMap<QString, QStringList>> arriving;
-        Warehouse::arriving(arriving);
-
-        QVector<QStringList> clothes;
-        Warehouse::GInfo(clothes);
 
         out << function;
         out << warehouse;
-        out << stock;
-        out << arriving;
-        out << clothes;
     }
 
     if(function == "pB8"){
@@ -210,22 +196,266 @@ void Processor::work ()
     if(function == "tWBiC"){
         QMap<QString, QString> warehouse;
         Warehouse::info(warehouse);
-        QVector<QStringList> stock;
-        Warehouse::stock(stock);
         QString s = list.at(0);
 
         QStringList result;
         Warehouse::GInfo(s.toInt(), result);
         out << function;
         out << warehouse;
-        out << stock;
         out << result;
 
     }
 
-    if(function == "isB"){
+    if(function == "sendOrder"){
+        QString orderID = list.at(0);
+        list.removeFirst();
+        QString datetime = list.at(0);
+        list.removeFirst();
+        QStringList productInfo;
+        for(QString s : list){
+            productInfo.append(s);
+        }
+
+        Order order(orderID, datetime, productInfo);
+        Warehouse::sendRequirement(order);
+        out << function;
+        out << QString("done");
+    }
+
+    if(function == "pB10"){
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QStringList result1;
+
+        for(QStringList l : g){
+            result1.append("   " + l.at(0) + " - "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result1);
+
+        QVector<QStringList> w;
+        Warehouse::info(w);
+
+        QStringList result2;
+
+        for(QStringList l : w){
+            result2.append("   " + l.at(0) + " - "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result2);
+
+
+        out << function;
+        out << result1;
+        out << result2;
+    }
+
+    if(function == "tWD1iC"){
+        QString s = list.at(0);
+
+        QStringList result;
+        Warehouse::GInfo(s.toInt(), result);
+        out << function;
+        out << result;
+
+    }
+
+    if(function == "tWD2iC"){
+        QString s = list.at(0);
+
+        QMap<QString, QString> result;
+        Warehouse::stock(s.toInt(), result);
+
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QMap<QString, QString> result1;
+
+        for(QStringList l : g){
+            result1.insert(l.at(0), l.at(1));
+        }
+        out << function;
+        out << result;
+        out << result1;
+    }
+    if(function == "order_send"){
+        QMap<QString, QMap<QString, QString>> orders;
+        in >> orders;
+
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString time = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+
+        for(QMap<QString, QMap<QString, QString>>::const_iterator i
+            = orders.begin(); i != orders.end(); ++i){
+            QStringList productInfo;
+            for(QMap<QString, QString>::const_iterator j
+                = i.value().begin(); j != i.value().end(); ++j){
+                productInfo.append(j.key());
+                productInfo.append(j.value());
+            }
+            Order order(i.key(), time, productInfo);
+            Warehouse::sendRequirement(order);
+
+        }
+        QString msg = "Done";
+        out << function;
+        out << msg;
+    }
+    //system page show garment
+    if(function == "sp_sg"){
         QVector<QStringList> result;
-        Warehouse::GInfo(result);
+        Garment::Info(result);
+        out << function;
+        out << result;
+
+    }
+    //providerpage show provider info
+    if(function == "pp_sp"){
+        QVector<QStringList> result;
+        Provider::Info(result);
+        out << function;
+        out << result;
+    }
+    //providerpage change provider info
+    if(function == "pp_cpi"){
+        QString tempID = list.at(0);
+        int providerID = tempID.toInt();
+        QString alterAttribute, alterValue;
+        alterAttribute = "address";
+        alterValue = list.at(1);
+        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        alterAttribute = "name";
+        alterValue = list.at(2);
+        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        alterAttribute = "productInfo";
+        alterValue = list.at(3);
+        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        out << function;
+    }
+    //personnel page 1 show staff info
+    if(function == "pp1_ss"){
+        QVector<QStringList> result;
+        Staff::Info(result);
+        out << function;
+        out << result;
+    }
+    // personnel page 1 search staff info multi results
+    if(function == "pp1_ssi"){
+        QVector<QStringList> result;
+        QString searchAttribute, searchValue;
+        searchAttribute = list.at(0);
+        searchValue = list.at(1);
+        Staff::Info(searchAttribute, searchValue, result);
+        out << function;
+        out << result;
+    }
+    //personnel page 1 delete staff info
+    if(function == "pp1_dsi"){
+        QString username = list.at(0);
+        Staff::deleteStaffInfo(username);
+        out << function;
+    }
+    //personnel page 2 add new staff username
+    if(function == "pp2_anu"){
+        QString username = list.at(0);
+        bool isExisted;
+        if(Staff::isUsernameExisted(username)){
+            isExisted = true;
+        }else {
+            isExisted = false;
+        }
+        out << function;
+        out << isExisted;
+    }
+    //personnel page 2 check password
+    if(function == "pp2_rp"){
+        QString password, repeatPassword;
+        password = list.at(0);
+        repeatPassword = list.at(1);
+        bool isSame;
+        if(password == repeatPassword){
+            isSame = true;
+        }else {
+            isSame = false;
+        }
+        out << function;
+        out << isSame;
+    }
+    //personnel page 2 add new email
+    if(function == "pp2_ane"){
+        QString email = list.at(0);
+        bool isExisted;
+        if(Staff::isEmailExisted(email)){
+            isExisted = true;
+        }else {
+            isExisted = false;
+        }
+        out << function;
+        out << isExisted;
+    }
+    // purchase page show garment info
+    if(function == "pcp_sg"){
+        QVector<QStringList> result;
+        Garment::Info(result);
+        out << function;
+        out << result;
+    }
+    //purchase page show garment detailed information
+    if(function == "pcp_sgdi"){
+        QStringList result;
+        QString ID = list.at(0);
+        Garment::Info(ID.toInt(), result);
+        out << function;
+        out << result;
+    }
+
+
+
+
+    if(function == "wh_history"){
+        QString id = list.at(0);
+        QVector<QStringList> result;
+        QSqlQuery query1;
+        SQLTool::search(query1, "wh_history", "from_id", id);
+        QSqlQuery query2;
+        SQLTool::search(query2, "wh_history", "to_id", id);
+
+        while(query1.next()){
+            QStringList l;
+            l.append(query1.value(0).toString());
+            l.append(query1.value(1).toString());
+            l.append(query1.value(2).toString());
+            l.append(query1.value(3).toString());
+            result.append(l);
+        }
+        while(query2.next()){
+            QStringList l;
+            l.append(query2.value(0).toString());
+            l.append(query2.value(1).toString());
+            l.append(query2.value(2).toString());
+            l.append(query2.value(3).toString());
+            result.append(l);
+        }
+
+        out << function;
+        out << result;
+    }
+    if(function == "wh_history_all"){
+        QVector<QStringList> result;
+        QSqlQuery query;
+        SQLTool::search(query, "wh_history");
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            result.append(l);
+        }
         out << function;
         out << result;
     }
