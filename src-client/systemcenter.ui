@@ -967,7 +967,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1444,6 +1444,9 @@ QTableWidget QHeaderView
     /*padding-left:4px;*/
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
 }
 </string>
        </property>
@@ -2003,6 +2006,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -2191,6 +2199,10 @@ QTableWidget QHeaderView
     /*padding-left:4px;*/
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
+}
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
 }
 </string>
        </property>
@@ -2445,6 +2457,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -3417,6 +3434,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -4107,6 +4129,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -4352,6 +4379,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -4923,6 +4955,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -4998,6 +5035,10 @@ QTableWidget QHeaderView
     /*padding-left:4px;*/
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
+}
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
 }
 </string>
        </property>
@@ -5414,6 +5455,11 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
 </string>
        </property>
        <property name="editTriggers">
@@ -5517,8 +5563,8 @@ to send:</string>
        </property>
       </widget>
      </widget>
-     <zorder>frame_2C</zorder>
      <zorder>frame_2B</zorder>
+     <zorder>frame_2C</zorder>
      <zorder>frame_2D</zorder>
      <zorder>frame_2A</zorder>
     </widget>
