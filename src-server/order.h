@@ -16,11 +16,9 @@ public:
 
     void toString(QStringList &);
 
-    void getProductInfo(QStringList &);
+    QStringList getProductInfo();
 
     QString getDatetime();
-
-    static void saveOrder(Order&);
 
     static void info(QString orderID, QStringList &orderInformation);//return order info by ID
 
