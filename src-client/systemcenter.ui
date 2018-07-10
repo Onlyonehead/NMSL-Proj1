@@ -967,7 +967,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1036,22 +1036,21 @@ QTabBar::tab:selected {
         <rect>
          <x>370</x>
          <y>10</y>
-         <width>111</width>
-         <height>31</height>
+         <width>110</width>
+         <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>当前日期时间：</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_garmentNum">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>170</y>
-         <width>46</width>
-         <height>22</height>
-        </rect>
        </property>
       </widget>
       <widget class="QLabel" name="label_chooseGTip_2">
@@ -1059,9 +1058,18 @@ QTabBar::tab:selected {
         <rect>
          <x>370</x>
          <y>110</y>
-         <width>111</width>
-         <height>31</height>
+         <width>110</width>
+         <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>选择数量：</string>
@@ -1076,6 +1084,23 @@ QTabBar::tab:selected {
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Add</string>
        </property>
@@ -1088,6 +1113,38 @@ QTabBar::tab:selected {
          <width>250</width>
          <height>200</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+</string>
        </property>
        <column>
         <property name="text">
@@ -1109,6 +1166,23 @@ QTabBar::tab:selected {
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Delete</string>
        </property>
@@ -1122,6 +1196,23 @@ QTabBar::tab:selected {
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Confirm</string>
        </property>
@@ -1134,6 +1225,38 @@ QTabBar::tab:selected {
          <width>250</width>
          <height>200</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+</string>
        </property>
        <column>
         <property name="text">
@@ -1170,6 +1293,23 @@ QTabBar::tab:selected {
          <height>30</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>选择服装</string>
        </property>
@@ -1179,9 +1319,18 @@ QTabBar::tab:selected {
         <rect>
          <x>370</x>
          <y>50</y>
-         <width>301</width>
-         <height>41</height>
+         <width>300</width>
+         <height>40</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>TextLabel</string>
@@ -1196,9 +1345,466 @@ QTabBar::tab:selected {
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Cancel</string>
        </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_garmentNum">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>170</y>
+         <width>110</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_6">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>240</y>
+         <width>291</width>
+         <height>191</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:20px;
+	background:white;
+	margin-top: 11 px;
+}
+
+QGroupBox::title {
+background: rgb(248, 248, 248);
+	subcontrol-origin: margin;
+	subcontrol-position: top center;	
+	padding: 2 1px;
+	color: rgba(15, 128, 255, 193);
+	border: 2px solid rgba(15, 128, 255, 193);
+	border-radius:10px;
+}</string>
+       </property>
+       <property name="title">
+        <string>   Details   </string>
+       </property>
+       <widget class="QLabel" name="label_76">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>29</y>
+          <width>31</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>ID:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_78">
+        <property name="geometry">
+         <rect>
+          <x>189</x>
+          <y>65</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Style:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_79">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>42</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_88">
+        <property name="geometry">
+         <rect>
+          <x>159</x>
+          <y>78</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_89">
+        <property name="geometry">
+         <rect>
+          <x>159</x>
+          <y>116</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_90">
+        <property name="geometry">
+         <rect>
+          <x>189</x>
+          <y>103</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Price:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_purchaseShowPic">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>130</width>
+          <height>130</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 0px;
+border: 0px solid lightgrey;
+background: white;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_91">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>154</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_92">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>141</y>
+          <width>31</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Size:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_purchaseShowID">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>40</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_purchaseShowStyle">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>76</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_purchaseShowPrice">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>115</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_purchaseShowSize">
+        <property name="geometry">
+         <rect>
+          <x>231</x>
+          <y>153</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QFrame" name="frame_pB">
@@ -4205,20 +4811,6 @@ in stock:</string>
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <zorder>pushButton_8</zorder>
-      <zorder>label_28</zorder>
-      <zorder>icon_search_B</zorder>
-      <zorder>tableWidget_B</zorder>
-      <zorder>warehouse_search_B</zorder>
-      <zorder>groupBox_4</zorder>
-      <zorder>pushButton_9</zorder>
-      <zorder>label_35</zorder>
-      <zorder>label_37</zorder>
-      <zorder>label_41</zorder>
-      <zorder>label_48</zorder>
-      <zorder>tableWidget_B_2</zorder>
-      <zorder>label_33</zorder>
-      <zorder>frame_2D</zorder>
      </widget>
      <widget class="QFrame" name="frame_2D">
       <property name="enabled">
@@ -5563,10 +6155,10 @@ to send:</string>
        </property>
       </widget>
      </widget>
-     <zorder>frame_2B</zorder>
      <zorder>frame_2C</zorder>
-     <zorder>frame_2D</zorder>
      <zorder>frame_2A</zorder>
+     <zorder>frame_2B</zorder>
+     <zorder>frame_2D</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">
@@ -6039,6 +6631,38 @@ QPushButton:hover{
          <height>200</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+</string>
+       </property>
        <column>
         <property name="text">
          <string>用户名</string>
@@ -6074,6 +6698,23 @@ QPushButton:hover{
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Display staff</string>
        </property>
@@ -6086,6 +6727,23 @@ QPushButton:hover{
          <width>191</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>Clear</string>
@@ -6100,6 +6758,15 @@ QPushButton:hover{
          <height>31</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Search:</string>
        </property>
@@ -6113,6 +6780,14 @@ QPushButton:hover{
          <height>30</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
       </widget>
       <widget class="QLabel" name="label_staffSearchTip_2">
        <property name="geometry">
@@ -6122,6 +6797,15 @@ QPushButton:hover{
          <width>60</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>属性：</string>
@@ -6171,6 +6855,23 @@ QPushButton:hover{
          <height>30</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -6183,6 +6884,23 @@ QPushButton:hover{
          <width>80</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>Delete</string>
@@ -6250,6 +6968,15 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
         <property name="text">
          <string>用户名：</string>
         </property>
@@ -6263,6 +6990,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_newStaffUsernameTip">
         <property name="geometry">
@@ -6274,7 +7009,14 @@ background: rgb(248, 248, 248);
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color:rgb(255, 75, 20)</string>
+         <string notr="true">
+QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(255, 75, 20);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>用户名已存在！</string>
@@ -6289,6 +7031,15 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
         <property name="text">
          <string>密码：</string>
         </property>
@@ -6302,6 +7053,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_repeatPassword">
         <property name="geometry">
@@ -6311,6 +7070,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>重复密码：</string>
@@ -6325,6 +7093,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_repeatPasswordTip">
         <property name="geometry">
@@ -6336,7 +7112,14 @@ background: rgb(248, 248, 248);
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color:rgb(255, 75, 20)</string>
+         <string notr="true">
+QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(255, 75, 20);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>两次密码不一致！</string>
@@ -6350,6 +7133,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>性别：</string>
@@ -6383,6 +7175,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>职位：</string>
@@ -6437,6 +7238,15 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
         <property name="text">
          <string>姓名：</string>
         </property>
@@ -6450,6 +7260,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_newStaffEmail">
         <property name="geometry">
@@ -6459,6 +7277,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>邮箱：</string>
@@ -6473,6 +7300,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_newStaffEmailTip">
         <property name="geometry">
@@ -6484,7 +7319,14 @@ background: rgb(248, 248, 248);
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color:rgb(255, 75, 20)</string>
+         <string notr="true">
+QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(255, 75, 20);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>邮箱已注册！</string>
@@ -6499,6 +7341,23 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
         <property name="text">
          <string>选择头像</string>
         </property>
@@ -6511,6 +7370,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>100</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>预览</string>
@@ -6525,6 +7393,23 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
         <property name="text">
          <string>Confirm</string>
         </property>
@@ -6537,6 +7422,23 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>Cancel</string>
@@ -6553,6 +7455,36 @@ background: rgb(248, 248, 248);
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_anpShowP">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>90</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>PushButton</string>
         </property>
        </widget>
       </widget>
@@ -6593,6 +7525,38 @@ background: rgb(248, 248, 248);
          <height>200</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+</string>
+       </property>
        <column>
         <property name="text">
          <string>服装编号</string>
@@ -6628,11 +7592,28 @@ background: rgb(248, 248, 248);
          <height>30</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Display garment</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_clearGarment">
+      <widget class="QPushButton" name="clearGarment">
        <property name="geometry">
         <rect>
          <x>420</x>
@@ -6640,6 +7621,23 @@ background: rgb(248, 248, 248);
          <width>190</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>Clear</string>
@@ -6654,6 +7652,23 @@ background: rgb(248, 248, 248);
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Confirm</string>
        </property>
@@ -6667,6 +7682,23 @@ background: rgb(248, 248, 248);
          <height>28</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Cancel</string>
        </property>
@@ -6679,6 +7711,15 @@ background: rgb(248, 248, 248);
          <width>121</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>服装样式：</string>
@@ -6706,6 +7747,15 @@ background: rgb(248, 248, 248);
          <height>31</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>添加新服装</string>
        </property>
@@ -6719,6 +7769,15 @@ background: rgb(248, 248, 248);
          <height>31</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>服装价格：</string>
        </property>
@@ -6731,6 +7790,23 @@ background: rgb(248, 248, 248);
          <width>111</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>选择服装图片</string>
@@ -6758,6 +7834,14 @@ background: rgb(248, 248, 248);
          <height>31</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_addGValue">
        <property name="geometry">
@@ -6767,6 +7851,14 @@ background: rgb(248, 248, 248);
          <width>121</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_GsizeS">
@@ -6790,6 +7882,15 @@ background: rgb(248, 248, 248);
          <width>121</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>服装大小：</string>
@@ -6853,6 +7954,38 @@ background: rgb(248, 248, 248);
          <height>520</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+</string>
+       </property>
        <column>
         <property name="text">
          <string>供货商编号</string>
@@ -6883,6 +8016,23 @@ background: rgb(248, 248, 248);
          <height>30</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Display provider</string>
        </property>
@@ -6895,6 +8045,23 @@ background: rgb(248, 248, 248);
          <width>190</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
        </property>
        <property name="text">
         <string>Clear</string>
@@ -6909,6 +8076,23 @@ background: rgb(248, 248, 248);
          <height>30</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
        <property name="text">
         <string>Update</string>
        </property>
@@ -6922,6 +8106,24 @@ background: rgb(248, 248, 248);
          <height>230</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	border: 2px solid rgb(230, 230, 230);
+	border-radius:20px;
+	background:white;
+	margin-top: 11 px;
+}
+
+QGroupBox::title {
+background: rgb(248, 248, 248);
+	subcontrol-origin: margin;
+	subcontrol-position: top center;	
+	padding: 2 1px;
+	color: rgba(15, 128, 255, 193);
+	border: 2px solid rgba(15, 128, 255, 193);
+	border-radius:10px;
+}</string>
+       </property>
        <property name="title">
         <string>Detailed information</string>
        </property>
@@ -6933,6 +8135,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>供货商编号：</string>
@@ -6947,6 +8158,15 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -6959,6 +8179,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>供货商地址：</string>
@@ -6973,6 +8202,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_providerNameTip">
         <property name="geometry">
@@ -6982,6 +8219,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>供货商名称：</string>
@@ -6996,6 +8242,14 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_providerProductTip">
         <property name="geometry">
@@ -7005,6 +8259,15 @@ background: rgb(248, 248, 248);
           <width>100</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
         </property>
         <property name="text">
          <string>所提供服装：</string>
@@ -7019,9 +8282,19 @@ background: rgb(248, 248, 248);
           <height>30</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
        </widget>
       </widget>
      </widget>
+     <zorder>frame_systempage_2</zorder>
+     <zorder>frame_systempage_1</zorder>
     </widget>
    </widget>
    <widget class="QProgressBar" name="progressBar">

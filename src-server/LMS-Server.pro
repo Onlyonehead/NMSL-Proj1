@@ -34,8 +34,12 @@ SOURCES += main.cpp\
     myserver.cpp \
     socketthread.cpp \
     processor.cpp \
+    garment.cpp \
+    provider.cpp \
+    staff.cpp \
     logistics.cpp
 
+	
 HEADERS  += \
     login.h \
     sqltool.h \
@@ -47,6 +51,9 @@ HEADERS  += \
     myserver.h \
     socketthread.h \
     processor.h \
+    garment.h \
+    provider.h \
+    staff.h \
     logistics.h
 
 win32{

@@ -306,23 +306,23 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
      *
      * @author Yihan Dong
      */
-    QDateTime datetime = QDateTime::currentDateTime();
-    int y = datetime.date().year();
-    int m = datetime.date().month();
-    int d = datetime.date().day();
-    QString strTime = datetime.time().toString();
-    ui->label_showOrderTime->setText(QString::number(y) + "/" + QString::number(m) +
-                                     "/" + QString::number(d) + " " + strTime);
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(timer_deal_slot_function()));
+    timer->start(1000);
 
 
     /**
-     * purchase page garment number spinbox setting
+     * purchase page setting
      *
      * @author Yihan Dong
      */
-    ui->spinBox_garmentNum->setMaximum(1000);
-    ui->spinBox_garmentNum->setSingleStep(50);
-    ui->spinBox_garmentNum->setWrapping(true);
+    ui->tableWidget_generateOrder->setRowCount(0);
+    ui->tableWidget_generateOrder->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_generateOrder->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_generateOrder->setAlternatingRowColors(true);
+    ui->tableWidget_generateOrder->verticalHeader()->setVisible(false);
+    ui->tableWidget_generateOrder->setStyleSheet("selection-background-color::lightblue");
+
 
     /**
      * provider page tablewidget_prviderInfo setting
@@ -346,6 +346,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_showNewPortraitName->setVisible(false);
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
+    ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
 
 
 

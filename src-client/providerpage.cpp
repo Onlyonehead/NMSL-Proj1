@@ -1,7 +1,5 @@
 #include "systemcenter.h"
 #include "sqltool.h"
-#include "order.h"
-#include "provider.h"
 #include "ui_systemcenter.h"
 #include <QDebug>
 #include <QTableWidget>
@@ -26,24 +24,9 @@
 
 void SystemCenter::on_pushButton_showProvider_clicked()
 {
-    ui->tableWidget_providerInfo->setRowCount(0);
-    int i = 0;
-    QVector<QStringList> providerInfo;
-    Provider::Info(providerInfo);
-    int n = providerInfo.size();
-    ui->tableWidget_providerInfo->setRowCount(providerInfo.size());
-    while (n) {
-        ui->tableWidget_providerInfo->setItem(i, 0, new QTableWidgetItem(providerInfo.at(i).at(0)));
-        ui->tableWidget_providerInfo->setItem(i, 1, new QTableWidgetItem(providerInfo.at(i).at(1)));
-        ui->tableWidget_providerInfo->setItem(i, 2, new QTableWidgetItem(providerInfo.at(i).at(2)));
-        ui->tableWidget_providerInfo->setItem(i, 3, new QTableWidgetItem(providerInfo.at(i).at(3)));
-        QTableWidgetItem *item = ui->tableWidget_providerInfo->item(i, 0);
-        item->setFlags(item->flags() & (Qt::ItemIsEditable));
-        i++;
-        n--;
-    }
-    ui->tableWidget_providerInfo->setRowCount(i);
-    progressBar();
+    QStringList list;
+    list.append("pp_sp");
+    sendMessage(list);
 }
 
 
@@ -74,30 +57,44 @@ void SystemCenter::on_pushButton_clearProvider_clicked()
 
 
 
+void SystemCenter::on_pushButton_updateProviderInfo_clicked()
+{
+    QStringList list;
+    QString changeProviderAds;
+    QString changeProviderName;
+    QString changeProviderPruduct;
+    QString providerID;
+    providerID = ui->label_providerID->text();
+    changeProviderAds = ui->lineEdit_changeProviderAds->text();
+    changeProviderName = ui->lineEdit_changeProviderName->text();
+    changeProviderPruduct = ui->lineEdit_changeProvideProduct->text();
+    list.append("pp_cpi");
+    list.append(providerID);
+    list.append(changeProviderAds);
+    list.append(changeProviderName);
+    list.append(changeProviderPruduct);
+    sendMessage(list);
 
-//void SystemCenter::on_tableWidget_providerInfo_cellDoubleClicked(int row, int column)
-//{
-//    QString alterAttribute, alterValue;
-//    QTableWidgetItem *item = ui->tableWidget_providerInfo->item(row, column);
-////    int rowIndex, columnIndex;
-////    rowIndex = ui->tableWidget_providerInfo->currentRow();
-////    columnIndex = ui->tableWidget_providerInfo->currentColumn();
-//    QMessageBox message(QMessageBox::Warning, "Concern", "Confirm changing data?", QMessageBox::Yes|QMessageBox::No, NULL);
-//    if(message.exec() == QMessageBox::Yes ){
-//        int providerID = ui->tableWidget_providerInfo->item(row, 0)->text().toInt();
-//        alterValue = ui->tableWidget_providerInfo->item(row, column)->text();
-//        if(column == 1){
-//            alterAttribute = "address";
-//        }else if(column == 2){
-//            alterAttribute = "name";
-//        }else if(column == 3){
-//            alterAttribute = "productInfo";
-//        }
-//        Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
-//    }else{
-//        ui->tableWidget_providerInfo->setItem(row, column, item);
-//    }
+}
 
-//}
 
+/**
+ * @brief SystemCenter::on_tableWidget_providerInfo_cellClicked
+ * @param row
+ * @param column
+ * show detailed information
+ * @author Yihan Dong
+ */
+void SystemCenter::on_tableWidget_providerInfo_cellClicked(int row, int column)
+{
+    ui->label_providerID->setText(ui->tableWidget_providerInfo->item(row, 0)->text());
+    ui->lineEdit_changeProviderAds->setText(ui->tableWidget_providerInfo->item(row, 1)->text());
+    ui->lineEdit_changeProviderName->setText(ui->tableWidget_providerInfo->item(row, 2)->text());
+    ui->lineEdit_changeProvideProduct->setText(ui->tableWidget_providerInfo->item(row, 3)->text());
+    qDebug() << ui->tableWidget_providerInfo->item(row, 0)->text() << endl;
+    qDebug() << ui->tableWidget_providerInfo->item(row, 1)->text() << endl;
+    qDebug() << ui->tableWidget_providerInfo->item(row, 2)->text() << endl;
+    qDebug() << ui->tableWidget_providerInfo->item(row, 3)->text() << endl;
+
+}
 
