@@ -158,6 +158,14 @@ private slots:
 
     void on_icon_search_D_clicked();
 
+    void on_tableWidget_generateOrder_cellClicked(int row, int column);
+
+    void on_pushButton_deliverShowProvider_clicked();
+
+    void on_tableWidget_deliverProvider_cellClicked(int row, int column);
+
+    void on_pushButton_deliverOrder_clicked();
+
     void on_w_search_A_clicked();
 
     void on_tableWidget_A_itemClicked(QTableWidgetItem *item);

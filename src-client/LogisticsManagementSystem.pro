@@ -50,6 +50,8 @@ SOURCES += main.cpp \
     sqltool.cpp \
     systemcenter_msg.cpp \
     order.cpp \
+    warehouse_d.cpp \
+    deliverpage.cpp \
     sell_a.cpp \
     warehouse_d.cpp \
     logistics.cpp

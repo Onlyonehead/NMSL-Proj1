@@ -656,7 +656,7 @@ void SystemCenter::readMessage()
     if(from == "pp2_rp"){
         bool isSame;
         in >> isSame;
-        if(!isSame){
+        if(isSame == false){
             ui->label_repeatPasswordTip->setVisible(true);
             ui->lineEdit_addNewName->setEnabled(false);
             ui->lineEdit_addNewEmail->setEnabled(false);
@@ -698,11 +698,17 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_generateOrder->setRowCount(i);
         progressBar();
-    } // purchase page show garment detailed information 没了？？？
+    } // purchase page show garment detailed information
     if(from == "pcp_sgdi"){
         QStringList result;
         in >> result;
+
+        QString ID = result.at(0);
+        QString style = result.at(1);
+        QString size = result.at(2);
         QString path = result.at(3);
+        QString price = result.at(4);
+
         QApplication::processEvents();
         QPixmap *pixmap = new QPixmap("./" + path);
         if(pixmap->isNull()){
@@ -717,6 +723,37 @@ void SystemCenter::readMessage()
         ui->label_purchaseShowPic->setPixmap(*pixmap);
         delete pixmap;
         QApplication::processEvents();
+
+        ui->label_purchaseShowID->setText(ID);
+        ui->label_purchaseShowPrice->setText(price);
+        ui->label_purchaseShowSize->setText(size);
+        ui->label_purchaseShowStyle->setText(style);
+        QApplication::processEvents();
+
+        progressBar_fast();
+
+    }// deliver page show provider ids
+    if(from == "dp_sp"){
+        int i = 0;
+        QVector<QStringList> result;
+        in >> result;
+
+        for(QStringList list : result){
+            ui->tableWidget_deliverProvider->insertRow(i);
+            ui->tableWidget_deliverProvider->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            i++;
+        }
+        ui->tableWidget_deliverProvider->setRowCount(i);
+        progressBar();
+    }// deliver page show provider detailed information
+    if(from == "dp_spdi"){
+        QStringList result;
+        in >> result;
+        ui->label_deliverShowID->setText(result.at(0));
+        ui->label_deliverShowAds->setText(result.at(1));
+        ui->label_deliverShowName->setText(result.at(2));
+        ui->label_deliverShowProduct->setText(result.at(3));
+        progressBar();
     }
 
 
