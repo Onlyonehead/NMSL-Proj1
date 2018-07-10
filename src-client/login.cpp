@@ -73,7 +73,7 @@ Login::Login(QWidget *parent) :
     file.close();
 
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
-    pic_num = 1 + qrand() % (12 - 1);
+    pic_num = 1 + qrand() % (13 - 1);
     ui->titlepic->setStyleSheet("QFrame{border-image:url(:/background"+ QString::number(pic_num) +");border: 8px solid rgb(128, 128, 128);}");
 
 
@@ -248,6 +248,7 @@ void Login::readMessage()
     QString from;
     in >> from;
     qDebug() << from << endl;
+
     if(from == "login"){
 
         int status;

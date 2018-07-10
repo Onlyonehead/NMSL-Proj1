@@ -132,6 +132,14 @@ private slots:
 
     void on_pushButton_cancelNewStaff_clicked();
 
+    void on_pushButton_showStores_clicked();
+
+    void on_lineEdit_sell_search_textChanged(const QString &arg1);
+
+    void on_tableWidget_stores_cellClicked(int row, int column);
+
+    void on_pushButton_clearStores_clicked();
+
     void on_clearGarment_clicked();
 
     void on_pushButton_updateProviderInfo_clicked();
@@ -150,7 +158,21 @@ private slots:
 
     void on_icon_search_D_clicked();
 
+    void on_w_search_A_clicked();
+
+    void on_tableWidget_A_itemClicked(QTableWidgetItem *item);
+
+    void on_w_search_A_3_clicked();
+    
     void on_tableWidget_generateOrder_cellClicked(int row, int column);
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item);
+
+    void on_style_change_clicked();
 
 signals:
     void stringReturn(QString);
@@ -160,6 +182,10 @@ private:
     void progressBar_fast();
     void progressBar();
     void init_warehouse_C();
+
+    void searchTableWidget(QTableWidget*, const QString&, QVector<int>&);
+    void setTableWidgetItemHidden(QTableWidget*, const QString&);
+
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;
@@ -170,6 +196,10 @@ private:
     QVector<QStringList> warehouse;
     QMap<QString,QMap<QString, QString>> stock_map;
     QMap<QString, QMap<QString, QStringList>> arriving_map;
+    QVector<QStringList> orderList;
+    QVector<QStringList> wh_history;
+
+    bool style;
 
 };
 

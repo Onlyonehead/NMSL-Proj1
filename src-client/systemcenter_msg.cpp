@@ -1,5 +1,6 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
+#include "record.h"
 
 void SystemCenter::sendMessage(QStringList list)
 {
@@ -81,11 +82,13 @@ void SystemCenter::readMessage()
 
         ui->progressBar->setValue(100);
 
+        ui->progressBar->setVisible(false);
         ui->pushButton_switch->setEnabled(true);
         ui->pushButton_quit->setEnabled(true);
     }
 
     if(from == "info_whEC"){
+        ui->progressBar->setVisible(true);
         ui->progressBar->setRange(0, 100);
 
         QStringList wordlist;
@@ -263,7 +266,9 @@ void SystemCenter::readMessage()
                 QApplication::processEvents();
             }
             if(j.value().size() > 1){
+//                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C1->setSpan(count_i-j.value().size(), 0, j.value().size(), 1);
+
             }
         }
 
@@ -294,12 +299,14 @@ void SystemCenter::readMessage()
                 count_j++;
             }
             if(j.value().size() > 1){
+//                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C2->setSpan(count_j-j.value().size(), 0, j.value().size(), 1);
+
             }
 
         }
 
-        progressBar_fast();
+        progressBar();
         QApplication::processEvents();
         ui->tableWidget_C1->setRowCount(count_i);
         ui->tableWidget_C2->setRowCount(count_j);
@@ -322,7 +329,7 @@ void SystemCenter::readMessage()
 
         ui->tableWidget_B->setRowCount(list.size());
 
-        progressBar_fast();
+        progressBar();
     }
     if(from == "tWBiC"){
         QMap<QString, QString> warehouse;
@@ -403,16 +410,19 @@ void SystemCenter::readMessage()
 
         n = list.size();
 
-        while(n){
+        while(n-1){
+
+            //n-1 为了不显示仓库1
+
             QApplication::processEvents();
             ui->tableWidget_D2->insertRow(list.size()-n);
-            ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n+1)));
             n--;
         }
 
-        ui->tableWidget_D2->setRowCount(list.size());
+        ui->tableWidget_D2->setRowCount(list.size()-1);
 
-        progressBar_fast();
+        progressBar();
     }
     if(from == "tWD1iC"){
         QStringList result;
@@ -465,7 +475,8 @@ void SystemCenter::readMessage()
             clothes_name = clothes.value(i.key());
             QApplication::processEvents();
             ui->tableWidget_D3->insertRow(count);
-            ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() + " - " + clothes_name));
+            ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                       " - " + clothes_name));
             ui->tableWidget_D3->setItem(count, 1, new QTableWidgetItem(i.value()));
 
             QApplication::processEvents();
@@ -486,7 +497,63 @@ void SystemCenter::readMessage()
             ui->tableWidget_D4->setRowCount(0);
         }
         ui->tableWidget_B->setRowCount(0);
-    } //systempage show garment info
+    }
+
+    if(from == "orderinfo"){
+        QVector<QStringList> vlist;
+        in >> vlist;
+        this->orderList = vlist;
+
+        int count = 0;
+        for(QStringList l : vlist){
+            QApplication::processEvents();
+            ui->tableWidget_logistics_A->insertRow(count);
+            ui->tableWidget_logistics_A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
+            ui->tableWidget_logistics_A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
+            ui->tableWidget_logistics_A->setItem(count, 2, new QTableWidgetItem("Time: " + l.at(2)));
+            QApplication::processEvents();
+            count++;
+        }
+        ui->tableWidget_logistics_A->setRowCount(count);
+        progressBar();
+    }
+
+    if(from == "wh_history"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        this->wh_history = result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem("From id: " + result.at(i).at(1)));
+            ui->tableWidget_A->setItem(result.size()-i-1, 1, new QTableWidgetItem("To id: " + result.at(i).at(2)));
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 2, new QTableWidgetItem(s.at(0) + " " + s.at(1)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+    }
+
+    if(from == "wh_history_all"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        this->wh_history = result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem("From id: " + result.at(i).at(1)));
+            ui->tableWidget_A->setItem(result.size()-i-1, 1, new QTableWidgetItem("To id: " + result.at(i).at(2)));
+            ui->tableWidget_A->setItem(result.size()-i-1, 2, new QTableWidgetItem(s.at(0) + " " + s.at(1)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+        progressBar();
+    }
+
+
+
+
+    //systempage show garment info
     if(from == "sp_sg"){
         QVector<QStringList> result;
         in >> result;
@@ -653,6 +720,72 @@ void SystemCenter::readMessage()
     }
 
 
+
+
+    //sissyVI--Start
+
+    if(from == "showStores"){
+        QVector<QStringList> qv_stores;
+        in >> qv_stores;
+
+        qDebug()<<"门店数量："<<qv_stores.size();
+        ui->tableWidget_stores->setRowCount(qv_stores.size());
+        int i=0;
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_stores.constBegin(); it!=qv_stores.constEnd(); ++it){
+            for(int j=0; j<6; ++j){
+                ui->tableWidget_stores->setItem(i, j, new QTableWidgetItem(it->at(j)));
+            }
+            ++i;
+        }
+    }
+
+    if(from == "storesClicked"){
+        int record_size;
+        int qv_size;//获取QVector的大小
+        QString id_trans;
+        QString id_store;
+        QString date;
+        QString prices;
+        QMap<QString, QString> m;
+        in >> record_size;
+        in >> qv_size;
+
+        ui->tableWidget_storeRecord->clear();
+        ui->tableWidget_storeRecord->setRowCount(record_size);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 80); //设置列的宽度
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(1, 230);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 100);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(3, 115);
+        ui->tableWidget_storeRecord->horizontalHeader()->setStretchLastSection(true);
+
+
+        int i=0;
+        for(int num=0; num<qv_size; ++num){
+            in >> id_trans >> id_store >> date >> prices >> m;
+
+            QMap<QString, QString>::iterator it2;
+
+            ui->tableWidget_storeRecord->setItem(i,0,new QTableWidgetItem(id_trans)); //id_trans
+            ui->tableWidget_storeRecord->setItem(i,1,new QTableWidgetItem(date)); //date
+            ui->tableWidget_storeRecord->setItem(i,2,new QTableWidgetItem(prices)); //prices
+
+            if(m.size()>1){
+                ui->tableWidget_storeRecord->setSpan(i, 0, m.size(), 1);
+                ui->tableWidget_storeRecord->setSpan(i, 1, m.size(), 1);
+                ui->tableWidget_storeRecord->setSpan(i, 2, m.size(), 1);
+            }
+
+            for(it2=m.begin(); it2!=m.end(); ++it2){
+                QApplication::processEvents();
+                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(it2.key())); //style
+                ui->tableWidget_storeRecord->setItem(i,4,new QTableWidgetItem(it2.value())); //amount
+                ++i;
+            }
+        }
+    }
+
+    //sissyVI--Finish
 
 //    m_tcpsocket->disconnectFromHost();
 }

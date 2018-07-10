@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1073</width>
+    <width>1061</width>
     <height>702</height>
    </rect>
   </property>
@@ -18,13 +18,14 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>1051</width>
+     <width>1041</width>
      <height>681</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QFrame{
-	background: rgba(255, 255, 255, 255);
+    <string notr="true">QFrame
+{
+	background:rgba(255, 255, 255, 255);
 	border-image:url(:/bg4.png);
 }</string>
    </property>
@@ -66,7 +67,7 @@
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 93);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -74,7 +75,7 @@
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -117,20 +118,24 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:15px;
+	background:rgb(240, 240, 240);
+
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold ;
 }
 
+
 QPushButton:hover{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 20);
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:15px;
+
+	background:rgb(252, 252, 252);
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold ;
-}</string>
+}
+</string>
        </property>
        <property name="text">
         <string>Quit</string>
@@ -153,9 +158,9 @@ QPushButton:hover{
     </property>
     <property name="styleSheet">
      <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 200);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
     </property>
     <property name="frameShape">
@@ -184,6 +189,7 @@ QPushButton:hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
+	background:none;
 	border: 0px;
 	color: rgb(106, 106, 106);
 	font: 75 18pt &quot;Helvetica&quot; bold;
@@ -207,6 +213,7 @@ QPushButton:hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
+	background:none;
 	border:none;
 }
 </string>
@@ -234,9 +241,9 @@ QPushButton:hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(220, 220, 220);
 	border-radius:20px;
-	background:white;
+	background: rgba(248, 248, 248, 200);
 	margin-top: 11 px;
 }
 
@@ -244,7 +251,7 @@ QGroupBox::title {
 background: rgb(248, 248, 248);
 	subcontrol-origin: margin;
 	subcontrol-position: top center;	
-	padding: 2 1px;
+	padding: 1 4px;
 	color: rgba(15, 128, 255, 193);
 	border: 2px solid rgba(15, 128, 255, 193);
 	border-radius:10px;
@@ -626,12 +633,12 @@ background: none;
        <rect>
         <x>2</x>
         <y>132</y>
-        <width>197</width>
+        <width>196</width>
         <height>2</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px dashed rgba(204, 204, 204,190);</string>
+       <string notr="true">border: 1px solid rgb(220, 220, 220);</string>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -651,309 +658,51 @@ background: none;
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="Line" name="line_6">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>340</y>
-       <width>200</width>
-       <height>211</height>
+       <x>2</x>
+       <y>560</y>
+       <width>237</width>
+       <height>2</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>15</pointsize>
-      </font>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
-	border-radius:20px;
-	background:white;
-	margin-top: 11 px;
-}
-
-QGroupBox::title {
-	background: rgb(248, 248, 248);
-	subcontrol-origin: margin;
-	subcontrol-position: top center;	
-	padding: 2 1px;
-	color: rgba(15, 128, 255, 193);
-	border: 2px solid rgba(15, 128, 255, 193);
-	border-radius:10px;
-}</string>
+    </widget>
+    <widget class="QLabel" name="label_navigator">
+     <property name="geometry">
+      <rect>
+       <x>109</x>
+       <y>426</y>
+       <width>23</width>
+       <height>23</height>
+      </rect>
      </property>
-     <property name="title">
-      <string> Quick Access </string>
+     <property name="text">
+      <string>icon</string>
      </property>
-     <widget class="QPushButton" name="pushButton_A">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>81</width>
-        <height>65</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Helvetica 12</family>
-        <pointsize>15</pointsize>
-        <weight>9</weight>
-        <italic>false</italic>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px dashed  rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 20);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:checked{
-	border: 2px dashed  rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-      </property>
-      <property name="text">
-       <string>A</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-      <property name="autoExclusive">
-       <bool>true</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_B">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>40</y>
-        <width>81</width>
-        <height>65</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Helvetica 12</family>
-        <pointsize>15</pointsize>
-        <weight>9</weight>
-        <italic>false</italic>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 20);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-QPushButton:checked{
-	border: 2px dashed rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-      </property>
-      <property name="text">
-       <string>B</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="autoExclusive">
-       <bool>true</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_C">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>126</y>
-        <width>81</width>
-        <height>65</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Helvetica 12</family>
-        <pointsize>15</pointsize>
-        <weight>9</weight>
-        <italic>false</italic>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 20);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-QPushButton:checked{
-	border: 2px dashed rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-      </property>
-      <property name="text">
-       <string>C</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="autoExclusive">
-       <bool>true</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_D">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>126</y>
-        <width>81</width>
-        <height>65</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Helvetica 12</family>
-        <pointsize>15</pointsize>
-        <weight>9</weight>
-        <italic>false</italic>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 20);
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold ;
-}
-QPushButton:checked{
-	border: 2px dashed rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-      </property>
-      <property name="text">
-       <string>D</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="autoExclusive">
-       <bool>true</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>27</y>
+      <x>285</x>
+      <y>38</y>
       <width>731</width>
-      <height>603</height>
+      <height>601</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QTabBar::tab {
 	border: 2px solid rgb(169, 169, 169);
 	border-radius:10px;
-	background:rgba(255, 255, 255,160);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold ;
-	height: 28px; 
-	width:95px;
+	height: 26px; 
+	width:  94px;
 }
 QTabBar::tab:hover {
 	border: 2px solid rgb(169, 169, 169);
@@ -961,13 +710,15 @@ QTabBar::tab:hover {
 }
 QTabBar::tab:selected { 
 	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 113);
+	background:rgba(15, 128, 255, 153);
+	color: white;
+	font: 75 16pt &quot;Helvetica&quot; bold ;
 }
 
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <property name="iconSize">
      <size>
@@ -982,12 +733,12 @@ QTabBar::tab:selected {
      <attribute name="title">
       <string>Welcome</string>
      </attribute>
-     <widget class="QLabel" name="label_17">
+     <widget class="QLabel" name="label_title">
       <property name="geometry">
        <rect>
-        <x>18</x>
+        <x>-2</x>
         <y>0</y>
-        <width>691</width>
+        <width>731</width>
         <height>561</height>
        </rect>
       </property>
@@ -1020,9 +771,9 @@ QTabBar::tab:selected {
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -1086,15 +837,15 @@ QTabBar::tab:selected {
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -1115,7 +866,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -1124,12 +876,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -1144,7 +897,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <column>
         <property name="text">
@@ -1168,15 +923,15 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -1198,15 +953,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -1227,7 +982,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -1236,12 +992,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -1256,7 +1013,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <column>
         <property name="text">
@@ -1297,10 +1056,11 @@ QTableWidget QHeaderView
         <string notr="true">QPushButton{
 	border: 2px dashed rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
+
 
 QPushButton:hover{
 	border: 2px dashed rgb(15, 128, 255);
@@ -1308,7 +1068,8 @@ QPushButton:hover{
 	border-radius:10px;
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
+}
+</string>
        </property>
        <property name="text">
         <string>选择服装</string>
@@ -1347,15 +1108,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -1400,7 +1161,7 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
 	background:white;
 	margin-top: 11 px;
@@ -1818,9 +1579,9 @@ background: none;
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -1848,9 +1609,9 @@ background: none;
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -1859,6 +1620,499 @@ background: none;
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <widget class="QLabel" name="label_109">
+       <property name="geometry">
+        <rect>
+         <x>106</x>
+         <y>375</y>
+         <width>18</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_12">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>120</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_13">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>60</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Display All</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_logistics_A">
+       <property name="geometry">
+        <rect>
+         <x>37</x>
+         <y>40</y>
+         <width>531</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>id</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>name</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>province</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_id_2">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>425</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_110">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>416</y>
+         <width>91</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Warehouse
+  id:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_A_2">
+       <property name="geometry">
+        <rect>
+         <x>276</x>
+         <y>375</y>
+         <width>411</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>list</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+      </widget>
+      <widget class="QPushButton" name="w_search_A_4">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>485</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>All</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="w_search_A_2">
+       <property name="geometry">
+        <rect>
+         <x>57</x>
+         <y>485</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_111">
+       <property name="geometry">
+        <rect>
+         <x>136</x>
+         <y>362</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>History </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -1876,9 +2130,9 @@ background: none;
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -1990,15 +2244,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -2018,7 +2272,7 @@ QPushButton:hover{
          <x>37</x>
          <y>120</y>
          <width>651</width>
-         <height>411</height>
+         <height>221</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2031,7 +2285,7 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
@@ -2050,6 +2304,9 @@ QTableWidget QHeaderView
     /*padding-left:4px;*/
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
 }
 </string>
        </property>
@@ -2179,15 +2436,15 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -2399,6 +2656,311 @@ background: none;
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
+      <widget class="QLabel" name="label_106">
+       <property name="geometry">
+        <rect>
+         <x>136</x>
+         <y>362</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>History </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_107">
+       <property name="geometry">
+        <rect>
+         <x>106</x>
+         <y>375</y>
+         <width>18</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="w_search_A">
+       <property name="geometry">
+        <rect>
+         <x>57</x>
+         <y>485</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_108">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>416</y>
+         <width>91</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Warehouse
+  id:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_id">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>425</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_A">
+       <property name="geometry">
+        <rect>
+         <x>276</x>
+         <y>375</y>
+         <width>411</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}
+
+</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>list</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>New Column</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>b</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QPushButton" name="w_search_A_3">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>485</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>All</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_2C">
       <property name="geometry">
@@ -2411,9 +2973,9 @@ background: none;
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -2479,7 +3041,8 @@ background: none;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -2488,12 +3051,13 @@ background: none;
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -2508,7 +3072,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -2652,15 +3218,15 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -2700,15 +3266,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -2732,7 +3298,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -2741,12 +3308,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -2761,7 +3329,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -2879,7 +3449,7 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
 	background:white;
 	margin-top: 11 px;
@@ -3588,9 +4158,9 @@ background: none;
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -3625,15 +4195,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -3704,7 +4274,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -3713,12 +4284,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -3733,7 +4305,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -3811,7 +4385,7 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
 	background:white;
 	margin-top: 11 px;
@@ -4243,15 +4817,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -4394,7 +4968,8 @@ in all:</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -4403,12 +4978,13 @@ in all:</string>
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -4423,7 +4999,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -4509,9 +5087,9 @@ in stock:</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -4546,15 +5124,15 @@ in stock:</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -4625,7 +5203,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -4634,12 +5213,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -4654,7 +5234,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -4732,7 +5314,7 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
 	background:white;
 	margin-top: 11 px;
@@ -5164,15 +5746,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -5189,14 +5771,15 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_D3">
        <property name="geometry">
         <rect>
-         <x>220</x>
-         <y>346</y>
+         <x>213</x>
+         <y>320</y>
          <width>191</width>
-         <height>181</height>
+         <height>210</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -5205,12 +5788,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -5225,7 +5809,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -5272,7 +5858,8 @@ QTableWidget QHeaderView
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -5281,12 +5868,13 @@ QTableWidget QHeaderView
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -5301,7 +5889,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -5432,9 +6022,9 @@ background: none;
       <widget class="QLabel" name="warehouse_label_D">
        <property name="geometry">
         <rect>
-         <x>626</x>
+         <x>620</x>
          <y>190</y>
-         <width>61</width>
+         <width>80</width>
          <height>20</height>
         </rect>
        </property>
@@ -5488,15 +6078,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -5513,9 +6103,9 @@ QPushButton:hover{
       <widget class="QLabel" name="label_80">
        <property name="geometry">
         <rect>
-         <x>290</x>
-         <y>296</y>
-         <width>61</width>
+         <x>261</x>
+         <y>276</y>
+         <width>121</width>
          <height>41</height>
         </rect>
        </property>
@@ -5537,8 +6127,7 @@ background: none;
 }</string>
        </property>
        <property name="text">
-        <string>Quantity
-in stock:</string>
+        <string>Quantity in stock:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -5547,8 +6136,8 @@ in stock:</string>
       <widget class="QLabel" name="label_77">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>310</y>
+         <x>234</x>
+         <y>289</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -5655,15 +6244,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -5680,14 +6269,15 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_D4">
        <property name="geometry">
         <rect>
-         <x>430</x>
-         <y>346</y>
+         <x>428</x>
+         <y>320</y>
          <width>271</width>
-         <height>151</height>
+         <height>177</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -5696,12 +6286,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -5716,7 +6307,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -5761,8 +6354,8 @@ QTableWidget QHeaderView
       <widget class="QLabel" name="label_104">
        <property name="geometry">
         <rect>
-         <x>520</x>
-         <y>310</y>
+         <x>493</x>
+         <y>289</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -5787,9 +6380,9 @@ QTableWidget QHeaderView
       <widget class="QLabel" name="label_105">
        <property name="geometry">
         <rect>
-         <x>550</x>
-         <y>296</y>
-         <width>61</width>
+         <x>520</x>
+         <y>276</y>
+         <width>111</width>
          <height>41</height>
         </rect>
        </property>
@@ -5811,8 +6404,7 @@ background: none;
 }</string>
        </property>
        <property name="text">
-        <string>Order
-to send:</string>
+        <string>Order to send:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -5820,8 +6412,8 @@ to send:</string>
       </widget>
      </widget>
      <zorder>frame_2C</zorder>
-     <zorder>frame_2A</zorder>
      <zorder>frame_2B</zorder>
+     <zorder>frame_2A</zorder>
      <zorder>frame_2D</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
@@ -5839,9 +6431,9 @@ to send:</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -5853,8 +6445,8 @@ to send:</string>
       <widget class="QLabel" name="label_81">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>15</y>
+         <x>310</x>
+         <y>31</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -5884,11 +6476,11 @@ to send:</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_12">
+      <widget class="QPushButton" name="pushButton_clearStores">
        <property name="geometry">
         <rect>
-         <x>140</x>
-         <y>10</y>
+         <x>190</x>
+         <y>26</y>
          <width>111</width>
          <height>30</height>
         </rect>
@@ -5910,15 +6502,15 @@ to send:</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -5932,11 +6524,11 @@ QPushButton:hover{
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="warehouse_search_A_2">
+      <widget class="QLineEdit" name="lineEdit_sell_search">
        <property name="geometry">
         <rect>
-         <x>351</x>
-         <y>10</y>
+         <x>401</x>
+         <y>26</y>
          <width>231</width>
          <height>30</height>
         </rect>
@@ -5962,11 +6554,11 @@ QPushButton:hover{
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_13">
+      <widget class="QPushButton" name="pushButton_showStores">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>10</y>
+         <x>60</x>
+         <y>26</y>
          <width>111</width>
          <height>30</height>
         </rect>
@@ -5988,15 +6580,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -6010,14 +6602,17 @@ QPushButton:hover{
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="icon_search_2">
+      <widget class="QPushButton" name="pushButton_font_sellSearch">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>10</y>
+         <x>640</x>
+         <y>26</y>
          <width>30</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string/>
@@ -6026,8 +6621,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label_82">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>55</y>
+         <x>20</x>
+         <y>80</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -6057,15 +6652,60 @@ QPushButton:hover{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_2">
+      <widget class="QTableWidget" name="tableWidget_stores">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>85</y>
-         <width>705</width>
-         <height>175</height>
+         <x>37</x>
+         <y>110</y>
+         <width>651</width>
+         <height>191</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>id</string>
@@ -6097,21 +6737,91 @@ QPushButton:hover{
         </property>
        </column>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_3">
+      <widget class="QTableWidget" name="tableWidget_storeRecord">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>300</y>
-         <width>705</width>
-         <height>253</height>
+         <x>37</x>
+         <y>342</y>
+         <width>651</width>
+         <height>191</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>id_trans</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>date</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>prices</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>style</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>amount</string>
+        </property>
+       </column>
       </widget>
       <widget class="QLabel" name="label_83">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>270</y>
+         <x>25</x>
+         <y>310</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -6153,9 +6863,9 @@ QPushButton:hover{
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -6192,72 +6902,290 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>Add Stores:</string>
+        <string>Delivery Request:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-     </widget>
-     <widget class="QFrame" name="frame_sell_C">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>725</width>
-        <height>563</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
-	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QLabel" name="label_85">
+      <widget class="QTableWidget" name="tableWidget_C2_3">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>150</width>
-         <height>20</height>
+         <x>30</x>
+         <y>310</y>
+         <width>651</width>
+         <height>191</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <family>Helvetica 12</family>
-         <pointsize>15</pointsize>
-         <weight>9</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-        </font>
-       </property>
        <property name="styleSheet">
-        <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
 }</string>
        </property>
-       <property name="text">
-        <string>Purchase Request:</string>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>warehouse</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>clothes id</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>style</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>size</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>quantity</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>arrive date</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_C1_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>80</y>
+         <width>469</width>
+         <height>181</height>
+        </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>warehouse</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>clothes id</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>style</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>size</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>quantity</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
       </widget>
      </widget>
      <zorder>frame_sell_B</zorder>
-     <zorder>frame_sell_C</zorder>
      <zorder>frame_sell_A</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
@@ -6275,9 +7203,9 @@ QPushButton:hover{
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -6296,7 +7224,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -6305,12 +7234,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -6325,7 +7255,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <column>
         <property name="text">
@@ -6364,15 +7296,15 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -6394,15 +7326,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -6521,15 +7453,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -6551,15 +7483,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -6582,9 +7514,9 @@ QPushButton:hover{
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -6604,7 +7536,7 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
 	background:white;
 	margin-top: 11 px;
@@ -7007,15 +7939,15 @@ QLabel{
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7059,15 +7991,15 @@ QPushButton:hover{
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7089,15 +8021,15 @@ QPushButton:hover{
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7132,15 +8064,15 @@ QPushButton:hover{
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7153,6 +8085,8 @@ QPushButton:hover{
        </widget>
       </widget>
      </widget>
+     <zorder>frame_personnelpage_2</zorder>
+     <zorder>frame_personnelpage_1</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -7169,9 +8103,9 @@ QPushButton:hover{
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -7190,7 +8124,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -7199,12 +8134,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -7219,7 +8155,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <column>
         <property name="text">
@@ -7258,15 +8196,15 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7288,15 +8226,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7318,15 +8256,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7348,15 +8286,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7457,15 +8395,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7598,9 +8536,9 @@ QPushButton:hover{
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background: rgb(248, 248, 248);
+	background: rgba(248, 248, 248, 180);
 	border-image:none;
-	border: 2px solid rgba(204, 204, 204,190);
+	border: 2px solid rgb(200, 200, 200);
 }</string>
       </property>
       <property name="frameShape">
@@ -7619,7 +8557,8 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTableWidget
+        <string notr="true">
+QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -7628,12 +8567,13 @@ QPushButton:hover{
     /*alternate-background-color:red;   */
     selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
+
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -7648,7 +8588,9 @@ QTableWidget QHeaderView
     /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
     /*border:1px solid gray;*/
 }
-</string>
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
        </property>
        <column>
         <property name="text">
@@ -7682,15 +8624,15 @@ QTableWidget QHeaderView
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7712,15 +8654,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7742,15 +8684,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -7772,7 +8714,7 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
 	background:white;
 	margin-top: 11 px;
@@ -7964,55 +8906,306 @@ background: rgb(248, 248, 248);
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>428</x>
-      <y>643</y>
-      <width>571</width>
-      <height>23</height>
+      <x>406</x>
+      <y>654</y>
+      <width>500</width>
+      <height>10</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QProgressBar::chunk {
+   border-radius: 5px;
+   background-color: white;
+
+
+}
+
+QProgressBar {
+   border-radius: 5px;
+   text-align: center;
+   background-color: grey;
+}</string>
     </property>
     <property name="value">
      <number>0</number>
     </property>
+    <property name="textVisible">
+     <bool>false</bool>
+    </property>
    </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QPushButton" name="style_change">
     <property name="geometry">
      <rect>
-      <x>328</x>
-      <y>643</y>
-      <width>81</width>
-      <height>20</height>
+      <x>1000</x>
+      <y>7</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_C">
+    <property name="geometry">
+     <rect>
+      <x>49</x>
+      <y>470</y>
+      <width>80</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>40</height>
+     </size>
     </property>
     <property name="font">
      <font>
       <family>Helvetica 12</family>
-      <pointsize>16</pointsize>
+      <pointsize>15</pointsize>
       <weight>9</weight>
       <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
+     <string notr="true">QPushButton{
+	border: 2px solid rgb(200, 200, 200);
+	border-radius:38px;
+	background:none;
+
 	color: rgb(76, 76, 76);
-	font: 75 16pt &quot;Helvetica&quot; bold;
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(200, 200, 200);
+	background:white;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:checked{
+	border: 2px solid  rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
     </property>
     <property name="text">
-     <string>Progress:</string>
+     <string>C</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_D">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>470</y>
+      <width>80</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica 12</family>
+      <pointsize>15</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	border: 2px solid rgb(200, 200, 200);
+	border-radius:38px;
+	background:none;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(200, 200, 200);
+	background:white;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:checked{
+	border: 2px solid  rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+    </property>
+    <property name="text">
+     <string>D</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_B">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>370</y>
+      <width>80</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica 12</family>
+      <pointsize>15</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	border: 2px solid rgb(200, 200, 200);
+	border-radius:38px;
+	background:none;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(200, 200, 200);
+	background:white;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:checked{
+	border: 2px solid  rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+    </property>
+    <property name="text">
+     <string>B</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_A">
+    <property name="geometry">
+     <rect>
+      <x>49</x>
+      <y>370</y>
+      <width>80</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica 12</family>
+      <pointsize>15</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	border: 2px solid rgb(200, 200, 200);
+	border-radius:38px;
+	background:none;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(200, 200, 200);
+	background:white;
+
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:checked{
+	border: 2px solid  rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+    </property>
+    <property name="text">
+     <string>A</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <zorder>frame_2</zorder>
    <zorder>horizontalLayoutWidget</zorder>
    <zorder>tabWidget</zorder>
    <zorder>progressBar</zorder>
-   <zorder>label_6</zorder>
+   <zorder>style_change</zorder>
+   <zorder>pushButton_C</zorder>
+   <zorder>pushButton_D</zorder>
+   <zorder>pushButton_B</zorder>
+   <zorder>pushButton_A</zorder>
   </widget>
  </widget>
  <resources>

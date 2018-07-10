@@ -183,7 +183,7 @@ void Processor::work ()
         QStringList result;
 
         for(QStringList l : g){
-            result.append("   " + l.at(0) + " - "
+            result.append("Clothes id:  " + l.at(0) + "\n- Style: "
                          + l.at(1));
         }
 
@@ -229,8 +229,8 @@ void Processor::work ()
         QStringList result1;
 
         for(QStringList l : g){
-            result1.append("   " + l.at(0) + " - "
-                         + l.at(1));
+            result1.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                           + l.at(1));
         }
 
         Tool::QStringList_removeDuplicates(&result1);
@@ -241,7 +241,7 @@ void Processor::work ()
         QStringList result2;
 
         for(QStringList l : w){
-            result2.append("   " + l.at(0) + " - "
+            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
                          + l.at(1));
         }
 
@@ -304,6 +304,70 @@ void Processor::work ()
         out << function;
         out << msg;
     }
+
+    if(function == "wh_history"){
+        QString id = list.at(0);
+        QVector<QStringList> result;
+        QSqlQuery query1;
+        SQLTool::search(query1, "wh_history", "from_id", id);
+        QSqlQuery query2;
+        SQLTool::search(query2, "wh_history", "to_id", id);
+
+        while(query1.next()){
+            QStringList l;
+            l.append(query1.value(0).toString());
+            l.append(query1.value(1).toString());
+            l.append(query1.value(2).toString());
+            l.append(query1.value(3).toString());
+            result.append(l);
+        }
+        while(query2.next()){
+            QStringList l;
+            l.append(query2.value(0).toString());
+            l.append(query2.value(1).toString());
+            l.append(query2.value(2).toString());
+            l.append(query2.value(3).toString());
+            result.append(l);
+        }
+
+        out << function;
+        out << result;
+    }
+    if(function == "wh_history_all"){
+        QVector<QStringList> result;
+        QSqlQuery query;
+        SQLTool::search(query, "wh_history");
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            result.append(l);
+        }
+        out << function;
+        out << result;
+    }
+
+    if(function == "orderinfo"){
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo");
+        QVector<QStringList> vlist;
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            vlist.append(l);
+        }
+        out << function;
+        out << vlist;
+    }
+
+
     //system page show garment
     if(function == "sp_sg"){
         QVector<QStringList> result;
@@ -413,7 +477,150 @@ void Processor::work ()
     }
 
 
+    //sissyVI--Start
 
+    //系统
+    if(function == "showStores"){
+        out << function;
+        QVector<QStringList> qv;
+        Store::getStores(qv);
+
+        out << qv;
+    }
+
+    if(function == "storesClicked"){
+        out << function;
+        QString store_id = list.at(0);
+        int size;
+
+        QVector<Record> qv_record;
+        Store::getRecord(store_id.toInt(), size, qv_record);
+
+        out<< size;//条目总数
+        out << qv_record.size();//记录总数
+        QVector<Record>::iterator it;
+        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
+            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
+            out<<it->getDetails();
+        }
+    }
+
+    //门店
+    if(function == "getRecord"){
+        out << function;
+        QString store_id = list.at(0);
+        int size;
+
+        QVector<Record> qv_record;
+        Store::getRecord(store_id.toInt(), size, qv_record);
+
+        out << qv_record.size();
+        QVector<Record>::iterator it;
+        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
+            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
+            out<<it->getDetails();
+        }
+
+        out<< size;
+
+    }
+
+    if(function == "getStoreInfo"){
+        out << function;
+        QString username, size;
+        username = list.at(0);
+        size = list.at(1);
+        QVector<QString> qv;
+        Store::getStoreInfo(username, size, qv);
+        out << qv;
+    }
+
+    if(function == "getStock"){
+        out << function;
+        QVector<QVector<QString> > qv;
+        Store::getStock(list.at(0), qv);
+        out << qv;
+    }
+
+    if(function == "getPicPath"){
+        out << function;
+        QString path = Store::getPicPath(list.at(1));
+        out<<list.at(0)<<path;
+    }
+
+    if(function == "sellGoods"){
+        out << function;
+        int i=2;
+        QVector<int> qv;
+        while(list.at(i) != "#"){
+            QString s1, s2;
+            s1 = list.at(i++);
+            s2 = list.at(i++);
+            qv.append(s1.toInt());qv.append(s2.toInt());
+        }
+        if(Store::sellGoods(list.at(0), list.at(1), qv))
+            out << QString("交易成功");
+        else
+            out << QString("交易失败");
+        QString store_id = list.at(0);
+
+        //getStock
+        QVector<QVector<QString> > qv1;
+        Store::getStock(store_id, qv1);
+        out << qv1;
+
+        //getRecord
+        int size;
+
+        qDebug()<<"店铺ID为："<<store_id;
+        QVector<Record> qv_record;
+        Store::getRecord(store_id.toInt(), size, qv_record);
+        qDebug()<<"记录大小为："<<qv_record.size();
+
+        out << qv_record.size();
+        QVector<Record>::iterator it;
+        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
+            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
+            out<<it->getDetails();
+        }
+
+        out<< size;
+
+    }
+
+    if(function == "MainWindowInit"){
+        out << function;
+
+        //getAllClothes
+        QVector<QStringList> qv;
+        Store::getAllClothes(qv);
+        out << qv;
+
+        //getStock
+        QVector<QVector<QString> > qv1;
+        Store::getStock(list.at(0), qv1);
+        out << qv1;
+
+        //getRecord
+        QString store_id = list.at(0);
+        int size;
+
+        qDebug()<<"店铺ID为："<<store_id;
+        QVector<Record> qv_record;
+        Store::getRecord(store_id.toInt(), size, qv_record);
+        qDebug()<<"记录大小为："<<qv_record.size();
+
+        out << qv_record.size();
+        QVector<Record>::iterator it;
+        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
+            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
+            out<<it->getDetails();
+        }
+
+        out<< size;
+    }
+
+    //sissyVI--Finish
 
     out.device()->seek(0);
     out << (quint16) (message.size() - sizeof(quint16));

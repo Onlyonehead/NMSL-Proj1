@@ -16,7 +16,7 @@ void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
 
     ui->tableWidget_B_2->setRowCount(0);
     ui->label_35->clear();
-    QString s = item->text().split("-")[0].trimmed();
+    QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
     QStringList msg;
     msg.append("tWBiC");
@@ -52,6 +52,11 @@ void SystemCenter::on_icon_search_B_clicked()
 
     ui->tableWidget_B->setRowCount(0);;
     QString text = ui->warehouse_search_B->text();
+
+    if(text.trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入关键字！",QMessageBox::Close);
+        return ;
+    }
 
     QVector<QStringList> result = this->clothes;
 

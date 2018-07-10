@@ -11,7 +11,7 @@ Order::Order(QString id, QString datetime, QStringList productInfo)
     this->datetime = datetime;
     this->productInfo = productInfo;
     QSqlQuery query;
-    SQLTool::search(query, "ID", "orderInfo");
+    SQLTool::search(query, "order_id", "orderInfo");
     query.last();
     this->orderID = query.value(0).toString();
 }
@@ -38,13 +38,15 @@ void Order::toString(QStringList &list){
     }
 }
 
-void Order::getProductInfo(QStringList &list){
+QStringList Order::getProductInfo(){
+    QStringList list;
     int n = this->productInfo.size();
     while(n){
         list.append(this->productInfo.at(n-2));
         list.append(this->productInfo.at(n-1));
         n -= 2;
     }
+    return list;
 }
 
 QString Order::getId(){
@@ -54,22 +56,6 @@ QString Order::getId(){
 QString Order::getDatetime(){
     return this->datetime;
 }
-
-void Order::saveOrder(Order &order)
-{
-    QStringList list;
-    QString productInformation;
-    productInformation = order.productInfo.join("#");
-    list.append("0");
-    list.append(order.id);
-    list.append(order.datetime);
-    list.append(productInformation);
-    qDebug() << list;
-    SQLTool::insert("orderInfo", list);
-
-}
-
-
 
 void Order::info(QString orderID, QStringList &orderInformation)
 {

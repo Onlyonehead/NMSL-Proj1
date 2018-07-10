@@ -442,7 +442,7 @@ QPushButton{
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="tabsClosable">
      <bool>true</bool>
@@ -1045,7 +1045,7 @@ e</string>
          <x>20</x>
          <y>80</y>
          <width>650</width>
-         <height>430</height>
+         <height>410</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1243,6 +1243,30 @@ border:0px;</string>
          <string/>
         </property>
        </widget>
+      </widget>
+      <widget class="QProgressBar" name="progressBar_sell">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>500</y>
+         <width>651</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QProgressBar::chunk {
+   background-color: #05B8CC;
+   width: 20px;
+}
+QProgressBar {
+   border: 1px solid rgb(200, 200, 200);
+   border-radius: 5px;
+   text-align: center;
+}</string>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
       </widget>
      </widget>
     </widget>
