@@ -246,6 +246,7 @@ void SystemCenter::timer_deal_slot_function()
  */
 void SystemCenter::on_tableWidget_generateOrder_cellClicked(int row, int column)
 {
+    Q_UNUSED(column);
     ui->label_purchaseShowID->setText(ui->tableWidget_orderGarment->item(row, 0)->text());
     ui->label_purchaseShowStyle->setText(ui->tableWidget_orderGarment->item(row, 1)->text());
     ui->label_purchaseShowSize->setText(ui->tableWidget_orderGarment->item(row,2)->text());

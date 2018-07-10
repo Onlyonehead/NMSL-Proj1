@@ -8,6 +8,7 @@
 #include <QVector>
 #include "systemcenter.h"
 #include "record.h"
+#include <QtNetwork>
 
 namespace Ui {
 class MainWindow;
@@ -65,6 +66,10 @@ private slots:
 
     void on_tableWidget_delivery_cloth_cellClicked(int row, int column);
 
+    void sendMessage(QStringList);
+
+    void readMessage();
+
 private:
     void addFont();
     void setCursor();
@@ -89,7 +94,7 @@ public:
     };
 private:
     Ui::MainWindow *ui;
-    int storeId;
+    QString storeId;
     bool sellSignal;//防止在表格未完全初始化之前，调用计算价钱的函数
     bool purchaseSignal;
     bool tabSignal;
@@ -98,8 +103,11 @@ private:
     QVector<QVector<QString>> qv_stock;
     int record_size;
 
+    QStringList qsl;//用于发送消息给服务器端
+
     QNetworkAccessManager netManager;
     QString filepath;
+    QTcpSocket *m_tcpsocket;
 
     Q_ENUM(Option)
 };

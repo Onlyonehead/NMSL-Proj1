@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QtNetwork>
 #include "sqltool.h"
+#include "record.h"
+#include "store.h"
 #include "myserver.h"
-
 
 class TCPConnection : public QWidget
 {

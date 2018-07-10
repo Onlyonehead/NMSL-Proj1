@@ -5,6 +5,7 @@ Record::Record()
 
 }
 
+
 void Record::loadDetails(QMap<QString, QString> &details){
 //    QMap<QString, QString>::iterator i;
 //    for (i=details.begin(); i!=details.end(); ++i) {

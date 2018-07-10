@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "store.h"
 
 #include <QVector>
 
@@ -79,19 +78,12 @@ void MainWindow::on_tableWidget_delivery_cloth_cellClicked(int row, int column)
     Q_UNUSED(column);
 
     if(0!=column){
-        QString path = Store::getPicPath(ui->tableWidget_delivery_cloth->item(row, 1)->text());
-
-        QPixmap *pixmap = new QPixmap("./" + path);
-        if (pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
-        }
-        if (pixmap->isNull()){
-            pixmap = new QPixmap(":/default.jpg");
-        }
-
-        ui->label_delivery_pic->setScaledContents(true);
-        ui->label_delivery_pic->setPixmap(*pixmap);
-        ui->label_delivery_style->setText(ui->tableWidget_delivery_cloth->item(row, 2)->text());//直接从表格获取style值
+        //QString Store::getPicPath(QString id)
+        qsl.clear();
+        qsl.append("getPicPath");
+        qsl.append("delivery");
+        qsl.append(ui->tableWidget_delivery_cloth->item(row, 1)->text());
+        sendMessage(qsl);
     }
 }
 

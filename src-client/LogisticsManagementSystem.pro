@@ -34,7 +34,6 @@ SOURCES += main.cpp \
     mainwindow.cpp\
     warehouse_a.cpp \
     warehouse_c.cpp \
-    store.cpp \
     purchasepage.cpp \
     systempage.cpp \
     garment.cpp \
@@ -51,6 +50,7 @@ SOURCES += main.cpp \
     sqltool.cpp \
     systemcenter_msg.cpp \
     order.cpp \
+    sell_a.cpp \
     warehouse_d.cpp
 
 
@@ -60,7 +60,6 @@ HEADERS  += \
     systemcenter.h \
     forgetpassword.h \
     mainwindow.h\
-    store.h \
     garment.h \
     provider.h \
     record.h \

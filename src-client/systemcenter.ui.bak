@@ -6155,10 +6155,17 @@ to send:</string>
        </property>
       </widget>
      </widget>
+<<<<<<< HEAD
+     <zorder>frame_2D</zorder>
+     <zorder>frame_2B</zorder>
+     <zorder>frame_2A</zorder>
+     <zorder>frame_2C</zorder>
+=======
      <zorder>frame_2C</zorder>
      <zorder>frame_2A</zorder>
      <zorder>frame_2B</zorder>
      <zorder>frame_2D</zorder>
+>>>>>>> 09529ac08affba81dac8ef417d9a2c82c43b52cf
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">
