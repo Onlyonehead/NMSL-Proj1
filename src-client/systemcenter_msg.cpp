@@ -82,11 +82,13 @@ void SystemCenter::readMessage()
 
         ui->progressBar->setValue(100);
 
+        ui->progressBar->setVisible(false);
         ui->pushButton_switch->setEnabled(true);
         ui->pushButton_quit->setEnabled(true);
     }
 
     if(from == "info_whEC"){
+        ui->progressBar->setVisible(true);
         ui->progressBar->setRange(0, 100);
 
         QStringList wordlist;
@@ -304,7 +306,7 @@ void SystemCenter::readMessage()
 
         }
 
-        progressBar_fast();
+        progressBar();
         QApplication::processEvents();
         ui->tableWidget_C1->setRowCount(count_i);
         ui->tableWidget_C2->setRowCount(count_j);
@@ -327,7 +329,7 @@ void SystemCenter::readMessage()
 
         ui->tableWidget_B->setRowCount(list.size());
 
-        progressBar_fast();
+        progressBar();
     }
     if(from == "tWBiC"){
         QMap<QString, QString> warehouse;
@@ -408,16 +410,19 @@ void SystemCenter::readMessage()
 
         n = list.size();
 
-        while(n){
+        while(n-1){
+
+            //n-1 为了不显示仓库1
+
             QApplication::processEvents();
             ui->tableWidget_D2->insertRow(list.size()-n);
-            ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n+1)));
             n--;
         }
 
-        ui->tableWidget_D2->setRowCount(list.size());
+        ui->tableWidget_D2->setRowCount(list.size()-1);
 
-        progressBar_fast();
+        progressBar();
     }
     if(from == "tWD1iC"){
         QStringList result;
@@ -470,7 +475,8 @@ void SystemCenter::readMessage()
             clothes_name = clothes.value(i.key());
             QApplication::processEvents();
             ui->tableWidget_D3->insertRow(count);
-            ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() + " - " + clothes_name));
+            ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                       " - " + clothes_name));
             ui->tableWidget_D3->setItem(count, 1, new QTableWidgetItem(i.value()));
 
             QApplication::processEvents();
@@ -491,7 +497,63 @@ void SystemCenter::readMessage()
             ui->tableWidget_D4->setRowCount(0);
         }
         ui->tableWidget_B->setRowCount(0);
-    } //systempage show garment info
+    }
+
+    if(from == "orderinfo"){
+        QVector<QStringList> vlist;
+        in >> vlist;
+        this->orderList = vlist;
+
+        int count = 0;
+        for(QStringList l : vlist){
+            QApplication::processEvents();
+            ui->tableWidget_logistics_A->insertRow(count);
+            ui->tableWidget_logistics_A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
+            ui->tableWidget_logistics_A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
+            ui->tableWidget_logistics_A->setItem(count, 2, new QTableWidgetItem("Time: " + l.at(2)));
+            QApplication::processEvents();
+            count++;
+        }
+        ui->tableWidget_logistics_A->setRowCount(count);
+        progressBar();
+    }
+
+    if(from == "wh_history"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        this->wh_history = result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem("From id: " + result.at(i).at(1)));
+            ui->tableWidget_A->setItem(result.size()-i-1, 1, new QTableWidgetItem("To id: " + result.at(i).at(2)));
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 2, new QTableWidgetItem(s.at(0) + " " + s.at(1)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+    }
+
+    if(from == "wh_history_all"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        this->wh_history = result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem("From id: " + result.at(i).at(1)));
+            ui->tableWidget_A->setItem(result.size()-i-1, 1, new QTableWidgetItem("To id: " + result.at(i).at(2)));
+            ui->tableWidget_A->setItem(result.size()-i-1, 2, new QTableWidgetItem(s.at(0) + " " + s.at(1)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+        progressBar();
+    }
+
+
+
+
+    //systempage show garment info
     if(from == "sp_sg"){
         QVector<QStringList> result;
         in >> result;
@@ -656,35 +718,7 @@ void SystemCenter::readMessage()
         delete pixmap;
         QApplication::processEvents();
     }
-    if(from == "wh_history"){
-        ui->tableWidget_A->setRowCount(0);
-        QVector<QStringList> result;
-        in >> result;
-        for(int i = result.size()-1; i > -1; i--){
-            ui->tableWidget_A->insertRow(result.size()-i-1);
-            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
-            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n  "
-                                                                  + "from id " + result.at(i).at(1) + " -> "
-                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
-                                                                  result.at(i).at(3)));
-        }
-        ui->tableWidget_A->setRowCount(result.size());
-    }
 
-    if(from == "wh_history_all"){
-        ui->tableWidget_A->setRowCount(0);
-        QVector<QStringList> result;
-        in >> result;
-        for(int i = result.size()-1; i > -1; i--){
-            ui->tableWidget_A->insertRow(result.size()-i-1);
-            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
-            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
-                                                                  + "from id " + result.at(i).at(1) + " -> "
-                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
-                                                                  result.at(i).at(3)));
-        }
-        ui->tableWidget_A->setRowCount(result.size());
-    }
 
 
 

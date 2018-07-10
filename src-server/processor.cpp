@@ -183,7 +183,7 @@ void Processor::work ()
         QStringList result;
 
         for(QStringList l : g){
-            result.append("   " + l.at(0) + " - "
+            result.append("Clothes id:  " + l.at(0) + "\n- Style: "
                          + l.at(1));
         }
 
@@ -229,8 +229,8 @@ void Processor::work ()
         QStringList result1;
 
         for(QStringList l : g){
-            result1.append("   " + l.at(0) + " - "
-                         + l.at(1));
+            result1.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                           + l.at(1));
         }
 
         Tool::QStringList_removeDuplicates(&result1);
@@ -241,7 +241,7 @@ void Processor::work ()
         QStringList result2;
 
         for(QStringList l : w){
-            result2.append("   " + l.at(0) + " - "
+            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
                          + l.at(1));
         }
 
@@ -351,7 +351,20 @@ void Processor::work ()
     }
 
     if(function == "orderinfo"){
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo");
+        QVector<QStringList> vlist;
 
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            vlist.append(l);
+        }
+        out << function;
+        out << vlist;
     }
 
 

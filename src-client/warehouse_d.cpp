@@ -39,7 +39,7 @@ void SystemCenter::on_tableWidget_D1_itemClicked(QTableWidgetItem *item){
 
     ui->tableWidget_B_2->setRowCount(0);
     ui->label_35->clear();
-    QString s = item->text().split("-")[0].trimmed();
+    QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
     QStringList msg;
     msg.append("tWD1iC");
@@ -52,9 +52,9 @@ void SystemCenter::on_tableWidget_D2_itemClicked(QTableWidgetItem *item){
 
     ui->tableWidget_B_2->setRowCount(0);
     ui->label_35->clear();
-    QString s = item->text().split("-")[0].trimmed();
+    QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
-    ui->warehouse_label_D->setText(item->text().split("-")[1].trimmed());
+    ui->warehouse_label_D->setText(item->text().split(QRegExp("[-:]"))[3].trimmed());
 
     QStringList msg;
     msg.append("tWD2iC");
@@ -88,11 +88,13 @@ void SystemCenter::on_clothes_ADD_clicked()
     }
 
     int count = ui->tableWidget_D4->rowCount();
+    QString s1 = ui->tableWidget_D1->currentItem()->text().split(QRegExp("[-:]"))[1].trimmed() + " - " +
+            ui->tableWidget_D1->currentItem()->text().split(QRegExp("[-:]"))[3].trimmed();
+    QString s2 = ui->tableWidget_D2->currentItem()->text().split(QRegExp("[-:]"))[1].trimmed() + " - " +
+            ui->tableWidget_D2->currentItem()->text().split(QRegExp("[-:]"))[3].trimmed();
     for(int i = 0; i < count; i++){
-        if(ui->tableWidget_D4->item(i, 0)->text().trimmed() ==
-                ui->tableWidget_D2->currentItem()->text().trimmed() &&
-                ui->tableWidget_D4->item(i, 1)->text().trimmed() ==
-                ui->tableWidget_D1->currentItem()->text().trimmed()){
+        if(ui->tableWidget_D4->item(i, 0)->text().trimmed() == s1 &&
+                ui->tableWidget_D4->item(i, 1)->text().trimmed() == s2){
             ui->tableWidget_D4->item(i, 2)->setText(
                         QString::number(quantity.toInt() +
                         ui->tableWidget_D4->item(i, 2)->text().toInt()));
@@ -102,10 +104,10 @@ void SystemCenter::on_clothes_ADD_clicked()
     }
     ui->tableWidget_D4->insertRow(count);
 
-    ui->tableWidget_D4->setItem(count, 0, new QTableWidgetItem(ui->tableWidget_D2->currentItem()
-                                                           ->text().trimmed()));
-    ui->tableWidget_D4->setItem(count, 1, new QTableWidgetItem(ui->tableWidget_D1->currentItem()
-                                                           ->text().trimmed()));
+    ui->tableWidget_D4->setItem(count, 0, new QTableWidgetItem(s1));
+
+    ui->tableWidget_D4->setItem(count, 1, new QTableWidgetItem(s2));
+
     ui->tableWidget_D4->setItem(count, 2, new QTableWidgetItem(ui->quantity_D->text()));
 
     ui->tableWidget_D4->setRowCount(count+1);
