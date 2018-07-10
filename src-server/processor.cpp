@@ -460,6 +460,7 @@ void Processor::work ()
     }
 
 
+    //sissyVI--Start
 
     //系统
     if(function == "showStores"){
