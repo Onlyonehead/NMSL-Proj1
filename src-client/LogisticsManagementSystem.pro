@@ -53,7 +53,6 @@ SOURCES += main.cpp \
     warehouse_d.cpp \
     deliverpage.cpp \
     sell_a.cpp \
-    warehouse_d.cpp \
     logistics.cpp
 
 

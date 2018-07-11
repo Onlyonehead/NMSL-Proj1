@@ -87,6 +87,7 @@ void SystemCenter::on_pushButton_updateProviderInfo_clicked()
  */
 void SystemCenter::on_tableWidget_providerInfo_cellClicked(int row, int column)
 {
+    Q_UNUSED(column);
     ui->label_providerID->setText(ui->tableWidget_providerInfo->item(row, 0)->text());
     ui->lineEdit_changeProviderAds->setText(ui->tableWidget_providerInfo->item(row, 1)->text());
     ui->lineEdit_changeProviderName->setText(ui->tableWidget_providerInfo->item(row, 2)->text());

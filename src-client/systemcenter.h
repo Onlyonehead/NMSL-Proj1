@@ -158,8 +158,6 @@ private slots:
 
     void on_icon_search_D_clicked();
 
-    void on_tableWidget_generateOrder_cellClicked(int row, int column);
-
     void on_pushButton_deliverShowProvider_clicked();
 
     void on_tableWidget_deliverProvider_cellClicked(int row, int column);
@@ -185,6 +183,8 @@ private slots:
     void on_style_change_clicked();
 
     void on_clothes_ADD_3_clicked();
+
+    void on_pushButton_deliverCancelChoose_clicked();
 
 signals:
     void stringReturn(QString);

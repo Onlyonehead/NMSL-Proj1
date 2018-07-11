@@ -424,6 +424,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_providerInfo->verticalHeader()->setVisible(false);
     ui->tableWidget_providerInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_providerInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->label_showPicPath->setVisible(false);
 
     /**
      * Add new staff page setting

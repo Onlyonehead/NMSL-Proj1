@@ -7,11 +7,17 @@
 #include <QStringList>
 #include <QCompleter>
 #include <QFileDialog>
+#include <QFile>
 #include <QImage>
 #include <QImageReader>
 #include <QStringListModel>
 #include <QFileInfo>
 #include <QAbstractItemView>
+#include <QByteArray>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrl>
 
 /**
  * return all garments' information
@@ -62,27 +68,31 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
 {
     QStringList list;
     list.append("sp_confirmAddG");
-    sendMessage(list);
 
 
     QString garmentStyle;
     QString garmentSize;
     QString garmentPic;
     QString garmentValue;
-    QFileInfo pictureInfo;
 
     garmentStyle = ui->lineEdit_addGStyle->text();//add garment style
     garmentPic = ui->label_showPicName->text();//add garment pic
     garmentValue = ui->lineEdit_addGValue->text();//add garment value
+    list.append(garmentStyle);
+    list.append(garmentPic);
+    list.append(garmentValue);
     if(ui->checkBox_GsizeS->isChecked()){
         garmentSize = ui->checkBox_GsizeS->text();
-        Garment::addGarmentForm(garmentStyle, garmentSize, garmentPic, garmentValue);
+        list.append(garmentSize);
+        sendMessage(list);
     }if(ui->checkBox_GsizeM->isChecked()){
         garmentSize = ui->checkBox_GsizeM->text();
-        Garment::addGarmentForm(garmentStyle, garmentSize, garmentPic, garmentValue);
+        list.append(garmentSize);
+        sendMessage(list);
     }if(ui->checkBox_GsizeL->isChecked()){
         garmentSize = ui->checkBox_GsizeL->text();
-        Garment::addGarmentForm(garmentStyle, garmentSize, garmentPic, garmentValue);
+        list.append(garmentSize);
+        sendMessage(list);
     }
 
     ui->lineEdit_addGStyle->clear();
@@ -91,6 +101,8 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
     ui->checkBox_GsizeL->setChecked(false);
     ui->lineEdit_addGValue->clear();
     ui->label_showGPic->clear();
+
+
 
 }
 
@@ -105,21 +117,50 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
 
 void SystemCenter::on_pushButton_setGPic_clicked()
 {
-    QStringList list;
-    list.append("sp_setGPic");
-    sendMessage(list);
-
-
-
-    QString picture = QFileDialog::getOpenFileName(this, tr("文件对话框"),
+    QStringList picture = QFileDialog::getOpenFileNames(this, tr("Open File"),
                                                        "C:\\Users\\Dong9\\Pictures\\Saved Pictures",
                                                        tr("图片文件(*png *jpg)"));
-    QPixmap pixmap(picture);
-    QFileInfo pictureInfo = QFileInfo(picture);
-    QString pictureName = pictureInfo.fileName();
+    QString showPic = picture.join("/");
+    QString picturePath = picture.at(0);
+    QStringList list = picturePath.split("/");
+    QString pictureName = list.at(list.length() - 1);
+
+    QPixmap pixmap(showPic);
+    ui->label_showPicPath->setText(picturePath);
     ui->label_showGPic->setPixmap(pixmap);
     ui->label_showGPic->show();
     ui->label_showPicName->setText(pictureName);
+
+    QFile pushPic(picturePath);
+    pushPic.open(QIODevice::ReadOnly);
+    QByteArray by_pushPic = pushPic.readAll();
+    pushPic.close();
+    QNetworkAccessManager *manager = new QNetworkAccessManager(NULL);
+    qDebug() << pictureName;
+    QString serverPath = "http://39.108.155.50/project1/clothes/";
+    QUrl URL = QUrl(serverPath + pictureName);
+    qDebug() << URL;
+    URL.setUserName("root");
+    URL.setPassword("abcd1234");
+    URL.setPort(21);
+
+
+
+    QNetworkRequest pushRequest;
+    pushRequest.setUrl(URL);
+    pushRequest.setHeader(QNetworkRequest::ContentTypeHeader, "text/html; charset=utf-8");
+
+
+
+    QNetworkReply *pushReply = manager->post(pushRequest, by_pushPic);
+
+
+    if(pushReply->error() == QNetworkReply::NoError){
+        qDebug() << "success";
+    }else {
+        qDebug() << "fail";
+    }
+
 }
 
 

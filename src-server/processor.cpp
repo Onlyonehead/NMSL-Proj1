@@ -407,6 +407,15 @@ void Processor::work ()
         out << result;
 
     }
+    //system page add new garment
+    if(function == "sp_confirmAddG"){
+        QString garmentSytle = list.at(0);
+        QString garmentPic = list.at(1);
+        QString garmentPrice = list.at(2);
+        QString garmentSize = list.at(3);
+        Garment::addGarmentForm(garmentSytle, garmentSize, garmentPic, garmentPrice);
+        out << function;
+    }
     //providerpage show provider info
     if(function == "pp_sp"){
         QVector<QStringList> result;
@@ -521,6 +530,36 @@ void Processor::work ()
         Provider::Info(ID.toInt(), result);
         out << function;
         out << result;
+    }
+    //deliver page deliver order & save order in table providerOrder
+    if(function == "dp_do"){
+        QSqlQuery query;
+        int tempID;
+        QString providerID = list.at(0);
+        QString datetime = list.at(1);
+        QString productTectmpInfo = list.at(2);
+        QString isFirstOrder = list.at(3);
+        QStringList productInfo = productTectmpInfo.split("#");
+        Order providerOrder(providerID, datetime, productInfo);
+        QString providerOrderID;
+        if(isFirstOrder == "Y"){
+            SQLTool::search(query, "orderID", "providerOrder");
+            query.last();
+            tempID = query.value(0).toInt();
+            tempID ++;
+            providerOrderID = QString::number(tempID);
+        }else {
+            SQLTool::search(query, "orderID", "providerOrder");
+            query.last();
+            providerOrderID = query.value(0).toString();
+        }
+        Order::saveProviderOrder(providerOrderID, providerOrder);
+        QDateTime changeDatetime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm:ss");
+        QString arriveDatetime = changeDatetime.addDays(+3).toString("yyyy-MM-dd hh:mm:ss");
+        providerOrder.editInfo(providerID, arriveDatetime, productInfo);
+        QString warehouseID = "1";
+        Warehouse::replenish(warehouseID, providerOrder);
+        out << function;
     }
 
 

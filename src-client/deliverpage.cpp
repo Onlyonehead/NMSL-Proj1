@@ -38,6 +38,7 @@ void SystemCenter::on_pushButton_deliverShowProvider_clicked()
  */
 void SystemCenter::on_tableWidget_deliverProvider_cellClicked(int row, int column)
 {
+    Q_UNUSED(column);
     QString ID = ui->tableWidget_deliverProvider->item(row, 0)->text();
     QStringList list;
     list.append("dp_spdi");
@@ -54,6 +55,7 @@ void SystemCenter::on_tableWidget_deliverProvider_cellClicked(int row, int colum
  */
 void SystemCenter::on_pushButton_deliverOrder_clicked()
 {
+    static QString isFirstOrder = "Y";
     QVector<int> rowIndex;
     QItemSelectionModel *selection = ui->tableWidget_deliverGarment->selectionModel();
     QModelIndexList selectedRows = selection->selectedIndexes();
@@ -62,15 +64,15 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
         rowIndex.append(selectedRows.at(i).row());
     }
 
-    QVector<QString> productInfo;
+    QVector<QString> product;
     for(int j = 0 ; j < rowIndex.size() ; j++){
-        productInfo.append(ui->tableWidget_deliverGarment->item(rowIndex.at(j), 0)->text());
+        product.append(ui->tableWidget_deliverGarment->item(rowIndex.at(j), 0)->text());
     }
 
     QString providerTempProduct = ui->label_deliverShowProduct->text();
     QStringList providerProduct = providerTempProduct.split(",");
 
-    for(QString iter : productInfo){
+    for(QString iter : product){
         if(!providerProduct.contains(iter)){
             QMessageBox::critical(NULL, tr("警告！"), tr("所选供货商不能生产订单中的某类商品！"),
                                                       QMessageBox::Yes, QMessageBox::Yes);
@@ -78,12 +80,54 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
         }
     }
 
+    QStringList productTempInfo;
+    for(int n = 0 ; n < rowIndex.size() ; n++){
+        productTempInfo.append(product.at(n));
+        productTempInfo.append(ui->tableWidget_deliverGarment->item(rowIndex.at(n), 1)->text());
+    }
+    QString productInfo = productTempInfo.join("#");
+    qDebug() << productInfo;
 
 
+    for(int m = 0 ; m < rowIndex.size() ; m++){
+        ui->tableWidget_deliverGarment->removeRow(rowIndex.at(m));
+    }
+
+
+
+
+    QString providerID = ui->label_deliverShowID->text();
+    QString datetime = ui->label_showOrderTime_2->text();
     QStringList list;
     list.append("dp_do");
+    list.append(providerID);
+    list.append(datetime);
+    list.append(productInfo);
+    list.append(isFirstOrder);
+    sendMessage(list);
+
+    isFirstOrder = "N";
 
 
 }
+
+
+/**
+ * @brief SystemCenter::on_pushButton_deliverCancelChoose_clicked
+ * cancel choose provider
+ *
+ * @author ドンドン
+ * @return void
+ */
+void SystemCenter::on_pushButton_deliverCancelChoose_clicked()
+{
+    ui->label_deliverShowID->clear();
+    ui->label_deliverShowAds->clear();
+    ui->label_deliverShowName->clear();
+    ui->label_deliverShowProduct->clear();
+    QMessageBox::information(NULL, tr("提示"), tr("供货商信息已被清空，请选择新的供货商！"), QMessageBox::Yes, QMessageBox::Yes);
+}
+
+
 
 

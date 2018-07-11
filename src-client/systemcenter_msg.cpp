@@ -614,7 +614,11 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_garmentInfo->setRowCount(i);
         progressBar();
-    } //providerpage show provider info
+    } // system page add new garment
+    if(from == "sp_confirmAddG"){
+        QMessageBox::information(NULL, tr("提示"), tr("新服装已添加完成，已可查看"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    }//providerpage show provider info
     if(from == "pp_sp"){
         ui->tableWidget_providerInfo->setRowCount(0);
         int i = 0;
@@ -799,6 +803,10 @@ void SystemCenter::readMessage()
         ui->label_deliverShowName->setText(result.at(2));
         ui->label_deliverShowProduct->setText(result.at(3));
         progressBar();
+    }//deliver page deliver order successfully information
+    if(from == "dp_do"){
+        QMessageBox::information(NULL, tr("提示"), tr("订单分发成功，预计三天后送达至总仓库，现已可查询"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
     }
 
 

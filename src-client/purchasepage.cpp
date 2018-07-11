@@ -35,8 +35,7 @@ void SystemCenter::on_pushButton_3_clicked()
  * @author Yihan Dong
  * @return void
  *
- * undone
- * todo:增加相同编号的服装 在表格中显示为一行
+ * done
  */
 
 
@@ -202,10 +201,6 @@ void SystemCenter::on_tableWidget_generateOrder_cellClicked(int row, int column)
 {
     QString ID = ui->tableWidget_generateOrder->item(row, 0)->text();
     Q_UNUSED(column);
-    ui->label_purchaseShowID->setText(ui->tableWidget_orderGarment->item(row, 0)->text());
-    ui->label_purchaseShowStyle->setText(ui->tableWidget_orderGarment->item(row, 1)->text());
-    ui->label_purchaseShowSize->setText(ui->tableWidget_orderGarment->item(row,2)->text());
-    ui->label_purchaseShowPrice->setText(ui->tableWidget_orderGarment->item(row, 4)->text());
     QStringList list;
     list.append("pcp_sgdi");
     list.append(ID);
