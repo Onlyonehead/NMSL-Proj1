@@ -183,7 +183,7 @@ void Processor::work ()
         QStringList result;
 
         for(QStringList l : g){
-            result.append("   " + l.at(0) + " - "
+            result.append("Clothes id:  " + l.at(0) + "\n- Style: "
                          + l.at(1));
         }
 
@@ -229,8 +229,8 @@ void Processor::work ()
         QStringList result1;
 
         for(QStringList l : g){
-            result1.append("   " + l.at(0) + " - "
-                         + l.at(1));
+            result1.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                           + l.at(1));
         }
 
         Tool::QStringList_removeDuplicates(&result1);
@@ -241,7 +241,7 @@ void Processor::work ()
         QStringList result2;
 
         for(QStringList l : w){
-            result2.append("   " + l.at(0) + " - "
+            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
                          + l.at(1));
         }
 
@@ -304,6 +304,101 @@ void Processor::work ()
         out << function;
         out << msg;
     }
+
+    if(function == "wh_history"){
+        QString id = list.at(0);
+        QVector<QStringList> result;
+        QSqlQuery query1;
+        SQLTool::search(query1, "wh_history", "from_id", id);
+        QSqlQuery query2;
+        SQLTool::search(query2, "wh_history", "to_id", id);
+
+        while(query1.next()){
+            QStringList l;
+            l.append(query1.value(0).toString());
+            l.append(query1.value(1).toString());
+            l.append(query1.value(2).toString());
+            l.append(query1.value(3).toString());
+            result.append(l);
+        }
+        while(query2.next()){
+            QStringList l;
+            l.append(query2.value(0).toString());
+            l.append(query2.value(1).toString());
+            l.append(query2.value(2).toString());
+            l.append(query2.value(3).toString());
+            result.append(l);
+        }
+
+        out << function;
+        out << result;
+    }
+    if(function == "wh_history_all"){
+        QVector<QStringList> result;
+        QSqlQuery query;
+        SQLTool::search(query, "wh_history");
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            result.append(l);
+        }
+        out << function;
+        out << result;
+    }
+
+    if(function == "orderinfo"){
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo");
+        QVector<QStringList> vlist;
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            vlist.append(l);
+        }
+
+        QVector<QStringList> w;
+        Warehouse::info(w);
+        QStringList result2;
+
+        for(QStringList l : w){
+            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result2);
+        out << function;
+        out << vlist;
+        out << result2;
+    }
+
+    if(function == "tWlAiC"){
+        QString s = list.at(0);
+
+        QMap<QString, QString> result;
+        Warehouse::stock(s.toInt(), result);
+
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QMap<QString, QString> result1;
+
+        for(QStringList l : g){
+            result1.insert(l.at(0), l.at(1));
+        }
+        out << function;
+        out << result;
+        out << result1;
+    }
+
+
     //system page show garment
     if(function == "sp_sg"){
         QVector<QStringList> result;
@@ -408,54 +503,6 @@ void Processor::work ()
         QStringList result;
         QString ID = list.at(0);
         Garment::Info(ID.toInt(), result);
-        out << function;
-        out << result;
-    }
-
-
-
-
-    if(function == "wh_history"){
-        QString id = list.at(0);
-        QVector<QStringList> result;
-        QSqlQuery query1;
-        SQLTool::search(query1, "wh_history", "from_id", id);
-        QSqlQuery query2;
-        SQLTool::search(query2, "wh_history", "to_id", id);
-
-        while(query1.next()){
-            QStringList l;
-            l.append(query1.value(0).toString());
-            l.append(query1.value(1).toString());
-            l.append(query1.value(2).toString());
-            l.append(query1.value(3).toString());
-            result.append(l);
-        }
-        while(query2.next()){
-            QStringList l;
-            l.append(query2.value(0).toString());
-            l.append(query2.value(1).toString());
-            l.append(query2.value(2).toString());
-            l.append(query2.value(3).toString());
-            result.append(l);
-        }
-
-        out << function;
-        out << result;
-    }
-    if(function == "wh_history_all"){
-        QVector<QStringList> result;
-        QSqlQuery query;
-        SQLTool::search(query, "wh_history");
-
-        while(query.next()){
-            QStringList l;
-            l.append(query.value(0).toString());
-            l.append(query.value(1).toString());
-            l.append(query.value(2).toString());
-            l.append(query.value(3).toString());
-            result.append(l);
-        }
         out << function;
         out << result;
     }

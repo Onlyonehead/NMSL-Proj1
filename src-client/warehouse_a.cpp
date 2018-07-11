@@ -111,8 +111,28 @@ void SystemCenter::on_w_search_A_clicked()
     sendMessage(msg);
 }
 
-void SystemCenter::on_tableWidget_A_itemDoubleClicked(QTableWidgetItem *item){
-    QMessageBox::information(this,"历史", item->text(), QMessageBox::Close);
+void SystemCenter::on_tableWidget_A_itemClicked(QTableWidgetItem *item){
+    QString s;
+    s += "\n";
+    s += ui->tableWidget_A->item(item->row(), 2)->text();
+    s += "\n";
+    s += "\n";
+    s += ui->tableWidget_A->item(item->row(), 0)->text();
+    s += "\n";
+    s += ui->tableWidget_A->item(item->row(), 1)->text();
+    s += "\n";
+    s += "\n";
+    for(QStringList l : wh_history){
+        QStringList temp = l.at(0).split(QRegExp("[A-Z]"));
+        if(l.at(1) == ui->tableWidget_A->item(item->row(), 0)->text().split(":")[1].trimmed() &&
+                l.at(2) == ui->tableWidget_A->item(item->row(), 1)->text().split(":")[1].trimmed() &&
+                temp.at(0) + " " + temp.at(1)
+                == ui->tableWidget_A->item(item->row(), 2)->text()){
+            s += l.at(3);
+            break;
+        }
+    }
+    QMessageBox::information(this,"历史", s,QMessageBox::Ok);
 }
 
 void SystemCenter::on_w_search_A_3_clicked()

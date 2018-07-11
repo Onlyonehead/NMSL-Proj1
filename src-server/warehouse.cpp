@@ -177,7 +177,7 @@ void Warehouse::sendRequirement(Order &order){
 void Warehouse::replenish(QString id, Order& order){
     QStringList list;
     QString goods;
-    order.getProductInfo(list);
+    list = order.getProductInfo();
     QString date_time = order.getDatetime();
     QString from_id = order.getId();
     int n = list.size();
@@ -210,7 +210,7 @@ void Warehouse::replenish(QString id, Order& order){
 void Warehouse::deliverGoods(QString id, Order& order){
     QStringList list;
     QString goods;
-    order.getProductInfo(list);
+    list = order.getProductInfo();
     int n = list.size();
     while(n){
         QSqlQuery query;

@@ -16,7 +16,7 @@ void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
 
     ui->tableWidget_B_2->setRowCount(0);
     ui->label_35->clear();
-    QString s = item->text().split("-")[0].trimmed();
+    QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
     QStringList msg;
     msg.append("tWBiC");

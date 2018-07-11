@@ -160,7 +160,7 @@ private slots:
 
     void on_w_search_A_clicked();
 
-    void on_tableWidget_A_itemDoubleClicked(QTableWidgetItem *item);
+    void on_tableWidget_A_itemClicked(QTableWidgetItem *item);
 
     void on_w_search_A_3_clicked();
     
@@ -175,6 +175,18 @@ private slots:
     void on_pushButton_change_clicked();
 
     void on_pushButton_clearRequests_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item);
+
+    void on_tableWidget_logistics_B_itemClicked(QTableWidgetItem *item);
+
+    void on_style_change_clicked();
+
+    void on_clothes_ADD_3_clicked();
 
 signals:
     void stringReturn(QString);
@@ -198,6 +210,10 @@ private:
     QVector<QStringList> warehouse;
     QMap<QString,QMap<QString, QString>> stock_map;
     QMap<QString, QMap<QString, QStringList>> arriving_map;
+    QVector<QStringList> orderList;
+    QVector<QStringList> wh_history;
+
+    bool style;
 
     QVector<QStringList> qv_requests;
 
