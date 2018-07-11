@@ -439,6 +439,14 @@ void Processor::work ()
         Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
         out << function;
     }
+    //provider page add new provider
+    if(function == "pp_api"){
+        QString providerAds = list.at(0);
+        QString providerName = list.at(1);
+        QString providerProduct = list.at(2);
+        Provider::addNewPrvider(providerName, providerAds, providerProduct);
+        out << function;
+    }
     //personnel page 1 show staff info
     if(function == "pp1_ss"){
         QVector<QStringList> result;

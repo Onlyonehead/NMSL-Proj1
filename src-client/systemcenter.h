@@ -186,6 +186,8 @@ private slots:
 
     void on_pushButton_deliverCancelChoose_clicked();
 
+    void on_pushButton_addProviderInfo_clicked();
+
 signals:
     void stringReturn(QString);
 

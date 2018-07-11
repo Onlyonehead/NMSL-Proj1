@@ -526,8 +526,8 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 1){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(true);
+        ui->pushButton_C->setVisible(false);
+        ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Generate");
         ui->pushButton_B->setText("Deliver");
@@ -561,8 +561,8 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 4){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(true);
+        ui->pushButton_C->setVisible(false);
+        ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Record");
         ui->pushButton_B->setText("Delivery");
@@ -585,12 +585,12 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 6){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(false);
+        ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Garment");
-        ui->pushButton_B->setText("Provider");
-        ui->pushButton_C->setText("");
+        ui->pushButton_B->setText("Management");
+        ui->pushButton_C->setText("Add");
         ui->pushButton_D->setText("");
 
     }
@@ -621,6 +621,7 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -649,6 +650,7 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -677,6 +679,7 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //C
     ui->frame_2C->setVisible(true);
+    ui->frame_systempage_3->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -839,4 +842,3 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
-

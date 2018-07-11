@@ -638,8 +638,13 @@ void SystemCenter::readMessage()
         progressBar();
     } // providerpage hange provider info
     if(from == "pp_cpi"){
-        qDebug() << "Change information successfully";
-    } // personnelpage1 show staff info
+        QMessageBox::information(NULL, tr("提示"), tr("供货商信息修改成功！"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    } // provider page add new provider
+    if(from == "pp_api"){
+        QMessageBox::information(NULL, tr("提示"), tr("新供货商已添加成功！现在已可查看或下发订单。"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    }// personnelpage1 show staff info
     if(from == "pp1_ss"){
         QVector<QStringList> result;
         in >> result;
@@ -679,7 +684,7 @@ void SystemCenter::readMessage()
         progressBar();
     } // perspnnel page 1 delete staff info
     if(from == "pp1_dsi"){
-        qDebug() << "Delete staff infomation successfully";
+        QMessageBox::information(NULL, tr("提示"), tr("删除员工成功！"), QMessageBox::Yes, QMessageBox::Yes);
     } // personnel page 2 ad  neu staff name
     if(from == "pp2_anu"){
         bool isExisted;

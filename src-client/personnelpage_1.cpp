@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <QList>
 #include <QComboBox>
+#include <QMessageBox>
 
 
 
@@ -92,13 +93,26 @@ void SystemCenter::on_pushButton_searchStaffInfo_clicked()
 
 void SystemCenter::on_pushButton_deleteStaffInfo_clicked()
 {
+    QMessageBox msgbox;
+    msgbox.setText("准备删除选中的员工。");
+    msgbox.setInformativeText("确定删除这名员工吗？");
+    msgbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgbox.setDefaultButton(QMessageBox::No);
+    int ret = msgbox.exec();
     QStringList list;
     int rowIndex = ui->tableWidget_showStaffInfo->currentRow();
     QString username = ui->tableWidget_showStaffInfo->item(rowIndex, 0)->text();
-    list.append("pp1_dsi");
-    list.append(username);
-    sendMessage(list);
-    ui->tableWidget_showStaffInfo->removeRow(rowIndex);
+    switch (ret) {
+    case QMessageBox::Yes:
+        list.append("pp1_dsi");
+        list.append(username);
+        sendMessage(list);
+        ui->tableWidget_showStaffInfo->removeRow(rowIndex);
+        break;
+    case QMessageBox::No:
+        break;
+    }
+
 
 }
 
