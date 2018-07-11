@@ -14,7 +14,6 @@ void SystemCenter::on_tableWidget_check_cellClicked(int row, int column)
 
     ui->label_sell_idPurchase->setText(ui->tableWidget_check->item(row, 0)->text());//记录id_purchase
     ui->pushButton_change->setVisible(false);
-    ui->pushButton_commit->setVisible(true);
 
     QString purchase_id = ui->tableWidget_check->item(row, 0)->text();
     QString store_id = ui->tableWidget_check->item(row, 1)->text();
@@ -63,7 +62,58 @@ void SystemCenter::on_pushButton_clearRequests_clicked()
     ui->tableWidget_checkDetail->setRowCount(0);
     ui->pushButton_change->setVisible(false);
     ui->pushButton_commit->setVisible(false);
+    ui->pushButton_reject->setVisible(false);
     ui->label_storeN->setText("");
     ui->label_manager->setText("");
     ui->label_location->setText("");
+    ui->lineEdit_sell_amount->setText("");
+}
+
+void SystemCenter::on_pushButton_commit_clicked()
+{
+    QString message = "purchaseId:"+ui->label_sell_idPurchase->text()+"\nfrom:"+ui->label_storeN->text()+"\nApprove this purchase request?";
+    if(QMessageBox::Yes==QMessageBox::question(this, tr("request approval"), message, QMessageBox::Yes, QMessageBox::No)) {
+        QStringList qsl_order;
+        qsl_order.append("commitRequest");
+
+        QString id_pur = ui->label_sell_idPurchase->text();
+        qsl_order.append(id_pur);
+
+        QString id_sto;
+        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
+            if(ui->tableWidget_check->item(i, 0)->text() == id_pur){
+                id_sto = ui->tableWidget_check->item(i, 1)->text();
+                break;
+            }
+        }
+        qsl_order.append(id_sto);
+
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString time = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+        qsl_order.append(time);
+
+        for(int i=0; i<ui->tableWidget_checkDetail->rowCount(); ++i){
+            qsl_order.append(ui->tableWidget_checkDetail->item(i, 0)->text());
+            qsl_order.append(ui->tableWidget_checkDetail->item(i, 4)->text());
+        }
+
+        sendMessage(qsl_order);
+
+    } else {
+        qDebug()<<"放弃";
+    }
+}
+
+void SystemCenter::on_pushButton_reject_clicked()
+{
+    QString message = "purchaseId:"+ui->label_sell_idPurchase->text()+"\nfrom:"+ui->label_storeN->text()+"\nReject this purchase request?";
+    if(QMessageBox::Yes==QMessageBox::question(this, tr("request rejection"), message, QMessageBox::Yes, QMessageBox::No)) {
+        QStringList qsl;
+        qsl.append("requestReject");
+        qsl.append(ui->label_sell_idPurchase->text());
+        sendMessage(qsl);
+    } else {
+        qDebug()<<"放弃";
+    }
+
 }

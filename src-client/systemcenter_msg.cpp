@@ -264,7 +264,7 @@ void SystemCenter::readMessage()
                 QApplication::processEvents();
             }
             if(j.value().size() > 1){
-//                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
+                //                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C1->setSpan(count_i-j.value().size(), 0, j.value().size(), 1);
 
             }
@@ -297,7 +297,7 @@ void SystemCenter::readMessage()
                 count_j++;
             }
             if(j.value().size() > 1){
-//                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
+                //                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C2->setSpan(count_j-j.value().size(), 0, j.value().size(), 1);
 
             }
@@ -582,7 +582,7 @@ void SystemCenter::readMessage()
             QApplication::processEvents();
             ui->tableWidget_logistics_C->insertRow(count);
             ui->tableWidget_logistics_C->setItem(count, 0, new QTableWidgetItem(i.key() +
-                                                                       " - " + clothes_name));
+                                                                                " - " + clothes_name));
             ui->tableWidget_logistics_C->setItem(count, 1, new QTableWidgetItem(i.value()));
 
             QApplication::processEvents();
@@ -850,11 +850,24 @@ void SystemCenter::readMessage()
 
             for(it2=m.begin(); it2!=m.end(); ++it2){
                 QApplication::processEvents();
-                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(it2.key())); //style
+
+                QString styleS;
+                QString idC = it2.key();
+                QVector<QStringList>::const_iterator itC;
+                for(itC=clothes.constBegin(); itC!=clothes.constEnd(); ++itC){
+                    if(itC->at(0)==idC){
+                        styleS = itC->at(1)+" "+itC->at(2);
+                        break;
+                    }
+                }
+
+                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(styleS)); //style
                 ui->tableWidget_storeRecord->setItem(i,4,new QTableWidgetItem(it2.value())); //amount
                 ++i;
             }
         }
+        if(record_size>0)
+            ui->tableWidget_storeRecord->setCurrentCell(0, 0);
     }
 
     if(from == "getAllRequests"){
@@ -868,6 +881,7 @@ void SystemCenter::readMessage()
         ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 260);
         ui->pushButton_change->setVisible(false);
         ui->pushButton_commit->setVisible(false);
+        ui->pushButton_reject->setVisible(false);
 
         int i=0;
         QVector<QStringList>::const_iterator it;
@@ -880,8 +894,8 @@ void SystemCenter::readMessage()
     }
 
     if(from == "getCheckDetail"){
-        QStringList qsl_s;
-        QVector<QStringList> qv;
+        QStringList qsl_s;//店铺信息
+        QVector<QStringList> qv;//请求详细信息
         in >> qsl_s >> qv;
 
         qDebug()<<qv.size();
@@ -904,12 +918,61 @@ void SystemCenter::readMessage()
             }
             ++i;
         }
+
+        ui->pushButton_commit->setVisible(true);
+        ui->pushButton_reject->setVisible(true);
     }
 
     if(from == "changeAmount"){
         QString amount;
         in >> amount;
         ui->tableWidget_checkDetail->item(ui->label_sell_row->text().toInt(), 4)->setText(amount);
+    }
+
+    if(from == "commitRequest"){
+        QString s;
+        in >> s;
+        QMessageBox::information(this,"completed", "\nrequest approved successfully!",QMessageBox::Ok);
+
+        ui->pushButton_change->setVisible(false);
+        ui->pushButton_commit->setVisible(false);
+        ui->pushButton_reject->setVisible(false);
+        ui->lineEdit_sell_amount->setText("");
+        ui->tableWidget_checkDetail->setRowCount(0);
+        ui->label_storeN->setText("");
+        ui->label_manager->setText("");
+        ui->label_location->setText("");
+
+        //从表中删去已处理请求
+        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
+            if(ui->label_sell_idPurchase->text()==ui->tableWidget_check->item(i, 0)->text()){
+                ui->tableWidget_check->removeRow(i);
+                break;
+            }
+        }
+    }
+
+    if(from == "requestReject"){
+        QString s;
+        in >> s;
+        QMessageBox::information(this,"completed", "\nrequest rejected successfully!",QMessageBox::Ok);
+
+        ui->pushButton_change->setVisible(false);
+        ui->pushButton_commit->setVisible(false);
+        ui->pushButton_reject->setVisible(false);
+        ui->lineEdit_sell_amount->setText("");
+        ui->tableWidget_checkDetail->setRowCount(0);
+        ui->label_storeN->setText("");
+        ui->label_manager->setText("");
+        ui->label_location->setText("");
+
+        //从表中删去已处理请求
+        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
+            if(ui->label_sell_idPurchase->text()==ui->tableWidget_check->item(i, 0)->text()){
+                ui->tableWidget_check->removeRow(i);
+                break;
+            }
+        }
     }
 
     //sissyVI--Finish

@@ -21,6 +21,8 @@ public:
     static void getPurchaseInfo(QString, QVector<QStringList>&, QMap<QString, QMap<QString, QString>>&);
     static void getAllPurchaseInfo(QVector<QStringList>&);
     static void changePAmount(QString, QString, QString);
+
+    static void storeArrive(QString, QString, QVector<QMap<QString, QStringList> >&, QMap<QString, QString>&);
 };
 
 #endif // STORE_H

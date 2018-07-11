@@ -631,5 +631,3 @@ void MainWindow::readMessage()
         in >> qv_allRequest >> m_requestDetail;
     }
 }
-
-

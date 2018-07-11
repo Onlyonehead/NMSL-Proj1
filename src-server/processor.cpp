@@ -559,7 +559,26 @@ void Processor::work ()
 
         out << list.at(2);
 
+    }
 
+    if(function == "commitRequest"){
+        out << function;
+
+        QString purchase_id, store_id, time;
+        purchase_id = list.at(0);
+        store_id = "S"+list.at(1);
+        time = list.at(2);
+        list.removeFirst();
+        list.removeFirst();
+        list.removeFirst();
+
+        SQLTool::update("store_pRecord", "checked", "1", "id_purchase", purchase_id);
+        SQLTool::update("store_pRecord", "date_check", time, "id_purchase", purchase_id);
+
+        Order order(store_id, time, list);
+        Warehouse::sendRequirement(order);
+
+        out << "success";
     }
 
     //门店
@@ -688,6 +707,59 @@ void Processor::work ()
         Store::getPurchaseInfo(list.at(0), qv, m);
 
         out << function << qv << m;
+    }
+
+    if(function == "test_sell"){
+
+//        QStringList qsl;
+//        qsl.append("test_sell");
+
+//        QString store_id = "1";
+//        QString time_com = "2018-07-11 14:38:47";
+
+//        QVector<QMap<QString, QStringList>> qv;
+//        QMap<QString, QStringList> qm;
+//        QStringList qsl_m;
+//        qsl_m << QString("1") << QString("200");
+//        qm.insert(QString("10"), qsl_m);
+//        qv.append(qm);
+
+//        QMap<QString, QString> m;
+//        m.insert(QString("10"), QString("2018-07-11 18:27:50"));
+
+
+
+//        QByteArray message;
+//        QDataStream out(&message,QIODevice::WriteOnly);
+//        out.setVersion(QDataStream::Qt_5_7);
+//        out << (quint16) 0;
+
+//        out << qsl;
+//        out << store_id << time_com << qv << m;
+
+//        out.device()->seek(0);
+//        out << (quint16) (message.size() - sizeof(quint16));
+//        m_tcpsocket->write(message);
+
+
+        out << function;
+        QString store_id;
+        QString time_com;
+        QVector<QMap<QString, QStringList>> qv;
+        QMap<QString, QString> m;
+        in >> store_id >> time_com >> qv >> m;
+        Store::storeArrive(store_id, time_com, qv, m);
+
+        out << "success";
+    }
+
+    if(function == "requestReject"){
+        out << function;
+
+        //将chencked的值设为2，代表请求被拒
+        SQLTool::update("store_pRecord", "checked", "2", "id_purchase", list.at(0));
+
+        out << "rejected";
     }
 
     //sissyVI--Finish

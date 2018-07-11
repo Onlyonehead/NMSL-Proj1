@@ -383,6 +383,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_sell_idPurchase->setVisible(false);
     ui->pushButton_change->setVisible(false);
     ui->pushButton_commit->setVisible(false);
+    ui->pushButton_reject->setVisible(false);
 
     /**
      * purchase page date/time label display

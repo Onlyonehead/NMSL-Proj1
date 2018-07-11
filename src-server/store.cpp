@@ -143,7 +143,7 @@ void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
 
         QMap<QString, QString> map;
         while(sq2.next()){
-            map.insert(Store::getClothStyle(sq2.value(0).toString()), sq2.value(1).toString());
+            map.insert(sq2.value(0).toString(), sq2.value(1).toString());//插入服装id和数量
             count++;
         }
         re.loadDetails(map);
@@ -337,5 +337,44 @@ void Store::changePAmount(QString id_p, QString id_c, QString amount){
     qsl.append("id_clothes");
     qsl.append(id_c);
     SQLTool::update("store_pDetail", "amount", amount, qsl);
+}
+
+/**
+ *
+ *
+ * @author sissyVI
+ * @param store_id the store id of destination
+ * @param time_com commit time
+ * @param qv from id and details(cloth id and quantity)
+ * @param m from id and arrive time
+ */
+void Store::storeArrive(QString store_id, QString time_com, QVector<QMap<QString, QStringList> > &qv, QMap<QString, QString> &m){
+    QSqlQuery sq;
+    QStringList qsl;
+    qsl.append("id_store");
+    qsl.append(store_id);
+    qsl.append("date_check");
+    qsl.append(time_com);
+    SQLTool::search(sq, "id_purchase", "store_pRecord", qsl);
+    sq.next();
+    QString purchase_id = sq.value(0).toString();
+    qDebug()<<"purchase_id: "<<purchase_id;
+    qDebug()<<qv.size();
+    qDebug()<<m.size();
+    QVector<QMap<QString, QStringList> >::const_iterator itv;
+    for(itv=qv.constBegin(); itv!=qv.constEnd(); ++itv){
+        QMap<QString, QStringList>::const_iterator itm;
+        for(itm=itv->constBegin(); itm!=itv->constEnd(); ++itm){
+            QString from_id = itm.key();
+            QString clothes_id = itm.value().at(0);
+            QString quantity = itm.value().at(1);
+            QString date_arr = m.take(from_id);
+
+            qDebug() << store_id << clothes_id << quantity << date_arr << from_id << purchase_id;
+            QStringList qsl_arr;
+            qsl_arr << store_id << clothes_id << quantity << date_arr << from_id << purchase_id;
+            SQLTool::insert("store_arriving", qsl_arr);
+        }
+    }
 }
 

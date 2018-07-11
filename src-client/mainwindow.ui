@@ -23,7 +23,7 @@
       <x>0</x>
       <y>0</y>
       <width>180</width>
-      <height>686</height>
+      <height>700</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -383,10 +383,10 @@ color:rgb(255, 255, 255);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>179</x>
+      <x>180</x>
       <y>100</y>
       <width>819</width>
-      <height>597</height>
+      <height>599</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -835,7 +835,7 @@ QPushButton:hover{
 border:0px;</string>
          </property>
          <property name="placeholderText">
-          <string>搜索商品的编号/名称/尺寸</string>
+          <string>Search</string>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_purchaseSearch">
@@ -1028,10 +1028,10 @@ QScrollBar::add-line{background:transparent;}
         <widget class="QPushButton" name="pushButton_sell_2">
          <property name="geometry">
           <rect>
-           <x>630</x>
-           <y>280</y>
-           <width>80</width>
-           <height>225</height>
+           <x>530</x>
+           <y>476</y>
+           <width>170</width>
+           <height>30</height>
           </rect>
          </property>
          <property name="font">
@@ -1059,7 +1059,7 @@ QPushButton:hover{
           <rect>
            <x>20</x>
            <y>280</y>
-           <width>560</width>
+           <width>490</width>
            <height>226</height>
           </rect>
          </property>
@@ -1082,13 +1082,6 @@ QPushButton:hover{
           <string>arriving:</string>
          </property>
         </widget>
-        <zorder>label_3</zorder>
-        <zorder>tableWidget_allRequests</zorder>
-        <zorder>tableWidget_requestDetail</zorder>
-        <zorder>pushButton_purchase_2</zorder>
-        <zorder>pushButton_sell_2</zorder>
-        <zorder>tableWidget_arriving</zorder>
-        <zorder>label_13</zorder>
        </widget>
       </widget>
       <widget class="QPushButton" name="pushButton_purchase">
@@ -1275,7 +1268,7 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>售卖</string>
+        <string>Sell</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_sellSearch">
@@ -1323,7 +1316,7 @@ QPushButton:hover{
 border:0px;</string>
        </property>
        <property name="placeholderText">
-        <string>搜索商品的编号/名称/尺寸</string>
+        <string>Search</string>
        </property>
       </widget>
       <widget class="QFrame" name="frame_12">
@@ -1551,7 +1544,7 @@ border:none;</string>
 border:0px;</string>
        </property>
        <property name="placeholderText">
-        <string>搜索商品编号/商品名称</string>
+        <string>Search</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_storeSearch">

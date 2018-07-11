@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -6782,9 +6782,7 @@ background: none;
        </property>
       </widget>
      </widget>
-     <zorder>frame_2C</zorder>
      <zorder>frame_2B</zorder>
-     <zorder>frame_2A</zorder>
      <zorder>frame_2D</zorder>
      <zorder>frame_2C</zorder>
      <zorder>frame_2A</zorder>
@@ -7224,115 +7222,6 @@ QTableWidget::item{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_showStores_2">
-       <property name="geometry">
-        <rect>
-         <x>330</x>
-         <y>40</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Helvetica 12</family>
-         <pointsize>14</pointsize>
-         <weight>9</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>Display All</string>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_clearStores_2">
-       <property name="geometry">
-        <rect>
-         <x>460</x>
-         <y>40</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Helvetica 12</family>
-         <pointsize>14</pointsize>
-         <weight>9</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>Clear</string>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <zorder>label_81</zorder>
-      <zorder>pushButton_clearStores</zorder>
-      <zorder>lineEdit_sell_search</zorder>
-      <zorder>pushButton_showStores</zorder>
-      <zorder>pushButton_font_sellSearch</zorder>
-      <zorder>label_82</zorder>
-      <zorder>tableWidget_stores</zorder>
-      <zorder>tableWidget_storeRecord</zorder>
-      <zorder>label_83</zorder>
-      <zorder>pushButton_showStores_2</zorder>
-      <zorder>pushButton_clearStores_2</zorder>
-      <zorder>frame_sell_B</zorder>
-      <zorder>frame_sell_B</zorder>
      </widget>
      <widget class="QFrame" name="frame_sell_B">
       <property name="geometry">
@@ -7904,24 +7793,13 @@ background: none;
          <string/>
         </property>
        </widget>
-       <zorder>pushButton_commit</zorder>
-       <zorder>label_96</zorder>
-       <zorder>label_storeN</zorder>
-       <zorder>label_font_storeN</zorder>
-       <zorder>label_97</zorder>
-       <zorder>label_manager</zorder>
-       <zorder>label_font_manager</zorder>
-       <zorder>label_100</zorder>
-       <zorder>label_location</zorder>
-       <zorder>label_font_location</zorder>
-       <zorder>label_sell_idPurchase</zorder>
       </widget>
       <widget class="QPushButton" name="pushButton_commit">
        <property name="geometry">
         <rect>
-         <x>590</x>
+         <x>570</x>
          <y>509</y>
-         <width>111</width>
+         <width>144</width>
          <height>30</height>
         </rect>
        </property>
@@ -8411,9 +8289,55 @@ QPushButton:hover{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_reject">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>410</y>
+         <width>90</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px dashed rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(204, 204, 204, 73);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px dashed rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Reject</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
-     <zorder>frame_sell_B</zorder>
-     <zorder>frame_sell_A</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">

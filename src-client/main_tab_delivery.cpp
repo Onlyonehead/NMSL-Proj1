@@ -213,3 +213,9 @@ void MainWindow::on_pushButton_sendRequest_clicked()
         }
     }
 }
+
+void MainWindow::on_tableWidget_allRequests_cellClicked(int row, int column)
+{
+    Q_UNUSED(column);
+
+}

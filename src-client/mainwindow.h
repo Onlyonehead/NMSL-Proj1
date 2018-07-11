@@ -73,6 +73,8 @@ private slots:
 
     void on_pushButton_sendRequest_clicked();
 
+    void on_tableWidget_allRequests_cellClicked(int row, int column);
+
 private:
     void addFont();
     void setCursor();

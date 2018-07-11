@@ -188,6 +188,10 @@ private slots:
 
     void on_clothes_ADD_3_clicked();
 
+    void on_pushButton_commit_clicked();
+
+    void on_pushButton_reject_clicked();
+
 signals:
     void stringReturn(QString);
 
