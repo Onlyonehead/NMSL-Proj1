@@ -93,6 +93,9 @@ void Processor::work ()
         Warehouse::stock(stock_map);
         QMap<QString, QMap<QString, QStringList>> arriving_map;
         Warehouse::arriving(arriving_map);
+        QMap<QString, QString> warehouse_map;
+        Warehouse::info(warehouse_map);
+
         out << function;
         out << stock;
         out << arriving;
@@ -100,6 +103,7 @@ void Processor::work ()
         out << warehouse;
         out << stock_map;
         out << arriving_map;
+        out << warehouse_map;
     }
 
     if(function == "info_whEC"){
@@ -167,104 +171,6 @@ void Processor::work ()
         out << arriving;
     }
 
-    if(function == "pB5"){
-        QMap<QString, QString> warehouse;
-        Warehouse::info(warehouse);
-
-
-        out << function;
-        out << warehouse;
-    }
-
-    if(function == "pB8"){
-        QVector<QStringList> g;
-        Warehouse::GInfo(g);
-
-        QStringList result;
-
-        for(QStringList l : g){
-            result.append("Clothes id:  " + l.at(0) + "\n- Style: "
-                         + l.at(1));
-        }
-
-        Tool::QStringList_removeDuplicates(&result);
-        out << function;
-        out << result;
-    }
-
-
-    if(function == "tWBiC"){
-        QMap<QString, QString> warehouse;
-        Warehouse::info(warehouse);
-        QString s = list.at(0);
-
-        QStringList result;
-        Warehouse::GInfo(s.toInt(), result);
-        out << function;
-        out << warehouse;
-        out << result;
-
-    }
-
-    if(function == "pB10"){
-        QVector<QStringList> g;
-        Warehouse::GInfo(g);
-
-        QStringList result1;
-
-        for(QStringList l : g){
-            result1.append("Clothes id:  " + l.at(0) + "\n- Style: "
-                           + l.at(1));
-        }
-
-        Tool::QStringList_removeDuplicates(&result1);
-
-        QVector<QStringList> w;
-        Warehouse::info(w);
-
-        QStringList result2;
-
-        for(QStringList l : w){
-            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
-                         + l.at(1));
-        }
-
-        Tool::QStringList_removeDuplicates(&result2);
-
-
-        out << function;
-        out << result1;
-        out << result2;
-    }
-
-    if(function == "tWD1iC"){
-        QString s = list.at(0);
-
-        QStringList result;
-        Warehouse::GInfo(s.toInt(), result);
-        out << function;
-        out << result;
-
-    }
-
-    if(function == "tWD2iC"){
-        QString s = list.at(0);
-
-        QMap<QString, QString> result;
-        Warehouse::stock(s.toInt(), result);
-
-        QVector<QStringList> g;
-        Warehouse::GInfo(g);
-
-        QMap<QString, QString> result1;
-
-        for(QStringList l : g){
-            result1.insert(l.at(0), l.at(1));
-        }
-        out << function;
-        out << result;
-        out << result1;
-    }
     if(function == "order_send"){
         QMap<QString, QMap<QString, QString>> orders;
         in >> orders;

@@ -26,6 +26,7 @@
 #include <QCompleter>
 #include <QStringListModel>
 #include <QtNetwork>
+#include "tool.h"
 
 
 namespace Ui {
@@ -205,6 +206,7 @@ private:
     QVector<QStringList> warehouse;
     QMap<QString,QMap<QString, QString>> stock_map;
     QMap<QString, QMap<QString, QStringList>> arriving_map;
+    QMap<QString, QString> warehouse_map;
 
 
     QVector<QStringList> orderList; // For logistic A
