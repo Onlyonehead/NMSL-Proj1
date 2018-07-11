@@ -58,6 +58,8 @@ void Store::getClothDetail(QString id, QStringList& qsl){
 }
 
 /**
+ * get all clothes' details
+ * 
  * @brief Store::getAllClothes
  * @param clothes
  */
