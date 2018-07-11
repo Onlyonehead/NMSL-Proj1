@@ -174,9 +174,13 @@ private slots:
 
     void on_tableWidget_logistics_B_itemClicked(QTableWidgetItem *item);
 
+    void on_tableWidget_logistics_C_itemClicked(QTableWidgetItem *item);
+
     void on_style_change_clicked();
 
-    void on_clothes_ADD_3_clicked();
+    void on_logistics_ADD_clicked();
+
+    void on_logistics_send_clicked();
 
 signals:
     void stringReturn(QString);
@@ -194,14 +198,22 @@ private:
     QString filepath;
     QTcpSocket *m_tcpsocket;
 
+    // For transfer
     QVector<QStringList> stock;
     QVector<QStringList> arriving;
     QVector<QStringList> clothes;
     QVector<QStringList> warehouse;
     QMap<QString,QMap<QString, QString>> stock_map;
     QMap<QString, QMap<QString, QStringList>> arriving_map;
-    QVector<QStringList> orderList;
-    QVector<QStringList> wh_history;
+
+
+    QVector<QStringList> orderList; // For logistic A
+    QVector<QStringList> wh_history; // For warehouse A
+
+    QMap<QString, QMap<QString, QString>> replenishment; // For logistics A
+    QString wh_id; // For logistics A
+    QString order_id; // For logistics A
+    QStringList wh_info; // For logistics A
 
     bool style;
 

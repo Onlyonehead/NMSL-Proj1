@@ -498,8 +498,8 @@ void SystemCenter::readMessage()
     }
 
     if(from == "orderinfo"){
-        ui->tableWidget_logistics_A->setRowCount(0);
-        ui->tableWidget_logistics_B->setRowCount(0);
+        on_pushButton_12_clicked();
+
         QVector<QStringList> vlist;
         in >> vlist;
         this->orderList = vlist;
@@ -516,20 +516,6 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_logistics_A->setRowCount(count);
 
-        QStringList list;
-        in >> list;
-
-        int n = list.size();
-
-        while(n){
-
-            QApplication::processEvents();
-            ui->tableWidget_logistics_B->insertRow(list.size()-n);
-            ui->tableWidget_logistics_B->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
-            n--;
-        }
-
-        ui->tableWidget_logistics_B->setRowCount(list.size());
         progressBar();
     }
 
@@ -566,37 +552,39 @@ void SystemCenter::readMessage()
     }
 
     if(from == "tWlAiC"){
-        ui->tableWidget_logistics_C->setRowCount(0);
-        QMap<QString, QString> stock;
-        in >> stock;
+        ui->tableWidget_logistics_B->setRowCount(0);
+        QStringList list;
+        in >> list;
 
-        QMap<QString, QString> clothes;
-        in >> clothes;
+        this->wh_info = list;
 
-        QApplication::processEvents();
+        int n = list.size();
+        QString s = ui->logistics_label_B->text().split("-")[0].trimmed();
+
 
         int count = 0;
-        for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
-            QString clothes_name;
-            clothes_name = clothes.value(i.key());
-            QApplication::processEvents();
-            ui->tableWidget_logistics_C->insertRow(count);
-            ui->tableWidget_logistics_C->setItem(count, 0, new QTableWidgetItem(i.key() +
-                                                                       " - " + clothes_name));
-            ui->tableWidget_logistics_C->setItem(count, 1, new QTableWidgetItem(i.value()));
+        while(n){
 
             QApplication::processEvents();
-            count++;
+            if(s != list.at(list.size()-n).split(QRegExp("[-:]"))[1].trimmed()){
+                ui->tableWidget_logistics_B->insertRow(count);
+                ui->tableWidget_logistics_B->setItem(count, 0, new QTableWidgetItem(list.at(list.size()-n)));
+                count++;
+            }
+            n--;
         }
 
-        ui->tableWidget_logistics_C->setRowCount(count);
-
-
-        progressBar_fast();
+        ui->tableWidget_logistics_B->setRowCount(count);
     }
 
-
-
+    if(from == "send_replenishment"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n补货成功！",QMessageBox::Ok);
+            on_pushButton_13_clicked();
+        }
+    }
 
     //systempage show garment info
     if(from == "sp_sg"){

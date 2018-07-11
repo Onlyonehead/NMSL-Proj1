@@ -206,22 +206,6 @@ void Processor::work ()
 
     }
 
-    if(function == "sendOrder"){
-        QString orderID = list.at(0);
-        list.removeFirst();
-        QString datetime = list.at(0);
-        list.removeFirst();
-        QStringList productInfo;
-        for(QString s : list){
-            productInfo.append(s);
-        }
-
-        Order order(orderID, datetime, productInfo);
-        Warehouse::sendRequirement(order);
-        out << function;
-        out << QString("done");
-    }
-
     if(function == "pB10"){
         QVector<QStringList> g;
         Warehouse::GInfo(g);
@@ -364,6 +348,12 @@ void Processor::work ()
             vlist.append(l);
         }
 
+
+        out << function;
+        out << vlist;
+
+    }
+    if(function == "tWlAiC"){
         QVector<QStringList> w;
         Warehouse::info(w);
         QStringList result2;
@@ -374,28 +364,53 @@ void Processor::work ()
         }
 
         Tool::QStringList_removeDuplicates(&result2);
+
         out << function;
-        out << vlist;
         out << result2;
     }
 
-    if(function == "tWlAiC"){
-        QString s = list.at(0);
+    if(function == "send_replenishment"){
+        QString warehouse_id;
+        QString order_id;
+        QMap<QString, QMap<QString, QString>> replenishment;
 
-        QMap<QString, QString> result;
-        Warehouse::stock(s.toInt(), result);
+        in >> order_id;
+        in >> warehouse_id;
+        in >> replenishment;
 
-        QVector<QStringList> g;
-        Warehouse::GInfo(g);
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString time = current_date_time.addDays(3).toString("yyyy-MM-dd hh:mm:ss");
 
-        QMap<QString, QString> result1;
+        QStringList s_for_infochecked;
 
-        for(QStringList l : g){
-            result1.insert(l.at(0), l.at(1));
+        for(QMap<QString, QMap<QString, QString>>::const_iterator i
+            = replenishment.begin(); i != replenishment.end(); ++i){
+            QStringList l;
+            for(QMap<QString, QString>::const_iterator j
+                = i.value().begin(); j != i.value().end(); ++j){
+                l.append(j.key());
+                l.append(j.value());
+                s_for_infochecked.append(i.key());
+                s_for_infochecked.append(j.key());
+                s_for_infochecked.append(j.value());
+            }
+            Order order(i.key(), time, l);
+            Warehouse::replenish(warehouse_id.split("-")[0].trimmed(), order);
+            Warehouse::deliverGoods(order.getId(), order);
+        }
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo", "order_id", order_id);
+        if(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(s_for_infochecked.join("#"));
+            SQLTool::insert("orderChecked", l);
+            SQLTool::del("orderInfo", "order_id", order_id);
         }
         out << function;
-        out << result;
-        out << result1;
+        out << QString("Done");
     }
 
 

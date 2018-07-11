@@ -119,8 +119,8 @@ void SystemCenter::on_order_send_clicked()
     QMap<QString, QMap<QString, QString>> orders;
     int count = ui->tableWidget_D4->rowCount();
     for(int i = 0; i < count; i++){
-        QString w_id = ui->tableWidget_D4->item(i, 0)->text().split("-")[0].trimmed();
-        QString c_id = ui->tableWidget_D4->item(i, 1)->text().split("-")[0].trimmed();
+        QString c_id = ui->tableWidget_D4->item(i, 0)->text().split("-")[0].trimmed();
+        QString w_id = ui->tableWidget_D4->item(i, 1)->text().split("-")[0].trimmed();
         QString quantity = ui->tableWidget_D4->item(i, 2)->text().trimmed();
         QMap<QString, QString> map;
         map.clear();
