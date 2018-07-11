@@ -7,7 +7,7 @@
 /**
  * get pic path according to pic id
  *
- * @author Chang Chen
+ * @author sissyVI
  * @param id cloth's id
  * @return picture path
  */
@@ -25,7 +25,7 @@ QString Store::getPicPath(QString id){
 /**
  * get the style and size of a cloth according to it's id
  *
- * @author Chang Chen
+ * @author sissyVI
  * @param id
  * @return
  */
@@ -44,7 +44,7 @@ QString Store::getClothStyle(QString id){
 /**
  * get cloth details according to it's id
  *
- * @author Chang Chen
+ * @author sissyVI
  * @param id cloth id
  * @param qsl a QStringList used to store info
  */
@@ -58,6 +58,8 @@ void Store::getClothDetail(QString id, QStringList& qsl){
 }
 
 /**
+ * get all clothes' details
+ *
  * @brief Store::getAllClothes
  * @param clothes
  */
@@ -81,7 +83,7 @@ void Store::getAllClothes(QVector<QStringList>& clothes){
 /**
  * get store info
  *
- * @author Chang Chen
+ * @author sissyVI
  * @param username belongs to store manager
  * @param size number of values
  * @return
@@ -100,7 +102,7 @@ void Store::getStoreInfo(QString username, QString s_size, QVector<QString>& qv)
 /**
  * get the stock info of the store
  *
- * @author Chang Chen
+ * @author sissyVI
  * @param warehouse_n table name of the warehouse
  * @return groups of cloth's id and amount
  */
@@ -153,7 +155,7 @@ void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
 /**
  * Store::sellGoods
  *
- * @author Chang Chen
+ * @author sissyVI
  * @param storeId
  * @param totalPrices the total prices in this transaction
  * @param clothes_amount the amount of clothes in this transaction
