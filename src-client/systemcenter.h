@@ -172,7 +172,11 @@ private slots:
 
     void on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item);
 
+    void on_tableWidget_logistics_B_itemClicked(QTableWidgetItem *item);
+
     void on_style_change_clicked();
+
+    void on_clothes_ADD_3_clicked();
 
 signals:
     void stringReturn(QString);

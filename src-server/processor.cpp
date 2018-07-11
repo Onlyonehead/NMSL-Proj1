@@ -363,8 +363,39 @@ void Processor::work ()
             l.append(query.value(3).toString());
             vlist.append(l);
         }
+
+        QVector<QStringList> w;
+        Warehouse::info(w);
+        QStringList result2;
+
+        for(QStringList l : w){
+            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result2);
         out << function;
         out << vlist;
+        out << result2;
+    }
+
+    if(function == "tWlAiC"){
+        QString s = list.at(0);
+
+        QMap<QString, QString> result;
+        Warehouse::stock(s.toInt(), result);
+
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QMap<QString, QString> result1;
+
+        for(QStringList l : g){
+            result1.insert(l.at(0), l.at(1));
+        }
+        out << function;
+        out << result;
+        out << result1;
     }
 
 

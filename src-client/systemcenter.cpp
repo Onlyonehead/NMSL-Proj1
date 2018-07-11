@@ -213,6 +213,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_107->setText(QChar(0xf56e));
     ui->label_107->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_85->setFont(font);
+    ui->label_85->setText(QChar(0xf1b3));
+    ui->label_85->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_110->setFont(font);
+    ui->label_110->setText(QChar(0xf560));
+    ui->label_110->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_191->setFont(font);
+    ui->label_191->setText(QChar(0xf52d));
+    ui->label_191->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
@@ -329,6 +341,12 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_A->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_A->setAlternatingRowColors(true);
 
+    ui->tableWidget_logistics_B->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_B->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_B->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_B->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_B->setAlternatingRowColors(true);
+
 
 
     QApplication::processEvents();
@@ -345,7 +363,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     connect(ui->quantity_D, SIGNAL(returnPressed()), ui->clothes_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
 
     connect(ui->warehouse_id, SIGNAL(returnPressed()), ui->w_search_A, SIGNAL(clicked()), Qt::UniqueConnection);
+
+    connect(ui->quantity_logistics, SIGNAL(returnPressed()), ui->logistics_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
+
     QApplication::processEvents();
+
 
     /**
      * purchase page date/time label display
@@ -395,7 +417,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
 
 
-
+    ui->progressBar->setVisible(true);
+    ui->progressBar->setRange(0, 100);
+    ui->progressBar->setValue(10);
 //    //initialize furry search
 
     QElapsedTimer t;
@@ -403,15 +427,20 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     warehouseEditComplete();
     m_tcpsocket->flush();
 
+    ui->progressBar->setValue(20);
+
 
     t.start();
     while(t.elapsed()<1000)
         QCoreApplication::processEvents();
 
+    ui->progressBar->setValue(35);
 
     //initialize arriving table
     transfer();
     m_tcpsocket->flush();
+
+    ui->progressBar->setValue(50);
 
 //    QMovie *movie = new QMovie(":/movie.gif");
 //    ui->label_title->setMovie(movie);
@@ -786,3 +815,4 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
+

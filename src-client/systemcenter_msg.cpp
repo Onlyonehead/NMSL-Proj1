@@ -35,7 +35,7 @@ void SystemCenter::readMessage()
     qDebug() << "From: " << from << endl;
     if(from == "transfer"){
 
-        ui->progressBar->setValue(70);
+        ui->progressBar->setValue(80);
         int count1 = 0;
         int count2 = 0;
 
@@ -64,7 +64,7 @@ void SystemCenter::readMessage()
             count1 += list.at(2).toInt();
         }
 
-        ui->progressBar->setValue(80);
+        ui->progressBar->setValue(85);
 
 
         for(QStringList list: arriving){
@@ -88,8 +88,6 @@ void SystemCenter::readMessage()
     }
 
     if(from == "info_whEC"){
-        ui->progressBar->setVisible(true);
-        ui->progressBar->setRange(0, 100);
 
         QStringList wordlist;
         in >> wordlist;
@@ -104,7 +102,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_A->setCompleter(completer);
 
-        ui->progressBar->setValue(10);
+        ui->progressBar->setValue(55);
 
         wordlist.clear();
         in >> wordlist;
@@ -118,7 +116,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_C->setCompleter(completer);
 
-        ui->progressBar->setValue(20);
+        ui->progressBar->setValue(60);
 
 
         wordlist.clear();
@@ -134,7 +132,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_B->setCompleter(completer);
 
-        ui->progressBar->setValue(30);
+        ui->progressBar->setValue(65);
 
         wordlist.clear();
         in >> wordlist;
@@ -149,7 +147,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_D->setCompleter(completer);
 
-        ui->progressBar->setValue(40);
+        ui->progressBar->setValue(70);
     }
     if(from == "isC"){
         ui->tableWidget_C1->setRowCount(0);
@@ -500,6 +498,8 @@ void SystemCenter::readMessage()
     }
 
     if(from == "orderinfo"){
+        ui->tableWidget_logistics_A->setRowCount(0);
+        ui->tableWidget_logistics_B->setRowCount(0);
         QVector<QStringList> vlist;
         in >> vlist;
         this->orderList = vlist;
@@ -515,6 +515,21 @@ void SystemCenter::readMessage()
             count++;
         }
         ui->tableWidget_logistics_A->setRowCount(count);
+
+        QStringList list;
+        in >> list;
+
+        int n = list.size();
+
+        while(n){
+
+            QApplication::processEvents();
+            ui->tableWidget_logistics_B->insertRow(list.size()-n);
+            ui->tableWidget_logistics_B->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_logistics_B->setRowCount(list.size());
         progressBar();
     }
 
@@ -548,6 +563,36 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_A->setRowCount(result.size());
         progressBar();
+    }
+
+    if(from == "tWlAiC"){
+        ui->tableWidget_logistics_C->setRowCount(0);
+        QMap<QString, QString> stock;
+        in >> stock;
+
+        QMap<QString, QString> clothes;
+        in >> clothes;
+
+        QApplication::processEvents();
+
+        int count = 0;
+        for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
+            QString clothes_name;
+            clothes_name = clothes.value(i.key());
+            QApplication::processEvents();
+            ui->tableWidget_logistics_C->insertRow(count);
+            ui->tableWidget_logistics_C->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                       " - " + clothes_name));
+            ui->tableWidget_logistics_C->setItem(count, 1, new QTableWidgetItem(i.value()));
+
+            QApplication::processEvents();
+            count++;
+        }
+
+        ui->tableWidget_logistics_C->setRowCount(count);
+
+
+        progressBar_fast();
     }
 
 
