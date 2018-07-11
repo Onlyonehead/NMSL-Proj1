@@ -51,7 +51,8 @@ SOURCES += main.cpp \
     systemcenter_msg.cpp \
     order.cpp \
     sell_a.cpp \
-    warehouse_d.cpp
+    warehouse_d.cpp \
+    sell_b.cpp
 
 
 

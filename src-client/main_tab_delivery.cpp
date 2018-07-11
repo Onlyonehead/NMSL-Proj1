@@ -11,10 +11,11 @@
 void MainWindow::setStackedWidget_delivery(){
     ui->stackedWidget_delivery->setCurrentIndex(0);
     ui->tableWidget_delivery_cloth->clearContents();
+    ui->label_purchase_totalCount->setText(QString::number(0, 10));
     purchaseSignal = false;
 
     ui->tableWidget_delivery_cloth->verticalHeader()->setVisible(false); //设置表垂直头不可见
-    //    ui->tableWidget_delivery_clo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      th->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
+//    ui->tableWidget_delivery_cloth->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
     ui->tableWidget_delivery_cloth->setRowCount(qv_clothes.size());//设置行数，与公司所有私服种数相同
     ui->tableWidget_delivery_cloth->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //自适应列宽
 
@@ -60,6 +61,10 @@ void MainWindow::setStackedWidget_delivery(){
     }
     purchaseSignal = true;
 
+    qsl.clear();
+    qsl.append("getRequests");
+    qsl.append(storeId);
+    sendMessage(qsl);
 }
 
 void MainWindow::on_pushButton_purchase_clicked()
@@ -69,6 +74,34 @@ void MainWindow::on_pushButton_purchase_clicked()
 
 void MainWindow::on_pushButton_message_clicked()
 {
+
+    ui->tableWidget_allRequests->clearContents();
+    ui->tableWidget_allRequests->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
+    ui->tableWidget_allRequests->setRowCount(qv_allRequest.size());//设置行数，与搜索结果size相同
+    ui->tableWidget_allRequests->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //自适应列宽
+
+    int i=0;
+    QVector<QStringList>::const_iterator it;
+    for(it=qv_allRequest.constBegin(); it!=qv_allRequest.constEnd(); ++it){
+        ui->tableWidget_allRequests->setItem(i, 0, new QTableWidgetItem(it->at(1)));
+
+        int count=0;
+        QMap<QString, QString> m = m_requestDetail.value(it->at(0));
+        QMap<QString, QString>::const_iterator itm;
+        for(itm=m.constBegin(); itm!=m.constEnd(); ++itm){
+            count += itm.value().toInt();
+        }
+        ui->tableWidget_allRequests->setItem(i, 1, new QTableWidgetItem(QString::number(count, 10)));
+
+        if(it->at(2) == "0"){
+            ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("U"));
+        } else {
+            ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("C"));
+
+        }
+        ++i;
+    }
+
     ui->stackedWidget_delivery->setCurrentIndex(1);
 }
 
@@ -77,14 +110,25 @@ void MainWindow::on_tableWidget_delivery_cloth_cellClicked(int row, int column)
 {
     Q_UNUSED(column);
 
-    if(0!=column){
-        //QString Store::getPicPath(QString id)
-        qsl.clear();
-        qsl.append("getPicPath");
-        qsl.append("delivery");
-        qsl.append(ui->tableWidget_delivery_cloth->item(row, 1)->text());
-        sendMessage(qsl);
+    QVector<QStringList>::const_iterator it;
+    QString path, style;
+    for(it=qv_clothes.constBegin(); it!=qv_clothes.constEnd(); ++it){
+        if(it->at(0)==ui->tableWidget_delivery_cloth->item(row, 1)->text()){
+            path = it->at(3);
+            style = it->at(1)+" "+it->at(2);
+        }
     }
+
+    QPixmap *pixmap = new QPixmap("./" + path);
+    if (pixmap->isNull()){
+        download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+    }
+    if (pixmap->isNull()){
+        pixmap = new QPixmap(":/default.jpg");
+    }
+    ui->label_delivery_pic->setScaledContents(true);
+    ui->label_delivery_pic->setPixmap(*pixmap);
+    ui->label_delivery_style->setText(style);
 }
 
 void MainWindow::on_tableWidget_delivery_cloth_cellChanged(int row, int column)
@@ -130,4 +174,42 @@ void MainWindow::purchaseCount(int *countClothes){
 void MainWindow::on_lineEdit_purchaseSearch_textChanged(const QString &arg1)
 {
     setTableWidgetItemHidden(ui->tableWidget_delivery_cloth, arg1);
+}
+
+void MainWindow::on_pushButton_sendRequest_clicked()
+{
+    if("0"!=ui->label_purchase_totalCount->text()){
+        QString message = "共有"+ui->label_purchase_totalCount->text()+"件服装。\n";
+        QMap<QString, QString> m;
+        for(int i=0; i<ui->tableWidget_delivery_cloth->rowCount(); ++i){
+            if(Qt::Checked==ui->tableWidget_delivery_cloth->item(i, 0)->checkState()){
+                QString cloth, style, size, amount;
+                cloth = ui->tableWidget_delivery_cloth->item(i, 1)->text();
+                style = ui->tableWidget_delivery_cloth->item(i, 2)->text();
+                size = ui->tableWidget_delivery_cloth->item(i, 3)->text();
+                amount = ui->tableWidget_delivery_cloth->item(i, 6)->text();
+                message += style+" " +size+": "+amount+"\n";
+                m.insert(cloth, amount);
+            }
+        }
+        if(QMessageBox::Yes==QMessageBox::question(this, tr("请求确认"), message, QMessageBox::Yes, QMessageBox::No)) {
+           qsl.clear();
+           qsl.append("sendRequest");
+           qsl.append(storeId);
+
+           QByteArray message;
+           QDataStream out(&message,QIODevice::WriteOnly);
+           out.setVersion(QDataStream::Qt_5_7);
+           out << (quint16) 0;
+
+           out << qsl;
+           out << m;
+
+           out.device()->seek(0);
+           out << (quint16) (message.size() - sizeof(quint16));
+           m_tcpsocket->write(message);
+        } else {
+            qDebug()<<"放弃";
+        }
+    }
 }

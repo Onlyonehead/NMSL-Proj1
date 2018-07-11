@@ -10,6 +10,7 @@ void SystemCenter::on_pushButton_showStores_clicked()
 
 void SystemCenter::on_tableWidget_stores_cellClicked(int row, int column)
 {
+    Q_UNUSED(column);
     QStringList qsl;
     qsl.append("storesClicked");
     qsl.append(ui->tableWidget_stores->item(row, 0)->text());

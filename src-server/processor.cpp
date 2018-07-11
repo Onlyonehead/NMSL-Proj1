@@ -489,6 +489,32 @@ void Processor::work ()
         }
     }
 
+    if(function == "getAllRequests"){
+        out << function;
+        QVector<QStringList> qv;
+        Store::getAllPurchaseInfo(qv);
+        out << qv;
+
+    }
+
+    if(function == "getCheckDetail"){
+        out << function;
+        QStringList qsl;
+        QVector<QStringList> qv;
+        Store::getPurchaseInfo(list.at(0), list.at(1), qsl, qv);
+        out << qsl << qv;
+    }
+
+    if(function == "changeAmount"){
+        out << function;
+
+        Store::changePAmount(list.at(0), list.at(1), list.at(2));
+
+        out << list.at(2);
+
+
+    }
+
     //门店
     if(function == "getRecord"){
         out << function;
@@ -524,12 +550,6 @@ void Processor::work ()
         QVector<QVector<QString> > qv;
         Store::getStock(list.at(0), qv);
         out << qv;
-    }
-
-    if(function == "getPicPath"){
-        out << function;
-        QString path = Store::getPicPath(list.at(1));
-        out<<list.at(0)<<path;
     }
 
     if(function == "sellGoods"){
@@ -602,6 +622,25 @@ void Processor::work ()
         }
 
         out<< size;
+    }
+
+    if(function == "sendRequest"){
+        out << function;
+
+        QMap<QString, QString> m;
+        in >> m;
+        Store::purchase(list.at(0), m);
+
+        QString message = "request complete";
+        out << message;
+    }
+
+    if(function == "getRequests"){
+        QVector<QStringList> qv;
+        QMap<QString, QMap<QString, QString>> m;
+        Store::getPurchaseInfo(list.at(0), qv, m);
+
+        out << function << qv << m;
     }
 
     //sissyVI--Finish

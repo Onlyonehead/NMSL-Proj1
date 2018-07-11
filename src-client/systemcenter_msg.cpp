@@ -660,9 +660,9 @@ void SystemCenter::readMessage()
             ui->tableWidget_A->insertRow(result.size()-i-1);
             QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
             ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n  "
-                                                                  + "from id " + result.at(i).at(1) + " -> "
-                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
-                                                                  result.at(i).at(3)));
+                                                                                  + "from id " + result.at(i).at(1) + " -> "
+                                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
+                                                                                  result.at(i).at(3)));
         }
         ui->tableWidget_A->setRowCount(result.size());
     }
@@ -675,9 +675,9 @@ void SystemCenter::readMessage()
             ui->tableWidget_A->insertRow(result.size()-i-1);
             QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
             ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
-                                                                  + "from id " + result.at(i).at(1) + " -> "
-                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
-                                                                  result.at(i).at(3)));
+                                                                                  + "from id " + result.at(i).at(1) + " -> "
+                                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
+                                                                                  result.at(i).at(3)));
         }
         ui->tableWidget_A->setRowCount(result.size());
     }
@@ -746,7 +746,62 @@ void SystemCenter::readMessage()
         }
     }
 
+    if(from == "getAllRequests"){
+        in >> qv_requests;
+
+        ui->tableWidget_check->verticalHeader()->setVisible(false); //设置表垂直头不可见
+        ui->tableWidget_check->setRowCount(qv_requests.size());//设置行数，与公司所有私服种数相同
+        ui->tableWidget_check->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 70); //设置列的宽度
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(1, 70);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 260);
+        ui->pushButton_change->setVisible(false);
+        ui->pushButton_commit->setVisible(false);
+
+        int i=0;
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_requests.constBegin(); it!=qv_requests.constEnd(); ++it){
+            ui->tableWidget_check->setItem(i, 0, new QTableWidgetItem(it->at(0)));
+            ui->tableWidget_check->setItem(i, 1, new QTableWidgetItem(it->at(1)));
+            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(it->at(2)));
+            ++i;
+        }
+    }
+
+    if(from == "getCheckDetail"){
+        QStringList qsl_s;
+        QVector<QStringList> qv;
+        in >> qsl_s >> qv;
+
+        qDebug()<<qv.size();
+
+        ui->label_storeN->setText(qsl_s.at(0));
+        ui->label_manager->setText(qsl_s.at(1));
+        ui->label_location->setText(qsl_s.at(2));
+
+        ui->tableWidget_checkDetail->verticalHeader()->setVisible(false);
+        ui->tableWidget_checkDetail->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
+        ui->tableWidget_checkDetail->setRowCount(qv.size());//设置行数，与搜索结果size相同
+        ui->tableWidget_checkDetail->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
+        int i=0;
+        QVector<QStringList>::const_iterator it;
+        for(it=qv.constBegin(); it!=qv.constEnd(); ++it){
+            for(int j=0; j<5; ++j){
+                ui->tableWidget_checkDetail->setItem(i,j,new QTableWidgetItem(it->at(j)));
+            }
+            ++i;
+        }
+    }
+
+    if(from == "changeAmount"){
+        QString amount;
+        in >> amount;
+        ui->tableWidget_checkDetail->item(ui->label_sell_row->text().toInt(), 4)->setText(amount);
+    }
+
     //sissyVI--Finish
 
-//    m_tcpsocket->disconnectFromHost();
+    //    m_tcpsocket->disconnectFromHost();
 }

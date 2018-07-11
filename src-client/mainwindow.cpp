@@ -191,7 +191,6 @@ void MainWindow::setCursor(){
     {
         button.at(i)->setCursor(QCursor(Qt::PointingHandCursor));
     }
-    //    ui.pushButton->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
 
@@ -596,29 +595,6 @@ void MainWindow::readMessage()
         setTableWidget_sellGoods();//刷新页面
     }
 
-    //有两个地方调用
-    if(from == "getPicPath"){
-        QString tab, path;
-        in >> tab >> path;
-
-        QPixmap *pixmap = new QPixmap("./" + path);
-        if (pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
-        }
-        if (pixmap->isNull()){
-            pixmap = new QPixmap(":/default.jpg");
-        }
-
-        if(tab == "delivery"){
-            ui->label_delivery_pic->setScaledContents(true);
-            ui->label_delivery_pic->setPixmap(*pixmap);
-        }
-        if(tab == "warehouse"){
-            ui->label_store_clothPic->setScaledContents(true);
-            ui->label_store_clothPic->setPixmap(*pixmap);
-        }
-    }
-
     if(from == "MainWindowInit"){
         in >> qv_clothes;
         ui->progressBar->setValue(70);
@@ -641,6 +617,18 @@ void MainWindow::readMessage()
         }
         in >> record_size;
         ui->progressBar->setValue(100);
+    }
+
+    if(from == "sendRequest"){
+        QString message;
+        in >> message;
+        qDebug()<<message;
+
+        setStackedWidget_delivery();
+    }
+
+    if(from == "getRequests"){
+        in >> qv_allRequest >> m_requestDetail;
     }
 }
 
