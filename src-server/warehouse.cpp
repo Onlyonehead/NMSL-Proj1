@@ -232,12 +232,12 @@ void Warehouse::deliverGoods(QString id, Order& order){
     }
 
 
-    QStringList sqlist;
-    sqlist.append(order.getDatetime());
-    sqlist.append(id);
-    sqlist.append(order.getId());
-    sqlist.append(goods);
-    SQLTool::insert("wh_history",sqlist);
+//    QStringList sqlist;
+//    sqlist.append(order.getDatetime());
+//    sqlist.append(id);
+//    sqlist.append(order.getId());
+//    sqlist.append(goods);
+//    SQLTool::insert("wh_history",sqlist);
 }
 
 

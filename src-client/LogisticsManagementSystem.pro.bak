@@ -53,10 +53,12 @@ SOURCES += main.cpp \
     sell_a.cpp \
     warehouse_d.cpp \
 <<<<<<< HEAD
-    sell_b.cpp
-=======
+    sell_b.cpp \
     logistics.cpp
->>>>>>> f9438fa568f8dda0d43b26bcec9d99f7f4b7ab08
+=======
+    logistics.cpp \
+    tool.cpp
+>>>>>>> c0c43b4b323ada1e166ebf7b1505debe969626db
 
 
 
@@ -72,7 +74,8 @@ HEADERS  += \
     staff.h \
     stable.h \
     sqltool.h \
-    order.h
+    order.h \
+    tool.h
 
 
 

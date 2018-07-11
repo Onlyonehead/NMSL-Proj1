@@ -237,10 +237,22 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_191->setText(QChar(0xf52d));
     ui->label_191->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_194->setFont(font);
+    ui->label_194->setText(QChar(0xf474));
+    ui->label_194->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_196->setFont(font);
+    ui->label_196->setText(QChar(0xf1b3));
+    ui->label_196->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_198->setFont(font);
+    ui->label_198->setText(QChar(0xf59d));
+    ui->label_198->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
-    sp_font.setPointSize(20);
+    sp_font.setPointSize(18);
 
     ui->pushButton_font_sellSearch->setFont(sp_font);
     ui->pushButton_font_sellSearch->setText(QChar(0xf0d0));
@@ -248,7 +260,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->label_navigator->setFont(sp_font);
-    ui->label_navigator->setText(QChar(0xf59f));
+    ui->label_navigator->setText(QChar(0xf5a0));
     ui->label_navigator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
     //initialize search icon
@@ -357,6 +369,16 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_B->verticalHeader()->setDefaultSectionSize(50);
     ui->tableWidget_logistics_B->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_B->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_C->horizontalHeader()->setDefaultSectionSize(85);
+    ui->tableWidget_logistics_C->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_C->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_C->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_D->setColumnWidth(1, 70);
+    ui->tableWidget_logistics_D->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_D->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_D->setAlternatingRowColors(true);
 
 
 
@@ -533,7 +555,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
 
-        ui->pushButton_A->setText("");
+        ui->pushButton_A->setText("Replenish");
         ui->pushButton_B->setText("");
         ui->pushButton_C->setText("");
         ui->pushButton_D->setText("");
@@ -548,7 +570,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_A->setText("Info");
         ui->pushButton_B->setText("Cargo");
         ui->pushButton_C->setText("Stock");
-        ui->pushButton_D->setText("Replenish");
+        ui->pushButton_D->setText("Demand");
     }
     if(index == 4){
         ui->pushButton_A->setVisible(true);
