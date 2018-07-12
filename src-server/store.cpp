@@ -318,3 +318,19 @@ void Store::storeArrive(QString store_id, QString time_com, Order& o){
 
 }
 
+/**
+ * purchase request rejected by houzicun
+ *
+ * @author sissyVI
+ * @param store_id
+ * @param time_com
+ */
+void Store::logisticsReject(QString store_id, QString time_com){
+    QStringList qsl;
+    qsl.append("id_store");
+    qsl.append(store_id);
+    qsl.append("date_check");
+    qsl.append(time_com);
+    SQLTool::update("store_pRecord", "checked", "2", qsl);
+}
+

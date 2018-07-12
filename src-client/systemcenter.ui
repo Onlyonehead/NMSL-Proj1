@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -9410,7 +9410,7 @@ QPushButton:hover{
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_showRequests_4">
+      <widget class="QPushButton" name="pushButton_showArrive">
        <property name="geometry">
         <rect>
          <x>250</x>
@@ -9458,13 +9458,13 @@ QPushButton:hover{
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_2">
+      <widget class="QTableWidget" name="tw_sell_C1">
        <property name="geometry">
         <rect>
          <x>30</x>
          <y>90</y>
-         <width>101</width>
-         <height>179</height>
+         <width>108</width>
+         <height>209</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -9506,7 +9506,7 @@ QTableWidget::item{
         <bool>false</bool>
        </attribute>
        <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>90</number>
+        <number>100</number>
        </attribute>
        <column>
         <property name="text">
@@ -9514,13 +9514,13 @@ QTableWidget::item{
         </property>
        </column>
       </widget>
-      <widget class="QGroupBox" name="groupBox_10">
+      <widget class="QGroupBox" name="groupBox_shopC">
        <property name="geometry">
         <rect>
-         <x>151</x>
+         <x>154</x>
          <y>80</y>
-         <width>269</width>
-         <height>190</height>
+         <width>250</width>
+         <height>220</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -9577,7 +9577,7 @@ background: none;
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_storeN_5">
+       <widget class="QLabel" name="label_storeN_C">
         <property name="geometry">
          <rect>
           <x>119</x>
@@ -9610,7 +9610,7 @@ background: none;
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_font_storeN_5">
+       <widget class="QLabel" name="label_font_storeN_C">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -9640,7 +9640,7 @@ background: none;
         <property name="geometry">
          <rect>
           <x>49</x>
-          <y>91</y>
+          <y>103</y>
           <width>61</width>
           <height>20</height>
          </rect>
@@ -9669,11 +9669,11 @@ background: none;
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_manager_5">
+       <widget class="QLabel" name="label_manager_C">
         <property name="geometry">
          <rect>
           <x>119</x>
-          <y>91</y>
+          <y>103</y>
           <width>110</width>
           <height>20</height>
          </rect>
@@ -9702,11 +9702,11 @@ background: none;
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_font_manager_5">
+       <widget class="QLabel" name="label_font_manager_C">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>93</y>
+          <y>105</y>
           <width>18</width>
           <height>16</height>
          </rect>
@@ -9732,7 +9732,7 @@ background: none;
         <property name="geometry">
          <rect>
           <x>49</x>
-          <y>134</y>
+          <y>158</y>
           <width>61</width>
           <height>20</height>
          </rect>
@@ -9761,11 +9761,11 @@ background: none;
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_location_5">
+       <widget class="QLabel" name="label_location_C">
         <property name="geometry">
          <rect>
           <x>119</x>
-          <y>134</y>
+          <y>158</y>
           <width>110</width>
           <height>20</height>
          </rect>
@@ -9794,11 +9794,11 @@ background: none;
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_font_location_5">
+       <widget class="QLabel" name="label_font_location_C">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>136</y>
+          <y>160</y>
           <width>18</width>
           <height>16</height>
          </rect>
@@ -9820,27 +9820,14 @@ background: none;
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_sell_idPurchase_5">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>20</y>
-          <width>15</width>
-          <height>15</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_3">
+      <widget class="QTableWidget" name="tw_sell_C2">
        <property name="geometry">
         <rect>
-         <x>439</x>
+         <x>421</x>
          <y>90</y>
-         <width>268</width>
-         <height>179</height>
+         <width>285</width>
+         <height>209</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -9886,6 +9873,11 @@ QTableWidget::item{
        </attribute>
        <column>
         <property name="text">
+         <string>id</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
          <string>date_commit</string>
         </property>
        </column>
@@ -9895,13 +9887,13 @@ QTableWidget::item{
         </property>
        </column>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_4">
+      <widget class="QTableWidget" name="tw_sell_C3">
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>310</y>
-         <width>510</width>
-         <height>230</height>
+         <y>350</y>
+         <width>470</width>
+         <height>190</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -9969,11 +9961,14 @@ QTableWidget::item{
       <widget class="QLabel" name="label_font_truck">
        <property name="geometry">
         <rect>
-         <x>558</x>
-         <y>390</y>
-         <width>150</width>
-         <height>150</height>
+         <x>516</x>
+         <y>350</y>
+         <width>190</width>
+         <height>190</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:none;</string>
        </property>
        <property name="text">
         <string/>
@@ -10007,7 +10002,7 @@ QTableWidget::item{
 }</string>
        </property>
        <property name="text">
-        <string>id</string>
+        <string>name</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -10016,7 +10011,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_177">
        <property name="geometry">
         <rect>
-         <x>460</x>
+         <x>480</x>
          <y>70</y>
          <width>140</width>
          <height>20</height>
@@ -10084,10 +10079,10 @@ QTableWidget::item{
       <widget class="QLabel" name="label_179">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>290</y>
+         <x>30</x>
+         <y>320</y>
          <width>80</width>
-         <height>20</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -10118,10 +10113,10 @@ QTableWidget::item{
       <widget class="QLabel" name="label_180">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>290</y>
+         <x>140</x>
+         <y>320</y>
          <width>130</width>
-         <height>20</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -10152,10 +10147,10 @@ QTableWidget::item{
       <widget class="QLabel" name="label_181">
        <property name="geometry">
         <rect>
-         <x>330</x>
-         <y>290</y>
+         <x>320</x>
+         <y>320</y>
          <width>80</width>
-         <height>20</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -10186,10 +10181,10 @@ QTableWidget::item{
       <widget class="QLabel" name="label_182">
        <property name="geometry">
         <rect>
-         <x>440</x>
-         <y>290</y>
+         <x>430</x>
+         <y>320</y>
          <width>80</width>
-         <height>20</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -10217,21 +10212,40 @@ QTableWidget::item{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <zorder>pushButton_clearRequests_4</zorder>
-      <zorder>pushButton_showRequests_4</zorder>
-      <zorder>tableWidget_2</zorder>
-      <zorder>groupBox_2</zorder>
-      <zorder>groupBox_10</zorder>
-      <zorder>tableWidget_3</zorder>
-      <zorder>tableWidget_4</zorder>
-      <zorder>label_font_truck</zorder>
-      <zorder>label_176</zorder>
-      <zorder>label_177</zorder>
-      <zorder>label_178</zorder>
-      <zorder>label_179</zorder>
-      <zorder>label_180</zorder>
-      <zorder>label_181</zorder>
-      <zorder>label_182</zorder>
+      <widget class="QLabel" name="label_183">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>70</y>
+         <width>60</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>id</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">

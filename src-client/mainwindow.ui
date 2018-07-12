@@ -442,7 +442,7 @@ QPushButton{
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="tabsClosable">
      <bool>true</bool>
@@ -1243,7 +1243,7 @@ QScrollBar::add-line{background:transparent;}
        <property name="geometry">
         <rect>
          <x>685</x>
-         <y>430</y>
+         <y>410</y>
          <width>80</width>
          <height>80</height>
         </rect>
@@ -1323,7 +1323,7 @@ border:0px;</string>
        <property name="geometry">
         <rect>
          <x>675</x>
-         <y>230</y>
+         <y>210</y>
          <width>100</width>
          <height>180</height>
         </rect>

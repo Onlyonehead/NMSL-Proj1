@@ -227,6 +227,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_font_location->setText(QChar(0xf124));
     ui->label_font_location->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_font_storeN_C->setFont(font);
+    ui->label_font_storeN_C->setText(QChar(0xf54e));
+    ui->label_font_storeN_C->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_manager_C->setFont(font);
+    ui->label_font_manager_C->setText(QChar(0xf222));
+    ui->label_font_manager_C->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_location_C->setFont(font);
+    ui->label_font_location_C->setText(QChar(0xf124));
+    ui->label_font_location_C->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
     ui->label_85->setFont(font);
     ui->label_85->setText(QChar(0xf1b3));
     ui->label_85->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
@@ -276,6 +288,15 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_navigator->setFont(sp_font);
     ui->label_navigator->setText(QChar(0xf5a0));
     ui->label_navigator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    QFont sp_font2;
+    sp_font2.setFamily(fontFamilies.at(0));
+    sp_font2.setPointSize(90);
+
+    ui->label_font_truck->setFont(sp_font2);
+    ui->label_font_truck->setText(QChar(0xf0d1));
+    ui->label_font_truck->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
     //initialize search icon
 
@@ -599,7 +620,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
         ui->pushButton_A->setText("Record");
         ui->pushButton_B->setText("Delivery");
-        ui->pushButton_C->setText("");
+        ui->pushButton_C->setText("Arrive");
         ui->pushButton_D->setText("");
 
     }
@@ -656,6 +677,7 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_sell_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -686,6 +708,7 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_sell_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -716,6 +739,7 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //C
     ui->frame_2C->setVisible(true);
+    ui->frame_sell_C->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -878,4 +902,3 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
-

@@ -727,6 +727,65 @@ void Processor::work ()
         out << "rejected";
     }
 
+    if(function == "getArriveRecord"){
+        out << function;
+
+        QString store_id = list.at(0);
+        QVector<QStringList> qv;
+        QSqlQuery sq;
+        QStringList qsl;
+        qsl.append("id_purchase");
+        qsl.append("checked");
+        qsl.append("date_check");
+        SQLTool::search(sq, qsl, "store_pRecord", "id_store", store_id);
+        while(sq.next()){
+            if(sq.value(1).toString()!="0"){
+                QStringList qsla;
+                qsla.append(sq.value(0).toString());
+                qsla.append(sq.value(1).toString());
+                qsla.append(sq.value(2).toString());
+                qv.append(qsla);
+            }
+        }
+
+        out << qv;
+    }
+
+    if(function == "getArriveDetail"){
+        out << function;
+
+        QString purchase_id = list.at(0);
+        QMap<QString, QVector<QStringList> > qm;
+        QMap<QString, QString> qmt;
+        int size;
+        QStringList qsl;
+        qsl.append("id_from");
+        qsl.append("date_arrive");
+        qsl.append("id_clothes");
+        qsl.append("quantity");
+        QSqlQuery sq;
+        SQLTool::search(sq, qsl, "store_arriving", "id_purchase", purchase_id);
+        size = sq.size();
+        while(sq.next()){
+            QStringList qsld;
+            qsld.append(sq.value(2).toString());
+            qsld.append(sq.value(3).toString());
+            if(qm.contains(sq.value(0).toString())){
+                QVector<QStringList> qv = qm.value(sq.value(0).toString());
+                qv.append(qsld);
+                qm.insert(sq.value(0).toString(), qv);
+            }else{
+                QVector<QStringList> qv;
+                qv.append(qsld);
+                qm.insert(sq.value(0).toString(), qv);
+
+                qmt.insert(sq.value(0).toString(), sq.value(1).toString());
+            }
+        }
+
+        out << size << qm << qmt;
+    }
+
     //sissyVI--Finish
 
     out.device()->seek(0);

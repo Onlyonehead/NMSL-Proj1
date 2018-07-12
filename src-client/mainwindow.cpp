@@ -4,7 +4,6 @@
 #include "login.h"
 #include "record.h"
 
-#include <QPainter>
 #include <QtMath>
 #include <QFontDatabase>
 #include <QDebug>
@@ -391,9 +390,10 @@ void MainWindow::replyFinished(QNetworkReply *reply)
  */
 void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QString s5, QString s6)
 {
-    QElapsedTimer t;
-
+    addFont();
     this->show();
+
+    QElapsedTimer t;
 
     ui->progressBar->setRange(0, 100);//设置进度条范围
     ui->progressBar->setValue(0);
@@ -423,7 +423,6 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     QApplication::processEvents();
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(removeSubTab(int)));
     ui->frame_exit->installEventFilter(this);
-    addFont();
     setCursor();
     connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
     ui->progressBar->setValue(20);
@@ -598,6 +597,7 @@ void MainWindow::readMessage()
         }
         in >> record_size;
         ui->progressBar->setValue(100);
+        ui->progressBar->setVisible(false);
     }
 
     if(from == "sendRequest"){

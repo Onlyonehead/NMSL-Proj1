@@ -20,6 +20,7 @@ public:
     static void changePAmount(QString, QString, QString);
 
     static void storeArrive(QString, QString, Order&);
+    static void logisticsReject(QString, QString);
 };
 
 #endif // STORE_H

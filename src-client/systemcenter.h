@@ -211,6 +211,14 @@ private slots:
 
     void on_pushButton_21_clicked();
 
+    void on_pushButton_showArrive_clicked();
+
+    void on_tw_sell_C1_cellClicked(int row, int column);
+
+    void on_tw_sell_C2_cellClicked(int row, int column);
+
+    void on_pushButton_clearRequests_4_clicked();
+
 signals:
     void stringReturn(QString);
 
