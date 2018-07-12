@@ -44,7 +44,18 @@ void MainWindow::setTableWidget_records(){
 
         for(it2=m.begin(); it2!=m.end(); ++it2){
             QApplication::processEvents();
-            ui->tableWidget_records->setItem(i,3,new QTableWidgetItem(it2.key())); //style
+
+            QString styleS;
+            QString idC = it2.key();
+            QVector<QStringList>::const_iterator itC;
+            for(itC=qv_clothes.constBegin(); itC!=qv_clothes.constEnd(); ++itC){
+                if(itC->at(0)==idC){
+                    styleS = itC->at(1)+" "+itC->at(2);
+                    break;
+                }
+            }
+
+            ui->tableWidget_records->setItem(i,3,new QTableWidgetItem(styleS)); //style
             ui->tableWidget_records->setItem(i,4,new QTableWidgetItem(it2.value())); //amount
             ++i;
         }

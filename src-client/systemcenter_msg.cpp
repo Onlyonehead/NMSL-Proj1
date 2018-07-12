@@ -225,6 +225,271 @@ void SystemCenter::readMessage()
             ui->tableWidget_C2->setSpan(0, 0, count, 1);
         }
     }
+
+    if(from == "pB5"){
+        ui->tableWidget_C1->setRowCount(0);
+        ui->tableWidget_C2->setRowCount(0);
+
+        QMap<QString, QString> warehouse;
+
+        QMap<QString,QMap<QString, QString>> stock = stock_map;
+
+        QMap<QString, QMap<QString, QStringList>> arriving = arriving_map;
+
+        QVector<QStringList> clothes = this->clothes;
+
+        in >> warehouse;
+
+        int count_i = 0;
+        int count_j = 0;
+
+        for (QMap<QString,QMap<QString, QString>>::const_iterator j
+             = stock.begin(); j != stock.end(); ++j){
+            QApplication::processEvents();
+            for(QMap<QString, QString>::const_iterator i = j.value().begin(); i != j.value().end(); ++i){
+                QStringList list;
+                for(QStringList l : clothes){
+                    if(l.at(0) == i.key()){
+                        list = l;
+                        break;
+                    }
+                }
+                QApplication::processEvents();
+
+                ui->tableWidget_C1->insertRow(count_i);
+                ui->tableWidget_C1->setItem(count_i, 0, new QTableWidgetItem(warehouse.find(j.key()).value()));
+                ui->tableWidget_C1->setItem(count_i, 1, new QTableWidgetItem(i.key()));
+                ui->tableWidget_C1->setItem(count_i, 2, new QTableWidgetItem(list.at(1)));
+                QApplication::processEvents();
+                ui->tableWidget_C1->setItem(count_i, 3, new QTableWidgetItem(list.at(2)));
+                ui->tableWidget_C1->setItem(count_i, 4, new QTableWidgetItem(i.value()));
+                count_i++;
+                QApplication::processEvents();
+            }
+            if(j.value().size() > 1){
+                //                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
+                ui->tableWidget_C1->setSpan(count_i-j.value().size(), 0, j.value().size(), 1);
+
+            }
+        }
+
+        for (QMap<QString,QMap<QString, QStringList>>::const_iterator j
+             = arriving.begin(); j != arriving.end(); ++j){
+            QApplication::processEvents();
+            for(QMap<QString, QStringList>::const_iterator i =
+                j.value().begin(); i != j.value().end(); ++i){
+                QStringList list;
+                for(QStringList l : clothes){
+                    if(l.at(0) == i.key()){
+                        list = l;
+                        break;
+                    }
+                }
+                QApplication::processEvents();
+                ui->tableWidget_C2->insertRow(count_j);
+                ui->tableWidget_C2->setItem(count_j, 0, new QTableWidgetItem(warehouse.find(j.key()).value()));
+                ui->tableWidget_C2->setItem(count_j, 1, new QTableWidgetItem(i.key()));
+                ui->tableWidget_C2->setItem(count_j, 2, new QTableWidgetItem(list.at(1)));
+                QApplication::processEvents();
+                ui->tableWidget_C2->setItem(count_j, 3, new QTableWidgetItem(list.at(2)));
+                ui->tableWidget_C2->setItem(count_j, 4, new QTableWidgetItem(i.value().at(0)));
+                QStringList s = i.value().at(1).split(QRegExp("[A-Z]"));
+                ui->tableWidget_C2->setItem(count_j, 5, new QTableWidgetItem(s.at(0) + " " + s.at(1)));
+
+                QApplication::processEvents();
+                count_j++;
+            }
+            if(j.value().size() > 1){
+                //                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
+                ui->tableWidget_C2->setSpan(count_j-j.value().size(), 0, j.value().size(), 1);
+
+            }
+
+        }
+
+        progressBar();
+        QApplication::processEvents();
+        ui->tableWidget_C1->setRowCount(count_i);
+        ui->tableWidget_C2->setRowCount(count_j);
+    }
+    if(from == "pB8"){
+        ui->tableWidget_B->setRowCount(0);
+
+        QStringList list;
+
+        in >> list;
+
+        int n = list.size();
+
+        while(n){
+            QApplication::processEvents();
+            ui->tableWidget_B->insertRow(list.size()-n);
+            ui->tableWidget_B->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_B->setRowCount(list.size());
+
+        progressBar();
+    }
+    if(from == "tWBiC"){
+        QMap<QString, QString> warehouse;
+        QVector<QStringList> stock = this->stock;
+        QStringList result;
+        in >> warehouse;
+        in >> result;
+
+
+        QString id = result.at(0);
+        QString style = result.at(1);
+        QString size = result.at(2);
+        QString path = result.at(3);
+        QString price = result.at(4);
+
+        QApplication::processEvents();
+        QPixmap *pixmap = new QPixmap("./" + path);
+        if(pixmap->isNull()){
+            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        }
+
+        if (pixmap->isNull()){
+            pixmap = new QPixmap(":/default.jpg");
+        }
+        QApplication::processEvents();
+        ui->label_clothes->setScaledContents(true);
+        ui->label_clothes->setPixmap(*pixmap);
+        delete pixmap;
+        QApplication::processEvents();
+
+        ui->label_29->setText(id);
+        ui->label_30->setText(style);
+        ui->label_31->setText(price);
+        ui->label_32->setText(size);
+        QApplication::processEvents();
+
+        int quantity_count = 0;
+
+        int i = 0;
+
+        for(QStringList list : stock){
+            QApplication::processEvents();
+            if(list.at(1) == id){
+                ui->tableWidget_B_2->insertRow(i);
+                ui->tableWidget_B_2->setItem(i, 0, new QTableWidgetItem(warehouse.find(list.at(0)).value()));
+                ui->tableWidget_B_2->setItem(i, 1, new QTableWidgetItem(list.at(2)));
+                quantity_count += list.at(2).toInt();
+                i++;
+            }
+        }
+        ui->tableWidget_B_2->setRowCount(i);
+        ui->label_35->setText(QString::number(quantity_count));
+        progressBar_fast();
+    }
+    if(from == "pB10"){
+        ui->tableWidget_D1->setRowCount(0);
+
+        QStringList list;
+
+        in >> list;
+
+        int n = list.size();
+
+        while(n){
+            QApplication::processEvents();
+            ui->tableWidget_D1->insertRow(list.size()-n);
+            ui->tableWidget_D1->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_D1->setRowCount(list.size());
+
+        ui->tableWidget_D2->setRowCount(0);
+
+        list.clear();
+
+        in >> list;
+
+        n = list.size();
+
+        while(n-1){
+
+            //n-1 为了不显示仓库1
+
+            QApplication::processEvents();
+            ui->tableWidget_D2->insertRow(list.size()-n);
+            ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n+1)));
+            n--;
+        }
+
+        ui->tableWidget_D2->setRowCount(list.size()-1);
+
+        progressBar();
+    }
+    if(from == "tWD1iC"){
+        QStringList result;
+        in >> result;
+
+
+        QString id = result.at(0);
+        QString style = result.at(1);
+        QString size = result.at(2);
+        QString path = result.at(3);
+        QString price = result.at(4);
+
+        QApplication::processEvents();
+        QPixmap *pixmap = new QPixmap("./" + path);
+        if(pixmap->isNull()){
+            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        }
+
+        if (pixmap->isNull()){
+            pixmap = new QPixmap(":/default.jpg");
+        }
+        QApplication::processEvents();
+        ui->label_clothes_D->setScaledContents(true);
+        ui->label_clothes_D->setPixmap(*pixmap);
+        delete pixmap;
+        QApplication::processEvents();
+
+        ui->label_72->setText(id);
+        ui->label_73->setText(style);
+        ui->label_74->setText(price);
+        ui->label_75->setText(size);
+        QApplication::processEvents();
+
+        progressBar_fast();
+    }
+
+    if(from == "tWD2iC"){
+        ui->tableWidget_D3->setRowCount(0);
+        QMap<QString, QString> stock;
+        in >> stock;
+
+        QMap<QString, QString> clothes;
+        in >> clothes;
+
+        QApplication::processEvents();
+
+        int count = 0;
+        for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
+            QString clothes_name;
+            clothes_name = clothes.value(i.key());
+            QApplication::processEvents();
+            ui->tableWidget_D3->insertRow(count);
+            ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                       " - " + clothes_name));
+            ui->tableWidget_D3->setItem(count, 1, new QTableWidgetItem(i.value()));
+
+            QApplication::processEvents();
+            count++;
+        }
+
+        ui->tableWidget_D3->setRowCount(count);
+
+
+        progressBar_fast();
+    }
+
     if(from == "order_send"){
         QString msg;
         in >> msg;
@@ -489,8 +754,35 @@ void SystemCenter::readMessage()
         delete pixmap;
         QApplication::processEvents();
     }
+    if(from == "wh_history"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n  "
+                                                                                  + "from id " + result.at(i).at(1) + " -> "
+                                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
+                                                                                  result.at(i).at(3)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+    }
 
-
+    if(from == "wh_history_all"){
+        ui->tableWidget_A->setRowCount(0);
+        QVector<QStringList> result;
+        in >> result;
+        for(int i = result.size()-1; i > -1; i--){
+            ui->tableWidget_A->insertRow(result.size()-i-1);
+            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
+            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
+                                                                                  + "from id " + result.at(i).at(1) + " -> "
+                                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
+                                                                                  result.at(i).at(3)));
+        }
+        ui->tableWidget_A->setRowCount(result.size());
+    }
 
 
     //sissyVI--Start
@@ -549,14 +841,132 @@ void SystemCenter::readMessage()
 
             for(it2=m.begin(); it2!=m.end(); ++it2){
                 QApplication::processEvents();
-                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(it2.key())); //style
+
+                QString styleS;
+                QString idC = it2.key();
+                QVector<QStringList>::const_iterator itC;
+                for(itC=clothes.constBegin(); itC!=clothes.constEnd(); ++itC){
+                    if(itC->at(0)==idC){
+                        styleS = itC->at(1)+" "+itC->at(2);
+                        break;
+                    }
+                }
+
+                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(styleS)); //style
                 ui->tableWidget_storeRecord->setItem(i,4,new QTableWidgetItem(it2.value())); //amount
                 ++i;
+            }
+        }
+        if(record_size>0)
+            ui->tableWidget_storeRecord->setCurrentCell(0, 0);
+    }
+
+    if(from == "getAllRequests"){
+        in >> qv_requests;
+
+        ui->tableWidget_check->verticalHeader()->setVisible(false); //设置表垂直头不可见
+        ui->tableWidget_check->setRowCount(qv_requests.size());//设置行数，与公司所有私服种数相同
+        ui->tableWidget_check->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 70); //设置列的宽度
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(1, 70);
+        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 260);
+        ui->pushButton_change->setVisible(false);
+        ui->pushButton_commit->setVisible(false);
+        ui->pushButton_reject->setVisible(false);
+
+        int i=0;
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_requests.constBegin(); it!=qv_requests.constEnd(); ++it){
+            ui->tableWidget_check->setItem(i, 0, new QTableWidgetItem(it->at(0)));
+            ui->tableWidget_check->setItem(i, 1, new QTableWidgetItem(it->at(1)));
+            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(it->at(2)));
+            ++i;
+        }
+    }
+
+    if(from == "getCheckDetail"){
+        QStringList qsl_s;//店铺信息
+        QVector<QStringList> qv;//请求详细信息
+        in >> qsl_s >> qv;
+
+        qDebug()<<qv.size();
+
+        ui->label_storeN->setText(qsl_s.at(0));
+        ui->label_manager->setText(qsl_s.at(1));
+        ui->label_location->setText(qsl_s.at(2));
+
+        ui->tableWidget_checkDetail->verticalHeader()->setVisible(false);
+        ui->tableWidget_checkDetail->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
+        ui->tableWidget_checkDetail->setRowCount(qv.size());//设置行数，与搜索结果size相同
+        ui->tableWidget_checkDetail->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
+        int i=0;
+        QVector<QStringList>::const_iterator it;
+        for(it=qv.constBegin(); it!=qv.constEnd(); ++it){
+            for(int j=0; j<5; ++j){
+                ui->tableWidget_checkDetail->setItem(i,j,new QTableWidgetItem(it->at(j)));
+            }
+            ++i;
+        }
+
+        ui->pushButton_commit->setVisible(true);
+        ui->pushButton_reject->setVisible(true);
+    }
+
+    if(from == "changeAmount"){
+        QString amount;
+        in >> amount;
+        ui->tableWidget_checkDetail->item(ui->label_sell_row->text().toInt(), 4)->setText(amount);
+    }
+
+    if(from == "commitRequest"){
+        QString s;
+        in >> s;
+        QMessageBox::information(this,"completed", "\nrequest approved successfully!",QMessageBox::Ok);
+
+        ui->pushButton_change->setVisible(false);
+        ui->pushButton_commit->setVisible(false);
+        ui->pushButton_reject->setVisible(false);
+        ui->lineEdit_sell_amount->setText("");
+        ui->tableWidget_checkDetail->setRowCount(0);
+        ui->label_storeN->setText("");
+        ui->label_manager->setText("");
+        ui->label_location->setText("");
+
+        //从表中删去已处理请求
+        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
+            if(ui->label_sell_idPurchase->text()==ui->tableWidget_check->item(i, 0)->text()){
+                ui->tableWidget_check->removeRow(i);
+                break;
+            }
+        }
+    }
+
+    if(from == "requestReject"){
+        QString s;
+        in >> s;
+        QMessageBox::information(this,"completed", "\nrequest rejected successfully!",QMessageBox::Ok);
+
+        ui->pushButton_change->setVisible(false);
+        ui->pushButton_commit->setVisible(false);
+        ui->pushButton_reject->setVisible(false);
+        ui->lineEdit_sell_amount->setText("");
+        ui->tableWidget_checkDetail->setRowCount(0);
+        ui->label_storeN->setText("");
+        ui->label_manager->setText("");
+        ui->label_location->setText("");
+
+        //从表中删去已处理请求
+        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
+            if(ui->label_sell_idPurchase->text()==ui->tableWidget_check->item(i, 0)->text()){
+                ui->tableWidget_check->removeRow(i);
+                break;
             }
         }
     }
 
     //sissyVI--Finish
 
-//    m_tcpsocket->disconnectFromHost();
+    //    m_tcpsocket->disconnectFromHost();
 }

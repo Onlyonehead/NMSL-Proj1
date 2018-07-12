@@ -167,6 +167,16 @@ private slots:
     
     void on_tableWidget_generateOrder_cellClicked(int row, int column);
 
+    void on_pushButton_showRequests_clicked();
+
+    void on_tableWidget_check_cellClicked(int row, int column);
+
+    void on_tableWidget_checkDetail_cellClicked(int row, int column);
+
+    void on_pushButton_change_clicked();
+
+    void on_pushButton_clearRequests_clicked();
+
     void on_pushButton_13_clicked();
 
     void on_pushButton_12_clicked();
@@ -182,6 +192,10 @@ private slots:
     void on_logistics_ADD_clicked();
 
     void on_logistics_send_clicked();
+
+    void on_pushButton_commit_clicked();
+
+    void on_pushButton_reject_clicked();
 
 signals:
     void stringReturn(QString);
@@ -218,6 +232,8 @@ private:
     QStringList wh_info; // For logistics A
 
     bool style;
+
+    QVector<QStringList> qv_requests;
 
 };
 

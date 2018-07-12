@@ -38,11 +38,25 @@ void MainWindow::on_tableWidget_warehouse_cellClicked(int row, int column)
 {
     Q_UNUSED(column);
 
-    qsl.clear();
-    qsl.append("getPicPath");
-    qsl.append("warehouse");
-    qsl.append(ui->tableWidget_warehouse->item(row, 0)->text());
-    sendMessage(qsl);
+    QVector<QStringList>::const_iterator it;
+    QString path, style;
+    for(it=qv_clothes.constBegin(); it!=qv_clothes.constEnd(); ++it){
+        if(it->at(0)==ui->tableWidget_warehouse->item(row, 0)->text()){
+            path = it->at(3);
+            style = it->at(1)+" "+it->at(2);
+        }
+    }
+
+    QPixmap *pixmap = new QPixmap("./" + path);
+    if (pixmap->isNull()){
+        download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+    }
+    if (pixmap->isNull()){
+        pixmap = new QPixmap(":/default.jpg");
+    }
+    ui->label_store_clothPic->setScaledContents(true);
+    ui->label_store_clothPic->setPixmap(*pixmap);
+    ui->label_store_clothStyle->setText(style);
 }
 
 

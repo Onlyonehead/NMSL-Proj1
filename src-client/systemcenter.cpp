@@ -213,6 +213,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_107->setText(QChar(0xf56e));
     ui->label_107->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_font_storeN->setFont(font);
+    ui->label_font_storeN->setText(QChar(0xf54e));
+    ui->label_font_storeN->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_manager->setFont(font);
+    ui->label_font_manager->setText(QChar(0xf222));
+    ui->label_font_manager->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_location->setFont(font);
+    ui->label_font_location->setText(QChar(0xf124));
+    ui->label_font_location->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
     ui->label_85->setFont(font);
     ui->label_85->setText(QChar(0xf1b3));
     ui->label_85->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
@@ -250,7 +262,6 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_navigator->setFont(sp_font);
     ui->label_navigator->setText(QChar(0xf5a0));
     ui->label_navigator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
-
 
     //initialize search icon
 
@@ -390,6 +401,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     QApplication::processEvents();
 
+    ui->label_sell_row->setVisible(false);
+    ui->label_sell_idPurchase->setVisible(false);
+    ui->pushButton_change->setVisible(false);
+    ui->pushButton_commit->setVisible(false);
+    ui->pushButton_reject->setVisible(false);
 
     /**
      * purchase page date/time label display
@@ -808,8 +824,6 @@ void SystemCenter::replyFinished(QNetworkReply *reply)
         qDebug() << "Error\n";
     }
 }
-
-
 
 void SystemCenter::on_style_change_clicked()
 {
