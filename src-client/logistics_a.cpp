@@ -180,6 +180,17 @@ void SystemCenter::on_logistics_ADD_clicked()
         QMessageBox::warning(this,"警告", "\n请输入数量！",QMessageBox::Close);
         return;
     }
+
+    QByteArray ba = quantity.toLatin1();
+    const char *s = ba.data();
+    while(*s && *s>='0' && *s<='9') s++;
+
+    if (*s)
+    { //不是纯数字
+        QMessageBox::warning(this,"警告", "\n请输入纯数字！",QMessageBox::Close);
+        return;
+    }
+
     bool flag = false;
     for(int i = 0; i < ui->tableWidget_logistics_D->rowCount(); i++){
         if(ui->tableWidget_logistics_D->item(i, 0)->text() == clothes_id){

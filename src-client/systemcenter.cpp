@@ -29,6 +29,7 @@ SystemCenter::SystemCenter(QWidget *parent) :
     this->setStyleSheet("QFrame{border-radius:10px;}");
 
     ui->progressBar->setVisible(false);
+    ui->pushButton_17->setVisible(false);
     style = false;
 
     /*
@@ -380,6 +381,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_D->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_D->setAlternatingRowColors(true);
 
+    ui->tableWidget_logistics_2A->horizontalHeader()->setDefaultSectionSize(120);
+    ui->tableWidget_logistics_2A->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_2A->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_2A->setAlternatingRowColors(true);
+
 
 
     QApplication::processEvents();
@@ -556,7 +562,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Replenish");
-        ui->pushButton_B->setText("");
+        ui->pushButton_B->setText("History");
         ui->pushButton_C->setText("");
         ui->pushButton_D->setText("");
 
@@ -625,6 +631,7 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_systempage_1->setVisible(true);
     ui->frame_personnelpage_1->setVisible(true);
     ui->frame_sell_A->setVisible(true);
+    ui->frame_logistics_A->setVisible(true);
 
     //B
     ui->frame_2B->setVisible(false);
@@ -632,6 +639,7 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_systempage_2->setVisible(false);
     ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
+    ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(false);
@@ -653,6 +661,7 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_systempage_1->setVisible(false);
     ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
+    ui->frame_logistics_A->setVisible(false);
 
     //B
     ui->frame_2B->setVisible(true);
@@ -660,6 +669,7 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_systempage_2->setVisible(true);
     ui->frame_personnelpage_2->setVisible(true);
     ui->frame_sell_B->setVisible(true);
+    ui->frame_logistics_B->setVisible(true);
 
     //C
     ui->frame_2C->setVisible(false);
@@ -681,6 +691,7 @@ void SystemCenter::on_pushButton_C_clicked()
     ui->frame_systempage_1->setVisible(false);
     ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
+    ui->frame_logistics_A->setVisible(false);
 
     //B
     ui->frame_2B->setVisible(false);
@@ -688,6 +699,7 @@ void SystemCenter::on_pushButton_C_clicked()
     ui->frame_systempage_2->setVisible(false);
     ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
+    ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(true);
@@ -710,6 +722,7 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_systempage_1->setVisible(false);
     ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
+    ui->frame_logistics_A->setVisible(false);
 
     //B
     ui->frame_2B->setVisible(false);
@@ -717,6 +730,7 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_systempage_2->setVisible(false);
     ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
+    ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(false);
@@ -851,3 +865,5 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
+
+

@@ -322,6 +322,25 @@ void Processor::work ()
         out << QString("Done");
     }
 
+    if(function == "orderCheckedInfo"){
+        QSqlQuery query;
+        SQLTool::search(query, "orderChecked");
+        QVector<QStringList> vlist;
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            vlist.append(l);
+        }
+
+
+        out << function;
+        out << vlist;
+    }
+
 
     //system page show garment
     if(function == "sp_sg"){

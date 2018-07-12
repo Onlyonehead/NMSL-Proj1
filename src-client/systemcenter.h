@@ -197,6 +197,16 @@ private slots:
 
     void on_pushButton_reject_clicked();
 
+    void on_pushButton_15_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_pushButton_17_clicked();
+
+    void on_tableWidget_logistics_2A_itemClicked(QTableWidgetItem *item);
+
 signals:
     void stringReturn(QString);
 
@@ -231,6 +241,8 @@ private:
     QString wh_id; // For logistics A
     QString order_id; // For logistics A
     QStringList wh_info; // For logistics A
+
+    QVector<QStringList> orderCheckedList; // For logistic B
 
     bool style;
 

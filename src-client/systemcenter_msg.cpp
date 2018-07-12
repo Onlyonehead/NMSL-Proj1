@@ -592,6 +592,28 @@ void SystemCenter::readMessage()
         }
     }
 
+    if(from == "orderCheckedInfo"){
+        on_pushButton_14_clicked();
+
+        QVector<QStringList> vlist;
+        in >> vlist;
+        this->orderCheckedList = vlist;
+
+        int count = 0;
+        for(QStringList l : vlist){
+            QApplication::processEvents();
+            ui->tableWidget_logistics_2A->insertRow(count);
+            ui->tableWidget_logistics_2A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
+            ui->tableWidget_logistics_2A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
+            ui->tableWidget_logistics_2A->setItem(count, 2, new QTableWidgetItem("Time: " + l.at(2)));
+            QApplication::processEvents();
+            count++;
+        }
+        ui->tableWidget_logistics_2A->setRowCount(count);
+
+        progressBar();
+    }
+
     //systempage show garment info
     if(from == "sp_sg"){
         QVector<QStringList> result;
