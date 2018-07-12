@@ -548,6 +548,51 @@ void Processor::work ()
         out << function;
         out << result;
     }
+    // personnel page 3 update staff information
+    if(function == "pp3_csi"){
+        QString username = list.at(0);
+        QString name = list.at(1);
+        QString gender = list.at(2);
+        QString position = list.at(3);
+        QString email = list.at(4);
+        Staff::updateStaffInfo(username, "name", name);
+        Staff::updateStaffInfo(username, "gender", gender);
+        Staff::updateStaffInfo(username, "position", position);
+        Staff::updateStaffInfo(username, "email", email);
+        out << function;
+    }
+    // personnel page 4 check if email exists
+    if(function == "pp4_ise"){
+        QString email = list.at(0);
+        bool isEmailExisted = Staff::isEmailExisted(email);
+        out << function;
+        out << isEmailExisted;
+    }
+    // personnel page 4 check if old password right
+    if(function == "pp4_cop"){
+        QString email = list.at(0);
+        QString oldPassword = list.at(1);
+        QStringList result;
+        Staff::Info("email", email, result);
+        bool isPasswordRight;
+        if(oldPassword == result.at(1)){
+            isPasswordRight = true;
+        }else {
+            isPasswordRight = false;
+        }
+        out << function;
+        out << isPasswordRight;
+
+    }
+    //personnel page 4 update staff information
+    if(function == "pp4_csp"){
+        QString email = list.at(0);
+        QString newPassword = list.at(1);
+        QString newUsername = list.at(2);
+        Staff::alterStaffUsername(email, newUsername);
+        Staff::updateStaffInfo(newUsername, "password", newPassword);
+        out << function;
+    }
     // purchase page show garment info
     if(function == "pcp_sg"){
         QVector<QStringList> result;

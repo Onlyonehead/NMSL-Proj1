@@ -89,6 +89,30 @@ void Staff::Info(QString searchAttribute, QString searchValue, QVector<QStringLi
 
 
 /**
+ * @brief Staff::Info
+ * @param searchAttribute
+ * @param searchValue
+ * @param staffInfo
+ * return signal staffInfo
+ * @author Yihan Dong
+ */
+void Staff::Info(QString searchAttribute, QString searchValue, QStringList &staffInfo)
+{
+    QSqlQuery query;
+    SQLTool::search(query, searchAttribute, searchValue, staffInfo);
+    if(query.next()){
+        staffInfo.append(query.value(0).toString());
+        staffInfo.append(query.value(1).toString());
+        staffInfo.append(query.value(2).toString());
+        staffInfo.append(query.value(3).toString());
+        staffInfo.append(query.value(4).toString());
+        staffInfo.append(query.value(5).toString());
+        staffInfo.append(query.value(6).toString());
+    }
+}
+
+
+/**
   * update staff information by username
   *
   * @author Yihan Dong

@@ -754,6 +754,41 @@ void SystemCenter::readMessage()
         ui->lineEdit_addNewEmail->clear();
         ui->label_showNewPortrait->clear();
         ui->label_showNewPortraitName->clear();
+    }// personnel page 4 check if email exists
+    if(from == "pp4_ise"){
+        bool isEmailExisted;
+        in >> isEmailExisted;
+        if(!isEmailExisted){
+            ui->label_updateEmailTip->setVisible(true);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(false);
+            ui->lineEdit_updateStaffOldpassword->setEnabled(false);
+            ui->lineEdit_updateStaffUsername->setEnabled(false);
+            ui->pushButton_changeStaffpassword->setEnabled(false);
+        }else {
+            ui->label_updateEmailTip->setVisible(false);
+            ui->lineEdit_updateStaffOldpassword->setEnabled(true);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(true);
+            ui->lineEdit_updateStaffUsername->setEnabled(true);
+            ui->pushButton_changeStaffpassword->setEnabled(true);
+        }
+    }// personnel page 4 check if old password right
+    if(from == "pp4_cop"){
+        bool isPasswordRight;
+        in >> isPasswordRight;
+        if(!isPasswordRight){
+            ui->label_updatePasswordTip->setVisible(true);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(false);
+            ui->lineEdit_updateStaffUsername->setEnabled(false);
+            ui->pushButton_changeStaffpassword->setEnabled(false);
+        }else {
+            ui->label_updatePasswordTip->setVisible(false);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(true);
+            ui->lineEdit_updateStaffUsername->setEnabled(true);
+            ui->pushButton_changeStaffpassword->setEnabled(true);
+        }
+    }//personnel page 4 update password & username
+    if(from == "pp4_csp"){
+        QMessageBox::information(NULL, tr("提示"), tr("用户名和密码已修改。"), QMessageBox::Yes, QMessageBox::Yes);
     }// purchase page show garment info
     if(from == "pcp_sg"){
         int i = 0;
@@ -778,14 +813,18 @@ void SystemCenter::readMessage()
         for(QStringList list : result){
             ui->tableWidget_updateShowStaffInfo->insertRow(i);
             ui->tableWidget_updateShowStaffInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(3);
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(4));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(5));
             i++;
         }
         ui->tableWidget_updateShowStaffInfo->setRowCount(i);
         progressBar();
+    }// personnel page 3 update staff information
+    if(from == "pp3_csi"){
+        QMessageBox::information(NULL, tr("提示"), tr("用户信息更改成功！已经赋予新的权限。"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
     }// purchase page show garment detailed information
     if(from == "pcp_sgdi"){
         QStringList result;

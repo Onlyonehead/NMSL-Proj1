@@ -424,6 +424,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_providerInfo->verticalHeader()->setVisible(false);
     ui->tableWidget_providerInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_providerInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_providerInfo->setStyleSheet("selection-background-color::lightblue");
     ui->label_showPicPath->setVisible(false);
 
     /**
@@ -445,6 +446,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(10);
 
+
+    ui->label_updateEmailTip->setVisible(false);
+    ui->label_updatePasswordTip->setVisible(false);
     /**
      * update staff information page setting
      *
@@ -585,13 +589,13 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 5){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(false);
-        ui->pushButton_D->setVisible(false);
+        ui->pushButton_C->setVisible(true);
+        ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Display");
         ui->pushButton_B->setText("Append");
-        ui->pushButton_C->setText("");
-        ui->pushButton_D->setText("");
+        ui->pushButton_C->setText("Addition");
+        ui->pushButton_D->setText("P&E");
 
     }
     if(index == 6){
@@ -602,7 +606,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
         ui->pushButton_A->setText("Garment");
         ui->pushButton_B->setText("Management");
-        ui->pushButton_C->setText("Add");
+        ui->pushButton_C->setText("Addition");
         ui->pushButton_D->setText("");
 
     }
@@ -638,6 +642,7 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -668,6 +673,7 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -698,6 +704,7 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 
 }
 
@@ -727,6 +734,7 @@ void SystemCenter::on_pushButton_D_clicked()
 
     //D
     ui->frame_2D->setVisible(true);
+    ui->frame_personnelpage_4->setVisible(true);
 }
 
 

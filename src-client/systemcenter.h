@@ -194,6 +194,20 @@ private slots:
 
     void on_pushButton_updatePageShowStaff_clicked();
 
+    void on_pushButton_updatePageClearStaff_clicked();
+
+    void on_tableWidget_updateShowStaffInfo_cellClicked(int row, int column);
+
+    void on_pushButton_changeStaffInfo_clicked();
+
+    void on_pushButton_cancelStaffInfoChange_clicked();
+
+    void on_lineEdit_inputStaffEmail_editingFinished();
+
+    void on_lineEdit_updateStaffOldpassword_editingFinished();
+
+    void on_pushButton_changeStaffpassword_clicked();
+
 signals:
     void stringReturn(QString);
 
