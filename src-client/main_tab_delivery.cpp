@@ -95,9 +95,10 @@ void MainWindow::on_pushButton_message_clicked()
 
         if(it->at(2) == "0"){
             ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("U"));
-        } else {
+        } else if(it->at(2) == "1"){
             ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("C"));
-
+        } else{
+            ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("X"));
         }
         ++i;
     }
