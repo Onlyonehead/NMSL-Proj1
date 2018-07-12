@@ -45,12 +45,25 @@ void SystemCenter::on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item
         if(l.at(0) == ui->tableWidget_logistics_A->item(item->row(), 0)->
                 text().split(":")[1].trimmed()){
             order = l.at(3).split("#");
-            for(QStringList ll : warehouse){
-                if(ll.at(0) == l.at(1)){
-                    wh += ll.at(0) + " - " + ll.at(1);
-                    break;
+            QByteArray ba = l.at(1).toLatin1();
+            const char *s = ba.data();
+
+            if(*s == 'S'){
+                for(QStringList ll : stores){
+                    if("S" + ll.at(0) == l.at(1)){
+                        wh += l.at(1) + " - " + ll.at(1);
+                        break;
+                    }
+                }
+            }else{
+                for(QStringList ll : warehouse){
+                    if(ll.at(0) == l.at(1)){
+                        wh += ll.at(0) + " - " + ll.at(1);
+                        break;
+                    }
                 }
             }
+
             break;
         }
     }

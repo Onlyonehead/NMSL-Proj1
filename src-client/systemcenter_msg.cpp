@@ -46,6 +46,7 @@ void SystemCenter::readMessage()
         QMap<QString,QMap<QString, QString>> stock_map;
         QMap<QString, QMap<QString, QStringList>> arriving_map;
         QMap<QString, QString> warehouse_map;
+        QVector<QStringList> stores;
 
         in >> stock;
         in >> arriving;
@@ -54,6 +55,7 @@ void SystemCenter::readMessage()
         in >> stock_map;
         in >> arriving_map;
         in >> warehouse_map;
+        in >> stores;
 
         this->stock = stock;
         this->arriving = arriving;
@@ -62,6 +64,7 @@ void SystemCenter::readMessage()
         this->stock_map = stock_map;
         this->arriving_map = arriving_map;
         this->warehouse_map = warehouse_map;
+        this->stores = stores;
 
         for(QStringList list : stock){
             count1 += list.at(2).toInt();
@@ -754,36 +757,6 @@ void SystemCenter::readMessage()
         delete pixmap;
         QApplication::processEvents();
     }
-    if(from == "wh_history"){
-        ui->tableWidget_A->setRowCount(0);
-        QVector<QStringList> result;
-        in >> result;
-        for(int i = result.size()-1; i > -1; i--){
-            ui->tableWidget_A->insertRow(result.size()-i-1);
-            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
-            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n  "
-                                                                                  + "from id " + result.at(i).at(1) + " -> "
-                                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
-                                                                                  result.at(i).at(3)));
-        }
-        ui->tableWidget_A->setRowCount(result.size());
-    }
-
-    if(from == "wh_history_all"){
-        ui->tableWidget_A->setRowCount(0);
-        QVector<QStringList> result;
-        in >> result;
-        for(int i = result.size()-1; i > -1; i--){
-            ui->tableWidget_A->insertRow(result.size()-i-1);
-            QStringList s = result.at(i).at(0).split(QRegExp("[A-Z]"));
-            ui->tableWidget_A->setItem(result.size()-i-1, 0, new QTableWidgetItem(s.at(0) + " " + s.at(1) + "\n   "
-                                                                                  + "from id " + result.at(i).at(1) + " -> "
-                                                                                  + "to id " + result.at(i).at(2) + "\n\n" +
-                                                                                  result.at(i).at(3)));
-        }
-        ui->tableWidget_A->setRowCount(result.size());
-    }
-
 
     //sissyVI--Start
 

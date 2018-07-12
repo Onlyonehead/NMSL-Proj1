@@ -95,6 +95,8 @@ void Processor::work ()
         Warehouse::arriving(arriving_map);
         QMap<QString, QString> warehouse_map;
         Warehouse::info(warehouse_map);
+        QVector<QStringList> stores;
+        Store::getStores(stores);
 
         out << function;
         out << stock;
@@ -104,6 +106,7 @@ void Processor::work ()
         out << stock_map;
         out << arriving_map;
         out << warehouse_map;
+        out << stores;
     }
 
     if(function == "info_whEC"){
