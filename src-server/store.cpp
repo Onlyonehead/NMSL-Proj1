@@ -233,6 +233,7 @@ void Store::purchase(QString store_id, QMap<QString, QString> &m){
     qsl.append(store_id);
     qsl.append(current_date);
     qsl.append("0");
+    qsl.append(current_date);
     SQLTool::insert(sq, "store_pRecord", qsl);
     SQLTool::search(sq, "store_pRecord", "date", current_date);
     sq.next();
@@ -348,7 +349,7 @@ void Store::changePAmount(QString id_p, QString id_c, QString amount){
  * @param qv from id and details(cloth id and quantity)
  * @param m from id and arrive time
  */
-void Store::storeArrive(QString store_id, QString time_com, QVector<QMap<QString, QStringList> > &qv, QMap<QString, QString> &m){
+void Store::storeArrive(QString store_id, QString time_com, Order& o){
     QSqlQuery sq;
     QStringList qsl;
     qsl.append("id_store");
@@ -359,22 +360,17 @@ void Store::storeArrive(QString store_id, QString time_com, QVector<QMap<QString
     sq.next();
     QString purchase_id = sq.value(0).toString();
     qDebug()<<"purchase_id: "<<purchase_id;
-    qDebug()<<qv.size();
-    qDebug()<<m.size();
-    QVector<QMap<QString, QStringList> >::const_iterator itv;
-    for(itv=qv.constBegin(); itv!=qv.constEnd(); ++itv){
-        QMap<QString, QStringList>::const_iterator itm;
-        for(itm=itv->constBegin(); itm!=itv->constEnd(); ++itm){
-            QString from_id = itm.key();
-            QString clothes_id = itm.value().at(0);
-            QString quantity = itm.value().at(1);
-            QString date_arr = m.take(from_id);
 
-            qDebug() << store_id << clothes_id << quantity << date_arr << from_id << purchase_id;
-            QStringList qsl_arr;
-            qsl_arr << store_id << clothes_id << quantity << date_arr << from_id << purchase_id;
-            SQLTool::insert("store_arriving", qsl_arr);
-        }
+    QString from_id = o.getId();
+    QString date_arr = o.getDatetime();
+    QStringList qsl_c = o.getProductInfo();
+
+    for(int i=0; i<qsl_c.size();){
+        QStringList qsl_arr;
+        qDebug() << store_id << qsl_c.at(i) << qsl_c.at(i+1) << date_arr << from_id << purchase_id;
+        qsl_arr << store_id << qsl_c.at(i++) << qsl_c.at(i++) << date_arr << from_id << purchase_id;
+        SQLTool::insert("store_arriving", qsl_arr);
     }
+
 }
 

@@ -630,46 +630,21 @@ void Processor::work ()
         out << function << qv << m;
     }
 
-    if(function == "test_sell"){
+    if(function == "test_cc"){
 
-//        QStringList qsl;
-//        qsl.append("test_sell");
+        QStringList list1;
+        list1.append("1");
+        list1.append("100");
+        list1.append("3");
+        list1.append("300");
 
-//        QString store_id = "1";
-//        QString time_com = "2018-07-11 14:38:47";
-
-//        QVector<QMap<QString, QStringList>> qv;
-//        QMap<QString, QStringList> qm;
-//        QStringList qsl_m;
-//        qsl_m << QString("1") << QString("200");
-//        qm.insert(QString("10"), qsl_m);
-//        qv.append(qm);
-
-//        QMap<QString, QString> m;
-//        m.insert(QString("10"), QString("2018-07-11 18:27:50"));
-
-
-
-//        QByteArray message;
-//        QDataStream out(&message,QIODevice::WriteOnly);
-//        out.setVersion(QDataStream::Qt_5_7);
-//        out << (quint16) 0;
-
-//        out << qsl;
-//        out << store_id << time_com << qv << m;
-
-//        out.device()->seek(0);
-//        out << (quint16) (message.size() - sizeof(quint16));
-//        m_tcpsocket->write(message);
+        Order order1("5", "2020-03-03 12:22:21", list1);
 
 
         out << function;
-        QString store_id;
-        QString time_com;
-        QVector<QMap<QString, QStringList>> qv;
-        QMap<QString, QString> m;
-        in >> store_id >> time_com >> qv >> m;
-        Store::storeArrive(store_id, time_com, qv, m);
+        QString store_id = "1";
+        QString time_com = "2018-07-11 14:38:47";
+        Store::storeArrive(store_id, time_com, order1);
 
         out << "success";
     }

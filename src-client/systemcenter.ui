@@ -7532,8 +7532,7 @@ QTableWidget::item{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QTableWidget
+        <string notr="true">QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -7548,7 +7547,6 @@ QTableWidget
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
-
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -7565,7 +7563,8 @@ QTableWidget QHeaderView
 }
 QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
-}</string>
+}
+</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -7621,8 +7620,7 @@ QTableWidget::item{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QTableWidget
+        <string notr="true">QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -7637,7 +7635,6 @@ QTableWidget
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
-
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -7654,7 +7651,8 @@ QTableWidget QHeaderView
 }
 QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
-}</string>
+}
+</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -7728,9 +7726,9 @@ QTableWidget::item{
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(230, 230, 230);
+	border: 2px solid rgb(220, 220, 220);
 	border-radius:20px;
-	background:white;
+	background: rgba(248, 248, 248, 200);
 	margin-top: 11 px;
 }
 
@@ -7738,7 +7736,7 @@ QGroupBox::title {
 background: rgb(248, 248, 248);
 	subcontrol-origin: margin;
 	subcontrol-position: top center;	
-	padding: 2 1px;
+	padding: 1 4px;
 	color: rgba(15, 128, 255, 193);
 	border: 2px solid rgba(15, 128, 255, 193);
 	border-radius:10px;
@@ -8063,15 +8061,15 @@ background: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -8145,15 +8143,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -8193,15 +8191,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -8463,15 +8461,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -8558,15 +8556,15 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
-	background:rgba(204, 204, 204, 73);
+	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);

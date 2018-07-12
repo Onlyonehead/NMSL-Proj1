@@ -257,7 +257,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->pushButton_font_sellSearch->setFont(sp_font);
     ui->pushButton_font_sellSearch->setText(QChar(0xf0d0));
     ui->pushButton_font_sellSearch->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                                  "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->label_navigator->setFont(sp_font);
     ui->label_navigator->setText(QChar(0xf5a0));
@@ -271,7 +271,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search->setFont(icon_search);
     ui->icon_search->setText(QChar(0xf35a));
     ui->icon_search->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                   "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->icon_search_B->setFont(icon_search);
     ui->icon_search_B->setText(QChar(0xf35a));
@@ -282,13 +282,13 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search_C->setFont(icon_search);
     ui->icon_search_C->setText(QChar(0xf35a));
     ui->icon_search_C->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
 
     ui->icon_search_D->setFont(icon_search);
     ui->icon_search_D->setText(QChar(0xf35a));
     ui->icon_search_D->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->style_change->setFont(icon_search);
     ui->style_change->setText(QChar(0xf204));
@@ -324,12 +324,12 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_C1->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C1->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
-//    ui->tableWidget_C1->setAlternatingRowColors(true);
+    //    ui->tableWidget_C1->setAlternatingRowColors(true);
 
     ui->tableWidget_C2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
-//    ui->tableWidget_C2->setAlternatingRowColors(true);
+    //    ui->tableWidget_C2->setAlternatingRowColors(true);
 
     ui->tableWidget_D1->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_D1->horizontalHeader()->setStretchLastSection(true);
@@ -458,7 +458,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(10);
-//    //initialize furry search
+    //    //initialize furry search
 
     QElapsedTimer t;
 
@@ -480,9 +480,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     ui->progressBar->setValue(50);
 
-//    QMovie *movie = new QMovie(":/movie.gif");
-//    ui->label_title->setMovie(movie);
-//    movie->start();
+    //    QMovie *movie = new QMovie(":/movie.gif");
+    //    ui->label_title->setMovie(movie);
+    //    movie->start();
 
 }
 
