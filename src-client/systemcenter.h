@@ -197,6 +197,20 @@ private slots:
 
     void on_pushButton_reject_clicked();
 
+    void on_pushButton_15_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_pushButton_17_clicked();
+
+    void on_tableWidget_logistics_2A_itemClicked(QTableWidgetItem *item);
+
+    void on_pushButton_18_clicked();
+
+    void on_pushButton_21_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -223,6 +237,9 @@ private:
     QMap<QString, QMap<QString, QStringList>> arriving_map;
     QMap<QString, QString> warehouse_map;
 
+    int count_dealt;
+    int count_ongoing;
+    int count_rejected;
 
     QVector<QStringList> orderList; // For logistic A
     QVector<QStringList> wh_history; // For warehouse A
@@ -231,6 +248,10 @@ private:
     QString wh_id; // For logistics A
     QString order_id; // For logistics A
     QStringList wh_info; // For logistics A
+    QString order_time; // For logistics A
+
+    QVector<QStringList> orderCheckedList; // For logistic B
+    QString orderCheckedId; // For logistic B
 
     bool style;
 

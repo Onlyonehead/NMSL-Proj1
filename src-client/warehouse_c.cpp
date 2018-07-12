@@ -131,18 +131,6 @@ void SystemCenter::on_pushButton_5_clicked()
 
 }
 
-/**
- * warehouse C information init
- *
- * @author Zicun Hang
- */
-void SystemCenter::init_warehouse_C(){
-
-    QStringList list;
-    list.append("iwhC");
-    sendMessage(list);
-}
-
 void SystemCenter::transfer(){
     QStringList list;
     list.append("transfer");

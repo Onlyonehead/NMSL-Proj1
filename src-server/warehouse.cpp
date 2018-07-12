@@ -199,12 +199,12 @@ void Warehouse::replenish(QString id, Order& order){
         goods += clothes_id + " - " + l2.at(1) + "  quantity: " + quantity + "\n";
     }
 
-    QStringList sqlist;
-    sqlist.append(order.getDatetime());
-    sqlist.append(order.getId());
-    sqlist.append(id);
-    sqlist.append(goods);
-    SQLTool::insert("wh_history",sqlist);
+//    QStringList sqlist;
+//    sqlist.append(order.getDatetime());
+//    sqlist.append(order.getId());
+//    sqlist.append(id);
+//    sqlist.append(goods);
+//    SQLTool::insert("wh_history",sqlist);
 }
 
 void Warehouse::deliverGoods(QString id, Order& order){
@@ -231,13 +231,12 @@ void Warehouse::deliverGoods(QString id, Order& order){
         goods += clothes_id + " - " + l2.at(1) + "  quantity: " + quantity + "\n";
     }
 
-
-//    QStringList sqlist;
-//    sqlist.append(order.getDatetime());
-//    sqlist.append(id);
-//    sqlist.append(order.getId());
-//    sqlist.append(goods);
-//    SQLTool::insert("wh_history",sqlist);
+    QStringList sqlist;
+    sqlist.append(order.getDatetime());
+    sqlist.append(id);
+    sqlist.append(order.getId());
+    sqlist.append(goods);
+    SQLTool::insert("wh_history",sqlist);
 }
 
 

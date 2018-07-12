@@ -674,7 +674,7 @@ background: none;
     <widget class="QLabel" name="label_navigator">
      <property name="geometry">
       <rect>
-       <x>109</x>
+       <x>110</x>
        <y>426</y>
        <width>23</width>
        <height>23</height>
@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1598,7 +1598,7 @@ background: none;
      <attribute name="title">
       <string>Logistics</string>
      </attribute>
-     <widget class="QFrame" name="frame_18">
+     <widget class="QFrame" name="frame_logistics_A">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1624,7 +1624,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>590</x>
-         <y>120</y>
+         <y>100</y>
          <width>111</width>
          <height>30</height>
         </rect>
@@ -1672,7 +1672,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>590</x>
-         <y>60</y>
+         <y>50</y>
          <width>111</width>
          <height>30</height>
         </rect>
@@ -1722,7 +1722,7 @@ QPushButton:hover{
          <x>37</x>
          <y>30</y>
          <width>531</width>
-         <height>161</height>
+         <height>170</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1823,7 +1823,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>517</x>
-         <y>192</y>
+         <y>203</y>
          <width>111</width>
          <height>41</height>
         </rect>
@@ -1856,9 +1856,9 @@ background: none;
        <property name="geometry">
         <rect>
          <x>220</x>
-         <y>230</y>
+         <y>239</y>
          <width>183</width>
-         <height>210</height>
+         <height>201</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1936,9 +1936,9 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>425</x>
-         <y>230</y>
+         <y>239</y>
          <width>271</width>
-         <height>210</height>
+         <height>201</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2069,7 +2069,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>234</x>
-         <y>205</y>
+         <y>216</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -2095,9 +2095,9 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>37</x>
-         <y>230</y>
+         <y>239</y>
          <width>161</width>
-         <height>210</height>
+         <height>201</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2170,7 +2170,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>261</x>
-         <y>192</y>
+         <y>203</y>
          <width>121</width>
          <height>41</height>
         </rect>
@@ -2203,7 +2203,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>490</x>
-         <y>205</y>
+         <y>216</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -2554,7 +2554,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>59</x>
-         <y>205</y>
+         <y>216</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -2580,7 +2580,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>86</x>
-         <y>192</y>
+         <y>203</y>
          <width>121</width>
          <height>41</height>
         </rect>
@@ -2607,6 +2607,767 @@ background: none;
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_21">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>150</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Reject</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="frame_logistics_B">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>725</width>
+        <height>563</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background: rgba(248, 248, 248, 180);
+	border-image:none;
+	border: 2px solid rgb(200, 200, 200);
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="pushButton_14">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>120</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_15">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>60</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Display All</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_logistics_2A">
+       <property name="geometry">
+        <rect>
+         <x>37</x>
+         <y>30</y>
+         <width>531</width>
+         <height>501</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>90</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>id</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>name</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>province</string>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>76</red>
+           <green>76</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </property>
+       </column>
+      </widget>
+      <widget class="QPushButton" name="pushButton_16">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>180</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Delete</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_8">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>250</y>
+         <width>131</width>
+         <height>277</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:20px;
+	background:white;
+	margin-top: 11 px;
+}
+
+QGroupBox::title {
+background: rgb(248, 248, 248);
+	subcontrol-origin: margin;
+	subcontrol-position: top center;	
+	padding: 2 1px;
+	color: rgba(15, 128, 255, 193);
+	border: 2px solid rgba(15, 128, 255, 193);
+	border-radius:10px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_120">
+        <property name="geometry">
+         <rect>
+          <x>48</x>
+          <y>26</y>
+          <width>61</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Quantity
+dealt:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_121">
+        <property name="geometry">
+         <rect>
+          <x>32</x>
+          <y>72</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_122">
+        <property name="geometry">
+         <rect>
+          <x>48</x>
+          <y>114</y>
+          <width>61</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Quantity
+ongoing:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_123">
+        <property name="geometry">
+         <rect>
+          <x>32</x>
+          <y>162</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_124">
+        <property name="geometry">
+         <rect>
+          <x>18</x>
+          <y>40</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_125">
+        <property name="geometry">
+         <rect>
+          <x>18</x>
+          <y>128</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_126">
+        <property name="geometry">
+         <rect>
+          <x>18</x>
+          <y>218</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_127">
+        <property name="geometry">
+         <rect>
+          <x>48</x>
+          <y>204</y>
+          <width>61</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Quantity
+rejected:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_128">
+        <property name="geometry">
+         <rect>
+          <x>32</x>
+          <y>248</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times 12</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="Line" name="line_8">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>187</y>
+          <width>130</width>
+          <height>2</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px dashed rgba(204, 204, 204,190);</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_9">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>100</y>
+          <width>130</width>
+          <height>2</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px dashed rgba(204, 204, 204,190);</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="pushButton_17">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>220</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_18">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>180</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </widget>
@@ -6659,7 +7420,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>264</x>
-         <y>276</y>
+         <y>283</y>
          <width>121</width>
          <height>41</height>
         </rect>
@@ -6692,7 +7453,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>237</x>
-         <y>289</y>
+         <y>296</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -6910,7 +7671,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>493</x>
-         <y>289</y>
+         <y>296</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -6936,7 +7697,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>520</x>
-         <y>276</y>
+         <y>283</y>
          <width>111</width>
          <height>41</height>
         </rect>
@@ -6969,7 +7730,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>63</x>
-         <y>289</y>
+         <y>296</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -6995,7 +7756,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>276</y>
+         <y>283</y>
          <width>121</width>
          <height>41</height>
         </rect>
@@ -7025,10 +7786,10 @@ background: none;
        </property>
       </widget>
      </widget>
-     <zorder>frame_2B</zorder>
-     <zorder>frame_2D</zorder>
-     <zorder>frame_2C</zorder>
      <zorder>frame_2A</zorder>
+     <zorder>frame_2B</zorder>
+     <zorder>frame_2C</zorder>
+     <zorder>frame_2D</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">
@@ -7492,7 +8253,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>60</y>
+         <y>70</y>
          <width>70</width>
          <height>20</height>
         </rect>
@@ -7526,9 +8287,9 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>310</y>
-         <width>532</width>
-         <height>230</height>
+         <y>329</y>
+         <width>511</width>
+         <height>211</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -7614,7 +8375,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>84</y>
+         <y>94</y>
          <width>400</width>
          <height>181</height>
         </rect>
@@ -7719,7 +8480,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>450</x>
-         <y>74</y>
+         <y>84</y>
          <width>255</width>
          <height>190</height>
         </rect>
@@ -8038,9 +8799,9 @@ background: none;
       <widget class="QPushButton" name="pushButton_commit">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>509</y>
-         <width>144</width>
+         <x>573</x>
+         <y>500</y>
+         <width>120</width>
          <height>30</height>
         </rect>
        </property>
@@ -8087,7 +8848,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>127</x>
-         <y>286</y>
+         <y>300</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -8120,8 +8881,8 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_showRequests">
        <property name="geometry">
         <rect>
-         <x>250</x>
-         <y>10</y>
+         <x>190</x>
+         <y>20</y>
          <width>111</width>
          <height>30</height>
         </rect>
@@ -8168,8 +8929,8 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_clearRequests">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>10</y>
+         <x>430</x>
+         <y>20</y>
          <width>111</width>
          <height>30</height>
         </rect>
@@ -8217,7 +8978,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>132</x>
-         <y>60</y>
+         <y>70</y>
          <width>70</width>
          <height>20</height>
         </rect>
@@ -8251,7 +9012,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>285</x>
-         <y>60</y>
+         <y>70</y>
          <width>70</width>
          <height>20</height>
         </rect>
@@ -8285,8 +9046,8 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>217</x>
-         <y>286</y>
-         <width>81</width>
+         <y>300</y>
+         <width>80</width>
          <height>20</height>
         </rect>
        </property>
@@ -8319,7 +9080,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>307</x>
-         <y>286</y>
+         <y>300</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -8353,7 +9114,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>436</x>
-         <y>286</y>
+         <y>300</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -8386,9 +9147,9 @@ QPushButton:hover{
       <widget class="QLineEdit" name="lineEdit_sell_amount">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>310</y>
-         <width>144</width>
+         <x>637</x>
+         <y>340</y>
+         <width>61</width>
          <height>30</height>
         </rect>
        </property>
@@ -8416,8 +9177,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label_17">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>280</y>
+         <x>566</x>
+         <y>340</y>
          <width>72</width>
          <height>30</height>
         </rect>
@@ -8432,15 +9193,15 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>amount:</string>
+        <string>Amount:</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_change">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>350</y>
-         <width>90</width>
+         <x>573</x>
+         <y>377</y>
+         <width>120</width>
          <height>30</height>
         </rect>
        </property>
@@ -8486,8 +9247,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label_sell_row">
        <property name="geometry">
         <rect>
-         <x>690</x>
-         <y>290</y>
+         <x>678</x>
+         <y>310</y>
          <width>15</width>
          <height>15</height>
         </rect>
@@ -8500,7 +9261,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>38</x>
-         <y>286</y>
+         <y>300</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -8533,9 +9294,9 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_reject">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>410</y>
-         <width>90</width>
+         <x>573</x>
+         <y>440</y>
+         <width>120</width>
          <height>30</height>
         </rect>
        </property>
