@@ -29,7 +29,6 @@ SOURCES += main.cpp\
     TCPConnection.cpp \
     forgetpassword.cpp \
     store.cpp \
-    record.cpp \
     warehouse.cpp \
     tool.cpp \
     order.cpp \
@@ -48,7 +47,6 @@ HEADERS  += \
     TCPConnection.h \
     forgetpassword.h \
     store.h \
-    record.h \
     warehouse.h \
     tool.h \
     order.h \

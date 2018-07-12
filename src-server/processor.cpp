@@ -116,8 +116,8 @@ void Processor::work ()
         QStringList wordlist1;
         for (QStringList list : result){
             wordlist1 << list.at(0) << list.at(1) <<
-                    list.at(2) << list.at(3) <<
-                    list.at(4) << list.at(5);
+                         list.at(2) << list.at(3) <<
+                         list.at(4) << list.at(5);
         }
         Tool::QStringList_removeDuplicates(&wordlist1);
 
@@ -269,7 +269,7 @@ void Processor::work ()
 
         for(QStringList l : w){
             result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
-                         + l.at(1));
+                           + l.at(1));
         }
 
         Tool::QStringList_removeDuplicates(&result2);
@@ -448,15 +448,16 @@ void Processor::work ()
         QString store_id = list.at(0);
         int size;
 
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
+        QVector<QStringList> qv_record;
+        QMap<QString, QMap<QString, QString> > qm_detail;
+        Store::getRecord(store_id, size, qv_record, qm_detail);
 
         out<< size;//条目总数
         out << qv_record.size();//记录总数
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_record.constBegin(); it!=qv_record.constEnd(); ++it){
+            out << it->at(0) << it->at(1) << it->at(2) << it->at(3);
+            out << qm_detail.value(it->at(0));
         }
     }
 
@@ -506,24 +507,6 @@ void Processor::work ()
     }
 
     //门店
-    if(function == "getRecord"){
-        out << function;
-        QString store_id = list.at(0);
-        int size;
-
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
-
-        out << qv_record.size();
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
-        }
-
-        out<< size;
-
-    }
 
     if(function == "getStoreInfo"){
         out << function;
@@ -566,16 +549,15 @@ void Processor::work ()
         //getRecord
         int size;
 
-        qDebug()<<"店铺ID为："<<store_id;
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
-        qDebug()<<"记录大小为："<<qv_record.size();
+        QVector<QStringList> qv_record;
+        QMap<QString, QMap<QString, QString> > qm_detail;
+        Store::getRecord(store_id, size, qv_record, qm_detail);
 
-        out << qv_record.size();
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
+        out << qv_record.size();//记录总数
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_record.constBegin(); it!=qv_record.constEnd(); ++it){
+            out << it->at(0) << it->at(1) << it->at(2) << it->at(3);
+            out << qm_detail.value(it->at(0));
         }
 
         out<< size;
@@ -599,16 +581,15 @@ void Processor::work ()
         QString store_id = list.at(0);
         int size;
 
-        qDebug()<<"店铺ID为："<<store_id;
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
-        qDebug()<<"记录大小为："<<qv_record.size();
+        QVector<QStringList> qv_record;
+        QMap<QString, QMap<QString, QString> > qm_detail;
+        Store::getRecord(store_id, size, qv_record, qm_detail);
 
-        out << qv_record.size();
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
+        out << qv_record.size();//记录总数
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_record.constBegin(); it!=qv_record.constEnd(); ++it){
+            out << it->at(0) << it->at(1) << it->at(2) << it->at(3);
+            out << qm_detail.value(it->at(0));
         }
 
         out<< size;

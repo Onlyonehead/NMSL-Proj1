@@ -73,17 +73,20 @@ void Store::getStock(QString store_id, QVector<QVector<QString> >& qv){
  * @param id_store the id of the store
  * @param size the total amount of record.(decide the row number of table)
  */
-void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
+void Store::getRecord(QString id_store, int& size, QVector<QStringList>& qv_record, QMap<QString, QMap<QString, QString> >& qm_detail){
     int count = 0;
     QSqlQuery sq;
-    SQLTool::search(sq, "transrecord", "id_store", QString::number(id_store, 10));
+    SQLTool::search(sq, "transrecord", "id_store", id_store);
 
     QStringList qsl;
     qsl.append("id_cloth");
     qsl.append("amount");
     while(sq.next()){
-        Record re(sq.value(0).toString(), sq.value(1).toString(),
-                  sq.value(2).toString(), sq.value(3).toString());
+        QStringList qslr;
+
+        qslr << sq.value(0).toString() << sq.value(1).toString() <<
+                  sq.value(2).toString() << sq.value(3).toString();
+        qv_record.append(qslr);
 
         QSqlQuery sq2;
         SQLTool::search(sq2, qsl, "transdetail", "id_trans", sq.value(0).toString());
@@ -91,10 +94,9 @@ void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
         QMap<QString, QString> map;
         while(sq2.next()){
             map.insert(sq2.value(0).toString(), sq2.value(1).toString());//插入服装id和数量
+            qm_detail.insert(sq.value(0).toString(), map);
             count++;
         }
-        re.loadDetails(map);
-        qv.append(re);
     }
     size = count;
 }

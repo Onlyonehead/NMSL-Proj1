@@ -528,25 +528,6 @@ void MainWindow::readMessage()
     in >> from;
     qDebug() << from << endl;
 
-    if(from == "getRecord"){
-        int qv_size;//获取QVector的大小
-        QString id_trans;
-        QString id_store;
-        QString date;
-        QString prices;
-        QMap<QString, QString> m;
-        in >> qv_size;
-        qDebug()<<"记录大小："<<qv_size;
-        for(int i=0; i<qv_size; ++i){
-            in >> id_trans >> id_store >> date >> prices >> m;
-            Record r(id_trans, id_store, date, prices);
-            r.loadDetails(m);
-            qv_record.append(r);
-        }
-        in >> record_size;
-
-    }
-
     if(from == "getStoreInfo"){
 
         QVector<QString> qv;
