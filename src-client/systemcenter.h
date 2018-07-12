@@ -218,6 +218,7 @@ private:
     QVector<QStringList> arriving;
     QVector<QStringList> clothes;
     QVector<QStringList> warehouse;
+    QVector<QStringList> stores;
     QMap<QString,QMap<QString, QString>> stock_map;
     QMap<QString, QMap<QString, QStringList>> arriving_map;
     QMap<QString, QString> warehouse_map;

@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -736,20 +736,20 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_title">
       <property name="geometry">
        <rect>
-        <x>-2</x>
-        <y>0</y>
-        <width>731</width>
-        <height>561</height>
+        <x>-1</x>
+        <y>-1</y>
+        <width>728</width>
+        <height>568</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background:pixmap(url(:/welcome.png))</string>
+       <string notr="true">background:none;</string>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../Resources/resources.qrc">:/welcome.png</pixmap>
+       <pixmap resource="../Resources/resources.qrc">:/welcome2.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2358,7 +2358,7 @@ background: none;
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>46</y>
+          <y>45</y>
           <width>71</width>
           <height>20</height>
          </rect>

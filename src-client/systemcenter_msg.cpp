@@ -46,6 +46,7 @@ void SystemCenter::readMessage()
         QMap<QString,QMap<QString, QString>> stock_map;
         QMap<QString, QMap<QString, QStringList>> arriving_map;
         QMap<QString, QString> warehouse_map;
+        QVector<QStringList> stores;
 
         in >> stock;
         in >> arriving;
@@ -54,6 +55,7 @@ void SystemCenter::readMessage()
         in >> stock_map;
         in >> arriving_map;
         in >> warehouse_map;
+        in >> stores;
 
         this->stock = stock;
         this->arriving = arriving;
@@ -62,6 +64,7 @@ void SystemCenter::readMessage()
         this->stock_map = stock_map;
         this->arriving_map = arriving_map;
         this->warehouse_map = warehouse_map;
+        this->stores = stores;
 
         for(QStringList list : stock){
             count1 += list.at(2).toInt();
