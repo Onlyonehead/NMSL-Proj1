@@ -18,6 +18,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
+#include <QBuffer>
 
 /**
  * return all garments' information
@@ -122,8 +123,8 @@ void SystemCenter::on_pushButton_setGPic_clicked()
                                                        tr("图片文件(*png *jpg)"));
     QString showPic = picture.join("/");
     QString picturePath = picture.at(0);
-    QStringList list = picturePath.split("/");
-    QString pictureName = list.at(list.length() - 1);
+    QStringList Piclist = picturePath.split("/");
+    QString pictureName = Piclist.at(Piclist.length() - 1);
 
     QPixmap pixmap(showPic);
     ui->label_showPicPath->setText(picturePath);
@@ -131,35 +132,52 @@ void SystemCenter::on_pushButton_setGPic_clicked()
     ui->label_showGPic->show();
     ui->label_showPicName->setText(pictureName);
 
-    QFile pushPic(picturePath);
-    pushPic.open(QIODevice::ReadOnly);
-    QByteArray by_pushPic = pushPic.readAll();
-    pushPic.close();
-    QNetworkAccessManager *manager = new QNetworkAccessManager(NULL);
-    qDebug() << pictureName;
-    QString serverPath = "http://39.108.155.50/project1/clothes/";
-    QUrl URL = QUrl(serverPath + pictureName);
-    qDebug() << URL;
-    URL.setUserName("root");
-    URL.setPassword("abcd1234");
-    URL.setPort(21);
+    QStringList list;
+    list.append("sp_sendPic");
+    list.append(pictureName);
+
+    QByteArray message;
+    QDataStream out(&message,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << (quint16) 0;
+
+    out << list;
+    out << pixmap;
+
+    out.device()->seek(0);
+    out << (quint16) (message.size() - sizeof(quint16));
+    m_tcpsocket->write(message);
+
+//    QFile pushPic(picturePath);
+//    pushPic.open(QIODevice::ReadOnly);
+//    QByteArray by_pushPic = pushPic.readAll();
+//    pushPic.close();
+//    QNetworkAccessManager manager;
+//    qDebug() << pictureName;
+//    QString serverPath = "http://39.108.155.50/ftpuser/project1/clothes/";
+//    QUrl URL = QUrl(serverPath + pictureName);
+//    qDebug() << URL;
+//    URL.setUserName("root");
+//    URL.setPassword("abcd1234");
+//    URL.setPort(21);
 
 
 
-    QNetworkRequest pushRequest;
-    pushRequest.setUrl(URL);
-    pushRequest.setHeader(QNetworkRequest::ContentTypeHeader, "text/html; charset=utf-8");
+//    QNetworkRequest pushRequest;
+//    pushRequest.setUrl(URL);
+
+//    QNetworkReply *pushReply = manager.put(pushRequest, by_pushPic);
 
 
 
-    QNetworkReply *pushReply = manager->post(pushRequest, by_pushPic);
 
 
-    if(pushReply->error() == QNetworkReply::NoError){
-        qDebug() << "success";
-    }else {
-        qDebug() << "fail";
-    }
+
+//    if(pushReply->error() == QNetworkReply::NoError){
+//        qDebug() << "success";
+//    }else {
+//        qDebug() << "fail";
+//    }
 
 }
 

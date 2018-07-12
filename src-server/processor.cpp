@@ -416,6 +416,18 @@ void Processor::work ()
         Garment::addGarmentForm(garmentSytle, garmentSize, garmentPic, garmentPrice);
         out << function;
     }
+    //system page send picture to server
+    if(function == "sp_sendPic"){
+        QByteArray picByteArray;
+        in >> picByteArray;
+        QPixmap imageResult;
+        imageResult.loadFromData(picByteArray);
+        QImage image;
+        image = imageResult.toImage();
+        QString pictureName = list.at(0);
+        image.save(pictureName, "jpg", -1);
+        out << function;
+    }
     //providerpage show provider info
     if(function == "pp_sp"){
         QVector<QStringList> result;
@@ -508,6 +520,19 @@ void Processor::work ()
         out << function;
         out << isExisted;
     }
+    //personnel page 2 confirm add new staff
+    if(function == "pp2_cns"){
+        QString username = list.at(0);
+        QString password = list.at(1);
+        QString name = list.at(2);
+        QString gender = list.at(3);
+        QString position = list.at(4);
+        QString email = list.at(5);
+        QString userPic = list.at(6);
+        Staff::addNewStaff(username, password, name, gender,
+                           position, email, userPic);
+        out << function;
+    }
     // purchase page show garment info
     if(function == "pcp_sg"){
         QVector<QStringList> result;
@@ -563,7 +588,7 @@ void Processor::work ()
         }
         Order::saveProviderOrder(providerOrderID, providerOrder);
         QDateTime changeDatetime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm:ss");
-        QString arriveDatetime = changeDatetime.addDays(+3).toString("yyyy-MM-dd hh:mm:ss");
+        QString arriveDatetime = changeDatetime.addDays(3).toString("yyyy-MM-dd hh:mm:ss");
         providerOrder.editInfo(providerID, arriveDatetime, productInfo);
         QString warehouseID = "1";
         Warehouse::replenish(warehouseID, providerOrder);

@@ -18,7 +18,7 @@ Staff::Staff()
 */
 
 void Staff::addNewStaff(QString username, QString password,
-                        QString name, QString gender, QString email, QString userPic)
+                        QString name, QString gender, QString email, QString position, QString userPic)
 {
 
     QStringList staffInfo;
@@ -26,6 +26,7 @@ void Staff::addNewStaff(QString username, QString password,
     staffInfo.append(password);
     staffInfo.append(name);
     staffInfo.append(gender);
+    staffInfo.append(position);
     staffInfo.append(email);
     staffInfo.append(userPic);
     SQLTool::insert("userdata", staffInfo);

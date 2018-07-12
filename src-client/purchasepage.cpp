@@ -85,7 +85,7 @@ void SystemCenter::on_pushButton_deleteGarment_clicked()
 
    QVector<int> rowIndex;
    QItemSelectionModel *selections = ui->tableWidget_orderGarment->selectionModel();
-   QModelIndexList selectedrows = selections->selectedIndexes();
+   QModelIndexList selectedrows = selections->selectedRows();
 
    for(int i = 0 ; i < selectedrows.count() ; i++){
        rowIndex.append(selectedrows.at(i).row());
@@ -182,10 +182,10 @@ void SystemCenter::timer_deal_slot_function()
     int m = datetime.date().month();
     int d = datetime.date().day();
     QString strTime = datetime.time().toString();
-    ui->label_showOrderTime->setText(QString::number(y) + "/" + QString::number(m) +
-                                     "/" + QString::number(d) + " " + strTime);
-    ui->label_showOrderTime_2->setText(QString::number(y) + "/" + QString::number(m) +
-                                       "/" + QString::number(d) + " " + strTime);
+    ui->label_showOrderTime->setText(QString::number(y) + "-" + QString::number(m) +
+                                     "-" + QString::number(d) + " " + strTime);
+    ui->label_showOrderTime_2->setText(QString::number(y) + "-" + QString::number(m) +
+                                       "-" + QString::number(d) + " " + strTime);
 }
 
 

@@ -58,7 +58,7 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
     static QString isFirstOrder = "Y";
     QVector<int> rowIndex;
     QItemSelectionModel *selection = ui->tableWidget_deliverGarment->selectionModel();
-    QModelIndexList selectedRows = selection->selectedIndexes();
+    QModelIndexList selectedRows = selection->selectedRows();
 
     for(int i = 0 ; i < selectedRows.count() ; i++){
         rowIndex.append(selectedRows.at(i).row());
@@ -71,6 +71,7 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
 
     QString providerTempProduct = ui->label_deliverShowProduct->text();
     QStringList providerProduct = providerTempProduct.split(",");
+    qDebug() << providerProduct;
 
     for(QString iter : product){
         if(!providerProduct.contains(iter)){

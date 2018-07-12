@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>5</number>
     </property>
     <property name="iconSize">
      <size>
@@ -9120,8 +9120,6 @@ QPushButton:hover{
        </widget>
       </widget>
      </widget>
-     <zorder>frame_personnelpage_2</zorder>
-     <zorder>frame_personnelpage_1</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">

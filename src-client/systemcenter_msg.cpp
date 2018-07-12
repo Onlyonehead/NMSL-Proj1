@@ -618,6 +618,9 @@ void SystemCenter::readMessage()
     if(from == "sp_confirmAddG"){
         QMessageBox::information(NULL, tr("提示"), tr("新服装已添加完成，已可查看"),
                                  QMessageBox::Yes, QMessageBox::Yes);
+    } // system page save picture
+    if(from == "sp_sendPic"){
+        qDebug() << "save picture success";
     }//providerpage show provider info
     if(from == "pp_sp"){
         ui->tableWidget_providerInfo->setRowCount(0);
@@ -736,7 +739,18 @@ void SystemCenter::readMessage()
             ui->pushButton_addNewPortrait->setEnabled(true);
             ui->pushButton_confirmNewStaff->setEnabled(true);
         }
-    } // purchase page show garment info
+    } // personnel page 2 confirm add new staff
+    if(from == "pp2_cns"){
+        QMessageBox::information(NULL, tr("提示"), tr("添加新员工成功！现已可查询此员工信息。"),
+                                 QMessageBox::Yes , QMessageBox::Yes);
+        ui->lineEdit_addNewName->clear();
+        ui->lineEdit_addNewPassword->clear();
+        ui->lineEdit_repeatPassword->clear();
+        ui->lineEdit_addNewName->clear();
+        ui->lineEdit_addNewEmail->clear();
+        ui->label_showNewPortrait->clear();
+        ui->label_showNewPortraitName->clear();
+    }// purchase page show garment info
     if(from == "pcp_sg"){
         int i = 0;
         QVector<QStringList> result;

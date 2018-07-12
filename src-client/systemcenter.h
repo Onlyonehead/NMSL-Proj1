@@ -188,6 +188,8 @@ private slots:
 
     void on_pushButton_addProviderInfo_clicked();
 
+    void on_pushButton_confirmNewStaff_clicked();
+
 signals:
     void stringReturn(QString);
 

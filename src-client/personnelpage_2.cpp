@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <QList>
 #include <QComboBox>
+#include <QMessageBox>
 
 
 
@@ -66,6 +67,55 @@ void SystemCenter::on_lineEdit_addNewEmail_editingFinished()
     sendMessage(list);
 
 }
+
+/**
+ * @brief SystemCenter::on_pushButton_confirmNewStaff_clicked
+ * confirm create new staff
+ * @author Yihan Dong
+ * @return void
+ */
+void SystemCenter::on_pushButton_confirmNewStaff_clicked()
+{
+    QMessageBox msgbox;
+    msgbox.setText(tr("员工信息已生成"));
+    msgbox.setInformativeText(tr("确认员工信息并保存吗？"));
+    msgbox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
+    msgbox.setDefaultButton(QMessageBox::Save);
+    QStringList list;
+    QString username;
+    QString password;
+    QString name;
+    QString gender;
+    QString position;
+    QString email;
+    QString pic;
+    int ret = msgbox.exec();
+    switch (ret) {
+    case QMessageBox::Save:
+        list.append("pp2_cns");
+        username = ui->lineEdit_addNewUsername->text();
+        password = ui->lineEdit_addNewPassword->text();
+        name = ui->lineEdit_addNewName->text();
+        gender = ui->comboBox_addNewGender->currentText();
+        position = ui->comboBox_addNewPosition->currentText();
+        email = ui->lineEdit_addNewEmail->text();
+        pic = ui->label_showNewPortraitName->text();
+        list.append(username);
+        list.append(password);
+        list.append(name);
+        list.append(gender);
+        list.append(position);
+        list.append(email);
+        list.append(pic);
+        sendMessage(list);
+        break;
+    case QMessageBox::Cancel:
+        break;
+    }
+
+
+}
+
 
 /**
  * @brief SystemCenter::on_pushButton_cancelNewStaff_clicked
