@@ -444,6 +444,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(10);
+
+    /**
+     * update staff information page setting
+     *
+     * @author Yihan Dong
+    */
+    ui->tableWidget_updateShowStaffInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_updateShowStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_updateShowStaffInfo->setAlternatingRowColors(true);
+    ui->tableWidget_updateShowStaffInfo->verticalHeader()->setVisible(false);
+    ui->tableWidget_updateShowStaffInfo->setStyleSheet("selection-background-color::lightblue");
+
 //    //initialize furry search
 
     QElapsedTimer t;
@@ -622,6 +634,7 @@ void SystemCenter::on_pushButton_A_clicked()
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -651,6 +664,7 @@ void SystemCenter::on_pushButton_B_clicked()
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -680,6 +694,7 @@ void SystemCenter::on_pushButton_C_clicked()
     //C
     ui->frame_2C->setVisible(true);
     ui->frame_systempage_3->setVisible(true);
+    ui->frame_personnelpage_3->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -842,3 +857,4 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
+

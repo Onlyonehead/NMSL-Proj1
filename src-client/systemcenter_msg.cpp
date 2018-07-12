@@ -739,7 +739,11 @@ void SystemCenter::readMessage()
             ui->pushButton_addNewPortrait->setEnabled(true);
             ui->pushButton_confirmNewStaff->setEnabled(true);
         }
-    } // personnel page 2 confirm add new staff
+    } // personnel page 2 add new portrait
+    if(from == "pp2_anp"){
+        qDebug() << "add portrait success!";
+    }
+    // personnel page 2 confirm add new staff
     if(from == "pp2_cns"){
         QMessageBox::information(NULL, tr("提示"), tr("添加新员工成功！现已可查询此员工信息。"),
                                  QMessageBox::Yes , QMessageBox::Yes);
@@ -766,7 +770,23 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_generateOrder->setRowCount(i);
         progressBar();
-    } // purchase page show garment detailed information
+    }// personnel page 3 show staff
+    if(from == "pp3_upss"){
+        int i = 0;
+        QVector<QStringList> result;
+        in >> result;
+        for(QStringList list : result){
+            ui->tableWidget_updateShowStaffInfo->insertRow(i);
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+            i++;
+        }
+        ui->tableWidget_updateShowStaffInfo->setRowCount(i);
+        progressBar();
+    }// purchase page show garment detailed information
     if(from == "pcp_sgdi"){
         QStringList result;
         in >> result;

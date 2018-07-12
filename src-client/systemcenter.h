@@ -190,6 +190,10 @@ private slots:
 
     void on_pushButton_confirmNewStaff_clicked();
 
+    void on_pushButton_addNewPortrait_clicked();
+
+    void on_pushButton_updatePageShowStaff_clicked();
+
 signals:
     void stringReturn(QString);
 

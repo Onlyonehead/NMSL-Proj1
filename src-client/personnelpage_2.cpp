@@ -9,6 +9,9 @@
 #include <QList>
 #include <QComboBox>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QByteArray>
+#include <QDataStream>
 
 
 
@@ -67,6 +70,51 @@ void SystemCenter::on_lineEdit_addNewEmail_editingFinished()
     sendMessage(list);
 
 }
+
+
+
+
+/**
+ * @brief SystemCenter::on_pushButton_addNewPortrait_clicked
+ * add new staff portrait
+ * @author Yihan Dong
+ * @return void
+ */
+void SystemCenter::on_pushButton_addNewPortrait_clicked()
+{
+    QStringList picture = QFileDialog::getOpenFileNames(this, tr("open file"),
+                                                        "c:/users/Dong9/Pictures/Saved Pictures",
+                                                        tr("图片文件(*png *jpg)"));
+    QString showPic = picture.join("/");
+    QString picturePath = picture.at(0);
+    QStringList picList = picturePath.split("/");
+    QString pictureName = picList.at(picList.length() - 1);
+
+    QImage tempPortrait(showPic);
+    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(100, 100, Qt::IgnoreAspectRatio));
+    ui->label_showNewPortrait->setPixmap(portrait);
+    ui->label_showNewPortraitName->setText(pictureName);
+    ui->label_showNewPortrait->show();
+
+    QStringList list;
+    list.append("pp2_anp");
+    list.append(pictureName);
+
+    QByteArray message;
+    QDataStream out(&message, QIODevice::ReadOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << (quint16) 0;
+
+    out << list;
+    out << portrait;
+
+    out.device()->seek(0);
+    out << (quint16)(message.size() - sizeof(quint16));
+    m_tcpsocket->write(message);
+
+
+}
+
 
 /**
  * @brief SystemCenter::on_pushButton_confirmNewStaff_clicked

@@ -18,6 +18,8 @@
 #include <QDateTime>
 #include <QTime>
 #include <QDate>
+#include <QImage>
+#include <QImageReader>
 
 #include "myserver.h"
 #include "login.h"

@@ -137,7 +137,7 @@ void SystemCenter::on_pushButton_setGPic_clicked()
     list.append(pictureName);
 
     QByteArray message;
-    QDataStream out(&message,QIODevice::WriteOnly);
+    QDataStream out(&message,QIODevice::ReadOnly);
     out.setVersion(QDataStream::Qt_5_7);
     out << (quint16) 0;
 

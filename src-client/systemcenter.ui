@@ -9120,6 +9120,663 @@ QPushButton:hover{
        </widget>
       </widget>
      </widget>
+     <widget class="QFrame" name="frame_personnelpage_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>725</width>
+        <height>563</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background: rgba(248, 248, 248, 180);
+	border-image:none;
+	border: 2px solid rgb(200, 200, 200);
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QTableWidget" name="tableWidget_updateShowStaffInfo">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>705</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QTableWidget
+{
+    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
+    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    background:white;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    /*alternate-background-color:red;   */
+    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:5px;
+	font: 15pt &quot;Times&quot; bold;
+    padding:0px 0px;  /*表格与边框的间距*/
+	height: 30px;
+}
+
+
+/*设置表头属性*/
+QTableWidget QHeaderView
+{
+	font: 75 15pt &quot;Helvetica&quot; bold ;
+    background-color:#F0F0F0;  /*lightgray*/
+	border:0px solid grey;
+	border-bottom:1px solid rgb(200, 200, 200);
+	border-radius:0px;
+    /*color:black;*/
+    /*padding-left:4px;*/
+    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
+    /*border:1px solid gray;*/
+}
+QTableWidget::item{
+	border: 1px solid rgb(250, 250, 250);
+}</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>用户名</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>姓名</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>性别</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>职位</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>邮箱</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QPushButton" name="pushButton_updatePageShowStaff">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>5</y>
+         <width>191</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Display staff</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_updatePageClearStaff">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>5</y>
+         <width>191</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_changeStaffInfo">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>330</y>
+         <width>80</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Update</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_cancelStaffInfoChange">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>430</y>
+         <width>80</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_8">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>256</y>
+         <width>300</width>
+         <height>300</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	border: 2px solid rgb(210, 210, 210);
+	border-radius:20px;
+	background:white;
+	margin-top: 11 px;
+}
+
+QGroupBox::title {
+background: rgb(248, 248, 248);
+	subcontrol-origin: margin;
+	subcontrol-position: top center;	
+	padding: 2 1px;
+	color: rgba(15, 128, 255, 193);
+	border: 2px solid rgba(15, 128, 255, 193);
+	border-radius:10px;
+}</string>
+       </property>
+       <property name="title">
+        <string>Detail Information</string>
+       </property>
+       <widget class="QLabel" name="label_updateSShowsuernameTip">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>29</y>
+          <width>31</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Username:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_deliverShowAdsTip_2">
+        <property name="geometry">
+         <rect>
+          <x>59</x>
+          <y>79</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Name</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_99">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>42</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_101">
+        <property name="geometry">
+         <rect>
+          <x>29</x>
+          <y>92</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_111">
+        <property name="geometry">
+         <rect>
+          <x>29</x>
+          <y>141</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_deliverShowNameTip_2">
+        <property name="geometry">
+         <rect>
+          <x>59</x>
+          <y>128</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Gender</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_112">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>201</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_deliverShowProductTip_2">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>188</y>
+          <width>31</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Position</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_updateSShowsuernameTip_3">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>239</y>
+          <width>31</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica 12</family>
+          <pointsize>14</pointsize>
+          <weight>9</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Email:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_117">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>252</y>
+          <width>18</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_updateStaffUsername">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>113</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_updateStaffName">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>90</y>
+          <width>113</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_updateStaffUsername_2">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>250</y>
+          <width>113</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_updateStaffPosition">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>200</y>
+          <width>110</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>username</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>name</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>gender</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>position</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>email</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="comboBox_updateStaffGender">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>140</y>
+          <width>110</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>男</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>女</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+     </widget>
+     <zorder>frame_personnelpage_2</zorder>
+     <zorder>frame_personnelpage_1</zorder>
+     <zorder>frame_personnelpage_3</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">

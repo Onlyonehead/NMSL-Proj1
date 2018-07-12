@@ -420,10 +420,8 @@ void Processor::work ()
     if(function == "sp_sendPic"){
         QByteArray picByteArray;
         in >> picByteArray;
-        QPixmap imageResult;
-        imageResult.loadFromData(picByteArray);
         QImage image;
-        image = imageResult.toImage();
+        image = QImage::fromData(picByteArray, "jpg");
         QString pictureName = list.at(0);
         image.save(pictureName, "jpg", -1);
         out << function;
@@ -520,6 +518,16 @@ void Processor::work ()
         out << function;
         out << isExisted;
     }
+    //personnel page 2 add new portrait
+    if(function == "pp2_anp"){
+        QByteArray picByteArray;
+        in >> picByteArray;
+        QImage image;
+        image = QImage::fromData(picByteArray, "jpg");
+        QString pictureName = list.at(0);
+        image.save(pictureName, "jpg", -1);
+        out << function;
+    }
     //personnel page 2 confirm add new staff
     if(function == "pp2_cns"){
         QString username = list.at(0);
@@ -532,6 +540,13 @@ void Processor::work ()
         Staff::addNewStaff(username, password, name, gender,
                            position, email, userPic);
         out << function;
+    }
+    // personnel page 3 show staff
+    if(function == "pp3_upss"){
+        QVector<QStringList> result;
+        Staff::Info(result);
+        out << function;
+        out << result;
     }
     // purchase page show garment info
     if(function == "pcp_sg"){
