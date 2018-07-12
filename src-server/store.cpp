@@ -5,59 +5,6 @@
 #include <QDateTime>
 
 /**
- * get pic path according to pic id
- *
- * @author sissyVI
- * @param id cloth's id
- * @return picture path
- */
-QString Store::getPicPath(QString id){
-    QStringList qsl;
-    qsl.append(QString("path"));
-    QSqlQuery sq;
-
-    //获取该行第一列的值，即cloth的ID,然后在clothes数据库中搜索该服装的详细信息
-    SQLTool::search(sq, qsl, "clothes", "ID", id);
-    sq.next();
-    return sq.value(0).toString();
-}
-
-/**
- * get the style and size of a cloth according to it's id
- *
- * @author sissyVI
- * @param id
- * @return
- */
-QString Store::getClothStyle(QString id){
-    QStringList qsl;
-    qsl.append(QString("style"));
-    qsl.append(QString("size"));
-    QSqlQuery sq;
-
-    //获取该行第一列的值，即cloth的ID,然后在clothes数据库中搜索该服装的详细信息
-    SQLTool::search(sq, qsl, "clothes", "ID", id);
-    sq.next();
-    return sq.value(0).toString()+"  "+sq.value(1).toString();
-}
-
-/**
- * get cloth details according to it's id
- *
- * @author sissyVI
- * @param id cloth id
- * @param qsl a QStringList used to store info
- */
-void Store::getClothDetail(QString id, QStringList& qsl){
-    QSqlQuery sq_cloth;
-    SQLTool::search(sq_cloth, "clothes", "ID", id);
-    sq_cloth.next();
-    qsl<<sq_cloth.value(0).toString()<<sq_cloth.value(1).toString()
-        <<sq_cloth.value(2).toString()<<sq_cloth.value(3).toString()
-        <<sq_cloth.value(4).toString();
-}
-
-/**
  * get all clothes' details
  *
  * @brief Store::getAllClothes
@@ -258,7 +205,7 @@ void Store::purchase(QString store_id, QMap<QString, QString> &m){
  * @param qv to keep clothes' info
  */
 void Store::getPurchaseInfo(QString purchase_id, QString store_id, QStringList& qsl, QVector<QStringList>& qv){
-    QSqlQuery sq, sq2, sq3;
+    QSqlQuery sq, sq3;
     SQLTool::search(sq, "store", "id_store", store_id);
     sq.next();
     qsl.append(sq.value(1).toString());//name
@@ -276,11 +223,7 @@ void Store::getPurchaseInfo(QString purchase_id, QString store_id, QStringList& 
     SQLTool::search(sq, "store_pDetail", "id_purchase", purchase_id);
     while(sq.next()){
         QStringList qsl2;
-        SQLTool::search(sq2, "clothes", "ID", sq.value(1).toString());
-        sq2.next();
         qsl2.append(sq.value(1).toString());//id_clothes
-        qsl2.append(sq2.value(1).toString());//style
-        qsl2.append(sq2.value(2).toString());//size
 
         QStringList qsl3;
         qsl3.append("store_id");
@@ -295,7 +238,6 @@ void Store::getPurchaseInfo(QString purchase_id, QString store_id, QStringList& 
         else
             qsl2.append(sq3.value(0).toString());//exist
         qsl2.append(sq.value(2).toString());//amount
-        qsl2.append(sq.value(2).toString());//amount(changeable)
         qv.append(qsl2);
     }
 }

@@ -8,9 +8,6 @@
 
 class Store{
 public:
-    static QString getPicPath(QString);
-    static QString getClothStyle(QString id);
-    static void getClothDetail(QString id, QStringList&);
     static void getAllClothes(QVector<QStringList>&);
     static void getStoreInfo(QString, QString, QVector<QString>&);
     static void getStock(QString, QVector<QVector<QString>>&);

@@ -877,9 +877,21 @@ void SystemCenter::readMessage()
         int i=0;
         QVector<QStringList>::const_iterator it;
         for(it=qv.constBegin(); it!=qv.constEnd(); ++it){
-            for(int j=0; j<5; ++j){
-                ui->tableWidget_checkDetail->setItem(i,j,new QTableWidgetItem(it->at(j)));
+
+            ui->tableWidget_checkDetail->setItem(i,0,new QTableWidgetItem(it->at(0)));
+
+            QVector<QStringList>::const_iterator itc;
+            for(itc=clothes.constBegin(); itc!=clothes.constEnd(); ++itc){
+                if(itc->at(0)==it->at(0)){
+                    ui->tableWidget_checkDetail->setItem(i,1,new QTableWidgetItem(itc->at(1)));
+                    ui->tableWidget_checkDetail->setItem(i,2,new QTableWidgetItem(itc->at(2)));
+                }
             }
+
+            ui->tableWidget_checkDetail->setItem(i,3,new QTableWidgetItem(it->at(1)));
+            ui->tableWidget_checkDetail->setItem(i,4,new QTableWidgetItem(it->at(2)));
+
+
             ++i;
         }
 

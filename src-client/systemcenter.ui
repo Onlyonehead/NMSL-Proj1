@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -749,7 +749,7 @@ QTabBar::tab:selected {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../Resources/resources.qrc">:/welcome2.png</pixmap>
+       <pixmap>:/welcome2.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -7236,7 +7236,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>80</y>
+         <y>70</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -7270,9 +7270,9 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>37</x>
-         <y>110</y>
+         <y>100</y>
          <width>651</width>
-         <height>191</height>
+         <height>160</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -7355,9 +7355,9 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>37</x>
-         <y>342</y>
+         <y>300</y>
          <width>651</width>
-         <height>191</height>
+         <height>240</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -7435,7 +7435,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>25</x>
-         <y>310</y>
+         <y>268</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -8579,6 +8579,8 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
+     <zorder>frame_sell_B</zorder>
+     <zorder>frame_sell_A</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -10600,8 +10602,6 @@ QPushButton:checked{
    <zorder>pushButton_A</zorder>
   </widget>
  </widget>
- <resources>
-  <include location="../Resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
