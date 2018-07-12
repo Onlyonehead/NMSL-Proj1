@@ -98,6 +98,21 @@ void Processor::work ()
         QVector<QStringList> stores;
         Store::getStores(stores);
 
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo");
+        int count_ongoing = query.size();
+        SQLTool::search(query, "orderChecked");
+        int count_dealt = 0;
+        int count_rejected = 0;
+
+        while(query.next()){
+            if(query.value(3).toString() == "REJECTED"){
+                count_rejected++;
+            }else{
+                count_dealt++;
+            }
+        }
+
         out << function;
         out << stock;
         out << arriving;
@@ -107,6 +122,9 @@ void Processor::work ()
         out << arriving_map;
         out << warehouse_map;
         out << stores;
+        out << count_dealt;
+        out << count_ongoing;
+        out << count_rejected;
     }
 
     if(function == "info_whEC"){
@@ -283,12 +301,17 @@ void Processor::work ()
         QString order_id;
         QMap<QString, QMap<QString, QString>> replenishment;
 
+        QString order_time;
+
         in >> order_id;
         in >> warehouse_id;
         in >> replenishment;
+        in >> order_time;
 
         QDateTime current_date_time = QDateTime::currentDateTime();
         QString time = current_date_time.addDays(3).toString("yyyy-MM-dd hh:mm:ss");
+
+
 
         QStringList s_for_infochecked;
 
@@ -304,8 +327,17 @@ void Processor::work ()
                 s_for_infochecked.append(j.value());
             }
             Order order(i.key(), time, l);
-            Warehouse::replenish(warehouse_id.split("-")[0].trimmed(), order);
-            Warehouse::deliverGoods(order.getId(), order);
+            QByteArray ba = warehouse_id.split("-")[0].trimmed().toLatin1();
+            const char *s = ba.data();
+
+            if(*s == 'S'){
+                Store::storeArrive(warehouse_id.split("-")[0].trimmed().split(QRegExp("[A-Z]"))[1], order_time, order);
+            }else{
+                Warehouse::replenish(warehouse_id.split("-")[0].trimmed(), order);
+            }
+            QString id = order.getId();
+            order.editInfo(warehouse_id.split("-")[0].trimmed(), order.getDatetime(), order.getProductInfo());
+            Warehouse::deliverGoods(id, order);
         }
         QSqlQuery query;
         SQLTool::search(query, "orderInfo", "order_id", order_id);
@@ -339,6 +371,40 @@ void Processor::work ()
 
         out << function;
         out << vlist;
+    }
+
+    if(function == "del_orderChecked"){
+        QString id = list.at(0);
+
+        QSqlQuery query;
+        SQLTool::search(query, "orderChecked", "order_id", id);
+
+        SQLTool::del("orderChecked", "order_id", id);
+        out << function;
+        if(query.next()){
+            if(query.value(3).toString() == "REJECTED"){
+                out << QString("REJECTED");
+            }else{
+                out << QString("Done");
+            }
+        }
+    }
+
+    if(function == "reject_order"){
+        QString order_id = list.at(0);
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo", "order_id", order_id);
+        if(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append("REJECTED");
+            SQLTool::insert("orderChecked", l);
+            SQLTool::del("orderInfo", "order_id", order_id);
+        }
+        out << function;
+        out << QString("Done");
     }
 
 

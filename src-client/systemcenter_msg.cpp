@@ -48,6 +48,8 @@ void SystemCenter::readMessage()
         QMap<QString, QString> warehouse_map;
         QVector<QStringList> stores;
 
+
+
         in >> stock;
         in >> arriving;
         in >> clothes;
@@ -56,6 +58,9 @@ void SystemCenter::readMessage()
         in >> arriving_map;
         in >> warehouse_map;
         in >> stores;
+        in >> count_dealt;
+        in >> count_ongoing;
+        in >> count_rejected;
 
         this->stock = stock;
         this->arriving = arriving;
@@ -65,6 +70,10 @@ void SystemCenter::readMessage()
         this->arriving_map = arriving_map;
         this->warehouse_map = warehouse_map;
         this->stores = stores;
+
+        ui->label_121->setText(QString::number(count_dealt));
+        ui->label_123->setText(QString::number(count_ongoing));
+        ui->label_128->setText(QString::number(count_rejected));
 
         for(QStringList list : stock){
             count1 += list.at(2).toInt();
@@ -516,7 +525,8 @@ void SystemCenter::readMessage()
             ui->tableWidget_logistics_A->insertRow(count);
             ui->tableWidget_logistics_A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
             ui->tableWidget_logistics_A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
-            ui->tableWidget_logistics_A->setItem(count, 2, new QTableWidgetItem("Time: " + l.at(2)));
+            QStringList ss = l.at(2).split(QRegExp("[A-Z]"));
+            ui->tableWidget_logistics_A->setItem(count, 2, new QTableWidgetItem("Time: " + ss[0] + " " + ss[1]));
             QApplication::processEvents();
             count++;
         }
@@ -589,12 +599,17 @@ void SystemCenter::readMessage()
         if(s == "Done"){
             QMessageBox::information(this,"完成", "\n补货成功！",QMessageBox::Ok);
             on_pushButton_13_clicked();
+
+            count_ongoing--;
+            count_dealt++;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
         }
     }
 
     if(from == "orderCheckedInfo"){
         on_pushButton_14_clicked();
-
         QVector<QStringList> vlist;
         in >> vlist;
         this->orderCheckedList = vlist;
@@ -605,13 +620,54 @@ void SystemCenter::readMessage()
             ui->tableWidget_logistics_2A->insertRow(count);
             ui->tableWidget_logistics_2A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
             ui->tableWidget_logistics_2A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
-            ui->tableWidget_logistics_2A->setItem(count, 2, new QTableWidgetItem("Time: " + l.at(2)));
+            QStringList ss = l.at(2).split(QRegExp("[A-Z]"));
+            ui->tableWidget_logistics_2A->setItem(count, 2, new QTableWidgetItem("Time: " + ss[0] + " " + ss[1]));
             QApplication::processEvents();
             count++;
         }
         ui->tableWidget_logistics_2A->setRowCount(count);
 
         progressBar();
+    }
+
+    if(from == "del_orderChecked"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            on_pushButton_15_clicked();
+            QMessageBox::information(this,"完成", "\n删除成功！",QMessageBox::Ok);
+            orderCheckedId.clear();
+
+            count_dealt--;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
+        }
+        if(s == "REJECTED"){
+            on_pushButton_15_clicked();
+            QMessageBox::information(this,"完成", "\n删除成功！",QMessageBox::Ok);
+            orderCheckedId.clear();
+
+            count_rejected--;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
+        }
+    }
+    if(from == "reject_order"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n已拒绝此次订单！",QMessageBox::Ok);
+            order_id.clear();
+            on_pushButton_13_clicked();
+
+            count_ongoing--;
+            count_rejected++;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
+        }
     }
 
     //systempage show garment info
@@ -919,6 +975,11 @@ void SystemCenter::readMessage()
         QString s;
         in >> s;
         QMessageBox::information(this,"completed", "\nrequest approved successfully!",QMessageBox::Ok);
+
+        count_ongoing++;
+        ui->label_121->setText(QString::number(count_dealt));
+        ui->label_123->setText(QString::number(count_ongoing));
+        ui->label_128->setText(QString::number(count_rejected));
 
         ui->pushButton_change->setVisible(false);
         ui->pushButton_commit->setVisible(false);

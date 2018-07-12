@@ -25,6 +25,7 @@ void SystemCenter::on_pushButton_12_clicked()
     order_id.clear();
     replenishment.clear();
     wh_info.clear();
+    order_time.clear();
 
 }
 
@@ -34,11 +35,17 @@ void SystemCenter::on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item
     replenishment.clear();
     wh_id.clear();
     order_id.clear();
+    order_time.clear();
     ui->tableWidget_logistics_D->setRowCount(0);
     QVector<QStringList> vlist;
     vlist = this->orderList;
     QStringList order;
     QString wh;
+    order_time = ui->tableWidget_logistics_A->item(item->row(), 2)->
+            text().split(":")[1].trimmed() + ":" + ui->tableWidget_logistics_A->item(item->row(), 2)->
+            text().split(":")[2].trimmed() + ":" + ui->tableWidget_logistics_A->item(item->row(), 2)->
+            text().split(":")[3].trimmed();
+
     order_id = ui->tableWidget_logistics_A->item(item->row(), 0)->
             text().split(":")[1].trimmed();
     for(QStringList l : vlist){
@@ -56,12 +63,7 @@ void SystemCenter::on_tableWidget_logistics_A_itemClicked(QTableWidgetItem *item
                     }
                 }
             }else{
-                for(QStringList ll : warehouse){
-                    if(ll.at(0) == l.at(1)){
-                        wh += ll.at(0) + " - " + ll.at(1);
-                        break;
-                    }
-                }
+                wh += l.at(1) + " - " + warehouse_map.find(l.at(1)).value();
             }
 
             break;
@@ -255,8 +257,22 @@ void SystemCenter::on_logistics_send_clicked()
     out << order_id;
     out << ui->logistics_label_B->text();
     out << replenishment;
+    out << order_time;
 
     out.device()->seek(0);
     out << (quint16) (message.size() - sizeof(quint16));
     m_tcpsocket->write(message);
 }
+
+
+void SystemCenter::on_pushButton_21_clicked()
+{
+    if(QMessageBox::Yes==QMessageBox::question(this, "警告", "Confirm to reject this order ?",
+                                               QMessageBox::Yes, QMessageBox::No)){
+        QStringList msg;
+        msg.append("reject_order");
+        msg.append(order_id);
+        sendMessage(msg);
+    }
+}
+

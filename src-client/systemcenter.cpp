@@ -30,6 +30,7 @@ SystemCenter::SystemCenter(QWidget *parent) :
 
     ui->progressBar->setVisible(false);
     ui->pushButton_17->setVisible(false);
+    ui->pushButton_18->setVisible(false);
     style = false;
 
     /*
@@ -249,6 +250,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_198->setFont(font);
     ui->label_198->setText(QChar(0xf59d));
     ui->label_198->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_124->setFont(font);
+    ui->label_124->setText(QChar(0xf058));
+    ui->label_124->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_125->setFont(font);
+    ui->label_125->setText(QChar(0xf017));
+    ui->label_125->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_126->setFont(font);
+    ui->label_126->setText(QChar(0xf461));
+    ui->label_126->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
 
     QFont sp_font;
@@ -865,5 +878,4 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
-
 
