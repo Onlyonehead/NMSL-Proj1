@@ -3,6 +3,7 @@
 
 #include "TCPConnection.h"
 #include "record.h"
+#include "order.h"
 #include <QVector>
 
 class Store{
@@ -22,7 +23,7 @@ public:
     static void getAllPurchaseInfo(QVector<QStringList>&);
     static void changePAmount(QString, QString, QString);
 
-    static void storeArrive(QString, QString, QVector<QMap<QString, QStringList> >&, QMap<QString, QString>&);
+    static void storeArrive(QString, QString, Order&);
 };
 
 #endif // STORE_H
