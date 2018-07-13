@@ -31,6 +31,8 @@ SystemCenter::SystemCenter(QWidget *parent) :
     ui->progressBar->setVisible(false);
     ui->pushButton_17->setVisible(false);
     ui->pushButton_18->setVisible(false);
+    ui->add_warehouse->setVisible(false);
+    ui->edit_warehouse->setVisible(false);
     style = false;
 
     /*
@@ -94,6 +96,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     QApplication::processEvents();
 
     connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+
     QPixmap *pixmap = new QPixmap("./" + s6);
     if (pixmap->isNull()){
         download("http://39.108.155.50/project1/users/" + s6, "./" + s6);
@@ -477,7 +480,8 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(10);
-    //    //initialize furry search
+
+    //initialize furry search
 
     QElapsedTimer t;
 
@@ -576,7 +580,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
         ui->pushButton_A->setText("Replenish");
         ui->pushButton_B->setText("History");
-        ui->pushButton_C->setText("");
+        ui->pushButton_C->setText("Map");
         ui->pushButton_D->setText("");
 
     }
@@ -646,6 +650,7 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_sell_A->setVisible(true);
     ui->frame_logistics_A->setVisible(true);
 
+
     //B
     ui->frame_2B->setVisible(false);
     ui->frame_pB->setVisible(false);
@@ -656,6 +661,7 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_logistics_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -686,6 +692,7 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_logistics_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -716,6 +723,7 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //C
     ui->frame_2C->setVisible(true);
+    ui->frame_logistics_C->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -747,6 +755,7 @@ void SystemCenter::on_pushButton_D_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_logistics_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
@@ -878,4 +887,3 @@ void SystemCenter::on_style_change_clicked()
     }
     style = !style;
 }
-

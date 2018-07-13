@@ -407,6 +407,69 @@ void Processor::work ()
         out << QString("Done");
     }
 
+    if(function == "add_warehouse"){
+        QString name = list.at(0);
+        QString province = list.at(1);
+        QString city = list.at(2);
+        QString address = list.at(3);
+        QString position_x = list.at(4);
+        QString position_y = list.at(5);
+        QStringList l;
+        l.append("0");
+        l.append(name);
+        l.append(province);
+        l.append(city);
+        l.append(address);
+        l.append("分仓库");
+        l.append(position_x);
+        l.append(position_y);
+        SQLTool::insert("warehouse", l);
+        out << function;
+        out << QString("Done");
+        out << l;
+
+    }
+
+    if(function == "edit_warehouse"){
+        QString id = list.at(0);
+        QString name = list.at(1);
+        QString province = list.at(2);
+        QString city = list.at(3);
+        QString address = list.at(4);
+        QString position_x = list.at(5);
+        QString position_y = list.at(6);
+        QStringList l;
+        l.append("id");
+        l.append(id);
+        SQLTool::update("warehouse","name", name, l);
+        SQLTool::update("warehouse","province", province, l);
+        SQLTool::update("warehouse","city", city, l);
+        SQLTool::update("warehouse","address", address, l);
+        SQLTool::update("warehouse","position_x", position_x, l);
+        SQLTool::update("warehouse","position_y", position_y, l);
+
+        QStringList msg;
+        msg.append(id);
+        msg.append(name);
+        msg.append(province);
+        msg.append(city);
+        msg.append(address);
+        msg.append("分仓库");
+        msg.append(position_x);
+        msg.append(position_y);
+        out << function;
+        out << QString("Done");
+        out << msg;
+    }
+
+    if(function == "del_warehouse"){
+        QString id = list.at(0);
+        SQLTool::del("warehouse", "id", id);
+        out << function;
+        out << QString("Done");
+        out << id;
+    }
+
 
     //system page show garment
     if(function == "sp_sg"){

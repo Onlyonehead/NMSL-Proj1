@@ -3371,6 +3371,29 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
+     <widget class="QFrame" name="frame_logistics_C">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>725</width>
+        <height>563</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background: rgba(248, 248, 248, 180);
+	border-image:none;
+	border: 2px solid rgb(200, 200, 200);
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -3529,7 +3552,7 @@ QPushButton:hover{
          <x>37</x>
          <y>120</y>
          <width>651</width>
-         <height>221</height>
+         <height>191</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -3917,7 +3940,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>136</x>
-         <y>362</y>
+         <y>370</y>
          <width>71</width>
          <height>41</height>
         </rect>
@@ -3950,7 +3973,7 @@ background: none;
        <property name="geometry">
         <rect>
          <x>106</x>
-         <y>375</y>
+         <y>383</y>
          <width>18</width>
          <height>16</height>
         </rect>
@@ -4218,6 +4241,222 @@ QPushButton:hover{
         <bool>false</bool>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_22">
+       <property name="geometry">
+        <rect>
+         <x>302</x>
+         <y>330</y>
+         <width>141</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string> Add Warehouse</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_23">
+       <property name="geometry">
+        <rect>
+         <x>462</x>
+         <y>330</y>
+         <width>91</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Edit</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_24">
+       <property name="geometry">
+        <rect>
+         <x>572</x>
+         <y>330</y>
+         <width>91</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Delete</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_20">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>330</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Show Map</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <zorder>warehouse_search_A</zorder>
+      <zorder>icon_search</zorder>
+      <zorder>label_16</zorder>
+      <zorder>pushButton_4</zorder>
+      <zorder>tableWidget</zorder>
+      <zorder>pushButton_6</zorder>
+      <zorder>label_58</zorder>
+      <zorder>label_59</zorder>
+      <zorder>label_60</zorder>
+      <zorder>label_61</zorder>
+      <zorder>label_62</zorder>
+      <zorder>label_63</zorder>
+      <zorder>label_106</zorder>
+      <zorder>label_107</zorder>
+      <zorder>w_search_A</zorder>
+      <zorder>label_108</zorder>
+      <zorder>warehouse_id</zorder>
+      <zorder>tableWidget_A</zorder>
+      <zorder>w_search_A_3</zorder>
+      <zorder>pushButton_22</zorder>
+      <zorder>pushButton_23</zorder>
+      <zorder>pushButton_24</zorder>
+      <zorder>add_warehouse</zorder>
+      <zorder>pushButton_20</zorder>
      </widget>
      <widget class="QFrame" name="frame_2C">
       <property name="geometry">
@@ -7786,10 +8025,756 @@ background: none;
        </property>
       </widget>
      </widget>
-     <zorder>frame_2A</zorder>
+     <widget class="QFrame" name="add_warehouse">
+      <property name="geometry">
+       <rect>
+        <x>36</x>
+        <y>371</y>
+        <width>654</width>
+        <height>158</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background: rgb(248, 248, 248);
+	border-image:none;
+	border: 2px solid rgb(200, 200, 200);
+	border-radius: 15px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_113">
+       <property name="geometry">
+        <rect>
+         <x>51</x>
+         <y>27</y>
+         <width>61</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>name:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_114">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>27</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>province:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_115">
+       <property name="geometry">
+        <rect>
+         <x>463</x>
+         <y>27</y>
+         <width>61</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>city:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_116">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>90</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>address:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_27">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>97</y>
+         <width>81</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string> Add</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_28">
+       <property name="geometry">
+        <rect>
+         <x>545</x>
+         <y>97</y>
+         <width>81</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_add_name">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>35</y>
+         <width>110</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_add_province">
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>35</y>
+         <width>121</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_add_city">
+       <property name="geometry">
+        <rect>
+         <x>506</x>
+         <y>35</y>
+         <width>121</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_add_address">
+       <property name="geometry">
+        <rect>
+         <x>122</x>
+         <y>97</y>
+         <width>291</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="edit_warehouse">
+      <property name="geometry">
+       <rect>
+        <x>37</x>
+        <y>93</y>
+        <width>654</width>
+        <height>220</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background: rgb(248, 248, 248);
+	border-image:none;
+	border: 2px solid rgb(200, 200, 200);
+	border-radius: 15px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_117">
+       <property name="geometry">
+        <rect>
+         <x>51</x>
+         <y>40</y>
+         <width>61</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>name:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_118">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>40</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>province:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_119">
+       <property name="geometry">
+        <rect>
+         <x>463</x>
+         <y>40</y>
+         <width>61</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>city:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_138">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>133</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>16</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>address:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_29">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>140</y>
+         <width>81</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>15</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_30">
+       <property name="geometry">
+        <rect>
+         <x>545</x>
+         <y>140</y>
+         <width>81</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_edit_name">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>48</y>
+         <width>110</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_edit_province">
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>48</y>
+         <width>121</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_edit_city">
+       <property name="geometry">
+        <rect>
+         <x>506</x>
+         <y>48</y>
+         <width>121</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="warehouse_edit_address">
+       <property name="geometry">
+        <rect>
+         <x>122</x>
+         <y>140</y>
+         <width>291</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+     <zorder>add_warehouse</zorder>
+     <zorder>edit_warehouse</zorder>
      <zorder>frame_2B</zorder>
      <zorder>frame_2C</zorder>
      <zorder>frame_2D</zorder>
+     <zorder>frame_2A</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">

@@ -670,6 +670,72 @@ void SystemCenter::readMessage()
         }
     }
 
+    if(from == "add_warehouse"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n已成功添加！",QMessageBox::Ok);
+            QStringList l;
+            in >> l;
+            l.replace(0, QString::number(warehouse.size() + 1));
+            warehouse.append(l);
+            warehouse_map.insert(l.at(0), l.at(1));
+            ui->warehouse_add_name->clear();
+            ui->warehouse_add_province->clear();
+            ui->warehouse_add_city->clear();
+            ui->warehouse_add_address->clear();
+            ui->add_warehouse->setVisible(false);
+            ui->pushButton_22->setEnabled(true);
+            ui->pushButton_23->setEnabled(true);
+            ui->pushButton_24->setEnabled(true);
+        }
+    }
+    if(from == "edit_warehouse"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n已成功修改！",QMessageBox::Ok);
+            QStringList l;
+            in >> l;
+            for(int i = 0; i < warehouse.size(); i++){
+                if(l.at(0) == warehouse.at(i).at(0)){
+                    warehouse.replace(i, l);
+                    break;
+                }
+            }
+            warehouse_map[l.at(0)] = l.at(1);
+            ui->warehouse_edit_name->clear();
+            ui->warehouse_edit_province->clear();
+            ui->warehouse_edit_city->clear();
+            ui->warehouse_edit_address->clear();
+            on_pushButton_30_clicked();
+            on_pushButton_4_clicked();
+            ui->pushButton_22->setEnabled(true);
+            ui->pushButton_23->setEnabled(true);
+            ui->pushButton_24->setEnabled(true);
+        }
+    }
+
+    if(from == "del_warehouse"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n已成功删除！",QMessageBox::Ok);
+            QString id;
+            in >> id;
+            for(int i = 0; i < warehouse.size(); i++){
+                if(id == warehouse.at(i).at(0)){
+                    warehouse.remove(i);
+                    break;
+                }
+            }
+
+            warehouse_map.remove(id);
+            wh_info_warehouse.clear();
+            on_pushButton_4_clicked();
+        }
+    }
+
     //systempage show garment info
     if(from == "sp_sg"){
         QVector<QStringList> result;

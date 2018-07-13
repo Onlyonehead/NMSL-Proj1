@@ -27,6 +27,9 @@
 #include <QStringListModel>
 #include <QtNetwork>
 #include "tool.h"
+#include "qtmap.h"
+#include "ui_qtmap.h"
+#include <QDesktopWidget>
 
 
 namespace Ui {
@@ -211,8 +214,32 @@ private slots:
 
     void on_pushButton_21_clicked();
 
+    void on_pushButton_20_clicked();
+
+    void on_pushButton_28_clicked();
+
+    void on_pushButton_22_clicked();
+
+    void on_pushButton_27_clicked();
+
+    void finishedSlot(QNetworkReply*);
+
+    void on_pushButton_30_clicked();
+
+    void on_pushButton_29_clicked();
+
+    void on_pushButton_23_clicked();
+
+    void on_tableWidget_itemClicked(QTableWidgetItem *item);
+
+    void finishedSlotForEdit(QNetworkReply* reply);
+
+    void on_pushButton_24_clicked();
+
 signals:
     void stringReturn(QString);
+
+    void webReturn(QVector<QStringList>);
 
 private:
     Ui::SystemCenter *ui;
@@ -243,6 +270,7 @@ private:
 
     QVector<QStringList> orderList; // For logistic A
     QVector<QStringList> wh_history; // For warehouse A
+    QStringList wh_info_warehouse; // For warehouse A
 
     QMap<QString, QMap<QString, QString>> replenishment; // For logistics A
     QString wh_id; // For logistics A

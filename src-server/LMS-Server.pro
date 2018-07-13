@@ -75,3 +75,5 @@ else:unix: LIBS += -L$$PWD/../packages/build-SMTPEmail-Desktop_Qt_5_7_1_clang_64
 INCLUDEPATH += $$PWD/../packages/build-SMTPEmail-Desktop_Qt_5_7_1_clang_64bit-Debug
 DEPENDPATH += $$PWD/../packages/build-SMTPEmail-Desktop_Qt_5_7_1_clang_64bit-Debug
 }
+
+FORMS +=
