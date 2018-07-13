@@ -418,13 +418,29 @@ void Processor::work ()
     }
     //system page send picture to server
     if(function == "sp_sendPic"){
-        QByteArray picByteArray;
-        in >> picByteArray;
-        QImage image;
-        image = QImage::fromData(picByteArray, "jpg");
-        QString pictureName = list.at(0);
-        image.save(pictureName, "jpg", -1);
-        out << function;
+//        QString pictureName;
+//        pictureName = list.at(0);
+//        QByteArray byte;
+//        in >> byte;
+//        QImage img;
+
+//        qDebug() << byte;
+//        pictureName = "./clothes/" + pictureName;
+//        qDebug() << pictureName;
+//        img.loadFromData(byte, "PNG");
+//        img.save(pictureName, "PNG", -1);
+//        qDebug() << img;
+
+//        out << function;
+//        QImage image;
+//        in >> image;
+//        qDebug() << image;
+//        QString pictureName = list.at(0);
+//        pictureName = "./clothes/" + pictureName;
+//        qDebug() << pictureName;
+//        QPixmap pixmap = QPixmap::fromImage(image);
+//        pixmap.save(pictureName, "jpg", -1);
+//        out << function;
     }
     //providerpage show provider info
     if(function == "pp_sp"){

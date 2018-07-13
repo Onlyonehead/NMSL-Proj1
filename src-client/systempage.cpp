@@ -2,6 +2,7 @@
 #include "sqltool.h"
 #include "ui_systemcenter.h"
 #include "garment.h"
+#include "ftpmanager.h"
 #include <QPixmap>
 #include <QVector>
 #include <QStringList>
@@ -67,42 +68,86 @@ void SystemCenter::on_clearGarment_clicked()
 
 void SystemCenter::on_pushButton_confirmAddG_clicked()
 {
-    QStringList list;
-    list.append("sp_confirmAddG");
 
 
-    QString garmentStyle;
-    QString garmentSize;
-    QString garmentPic;
-    QString garmentValue;
 
-    garmentStyle = ui->lineEdit_addGStyle->text();//add garment style
-    garmentPic = ui->label_showPicName->text();//add garment pic
-    garmentValue = ui->lineEdit_addGValue->text();//add garment value
-    list.append(garmentStyle);
-    list.append(garmentPic);
-    list.append(garmentValue);
-    if(ui->checkBox_GsizeS->isChecked()){
-        garmentSize = ui->checkBox_GsizeS->text();
-        list.append(garmentSize);
-        sendMessage(list);
-    }if(ui->checkBox_GsizeM->isChecked()){
-        garmentSize = ui->checkBox_GsizeM->text();
-        list.append(garmentSize);
-        sendMessage(list);
-    }if(ui->checkBox_GsizeL->isChecked()){
-        garmentSize = ui->checkBox_GsizeL->text();
-        list.append(garmentSize);
-        sendMessage(list);
-    }
+//    QStringList list;
+//    list.append("sp_confirmAddG");
 
-    ui->lineEdit_addGStyle->clear();
-    ui->checkBox_GsizeS->setChecked(false);
-    ui->checkBox_GsizeM->setChecked(false);
-    ui->checkBox_GsizeL->setChecked(false);
-    ui->lineEdit_addGValue->clear();
-    ui->label_showGPic->clear();
 
+//    QString garmentStyle;
+//    QString garmentSize;
+//    QString garmentPic;
+//    QString garmentValue;
+
+//    garmentStyle = ui->lineEdit_addGStyle->text();//add garment style
+//    garmentPic = ui->label_showPicName->text();//add garment pic
+//    garmentValue = ui->lineEdit_addGValue->text();//add garment value
+//    list.append(garmentStyle);
+//    list.append(garmentPic);
+//    list.append(garmentValue);
+//    if(ui->checkBox_GsizeS->isChecked()){
+//        garmentSize = ui->checkBox_GsizeS->text();
+//        list.append(garmentSize);
+//        sendMessage(list);
+//    }if(ui->checkBox_GsizeM->isChecked()){
+//        garmentSize = ui->checkBox_GsizeM->text();
+//        list.append(garmentSize);
+//        sendMessage(list);
+//    }if(ui->checkBox_GsizeL->isChecked()){
+//        garmentSize = ui->checkBox_GsizeL->text();
+//        list.append(garmentSize);
+//        sendMessage(list);
+//    }
+
+//    ui->lineEdit_addGStyle->clear();
+//    ui->checkBox_GsizeS->setChecked(false);
+//    ui->checkBox_GsizeM->setChecked(false);
+//    ui->checkBox_GsizeL->setChecked(false);
+//    ui->lineEdit_addGValue->clear();
+//    ui->label_showGPic->clear();
+
+//    QString showPic = ui->label_showPicPath->text();
+//    QImage img(showPic);
+//    QString pictureName = ui->label_showPicName->text();
+
+//    QStringList list;
+//    list.append("sp_sendPic");
+//    list.append(pictureName);
+
+
+//    QByteArray message;
+//    QBuffer buffer(&message);
+//    QDataStream out(&message,QIODevice::WriteOnly);
+
+//    out.setVersion(QDataStream::Qt_5_7);
+//    out << (quint16) 0;
+//    buffer.open(QIODevice::ReadWrite);
+//    img.save(&buffer, "PNG");
+//    out << list;
+//    out << buffer.data();
+//    qDebug() << buffer.data();
+
+//    message.append(buffer.data());
+
+
+//    out.device()->seek(0);
+//    out << (quint16) (message.size() - sizeof(quint16));
+//    m_tcpsocket->write(message);
+
+//    qDebug() << message.count();
+
+
+    QString picPath = ui->label_showPicPath->text();
+    QString picName = ui->label_showPicName->text();
+    qDebug() << picPath;
+    qDebug() << picName;
+    ftpManager m_ftp;
+    m_ftp.setHostPort("39.108.155.50", 21);
+    m_ftp.setUserInfo("root", "abcd1234");
+    m_ftp.put(picPath, "/project1/clothes/" + picName);
+    qDebug() << "/project1/clothes/" + picName;
+    connect(&m_ftp, SIGNAL(error(QNetworkReply::NetworkError)), this,SLOT(error(QNetworkReply::NetworkError)));
 
 
 }
@@ -125,28 +170,17 @@ void SystemCenter::on_pushButton_setGPic_clicked()
     QString picturePath = picture.at(0);
     QStringList Piclist = picturePath.split("/");
     QString pictureName = Piclist.at(Piclist.length() - 1);
+    qDebug() << pictureName;
+
 
     QPixmap pixmap(showPic);
-    ui->label_showPicPath->setText(picturePath);
-    ui->label_showGPic->setPixmap(pixmap);
+    ui->label_showPicPath->setText(showPic);
+    ui->label_showGPic->setPixmap(pixmap.scaled(ui->label_showGPic->size(), Qt::IgnoreAspectRatio));
     ui->label_showGPic->show();
     ui->label_showPicName->setText(pictureName);
 
-    QStringList list;
-    list.append("sp_sendPic");
-    list.append(pictureName);
 
-    QByteArray message;
-    QDataStream out(&message,QIODevice::ReadOnly);
-    out.setVersion(QDataStream::Qt_5_7);
-    out << (quint16) 0;
 
-    out << list;
-    out << pixmap;
-
-    out.device()->seek(0);
-    out << (quint16) (message.size() - sizeof(quint16));
-    m_tcpsocket->write(message);
 
 //    QFile pushPic(picturePath);
 //    pushPic.open(QIODevice::ReadOnly);

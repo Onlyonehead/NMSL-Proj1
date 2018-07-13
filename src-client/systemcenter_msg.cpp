@@ -814,9 +814,9 @@ void SystemCenter::readMessage()
             ui->tableWidget_updateShowStaffInfo->insertRow(i);
             ui->tableWidget_updateShowStaffInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
             ui->tableWidget_updateShowStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(2)));
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(3);
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(4));
-            ui->tableWidget_updateShowStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(5));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(4)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(5)));
             i++;
         }
         ui->tableWidget_updateShowStaffInfo->setRowCount(i);

@@ -54,7 +54,8 @@ SOURCES += main.cpp \
     deliverpage.cpp \
     sell_a.cpp \
     logistics.cpp \
-    personnelpage_3.cpp
+    personnelpage_3.cpp \
+    ftpmanager.cpp
 
 
 
@@ -70,7 +71,8 @@ HEADERS  += \
     staff.h \
     stable.h \
     sqltool.h \
-    order.h
+    order.h \
+    ftpmanager.h
 
 
 

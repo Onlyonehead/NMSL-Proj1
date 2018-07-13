@@ -208,6 +208,8 @@ private slots:
 
     void on_pushButton_changeStaffpassword_clicked();
 
+    void error(QNetworkReply::NetworkError error);
+
 signals:
     void stringReturn(QString);
 

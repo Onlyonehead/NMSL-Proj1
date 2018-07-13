@@ -731,6 +731,7 @@ void SystemCenter::on_pushButton_D_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
@@ -866,3 +867,16 @@ void SystemCenter::on_style_change_clicked()
     style = !style;
 }
 
+
+
+void SystemCenter::error(QNetworkReply::NetworkError error)
+{
+    switch (error) {
+    case QNetworkReply::HostNotFoundError:
+        qDebug() << tr("主机没有找到");
+
+        break;
+    default:
+        break;
+    }
+}
