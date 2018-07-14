@@ -236,6 +236,22 @@ private slots:
 
     void on_pushButton_24_clicked();
 
+    void on_pushButton_25_clicked();
+
+    void on_pushButton_19_clicked();
+
+    void on_tableWidget_logistics_C1_itemClicked(QTableWidgetItem *item);
+
+    void on_tableWidget_logistics_C2_itemClicked(QTableWidgetItem *item);
+
+    void on_pushButton_add1_clicked();
+
+    void on_pushButton_add2_clicked();
+
+    void on_pushButton_add3_clicked();
+
+    void on_pushButton_showRoute_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -280,6 +296,12 @@ private:
 
     QVector<QStringList> orderCheckedList; // For logistic B
     QString orderCheckedId; // For logistic B
+
+    QStringList siteSelected; // For logistic C
+
+    QStringList siteFrom; // For logistic C
+    QStringList siteTo; // For logistic C
+    QVector<QStringList> siteVia; // For logistic C
 
     bool style;
 

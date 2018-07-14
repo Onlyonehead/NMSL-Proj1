@@ -41,6 +41,7 @@ SystemCenter::SystemCenter(QWidget *parent) :
      * for slow start
      *
      */
+
 }
 
 /**
@@ -266,6 +267,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_126->setText(QChar(0xf461));
     ui->label_126->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_202->setFont(font);
+    ui->label_202->setText(QChar(0xf2d2));
+    ui->label_202->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_201->setFont(font);
+    ui->label_201->setText(QChar(0xf54e));
+    ui->label_201->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_204->setFont(font);
+    ui->label_204->setText(QChar(0xf0a4));
+    ui->label_204->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
@@ -401,6 +414,24 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_2A->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_logistics_2A->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_2A->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_C1->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_C1->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_C1->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_C1->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_C2->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_C2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_C2->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_C2->setAlternatingRowColors(true);
+
+    ui->tableWidget_route_via->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_route_via->verticalHeader()->setDefaultSectionSize(40);
+    ui->tableWidget_route_via->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_route_via->setAlternatingRowColors(true);
+
 
 
 
@@ -580,7 +611,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
         ui->pushButton_A->setText("Replenish");
         ui->pushButton_B->setText("History");
-        ui->pushButton_C->setText("Map");
+        ui->pushButton_C->setText("Route");
         ui->pushButton_D->setText("");
 
     }

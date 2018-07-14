@@ -40,7 +40,7 @@ QtMap::~QtMap()
 void QtMap::slotSendDataToH5(bool ok)
 {
     if (ok){
-        QJsonArray array;
+        QJsonArray *array = new QJsonArray();
         for(QStringList l : warehouse){
             QJsonObject o;
             o.insert("name", l.at(1));
@@ -48,11 +48,10 @@ void QtMap::slotSendDataToH5(bool ok)
             a.append(l.at(6));
             a.append(l.at(7));
             o.insert("position", QJsonValue(a));
-            array.push_back(o);
+            array->push_back(o);
         }
 
-
-        emit bridge.signalToWeb(array);
+        emit bridge.signalToWeb(*array);
     }
     else
         qDebug()<<"load failed! ok="<<ok;
