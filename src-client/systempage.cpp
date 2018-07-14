@@ -20,6 +20,7 @@
 #include <QNetworkReply>
 #include <QUrl>
 #include <QBuffer>
+#include <QProcess>
 
 /**
  * return all garments' information
@@ -144,10 +145,69 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
     qDebug() << picName;
     ftpManager m_ftp;
     m_ftp.setHostPort("39.108.155.50", 21);
-    m_ftp.setUserInfo("root", "abcd1234");
-    m_ftp.put(picPath, "/project1/clothes/" + picName);
-    qDebug() << "/project1/clothes/" + picName;
+    m_ftp.setUserInfo("ftpuser", "abcd1234");
+    m_ftp.put(picPath, "/ftpuser/project1/clothes/" + picName);
     connect(&m_ftp, SIGNAL(error(QNetworkReply::NetworkError)), this,SLOT(error(QNetworkReply::NetworkError)));
+
+
+
+//    QProcess p(0);
+//    QString openFTP = "ftp";
+//    QString openIP = "open kousz.top";
+//    QString username = "ftpuser";
+//    QString password = "abcd1234";
+//    QString enterLog = "cd /ftpuser/project1/clothes";
+//    QString putPic = "PUT" + picPath;
+//    QStringList list;
+//    list.append(openFTP);
+//    p.start("cmd.exe", list);
+
+//    p.execute(openFTP);
+//    p.waitForFinished();
+//    qDebug() << QString::fromLocal8Bit(p.readAllStandardError());
+//    p.execute(openIP);
+//    p.waitForFinished();
+//    qDebug() << QString::fromLocal8Bit(p.readAllStandardError());
+//    p.execute(username);
+//    p.waitForFinished();
+//    qDebug() << QString::fromLocal8Bit(p.readAllStandardError());
+//    p.execute(password);
+//    p.waitForFinished();
+//    qDebug() << QString::fromLocal8Bit(p.readAllStandardError());
+//    p.execute(enterLog);
+//    p.waitForFinished();
+//    qDebug() << QString::fromLocal8Bit(p.readAllStandardError());
+//    p.execute(putPic);
+//    p.waitForFinished();
+//    qDebug() << QString::fromLocal8Bit(p.readAllStandardError());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    QString surl = "ftp://ftpuser:abcd1234@39.108.155.50:21/ftpuser/project1/clothes";
+//    QUrl Url = QUrl(surl + picName);
+//    qDebug() << Url;
+//    QFile file(picPath);
+//    file.open(QIODevice::ReadOnly);
+//    QByteArray data = file.readAll();
+//    qDebug() << file.size();
+//    qDebug() << data.size();
+//    QNetworkRequest putRequest;
+//    QNetworkAccessManager manager;
+//    putRequest.setUrl(Url);
+//    manager.put(putRequest, data);
+
+
 
 
 }
@@ -188,7 +248,7 @@ void SystemCenter::on_pushButton_setGPic_clicked()
 //    pushPic.close();
 //    QNetworkAccessManager manager;
 //    qDebug() << pictureName;
-//    QString serverPath = "http://39.108.155.50/ftpuser/project1/clothes/";
+//    QString serverPath = "ftp://39.108.155.50/ftpuser/project1/clothes/";
 //    QUrl URL = QUrl(serverPath + pictureName);
 //    qDebug() << URL;
 //    URL.setUserName("root");
