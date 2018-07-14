@@ -5,7 +5,6 @@
 #include <QFile>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
-#include <QNetworkProxy>
 
 class ftpManager : public QObject
 {
@@ -15,15 +14,13 @@ public:
 
     void setHostPort(const QString &host, int port = 21);
 
-    void setUserInfo(const QString &username, const QString &password);
+    void setUserInfo(const QString &username, const QString password);
 
     void put(const QString &fileName, const QString &path);
 
 
 signals:
     void error(QNetworkReply::NetworkError);
-
-    void on_reply_finished();
 
 private:
     QUrl m_pUrl;

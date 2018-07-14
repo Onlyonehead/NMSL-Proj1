@@ -7,6 +7,7 @@
 #include <QList>
 #include <QSql>
 
+
 Garment::Garment()
 {
 
