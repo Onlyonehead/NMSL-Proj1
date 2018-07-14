@@ -36,6 +36,10 @@ Login::Login(QWidget *parent) :
     connect(m_tcpsocket,SIGNAL(readyRead()),
             this,SLOT(readMessage()));//用于接受数据
 
+    m_socket = new QTcpSocket(this);
+    m_socket->abort();
+    m_socket->connectToHost(QHostAddress::LocalHost,7777);//设置客户端的端口号
+
 
     this->setAttribute(Qt::WA_DeleteOnClose);
 

@@ -471,6 +471,8 @@ void Processor::work ()
     }
 
 
+
+
     //system page show garment
     if(function == "sp_sg"){
         QVector<QStringList> result;

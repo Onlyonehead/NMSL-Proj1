@@ -41,7 +41,6 @@ SystemCenter::SystemCenter(QWidget *parent) :
      * for slow start
      *
      */
-
 }
 
 /**
