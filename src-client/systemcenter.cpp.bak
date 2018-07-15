@@ -28,6 +28,9 @@ SystemCenter::SystemCenter(QWidget *parent) :
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setStyleSheet("QFrame{border-radius:10px;}");
 
+    ui->progressBar->setVisible(false);
+    style = false;
+
     /*
      * Add anything here to function 'showString' in this page
      *
@@ -210,6 +213,43 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_107->setText(QChar(0xf56e));
     ui->label_107->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_font_storeN->setFont(font);
+    ui->label_font_storeN->setText(QChar(0xf54e));
+    ui->label_font_storeN->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_manager->setFont(font);
+    ui->label_font_manager->setText(QChar(0xf222));
+    ui->label_font_manager->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_location->setFont(font);
+    ui->label_font_location->setText(QChar(0xf124));
+    ui->label_font_location->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_85->setFont(font);
+    ui->label_85->setText(QChar(0xf1b3));
+    ui->label_85->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_110->setFont(font);
+    ui->label_110->setText(QChar(0xf560));
+    ui->label_110->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_191->setFont(font);
+    ui->label_191->setText(QChar(0xf52d));
+    ui->label_191->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    QFont sp_font;
+    sp_font.setFamily(fontFamilies.at(0));
+    sp_font.setPointSize(20);
+
+    ui->pushButton_font_sellSearch->setFont(sp_font);
+    ui->pushButton_font_sellSearch->setText(QChar(0xf0d0));
+    ui->pushButton_font_sellSearch->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
+                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+
+    ui->label_navigator->setFont(sp_font);
+    ui->label_navigator->setText(QChar(0xf59f));
+    ui->label_navigator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
     //initialize search icon
 
@@ -232,15 +272,17 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search_C->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
-<<<<<<< HEAD
-    ui->pushButton_font_sellSearch->setFont(icon_search);
-    ui->pushButton_font_sellSearch->setText(QChar(0xf35a));
-=======
+
     ui->icon_search_D->setFont(icon_search);
     ui->icon_search_D->setText(QChar(0xf35a));
     ui->icon_search_D->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
->>>>>>> 09529ac08affba81dac8ef417d9a2c82c43b52cf
+
+    ui->style_change->setFont(icon_search);
+    ui->style_change->setText(QChar(0xf204));
+    ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
+                                    "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
+
 
     QApplication::processEvents();
 
@@ -249,50 +291,72 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget->horizontalHeader()->setDefaultSectionSize(105);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setAlternatingRowColors(true);
 
-    ui->tableWidget_A->setColumnWidth(0, 185);
-    ui->tableWidget_A->setColumnWidth(1, 70);
+    ui->tableWidget_A->horizontalHeader()->setDefaultSectionSize(100);
     ui->tableWidget_A->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_A->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_A->setAlternatingRowColors(true);
 
     ui->tableWidget_B->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_B->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_B->verticalHeader()->setDefaultSectionSize(50);
     ui->tableWidget_B->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_B->setAlternatingRowColors(true);
 
     ui->tableWidget_B_2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_B_2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_B_2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_B_2->setAlternatingRowColors(true);
 
     ui->tableWidget_C1->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C1->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
+//    ui->tableWidget_C1->setAlternatingRowColors(true);
 
     ui->tableWidget_C2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
+//    ui->tableWidget_C2->setAlternatingRowColors(true);
 
     ui->tableWidget_D1->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_D1->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D1->verticalHeader()->setDefaultSectionSize(50);
     ui->tableWidget_D1->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_D1->setAlternatingRowColors(true);
 
     ui->tableWidget_D2->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_D2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D2->verticalHeader()->setDefaultSectionSize(50);
     ui->tableWidget_D2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_D2->setAlternatingRowColors(true);
 
     ui->tableWidget_D3->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_D3->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D3->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_D3->setAlternatingRowColors(true);
 
-    ui->tableWidget_D4->horizontalHeader()->setDefaultSectionSize(102);
+    ui->tableWidget_D4->setColumnWidth(0,73);
+    ui->tableWidget_D4->setColumnWidth(1,103);
     ui->tableWidget_D4->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D4->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_D4->setAlternatingRowColors(true);
 
     ui->tableWidget_stores->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_stores->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_stores->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_stores->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_A->horizontalHeader()->setDefaultSectionSize(120);
+    ui->tableWidget_logistics_A->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_A->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_A->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_B->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_B->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_B->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_B->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_B->setAlternatingRowColors(true);
 
 
 
@@ -310,7 +374,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     connect(ui->quantity_D, SIGNAL(returnPressed()), ui->clothes_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
 
     connect(ui->warehouse_id, SIGNAL(returnPressed()), ui->w_search_A, SIGNAL(clicked()), Qt::UniqueConnection);
+
+    connect(ui->quantity_logistics, SIGNAL(returnPressed()), ui->logistics_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
+
     QApplication::processEvents();
+
+<<<<<<< HEAD
+    ui->label_sell_row->setVisible(false);
+    ui->label_sell_idPurchase->setVisible(false);
+    ui->pushButton_change->setVisible(false);
+    ui->pushButton_commit->setVisible(false);
+=======
+>>>>>>> f9438fa568f8dda0d43b26bcec9d99f7f4b7ab08
 
     /**
      * purchase page date/time label display
@@ -360,7 +435,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
 
 
-
+    ui->progressBar->setVisible(true);
+    ui->progressBar->setRange(0, 100);
+    ui->progressBar->setValue(10);
 //    //initialize furry search
 
     QElapsedTimer t;
@@ -368,15 +445,20 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     warehouseEditComplete();
     m_tcpsocket->flush();
 
+    ui->progressBar->setValue(20);
+
 
     t.start();
     while(t.elapsed()<1000)
         QCoreApplication::processEvents();
 
+    ui->progressBar->setValue(35);
 
     //initialize arriving table
     transfer();
     m_tcpsocket->flush();
+
+    ui->progressBar->setValue(50);
 
 //    QMovie *movie = new QMovie(":/movie.gif");
 //    ui->label_title->setMovie(movie);
@@ -516,11 +598,26 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 void SystemCenter::on_pushButton_A_clicked()
 {
     ui->pushButton_A->setChecked(true);
-    ui->frame_2A->raise();
-    ui->frame_pA->raise();
-    ui->frame_systempage_1->raise();
-    ui->frame_personnelpage_1->raise();
-    ui->frame_sell_A->raise();
+
+    //A
+    ui->frame_2A->setVisible(true);
+    ui->frame_pA->setVisible(true);
+    ui->frame_systempage_1->setVisible(true);
+    ui->frame_personnelpage_1->setVisible(true);
+    ui->frame_sell_A->setVisible(true);
+
+    //B
+    ui->frame_2B->setVisible(false);
+    ui->frame_pB->setVisible(false);
+    ui->frame_systempage_2->setVisible(false);
+    ui->frame_personnelpage_2->setVisible(false);
+    ui->frame_sell_B->setVisible(false);
+
+    //C
+    ui->frame_2C->setVisible(false);
+
+    //D
+    ui->frame_2D->setVisible(false);
 }
 
 /**
@@ -530,11 +627,25 @@ void SystemCenter::on_pushButton_A_clicked()
  */
 void SystemCenter::on_pushButton_B_clicked()
 {
-    ui->frame_2B->raise();
-    ui->frame_pB->raise();
-    ui->frame_systempage_2->raise();
-    ui->frame_personnelpage_2->raise();
-    ui->frame_sell_B->raise();
+    //A
+    ui->frame_2A->setVisible(false);
+    ui->frame_pA->setVisible(false);
+    ui->frame_systempage_1->setVisible(false);
+    ui->frame_personnelpage_1->setVisible(false);
+    ui->frame_sell_A->setVisible(false);
+
+    //B
+    ui->frame_2B->setVisible(true);
+    ui->frame_pB->setVisible(true);
+    ui->frame_systempage_2->setVisible(true);
+    ui->frame_personnelpage_2->setVisible(true);
+    ui->frame_sell_B->setVisible(true);
+
+    //C
+    ui->frame_2C->setVisible(false);
+
+    //D
+    ui->frame_2D->setVisible(false);
 }
 
 /**
@@ -544,7 +655,25 @@ void SystemCenter::on_pushButton_B_clicked()
  */
 void SystemCenter::on_pushButton_C_clicked()
 {
-    ui->frame_2C->raise();
+    //A
+    ui->frame_2A->setVisible(false);
+    ui->frame_pA->setVisible(false);
+    ui->frame_systempage_1->setVisible(false);
+    ui->frame_personnelpage_1->setVisible(false);
+    ui->frame_sell_A->setVisible(false);
+
+    //B
+    ui->frame_2B->setVisible(false);
+    ui->frame_pB->setVisible(false);
+    ui->frame_systempage_2->setVisible(false);
+    ui->frame_personnelpage_2->setVisible(false);
+    ui->frame_sell_B->setVisible(false);
+
+    //C
+    ui->frame_2C->setVisible(true);
+
+    //D
+    ui->frame_2D->setVisible(false);
 
 }
 
@@ -555,7 +684,25 @@ void SystemCenter::on_pushButton_C_clicked()
  */
 void SystemCenter::on_pushButton_D_clicked()
 {
-    ui->frame_2D->raise();
+    //A
+    ui->frame_2A->setVisible(false);
+    ui->frame_pA->setVisible(false);
+    ui->frame_systempage_1->setVisible(false);
+    ui->frame_personnelpage_1->setVisible(false);
+    ui->frame_sell_A->setVisible(false);
+
+    //B
+    ui->frame_2B->setVisible(false);
+    ui->frame_pB->setVisible(false);
+    ui->frame_systempage_2->setVisible(false);
+    ui->frame_personnelpage_2->setVisible(false);
+    ui->frame_sell_B->setVisible(false);
+
+    //C
+    ui->frame_2C->setVisible(false);
+
+    //D
+    ui->frame_2D->setVisible(true);
 }
 
 
@@ -566,15 +713,17 @@ void SystemCenter::on_pushButton_D_clicked()
  */
 void SystemCenter::progressBar()
 {
+    ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0, 100);
     for (int i = 0; i <= 100; i++){
-        for(int j = 0; j < 300000; j++){
+        for(int j = 0; j < 1000000; j++){
             i = i + 1;
             i = i - 1;
         }
         ui->progressBar->setValue(i);
         QApplication::processEvents();
     }
+    ui->progressBar->setVisible(false);
 }
 
 /**
@@ -584,15 +733,17 @@ void SystemCenter::progressBar()
  */
 void SystemCenter::progressBar_fast()
 {
+    ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0, 100);
     for (int i = 0; i <= 100; i++){
-        for(int j = 0; j < 300; j++){
+        for(int j = 0; j < 300000; j++){
             i = i + 1;
             i = i - 1;
         }
         ui->progressBar->setValue(i);
         QApplication::processEvents();
     }
+    ui->progressBar->setVisible(false);
 }
 
 
@@ -653,4 +804,36 @@ void SystemCenter::replyFinished(QNetworkReply *reply)
         qDebug() << "Error\n";
     }
 }
+<<<<<<< HEAD
+=======
 
+
+
+void SystemCenter::on_style_change_clicked()
+{
+    int fontId = QFontDatabase::addApplicationFont(":/font/fa-solid-900.ttf");
+    QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+    QFont icon_search;
+    icon_search.setFamily(fontFamilies.at(0));
+    icon_search.setPointSize(24);
+
+
+    if(style){
+        ui->frame->setStyleSheet("QFrame{background:rgba(255, 255, 255, 255);"
+                                 "border-image:url(:/bg4.png);}");
+        ui->style_change->setFont(icon_search);
+        ui->style_change->setText(QChar(0xf204));
+        ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
+                                        "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
+    }else{
+        ui->frame->setStyleSheet("QFrame{background: rgba(255, 255, 255, 10);"
+                                 "border-image:url(:/bg5.png);}");
+        ui->style_change->setFont(icon_search);
+        ui->style_change->setText(QChar(0xf205));
+        ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
+                                        "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
+    }
+    style = !style;
+}
+
+>>>>>>> f9438fa568f8dda0d43b26bcec9d99f7f4b7ab08

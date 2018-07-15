@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql network
+QT       += core gui sql network webengine webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -55,7 +55,14 @@ SOURCES += main.cpp \
     sell_a.cpp \
     logistics.cpp \
     personnelpage_3.cpp \
-    ftpmanager.cpp
+    ftpmanager.cpp \
+    sell_b.cpp \
+    tool.cpp \
+    logistics_a.cpp \
+    logistics_b.cpp \
+    qtmap.cpp \
+    bridge.cpp \
+    logistics_c.cpp
 
 
 
@@ -72,7 +79,10 @@ HEADERS  += \
     stable.h \
     sqltool.h \
     order.h \
-    ftpmanager.h
+    ftpmanager.h \
+    tool.h \
+    qtmap.h \
+    bridge.h
 
 
 
@@ -80,7 +90,8 @@ FORMS    += \
     login.ui \
     systemcenter.ui \
     forgetpassword.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    qtmap.ui
 
 
 RESOURCES += \
