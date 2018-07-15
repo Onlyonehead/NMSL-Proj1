@@ -19,10 +19,9 @@ void SystemCenter::on_tableWidget_stores_cellClicked(int row, int column)
 
 void SystemCenter::on_pushButton_clearStores_clicked()
 {
-    ui->tableWidget_stores->clear();
     ui->tableWidget_stores->setRowCount(0);
-    ui->tableWidget_storeRecord->clear();
     ui->tableWidget_storeRecord->setRowCount(0);
+    ui->lineEdit_sell_search->setText("");
 }
 
 void SystemCenter::searchTableWidget(QTableWidget* table, const QString &arg1, QVector<int> &qv_row){

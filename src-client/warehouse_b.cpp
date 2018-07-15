@@ -6,9 +6,31 @@
 
 void SystemCenter::on_pushButton_8_clicked()
 {
-    QStringList msg;
-    msg.append("pB8");
-    sendMessage(msg);
+    ui->tableWidget_B->setRowCount(0);
+
+    QVector<QStringList> g = this->clothes;
+
+    QStringList list;
+
+    for(QStringList l : g){
+        list.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                       + l.at(1));
+    }
+
+    Tool::QStringList_removeDuplicates(&list);
+
+    int n = list.size();
+
+    while(n){
+        QApplication::processEvents();
+        ui->tableWidget_B->insertRow(list.size()-n);
+        ui->tableWidget_B->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+        n--;
+    }
+
+    ui->tableWidget_B->setRowCount(list.size());
+
+    progressBar();
 
 }
 
@@ -18,12 +40,6 @@ void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
     ui->label_35->clear();
     QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
-<<<<<<< HEAD
-    QStringList msg;
-    msg.append("tWBiC");
-    msg.append(s);
-    sendMessage(msg);
-=======
     QStringList result;
 
     for(QStringList l : this->clothes){
@@ -81,7 +97,6 @@ void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
     ui->tableWidget_B_2->setRowCount(i);
     ui->label_35->setText(QString::number(quantity_count));
     progressBar_fast();
->>>>>>> dc53185c74bac0e0ea59db6aef92386714638b80
 
 }
 

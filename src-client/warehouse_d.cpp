@@ -6,9 +6,66 @@
 
 void SystemCenter::on_pushButton_10_clicked()
 {
-    QStringList msg;
-    msg.append("pB10");
-    sendMessage(msg);
+    ui->tableWidget_D1->setRowCount(0);
+
+    QVector<QStringList> g = this->clothes;
+
+    QStringList result1;
+
+    for(QStringList l : g){
+        result1.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                       + l.at(1));
+    }
+
+    Tool::QStringList_removeDuplicates(&result1);
+
+    QVector<QStringList> w = this->warehouse;
+
+    QStringList result2;
+
+    for(QStringList l : w){
+        result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
+                     + l.at(1));
+    }
+
+    Tool::QStringList_removeDuplicates(&result2);
+
+
+    QStringList list;
+
+    list = result1;
+
+    int n = list.size();
+
+    while(n){
+        QApplication::processEvents();
+        ui->tableWidget_D1->insertRow(list.size()-n);
+        ui->tableWidget_D1->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+        n--;
+    }
+
+    ui->tableWidget_D1->setRowCount(list.size());
+
+    ui->tableWidget_D2->setRowCount(0);
+
+    list.clear();
+
+    list = result2;
+    n = list.size();
+
+    while(n-1){
+
+        //n-1 为了不显示仓库1
+
+        QApplication::processEvents();
+        ui->tableWidget_D2->insertRow(list.size()-n);
+        ui->tableWidget_D2->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n+1)));
+        n--;
+    }
+
+    ui->tableWidget_D2->setRowCount(list.size()-1);
+
+    progressBar();
 }
 
 void SystemCenter::on_pushButton_11_clicked()
@@ -39,12 +96,6 @@ void SystemCenter::on_tableWidget_D1_itemClicked(QTableWidgetItem *item){
 
     QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
-<<<<<<< HEAD
-    QStringList msg;
-    msg.append("tWD1iC");
-    msg.append(s);
-    sendMessage(msg);
-=======
     QStringList result;
 
     for(QStringList l : this->clothes){
@@ -82,7 +133,6 @@ void SystemCenter::on_tableWidget_D1_itemClicked(QTableWidgetItem *item){
     QApplication::processEvents();
 
     progressBar_fast();
->>>>>>> dc53185c74bac0e0ea59db6aef92386714638b80
 
 }
 
@@ -92,10 +142,38 @@ void SystemCenter::on_tableWidget_D2_itemClicked(QTableWidgetItem *item){
 
     ui->warehouse_label_D->setText(item->text().split(QRegExp("[-:]"))[3].trimmed());
 
-    QStringList msg;
-    msg.append("tWD2iC");
-    msg.append(s);
-    sendMessage(msg);
+    QMap<QString, QString> stock;
+
+    stock = this->stock_map.value(s);
+
+    QVector<QStringList> g = this->clothes;
+
+    QMap<QString, QString> clothes;
+
+    for(QStringList l : g){
+        clothes.insert(l.at(0), l.at(1));
+    }
+
+    QApplication::processEvents();
+
+    int count = 0;
+    for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
+        QString clothes_name;
+        clothes_name = clothes.value(i.key());
+        QApplication::processEvents();
+        ui->tableWidget_D3->insertRow(count);
+        ui->tableWidget_D3->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                   " - " + clothes_name));
+        ui->tableWidget_D3->setItem(count, 1, new QTableWidgetItem(i.value()));
+
+        QApplication::processEvents();
+        count++;
+    }
+
+    ui->tableWidget_D3->setRowCount(count);
+
+
+    progressBar_fast();
 
 }
 
@@ -159,8 +237,8 @@ void SystemCenter::on_order_send_clicked()
     QMap<QString, QMap<QString, QString>> orders;
     int count = ui->tableWidget_D4->rowCount();
     for(int i = 0; i < count; i++){
-        QString w_id = ui->tableWidget_D4->item(i, 0)->text().split("-")[0].trimmed();
-        QString c_id = ui->tableWidget_D4->item(i, 1)->text().split("-")[0].trimmed();
+        QString c_id = ui->tableWidget_D4->item(i, 0)->text().split("-")[0].trimmed();
+        QString w_id = ui->tableWidget_D4->item(i, 1)->text().split("-")[0].trimmed();
         QString quantity = ui->tableWidget_D4->item(i, 2)->text().trimmed();
         QMap<QString, QString> map;
         map.clear();
