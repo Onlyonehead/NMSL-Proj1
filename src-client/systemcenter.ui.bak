@@ -718,7 +718,11 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
+<<<<<<< HEAD
+     <number>4</number>
+=======
      <number>5</number>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
     </property>
     <property name="iconSize">
      <size>
@@ -12914,6 +12918,7 @@ QPushButton:hover{
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold;
 }</string>
+<<<<<<< HEAD
        </property>
        <property name="text">
         <string>Warehouses:</string>
@@ -12974,6 +12979,7 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QLabel{
+=======
         </property>
         <property name="text">
          <string>选择头像</string>
@@ -12990,6 +12996,7 @@ QPushButton:hover{
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel{
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 	background: none;
 	border-image:none;
 	border: 0px;
@@ -13056,6 +13063,7 @@ QPushButton:hover{
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold;
 }</string>
+<<<<<<< HEAD
        </property>
        <property name="text">
         <string>Display All</string>
@@ -13171,6 +13179,8 @@ QTableWidget::item{
        <column>
         <property name="text">
          <string>id</string>
+=======
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
         </property>
         <property name="text">
          <string>Cancel</string>
@@ -13259,10 +13269,17 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_updateShowStaffInfo">
        <property name="geometry">
         <rect>
+<<<<<<< HEAD
+         <x>37</x>
+         <y>300</y>
+         <width>651</width>
+         <height>240</height>
+=======
          <x>10</x>
          <y>50</y>
          <width>705</width>
          <height>200</height>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
         </rect>
        </property>
        <property name="styleSheet">
@@ -13330,10 +13347,17 @@ QTableWidget::item{
       <widget class="QPushButton" name="pushButton_updatePageShowStaff">
        <property name="geometry">
         <rect>
+<<<<<<< HEAD
+         <x>25</x>
+         <y>268</y>
+         <width>91</width>
+         <height>20</height>
+=======
          <x>115</x>
          <y>5</y>
          <width>191</width>
          <height>28</height>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
         </rect>
        </property>
        <property name="styleSheet">
@@ -14147,6 +14171,7 @@ background: none;
 	border-image:none;
 	border: 0px;
 	color: rgb(76, 76, 76);
+<<<<<<< HEAD
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
@@ -17021,6 +17046,7 @@ QComboBox QAbstractItemView::item:selected {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
+=======
 	font: 75 16pt &quot;Helvetica&quot; bold;
 }
 </string>
@@ -17135,10 +17161,12 @@ background: none;
         </property>
         <property name="styleSheet">
          <string notr="true">QLineEdit{
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
 	font: 15pt &quot;Times&quot; bold;
 }
+<<<<<<< HEAD
 
 QPushButton:hover{
 	border: 2px solid rgb(15, 128, 255);
@@ -17279,6 +17307,7 @@ QPushButton:hover{
           <bool>false</bool>
          </property>
         </widget>
+=======
 </string>
         </property>
        </widget>
@@ -17381,6 +17410,7 @@ QLabel{
         <property name="text">
          <string>不存在这个邮箱！</string>
         </property>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
        </widget>
       </widget>
      </widget>

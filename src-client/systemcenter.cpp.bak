@@ -5,7 +5,10 @@
 #include "QElapsedTimer"
 #include <QHeaderView>
 #include <QMovie>
+<<<<<<< HEAD
 #include <QIntValidator>
+=======
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 #include <QListView>
 
 /**
@@ -872,11 +875,13 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+<<<<<<< HEAD
     ui->frame_sell_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
     ui->frame_sell_D->setVisible(false);
+=======
     ui->frame_logistics_C->setVisible(false);
     ui->frame_personnelpage_3->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
@@ -884,6 +889,7 @@ void SystemCenter::on_pushButton_A_clicked()
     //D
     ui->frame_2D->setVisible(false);
     ui->frame_personnelpage_4->setVisible(false);
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 }
 
 /**
@@ -911,11 +917,13 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+<<<<<<< HEAD
     ui->frame_sell_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
     ui->frame_sell_D->setVisible(false);
+=======
     ui->frame_logistics_C->setVisible(false);
 	ui->frame_personnelpage_3->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
@@ -923,6 +931,7 @@ void SystemCenter::on_pushButton_B_clicked()
     //D
     ui->frame_2D->setVisible(false);
 	ui->frame_personnelpage_4->setVisible(false);
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 }
 
 /**
@@ -950,11 +959,13 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //C
     ui->frame_2C->setVisible(true);
+<<<<<<< HEAD
     ui->frame_sell_C->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
     ui->frame_sell_D->setVisible(false);
+=======
     ui->frame_logistics_C->setVisible(true);
 	ui->frame_systempage_3->setVisible(true);
     ui->frame_personnelpage_3->setVisible(true);
@@ -963,6 +974,7 @@ void SystemCenter::on_pushButton_C_clicked()
     //D
     ui->frame_2D->setVisible(false);
 	ui->frame_personnelpage_4->setVisible(false);
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 
 }
 
@@ -991,11 +1003,13 @@ void SystemCenter::on_pushButton_D_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+<<<<<<< HEAD
     ui->frame_sell_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
     ui->frame_sell_D->setVisible(true);
+=======
     ui->frame_logistics_C->setVisible(false);
 	ui->frame_personnelpage_3->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
@@ -1003,6 +1017,7 @@ void SystemCenter::on_pushButton_D_clicked()
     //D
     ui->frame_2D->setVisible(true);
 	ui->frame_personnelpage_4->setVisible(true);
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 }
 
 

@@ -214,6 +214,7 @@ private slots:
 
     void on_pushButton_21_clicked();
 
+<<<<<<< HEAD
     void on_pushButton_showArrive_clicked();
 
     void on_tw_sell_C1_cellClicked(int row, int column);
@@ -245,7 +246,7 @@ private slots:
     void on_pushButton_23_clicked();
 
     void on_pushButton_54_clicked();
-
+=======
     void on_pushButton_20_clicked();
 
     void on_pushButton_28_clicked();
@@ -317,6 +318,7 @@ private slots:
     void on_pushButton_anpShowP_clicked();
 
     void on_tableWidget_generateOrder_itemClicked(QTableWidgetItem *item);
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 
 signals:
     void stringReturn(QString);

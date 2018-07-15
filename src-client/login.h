@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QtNetwork>
 
-#define LOGIN_DIR "./pwd.data"
+#define LOGIN_DIR "/Users/Haibara/Documents/qt build files/Userfiles/pwd.data"
 
 namespace Ui {
 class Login;
@@ -43,6 +43,7 @@ private:
     Ui::Login *ui;
     bool isBanned;
     QTcpSocket *m_tcpsocket;
+    QTcpSocket *m_socket;
 
     //check pwd.data and auto save password to file
     int checkpass(QString, QString, bool);

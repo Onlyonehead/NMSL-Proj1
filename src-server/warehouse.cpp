@@ -18,6 +18,8 @@ void Warehouse::info(QVector<QStringList> &result){
         list.append(query.value(3).toString());
         list.append(query.value(4).toString());
         list.append(query.value(5).toString());
+        list.append(query.value(6).toString());
+        list.append(query.value(7).toString());
         result.append(list);
     }
 }

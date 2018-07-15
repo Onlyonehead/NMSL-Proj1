@@ -164,7 +164,7 @@ void Store::getStores(QVector<QStringList> &qv){
     SQLTool::search(sq, "store");
     while(sq.next()){
         qsl.clear();
-        for(int i=0; i<6; ++i){
+        for(int i=0; i<8; ++i){
             qsl<<sq.value(i).toString();
         }
         qv.append(qsl);

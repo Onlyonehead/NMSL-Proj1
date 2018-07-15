@@ -21,8 +21,11 @@
         <file>background12</file>
         <file>bg5.png</file>
         <file>welcome2.png</file>
+<<<<<<< HEAD
         <file>angle-downcc</file>
+=======
         <file>down_arrow</file>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
     </qresource>
     <qresource prefix="/font">
         <file>fa-brands-400.ttf</file>
