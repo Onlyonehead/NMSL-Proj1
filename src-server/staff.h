@@ -12,7 +12,7 @@ public:
 
     //add new staff to database
     static void addNewStaff(QString username, QString password,
-                     QString name, QString gender, QString email, QString userPic);
+                     QString name, QString gender, QString position , QString email, QString userPic);
 
     //return all staffs' information
     static void Info(QVector<QStringList> &staffInfo);

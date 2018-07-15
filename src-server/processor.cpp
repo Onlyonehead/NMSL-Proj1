@@ -481,6 +481,16 @@ void Processor::work ()
         out << result;
 
     }
+    //system page add new garment
+    if(function == "sp_confirmAddG"){
+        QString garmentSytle = list.at(0);
+        QString garmentPic = list.at(1);
+        QString garmentPrice = list.at(2);
+        QString garmentSize = list.at(3);
+        Garment::addGarmentForm(garmentSytle, garmentSize, garmentPic, garmentPrice);
+        out << function;
+    }
+
     //providerpage show provider info
     if(function == "pp_sp"){
         QVector<QStringList> result;
@@ -502,6 +512,14 @@ void Processor::work ()
         alterAttribute = "productInfo";
         alterValue = list.at(3);
         Provider::updateProviderInfo(providerID, alterAttribute, alterValue);
+        out << function;
+    }
+    //provider page add new provider
+    if(function == "pp_api"){
+        QString providerAds = list.at(0);
+        QString providerName = list.at(1);
+        QString providerProduct = list.at(2);
+        Provider::addNewPrvider(providerName, providerAds, providerProduct);
         out << function;
     }
     //personnel page 1 show staff info
@@ -539,20 +557,6 @@ void Processor::work ()
         out << function;
         out << isExisted;
     }
-    //personnel page 2 check password
-    if(function == "pp2_rp"){
-        QString password, repeatPassword;
-        password = list.at(0);
-        repeatPassword = list.at(1);
-        bool isSame;
-        if(password == repeatPassword){
-            isSame = true;
-        }else {
-            isSame = false;
-        }
-        out << function;
-        out << isSame;
-    }
     //personnel page 2 add new email
     if(function == "pp2_ane"){
         QString email = list.at(0);
@@ -565,6 +569,83 @@ void Processor::work ()
         out << function;
         out << isExisted;
     }
+    //personnel page 2 add new portrait
+    if(function == "pp2_anp"){
+        QByteArray picByteArray;
+        in >> picByteArray;
+        QImage image;
+        image = QImage::fromData(picByteArray, "jpg");
+        QString pictureName = list.at(0);
+        image.save(pictureName, "jpg", -1);
+        out << function;
+    }
+    //personnel page 2 confirm add new staff
+    if(function == "pp2_cns"){
+        QString username = list.at(0);
+        QString password = list.at(1);
+        QString name = list.at(2);
+        QString gender = list.at(3);
+        QString position = list.at(4);
+        QString email = list.at(5);
+        QString userPic = list.at(6);
+        qDebug() << position <<endl;
+        qDebug() << email << endl;
+        Staff::addNewStaff(username, password, name, gender,
+                           position, email, userPic);
+        out << function;
+    }
+    // personnel page 3 show staff
+    if(function == "pp3_upss"){
+        QVector<QStringList> result;
+        Staff::Info(result);
+        out << function;
+        out << result;
+    }
+    // personnel page 3 update staff information
+    if(function == "pp3_csi"){
+        QString username = list.at(0);
+        QString name = list.at(1);
+        QString gender = list.at(2);
+        QString position = list.at(3);
+        QString email = list.at(4);
+        Staff::updateStaffInfo(username, "name", name);
+        Staff::updateStaffInfo(username, "gender", gender);
+        Staff::updateStaffInfo(username, "position", position);
+        Staff::updateStaffInfo(username, "email", email);
+        out << function;
+    }
+    // personnel page 4 check if email exists
+    if(function == "pp4_ise"){
+        QString email = list.at(0);
+        bool isEmailExisted = Staff::isEmailExisted(email);
+        out << function;
+        out << isEmailExisted;
+    }
+    // personnel page 4 check if old password right
+    if(function == "pp4_cop"){
+        QString email = list.at(0);
+        QString oldPassword = list.at(1);
+        QStringList result;
+        Staff::Info("email", email, result);
+        bool isPasswordRight;
+        if(oldPassword == result.at(1)){
+            isPasswordRight = true;
+        }else {
+            isPasswordRight = false;
+        }
+        out << function;
+        out << isPasswordRight;
+
+    }
+    //personnel page 4 update staff information
+    if(function == "pp4_csp"){
+        QString email = list.at(0);
+        QString newPassword = list.at(1);
+        QString newUsername = list.at(2);
+        Staff::alterStaffUsername(email, newUsername);
+        Staff::updateStaffInfo(newUsername, "password", newPassword);
+        out << function;
+    }
     // purchase page show garment info
     if(function == "pcp_sg"){
         QVector<QStringList> result;
@@ -574,11 +655,57 @@ void Processor::work ()
     }
     //purchase page show garment detailed information
     if(function == "pcp_sgdi"){
+        QString tempID = list.at(0);
         QStringList result;
-        QString ID = list.at(0);
-        Garment::Info(ID.toInt(), result);
+        Garment::Info(tempID.toInt(), result);
         out << function;
         out << result;
+    }
+    //deliver page show all providers IDs
+    if(function == "dp_sp"){
+        QVector<QStringList> result;
+        Provider::Info(result);
+        out << function;
+        out << result;
+
+    }
+    //deliver page show provider detailde information
+    if(function == "dp_spdi"){
+        QStringList result;
+        QString ID = list.at(0);
+        Provider::Info(ID.toInt(), result);
+        out << function;
+        out << result;
+    }
+    //deliver page deliver order & save order in table providerOrder
+    if(function == "dp_do"){
+        QSqlQuery query;
+        int tempID;
+        QString providerID = list.at(0);
+        QString datetime = list.at(1);
+        QString productTectmpInfo = list.at(2);
+        QString isFirstOrder = list.at(3);
+        QStringList productInfo = productTectmpInfo.split("#");
+        Order providerOrder(providerID, datetime, productInfo);
+        QString providerOrderID;
+        if(isFirstOrder == "Y"){
+            SQLTool::search(query, "orderID", "providerOrder");
+            query.last();
+            tempID = query.value(0).toInt();
+            tempID ++;
+            providerOrderID = QString::number(tempID);
+        }else {
+            SQLTool::search(query, "orderID", "providerOrder");
+            query.last();
+            providerOrderID = query.value(0).toString();
+        }
+        Order::saveProviderOrder(providerOrderID, providerOrder);
+        QDateTime changeDatetime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm:ss");
+        QString arriveDatetime = changeDatetime.addDays(3).toString("yyyy-MM-dd hh:mm:ss");
+        providerOrder.editInfo(providerID, arriveDatetime, productInfo);
+        QString warehouseID = "1";
+        Warehouse::replenish(warehouseID, providerOrder);
+        out << function;
     }
 
 

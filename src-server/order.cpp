@@ -53,6 +53,20 @@ QString Order::getId(){
     return this->id;
 }
 
+void Order::saveProviderOrder(QString providerOrderID, Order &providerOrder)
+{
+    QStringList list;
+    QString providerID = providerOrder.getId();
+    QString datetime = providerOrder.getDatetime();
+    QStringList providerTempInfo = providerOrder.getProductInfo();
+    QString providerInfo = providerTempInfo.join("#");
+    list.append(providerOrderID);
+    list.append(providerID);
+    list.append(datetime);
+    list.append(providerInfo);
+    SQLTool::insert("providerOrder", list);
+}
+
 QString Order::getDatetime(){
     return this->datetime;
 }
