@@ -569,16 +569,6 @@ void Processor::work ()
         out << function;
         out << isExisted;
     }
-    //personnel page 2 add new portrait
-    if(function == "pp2_anp"){
-        QByteArray picByteArray;
-        in >> picByteArray;
-        QImage image;
-        image = QImage::fromData(picByteArray, "jpg");
-        QString pictureName = list.at(0);
-        image.save(pictureName, "jpg", -1);
-        out << function;
-    }
     //personnel page 2 confirm add new staff
     if(function == "pp2_cns"){
         QString username = list.at(0);

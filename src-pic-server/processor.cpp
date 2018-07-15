@@ -2,6 +2,8 @@
 #include <QDataStream>
 #include <QImage>
 
+#define DIR "/Users/Haibara/Documents/qt build files/Serverfiles/"
+
 Processor::Processor(QTcpSocket* socket, QObject *parent) :
     QObject(parent)
 {
@@ -66,7 +68,7 @@ void Processor::work ()
     QImage img;
     img.loadFromData(data);
 
-    img.save("./" + fileName);
+    img.save(DIR + fileName);
 
     qDebug() << dataSize;
     qDebug() << fileName;

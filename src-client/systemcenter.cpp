@@ -40,6 +40,8 @@ SystemCenter::SystemCenter(QWidget *parent) :
     ui->add_warehouse->setVisible(false);
     ui->edit_warehouse->setVisible(false);
     ui->comboBox_searchStaffChosen->setView(new QListView());
+    ui->comboBox_addNewGender->setView(new QListView());
+    ui->comboBox_addNewPosition->setView(new QListView());
 
     style = false;
 
@@ -582,11 +584,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_newStaffUsernameTip->setVisible(false);
     ui->label_newStaffEmailTip->setVisible(false);
     ui->label_repeatPasswordTip->setVisible(false);
-    ui->label_showNewPortraitName->setVisible(false);
     ui->label_showNewPortraitPath->setVisible(false);
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
-    ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
 
 
     ui->progressBar->setVisible(true);

@@ -874,7 +874,6 @@ void SystemCenter::readMessage()
         ui->lineEdit_addNewName->clear();
         ui->lineEdit_addNewEmail->clear();
         ui->label_showNewPortrait->clear();
-        ui->label_showNewPortraitName->clear();
         ui->label_showNewPortraitPath->clear();
     }// personnel page 4 check if email exists
     if(from == "pp4_ise"){

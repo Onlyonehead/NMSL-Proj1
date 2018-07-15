@@ -94,23 +94,15 @@ void SystemCenter::on_pushButton_addNewPortrait_clicked()
     QStringList picture = QFileDialog::getOpenFileNames(this, tr("open file"),
                                                         "c:/users/Dong9/Pictures/Saved Pictures",
                                                         tr("图片文件(*png *jpg)"));
-    QString showPic = picture.join("/");
-    QString picturePath = picture.at(0);
-    QStringList picList = picturePath.split("/");
-    QString pictureName = picList.at(picList.length() - 1);
+    if(picture.isEmpty()){
+        return ;
+    }
 
-    QImage tempPortrait(showPic);
-    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(100, 100, Qt::IgnoreAspectRatio));
-    ui->label_showNewPortraitPath->setText(showPic);
+    QImage tempPortrait(picture.at(0));
+    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(142, 142, Qt::IgnoreAspectRatio));
+    ui->label_showNewPortraitPath->setText(picture.at(0));
     ui->label_showNewPortrait->setPixmap(portrait);
-    ui->label_showNewPortraitName->setText(pictureName);
     ui->label_showNewPortrait->show();
-
-    QStringList list;
-    list.append("pp2_anp");
-    list.append(pictureName);
-
-
 
 }
 
@@ -123,12 +115,6 @@ void SystemCenter::on_pushButton_addNewPortrait_clicked()
  */
 void SystemCenter::on_pushButton_confirmNewStaff_clicked()
 {
-    QMessageBox msgbox;
-    msgbox.setText(tr("员工信息已生成"));
-    msgbox.setInformativeText(tr("确认员工信息并保存吗？"));
-    msgbox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
-    msgbox.setDefaultButton(QMessageBox::Save);
-    QStringList list;
     QString username;
     QString password;
     QString name;
@@ -136,23 +122,30 @@ void SystemCenter::on_pushButton_confirmNewStaff_clicked()
     QString position;
     QString email;
     QString pic;
-    QString picPath = ui->label_showNewPortraitPath->text();
+    username = ui->lineEdit_addNewUsername->text().trimmed();
+    password = ui->lineEdit_addNewPassword->text().trimmed();
+    name = ui->lineEdit_addNewName->text().trimmed();
+    gender = ui->comboBox_addNewGender->currentText().trimmed();
+    position = ui->comboBox_addNewPosition->currentText().trimmed();
+    email = ui->lineEdit_addNewEmail->text().trimmed();
+    pic = username +".jpg";
+    QString picPath = ui->label_showNewPortraitPath->text().trimmed();
     QBuffer buffer;
     QByteArray message;
     QDataStream out(&message,QIODevice::WriteOnly);
     QImage img;
 
-    int ret = msgbox.exec();
-    switch (ret) {
-    case QMessageBox::Save:
+    if(username == "" || password == "" || name == "" || gender == "" ||
+            position == "" || email == "" || picPath == ""){
+        QMessageBox::warning(this,"警告", "\n请输入全部信息！",QMessageBox::Close);
+        return ;
+    }
+
+    if(QMessageBox::Yes==QMessageBox::question(this, "警告", "Confirm to add this user ?",
+                                               QMessageBox::Yes, QMessageBox::No)){
+        QStringList list;
         list.append("pp2_cns");
-        username = ui->lineEdit_addNewUsername->text();
-        password = ui->lineEdit_addNewPassword->text();
-        name = ui->lineEdit_addNewName->text();
-        gender = ui->comboBox_addNewGender->currentText();
-        position = ui->comboBox_addNewPosition->currentText();
-        email = ui->lineEdit_addNewEmail->text();
-        pic = ui->label_showNewPortraitName->text();
+
         list.append(username);
         list.append(password);
         list.append(name);
@@ -173,12 +166,7 @@ void SystemCenter::on_pushButton_confirmNewStaff_clicked()
 
         m_socket->write(message);
         m_socket->flush();
-        qDebug("sendpic");
-        break;
-    case QMessageBox::Cancel:
-        break;
     }
-
 
 }
 
@@ -201,21 +189,3 @@ void SystemCenter::on_pushButton_cancelNewStaff_clicked()
     ui->label_showNewPortrait->clear();
 }
 
-
-/**
- * @brief SystemCenter::on_pushButton_anpShowP_clicked
- * show password & hide password
- */
-void SystemCenter::on_pushButton_anpShowP_clicked()
-{
-    if(ui->pushButton_anpShowP->text() == "Show"){
-        ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Normal);
-        ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Normal);
-        ui->pushButton_anpShowP->setText("Hide");
-    }
-    if(ui->pushButton_anpShowP->text() == "Hide"){
-        ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
-        ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
-        ui->pushButton_anpShowP->setText("Show");
-    }
-}

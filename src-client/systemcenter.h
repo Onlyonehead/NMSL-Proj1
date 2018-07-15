@@ -282,8 +282,6 @@ private slots:
 
     void on_pushButton_changeStaffpassword_clicked();
 
-    void on_pushButton_anpShowP_clicked();
-
     void on_tableWidget_generateOrder_itemClicked(QTableWidgetItem *item);
 
 signals:

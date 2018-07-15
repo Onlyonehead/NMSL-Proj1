@@ -12399,7 +12399,7 @@ QComboBox QAbstractItemView::item:selected {
        </item>
        <item>
         <property name="text">
-         <string>      email</string>
+         <string>     email</string>
         </property>
        </item>
       </widget>
@@ -12486,87 +12486,271 @@ QPushButton:hover{
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QGroupBox" name="groupBox_addNewStaff">
+      <widget class="QLineEdit" name="lineEdit_addNewPassword">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>10</y>
-         <width>645</width>
-         <height>550</height>
+         <x>200</x>
+         <y>90</y>
+         <width>250</width>
+         <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QGroupBox{
-	border: 2px solid rgb(210, 210, 210);
-	border-radius:20px;
-	background:white;
-	margin-top: 11 px;
-}
-
-QGroupBox::title {
-background: rgb(248, 248, 248);
-	subcontrol-origin: margin;
-	subcontrol-position: top center;	
-	padding: 2 1px;
-	color: rgba(15, 128, 255, 193);
-	border: 2px solid rgba(15, 128, 255, 193);
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+	lineedit-password-mask-delay: 1000;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffEmail">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>330</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
-       <property name="title">
-        <string>Add new staff</string>
+       <property name="text">
+        <string>Email:</string>
        </property>
-       <widget class="QLabel" name="label_newStaffUsername">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>30</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
+      </widget>
+      <widget class="QComboBox" name="comboBox_addNewPosition">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>270</y>
+         <width>120</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+	border: 2px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    padding: 1px 2px 1px 2px; 
+
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+
+    width: 20px;
+ 
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-radius: 0px;
+}
+ 
+QComboBox::down-arrow {
+}
+
+QComboBox QAbstractItemView {
+    border-radius: 0px;
+	border: 2px solid rgb(169, 169, 169);
+	border-radius:0px;
+	background:rgba(255, 255, 255,200);
+	color: rgb(76, 76, 76);
+	font: 15pt &quot;Times&quot; bold;
+}
+QComboBox QAbstractItemView::item {
+        height: 40px;
+}
+
+QComboBox QAbstractItemView::item:selected {
+        background: rgb(232, 241, 250);
+        color: rgb(2, 65, 132);
+}</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>      管理员</string>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+       </item>
+       <item>
+        <property name="text">
+         <string>      采购人员</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>      物流管理</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>      仓库管理</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>      销售管理</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>      门店人员</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_newStaffEmailTip">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>330</y>
+         <width>170</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(255, 75, 20);
+	font: 75 15pt &quot;Times&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Email already signed !</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffName">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>210</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
 	background: none;
 	border-image:none;
 	border: 0px;
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
-        </property>
-        <property name="text">
-         <string>用户名：</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_addNewUsername">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>30</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit{
+       </property>
+       <property name="text">
+        <string>Name:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffUsername">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>30</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Username:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_addNewUsername">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>30</y>
+         <width>250</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
 	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
 	font: 15pt &quot;Times&quot; bold;
 }
 </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_newStaffUsernameTip">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>30</y>
-          <width>200</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffPassword">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>90</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_showNewPortrait">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>390</y>
+         <width>150</width>
+         <height>150</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border-radius:7px;
+	border: 2px solid rgb(15, 128, 255);
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Preview</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffUsernameTip">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>30</y>
+         <width>200</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
 QLabel{
 	background: none;
 	border-image:none;
@@ -12574,102 +12758,285 @@ QLabel{
 	color: rgb(255, 75, 20);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
-        </property>
+       </property>
+       <property name="text">
+        <string>Username already exists !</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_addNewPortrait">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>430</y>
+         <width>131</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Choose your
+profile picture</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_addNewGender">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>270</y>
+         <width>120</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+	border: 2px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    padding: 1px 2px 1px 2px; 
+
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+
+    width: 20px;
+ 
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-radius: 0px;
+}
+ 
+QComboBox::down-arrow {
+}
+
+QComboBox QAbstractItemView {
+    border-radius: 0px;
+	border: 2px solid rgb(169, 169, 169);
+	border-radius:0px;
+	background:rgba(255, 255, 255,200);
+	color: rgb(76, 76, 76);
+	font: 15pt &quot;Times&quot; bold;
+}
+QComboBox QAbstractItemView::item {
+        height: 40px;
+}
+
+QComboBox QAbstractItemView::item:selected {
+        background: rgb(232, 241, 250);
+        color: rgb(2, 65, 132);
+}</string>
+       </property>
+       <item>
         <property name="text">
-         <string>用户名已存在！</string>
+         <string>           男</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="label_newStaffPassword">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>90</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>           女</string>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+       </item>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_addNewEmail">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>330</y>
+         <width>250</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_repeatPassword">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>150</y>
+         <width>250</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+	lineedit-password-mask-delay: 1000;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_confirmNewStaff">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>400</y>
+         <width>121</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffGender">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>270</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
 	background: none;
 	border-image:none;
 	border: 0px;
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
-        </property>
-        <property name="text">
-         <string>密码：</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_addNewPassword">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>90</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	font: 15pt &quot;Times&quot; bold;
-}
-</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_repeatPassword">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>150</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+       </property>
+       <property name="text">
+        <string>Gender:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_repeatPassword">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>150</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
 	background: none;
 	border-image:none;
 	border: 0px;
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
-        </property>
-        <property name="text">
-         <string>重复密码：</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_repeatPassword">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>150</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit{
+       </property>
+       <property name="text">
+        <string>Repeat:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_showNewPortraitPath">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>520</y>
+         <width>100</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_cancelNewStaff">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>470</y>
+         <width>121</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	background:rgba(248, 248, 248,220);
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold ;
+}
+
+QPushButton:hover{
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 43);
+	border-radius:10px;
+	color: rgb(76, 76, 76);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_addNewName">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>210</y>
+         <width>250</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
 	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
 	font: 15pt &quot;Times&quot; bold;
 }
 </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_repeatPasswordTip">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>150</y>
-          <width>200</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_repeatPasswordTip">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>150</y>
+         <width>200</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
 QLabel{
 	background: none;
 	border-image:none;
@@ -12677,386 +13044,32 @@ QLabel{
 	color: rgb(255, 75, 20);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
-        </property>
-        <property name="text">
-         <string>两次密码不一致！</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_newStaffGender">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>270</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+       </property>
+       <property name="text">
+        <string>Passwords do not match !</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_newStaffPosition">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>270</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
 	background: none;
 	border-image:none;
 	border: 0px;
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
-        </property>
-        <property name="text">
-         <string>性别：</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="comboBox_addNewGender">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>270</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>男</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>女</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="label_newStaffPosition">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>330</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>职位：</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="comboBox_addNewPosition">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>330</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>管理员</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>采购人员</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>物流管理</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>仓库管理</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>销售管理</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>门店人员</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="label_newStaffName">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>210</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>姓名：</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_addNewName">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>210</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	font: 15pt &quot;Times&quot; bold;
-}
-</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_newStaffEmail">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>390</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>邮箱：</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_addNewEmail">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>390</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	font: 15pt &quot;Times&quot; bold;
-}
-</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_newStaffEmailTip">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>390</y>
-          <width>200</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
-QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(255, 75, 20);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>邮箱已注册！</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_addNewPortrait">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>450</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>选择头像</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_showNewPortrait">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>440</y>
-          <width>100</width>
-          <height>100</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>预览</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_confirmNewStaff">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>450</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>Confirm</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_cancelNewStaff">
-        <property name="geometry">
-         <rect>
-          <x>490</x>
-          <y>450</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_showNewPortraitName">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>500</y>
-          <width>100</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_anpShowP">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>90</y>
-          <width>60</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>Show</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_showNewPortraitPath">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>520</y>
-          <width>100</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       </property>
+       <property name="text">
+        <string>Position:</string>
+       </property>
       </widget>
      </widget>
      <widget class="QFrame" name="frame_personnelpage_3">
@@ -14195,10 +14208,10 @@ QLabel{
        </widget>
       </widget>
      </widget>
-     <zorder>frame_personnelpage_2</zorder>
      <zorder>frame_personnelpage_3</zorder>
      <zorder>frame_personnelpage_4</zorder>
      <zorder>frame_personnelpage_1</zorder>
+     <zorder>frame_personnelpage_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
