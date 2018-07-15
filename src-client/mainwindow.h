@@ -9,6 +9,7 @@
 #include "systemcenter.h"
 #include "record.h"
 #include <QtNetwork>
+#include <QMap>
 
 namespace Ui {
 class MainWindow;
@@ -70,6 +71,10 @@ private slots:
 
     void readMessage();
 
+    void on_pushButton_sendRequest_clicked();
+
+    void on_tableWidget_allRequests_cellClicked(int row, int column);
+
 private:
     void addFont();
     void setCursor();
@@ -101,6 +106,8 @@ private:
     QVector<Record> qv_record;
     QVector<QStringList> qv_clothes;
     QVector<QVector<QString>> qv_stock;
+    QVector<QStringList> qv_allRequest;
+    QMap<QString, QMap<QString, QString>> m_requestDetail;
     int record_size;
 
     QStringList qsl;//用于发送消息给服务器端
