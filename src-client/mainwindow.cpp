@@ -4,7 +4,6 @@
 #include "login.h"
 #include "record.h"
 
-#include <QPainter>
 #include <QtMath>
 #include <QFontDatabase>
 #include <QDebug>
@@ -391,9 +390,10 @@ void MainWindow::replyFinished(QNetworkReply *reply)
  */
 void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QString s5, QString s6)
 {
-    QElapsedTimer t;
-
+    addFont();
     this->show();
+
+    QElapsedTimer t;
 
     ui->progressBar->setRange(0, 100);//设置进度条范围
     ui->progressBar->setValue(0);
@@ -423,7 +423,6 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     QApplication::processEvents();
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(removeSubTab(int)));
     ui->frame_exit->installEventFilter(this);
-    addFont();
     setCursor();
     connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
     ui->progressBar->setValue(20);
@@ -528,25 +527,6 @@ void MainWindow::readMessage()
     in >> from;
     qDebug() << from << endl;
 
-    if(from == "getRecord"){
-        int qv_size;//获取QVector的大小
-        QString id_trans;
-        QString id_store;
-        QString date;
-        QString prices;
-        QMap<QString, QString> m;
-        in >> qv_size;
-        qDebug()<<"记录大小："<<qv_size;
-        for(int i=0; i<qv_size; ++i){
-            in >> id_trans >> id_store >> date >> prices >> m;
-            Record r(id_trans, id_store, date, prices);
-            r.loadDetails(m);
-            qv_record.append(r);
-        }
-        in >> record_size;
-
-    }
-
     if(from == "getStoreInfo"){
 
         QVector<QString> qv;
@@ -597,9 +577,13 @@ void MainWindow::readMessage()
 
     if(from == "MainWindowInit"){
         in >> qv_clothes;
-        ui->progressBar->setValue(70);
         in >> qv_stock;
-        ui->progressBar->setValue(80);
+        QApplication::processEvents();
+        ui->progressBar->setValue(100);
+        QTime t;
+        t.start();
+        while(t.elapsed()<100)
+            QCoreApplication::processEvents();
 
         int qv_size;//获取QVector的大小
         QString id_trans;
@@ -615,8 +599,9 @@ void MainWindow::readMessage()
             r.loadDetails(m);
             qv_record.append(r);
         }
+        QApplication::processEvents();
         in >> record_size;
-        ui->progressBar->setValue(100);
+        ui->progressBar->setVisible(false);
     }
 
     if(from == "sendRequest"){

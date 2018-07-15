@@ -58,6 +58,8 @@ SOURCES += main.cpp \
     tool.cpp \
     logistics_a.cpp \
     logistics_b.cpp \
+    sell_c.cpp \
+    sell_d.cpp
     qtmap.cpp \
     bridge.cpp \
     logistics_c.cpp

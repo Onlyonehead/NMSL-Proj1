@@ -24,7 +24,7 @@ void MainWindow::setTableWidget_records(){
     ui->tableWidget_records->horizontalHeader()->resizeSection(1, 230);
     ui->tableWidget_records->horizontalHeader()->resizeSection(2, 115);
     ui->tableWidget_records->horizontalHeader()->resizeSection(3, 115);
-    ui->tableWidget_records->horizontalHeader()->resizeSection(4, 115);
+    ui->tableWidget_records->horizontalHeader()->resizeSection(4, 130);
 
     int i=0;//控制总行数
     QVector<Record>::iterator it;
@@ -33,7 +33,8 @@ void MainWindow::setTableWidget_records(){
         QMap<QString, QString>::iterator it2;
 
         ui->tableWidget_records->setItem(i,0,new QTableWidgetItem(it->getIdTrans())); //id_trans
-        ui->tableWidget_records->setItem(i,1,new QTableWidgetItem(it->getDate())); //date
+        QStringList sIndex = it->getDate().split("T");
+        ui->tableWidget_records->setItem(i,1,new QTableWidgetItem(sIndex.at(0)+"  "+sIndex.at(1))); //date
         ui->tableWidget_records->setItem(i,2,new QTableWidgetItem(it->getPrices())); //prices
 
         if(m.size()>1){

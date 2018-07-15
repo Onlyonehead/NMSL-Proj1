@@ -28,7 +28,9 @@ public:
 
 private slots:
     void windowClose();
+
     void removeSubTab(int index);
+
     void on_pushButton_1_clicked();
 
     void on_pushButton_2_clicked();

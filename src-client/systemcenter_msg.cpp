@@ -993,6 +993,8 @@ void SystemCenter::readMessage()
             }
             ++i;
         }
+
+        progressBar();
     }
 
     if(from == "storesClicked"){
@@ -1022,7 +1024,8 @@ void SystemCenter::readMessage()
             QMap<QString, QString>::iterator it2;
 
             ui->tableWidget_storeRecord->setItem(i,0,new QTableWidgetItem(id_trans)); //id_trans
-            ui->tableWidget_storeRecord->setItem(i,1,new QTableWidgetItem(date)); //date
+            QStringList sIndex = date.split("T");
+            ui->tableWidget_storeRecord->setItem(i,1,new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1))); //date
             ui->tableWidget_storeRecord->setItem(i,2,new QTableWidgetItem(prices)); //prices
 
             if(m.size()>1){
@@ -1051,6 +1054,8 @@ void SystemCenter::readMessage()
         }
         if(record_size>0)
             ui->tableWidget_storeRecord->setCurrentCell(0, 0);
+
+        progressBar();
     }
 
     if(from == "getAllRequests"){
@@ -1071,21 +1076,33 @@ void SystemCenter::readMessage()
         for(it=qv_requests.constBegin(); it!=qv_requests.constEnd(); ++it){
             ui->tableWidget_check->setItem(i, 0, new QTableWidgetItem(it->at(0)));
             ui->tableWidget_check->setItem(i, 1, new QTableWidgetItem(it->at(1)));
-            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(it->at(2)));
+            QStringList sIndex = it->at(2).split("T");
+            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1)));
             ++i;
         }
+
+        progressBar();
     }
 
     if(from == "getCheckDetail"){
-        QStringList qsl_s;//店铺信息
+        QString store_id;
         QVector<QStringList> qv;//请求详细信息
-        in >> qsl_s >> qv;
 
-        qDebug()<<qv.size();
+        in >> store_id >>  qv;
 
-        ui->label_storeN->setText(qsl_s.at(0));
-        ui->label_manager->setText(qsl_s.at(1));
-        ui->label_location->setText(qsl_s.at(2));
+        QVector<QStringList>::const_iterator its;
+        for(its=stores.constBegin(); its!=stores.constEnd(); ++its){
+            if(its->at(0)==store_id){
+                ui->label_storeN->setText(its->at(1));
+                ui->label_manager->setText(its->at(5));
+                QString location;
+                if(its->at(3)=="")
+                    location = its->at(2)+"市";
+                else
+                    location = its->at(2)+"省"+its->at(3)+"市";
+                ui->label_location->setText(location);
+            }
+        }
 
         ui->tableWidget_checkDetail->verticalHeader()->setVisible(false);
         ui->tableWidget_checkDetail->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
@@ -1096,20 +1113,36 @@ void SystemCenter::readMessage()
         int i=0;
         QVector<QStringList>::const_iterator it;
         for(it=qv.constBegin(); it!=qv.constEnd(); ++it){
-            for(int j=0; j<5; ++j){
-                ui->tableWidget_checkDetail->setItem(i,j,new QTableWidgetItem(it->at(j)));
+
+            ui->tableWidget_checkDetail->setItem(i,0,new QTableWidgetItem(it->at(0)));
+
+            QVector<QStringList>::const_iterator itc;
+            for(itc=clothes.constBegin(); itc!=clothes.constEnd(); ++itc){
+                if(itc->at(0)==it->at(0)){
+                    ui->tableWidget_checkDetail->setItem(i,1,new QTableWidgetItem(itc->at(1)));
+                    ui->tableWidget_checkDetail->setItem(i,2,new QTableWidgetItem(itc->at(2)));
+                }
             }
+
+            ui->tableWidget_checkDetail->setItem(i,3,new QTableWidgetItem(it->at(1)));
+            ui->tableWidget_checkDetail->setItem(i,4,new QTableWidgetItem(it->at(2)));
+
+
             ++i;
         }
 
         ui->pushButton_commit->setVisible(true);
         ui->pushButton_reject->setVisible(true);
+
+        progressBar();
     }
 
     if(from == "changeAmount"){
         QString amount;
         in >> amount;
         ui->tableWidget_checkDetail->item(ui->label_sell_row->text().toInt(), 4)->setText(amount);
+
+        progressBar();
     }
 
     if(from == "commitRequest"){
@@ -1138,6 +1171,8 @@ void SystemCenter::readMessage()
                 break;
             }
         }
+
+        progressBar();
     }
 
     if(from == "requestReject"){
@@ -1161,6 +1196,133 @@ void SystemCenter::readMessage()
                 break;
             }
         }
+
+        progressBar();
+    }
+
+    if(from == "getArriveRecord"){
+
+        QVector<QStringList> qv;
+        in >> qv;
+
+        ui->tw_sell_C2->verticalHeader()->setVisible(false);
+        ui->tw_sell_C2->setRowCount(qv.size());
+        ui->tw_sell_C2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        ui->tw_sell_C2->horizontalHeader()->resizeSection(0, 40);
+        ui->tw_sell_C2->horizontalHeader()->resizeSection(1, 170);
+        ui->tw_sell_C2->horizontalHeader()->resizeSection(2, 75);
+
+        int i=0;
+        QVector<QStringList>::const_iterator ita;
+        for(ita=qv.constBegin(); ita!=qv.constEnd(); ++ita, ++i){
+            //id, time, state
+            ui->tw_sell_C2->setItem(i, 0, new QTableWidgetItem(ita->at(0)));
+            QStringList sIndex = ita->at(2).split("T");
+            ui->tw_sell_C2->setItem(i, 1, new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1)));
+
+            QString state;
+            if(ita->at(1)=="1")
+                state = "Checked";
+            else
+                state = "Rejected";
+            ui->tw_sell_C2->setItem(i, 2, new QTableWidgetItem(state));
+        }
+
+        progressBar();
+    }
+
+    if(from == "getArriveDetail"){
+        QMap<QString, QVector<QStringList> > qm;
+        QMap<QString, QString> qmt;
+        int size;
+        in >> size >> qm >> qmt;
+
+        ui->tw_sell_C3->clear();
+        ui->tw_sell_C3->verticalHeader()->setVisible(false);
+        ui->tw_sell_C3->setRowCount(size);
+        ui->tw_sell_C3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        //470
+        ui->tw_sell_C3->horizontalHeader()->resizeSection(0, 100);
+        ui->tw_sell_C3->horizontalHeader()->resizeSection(1, 220);
+        ui->tw_sell_C3->horizontalHeader()->resizeSection(2, 90);
+        ui->tw_sell_C3->horizontalHeader()->resizeSection(3, 60);
+
+        int i=0;
+        QMap<QString, QVector<QStringList> >::const_iterator ita;
+        for(ita=qm.constBegin(); ita!=qm.constEnd(); ++ita){
+            QString from_id = ita.key();
+            ui->tw_sell_C3->setItem(i, 0, new QTableWidgetItem(warehouse_map.value(from_id)));
+
+            QStringList sIndex = qmt.value(from_id).split("T");
+            ui->tw_sell_C3->setItem(i, 1, new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1)));
+
+            int height = ita.value().size();
+            if(height>1){
+                ui->tw_sell_C3->setSpan(i, 0, height, 1);
+                ui->tw_sell_C3->setSpan(i, 1, height, 1);
+            }
+
+            QVector<QStringList>::const_iterator its;
+            for(its=ita.value().constBegin(); its!=ita.value().constEnd(); ++its, ++i){
+                QString clothes_id = its->at(0);
+                QVector<QStringList>::const_iterator itc;
+                for(itc=clothes.constBegin(); itc!=clothes.constEnd(); ++itc){
+                    if(itc->at(0)==clothes_id){
+                        ui->tw_sell_C3->setItem(i, 2, new QTableWidgetItem(itc->at(1)+" "+itc->at(2)));
+                        break;
+                    }
+                }
+
+
+                ui->tw_sell_C3->setItem(i, 3, new QTableWidgetItem(its->at(1)));
+            }
+        }
+
+        progressBar();
+    }
+
+    if(from == "changeUserName"){
+        QStringList users, users2;
+        in >> users;
+        for(int i=0; i<users.size(); ++i){
+            if(users.at(i)!=ui->label_2->text()){
+                users2.append(users.at(i));
+            }
+        }
+        ui->comboBox_sellDUserName->addItems(users2);
+
+        progressBar();
+    }
+
+    if(from == "changeUserName2"){
+        QStringList users, users2;
+        in >> users;
+        for(int i=0; i<users.size(); ++i){
+            if(users.at(i)!=ui->label_2->text()){
+                users2.append(users.at(i));
+            }
+        }
+        ui->comboBox_2->addItems(users2);
+
+        progressBar();
+    }
+
+    if(from == "storeInfoChange"){
+        QMessageBox::information(this,"completed", "\nstore infomation changed successfully!",QMessageBox::Ok);
+
+        this->on_pushButton_50_clicked();
+
+        QStringList qsl;
+        qsl.append("reloadStores");//更新商店信息
+        sendMessage(qsl);
+
+        progressBar();
+    }
+
+    if(from == "reloadStores"){
+        in >> stores;
     }
 
     //sissyVI--Finish

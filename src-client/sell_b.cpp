@@ -12,10 +12,12 @@ void SystemCenter::on_tableWidget_check_cellClicked(int row, int column)
 {
     Q_UNUSED(column);
 
+    ui->lineEdit_sell_amount->setText("");
     ui->label_sell_idPurchase->setText(ui->tableWidget_check->item(row, 0)->text());//记录id_purchase
     ui->pushButton_change->setVisible(false);
 
     QString purchase_id = ui->tableWidget_check->item(row, 0)->text();
+
     QString store_id = ui->tableWidget_check->item(row, 1)->text();
 
     QStringList qsl;

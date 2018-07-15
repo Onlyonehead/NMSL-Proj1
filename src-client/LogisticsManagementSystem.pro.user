@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
+<!-- Written by QtCreator 4.2.0, 2018-07-15T21:22:35. -->
+=======
 <!-- Written by QtCreator 4.2.0, 2018-07-15T18:36:26. -->
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -45,7 +49,7 @@
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
    <value type="int" key="EditorConfiguration.TabSize">8</value>
    <value type="bool" key="EditorConfiguration.UseGlobal">true</value>
-   <value type="int" key="EditorConfiguration.Utf8BomBehavior">2</value>
+   <value type="int" key="EditorConfiguration.Utf8BomBehavior">1</value>
    <value type="bool" key="EditorConfiguration.addFinalNewLine">true</value>
    <value type="bool" key="EditorConfiguration.cleanIndentation">true</value>
    <value type="bool" key="EditorConfiguration.cleanWhitespace">true</value>
@@ -126,7 +130,11 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
+<<<<<<< HEAD
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/CC/Desktop/NMSL-Proj1/build-LogisticsManagementSystem-Desktop_Qt_5_7_1_MinGW_32bit-Release</value>
+=======
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/Haibara/Documents/qt build files/src-client</value>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -186,7 +194,11 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
+<<<<<<< HEAD
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/CC/Desktop/NMSL-Proj1/build-LogisticsManagementSystem-Desktop_Qt_5_7_1_MinGW_32bit-Profile</value>
+=======
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/Haibara/Documents/qt build files/src-client</value>
+>>>>>>> 4178c2359a634335d32a12761283eb1edca13900
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
