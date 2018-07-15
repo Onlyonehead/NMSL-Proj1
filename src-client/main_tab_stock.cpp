@@ -47,9 +47,9 @@ void MainWindow::on_tableWidget_warehouse_cellClicked(int row, int column)
         }
     }
 
-    QPixmap *pixmap = new QPixmap("./" + path);
+    QPixmap *pixmap = new QPixmap(USER_DIR + path);
     if (pixmap->isNull()){
-        download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
     }
     if (pixmap->isNull()){
         pixmap = new QPixmap(":/default.jpg");

@@ -1,6 +1,8 @@
 #ifndef SYSTEMCENTER_H
 #define SYSTEMCENTER_H
 
+#define USER_DIR "/Users/Haibara/Documents/qt build files/Userfiles/"
+
 #include <QWidget>
 #include <QFont>
 #include <QTabBar>

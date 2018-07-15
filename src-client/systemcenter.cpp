@@ -97,9 +97,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 
-    QPixmap *pixmap = new QPixmap("./" + s6);
+    QPixmap *pixmap = new QPixmap(USER_DIR + s6);
     if (pixmap->isNull()){
-        download("http://39.108.155.50/project1/users/" + s6, "./" + s6);
+        download("http://39.108.155.50/project1/users/" + s6, USER_DIR + s6);
     }
     if(pixmap->isNull()){
         pixmap = new QPixmap(":/user.png");
