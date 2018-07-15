@@ -344,9 +344,9 @@ void SystemCenter::readMessage()
         QString price = result.at(4);
 
         QApplication::processEvents();
-        QPixmap *pixmap = new QPixmap("./" + path);
+        QPixmap *pixmap = new QPixmap(USER_DIR + path);
         if(pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+            download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
         }
 
         if (pixmap->isNull()){
@@ -434,9 +434,9 @@ void SystemCenter::readMessage()
         QString price = result.at(4);
 
         QApplication::processEvents();
-        QPixmap *pixmap = new QPixmap("./" + path);
+        QPixmap *pixmap = new QPixmap(USER_DIR + path);
         if(pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+            download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
         }
 
         if (pixmap->isNull()){
@@ -821,9 +821,9 @@ void SystemCenter::readMessage()
         QString price = result.at(4);
 
         QApplication::processEvents();
-        QPixmap *pixmap = new QPixmap("./" + path);
+        QPixmap *pixmap = new QPixmap(USER_DIR + path);
         if(pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+            download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
         }
 
         if (pixmap->isNull()){

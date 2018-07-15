@@ -39,10 +39,50 @@ void SystemCenter::on_tableWidget_D1_itemClicked(QTableWidgetItem *item){
 
     QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
+<<<<<<< HEAD
     QStringList msg;
     msg.append("tWD1iC");
     msg.append(s);
     sendMessage(msg);
+=======
+    QStringList result;
+
+    for(QStringList l : this->clothes){
+        if(l.at(0) == s){
+            result = l;
+            break;
+        }
+    }
+
+    QString id = result.at(0);
+    QString style = result.at(1);
+    QString size = result.at(2);
+    QString path = result.at(3);
+    QString price = result.at(4);
+
+    QApplication::processEvents();
+    QPixmap *pixmap = new QPixmap(USER_DIR + path);
+    if(pixmap->isNull()){
+        download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
+    }
+
+    if (pixmap->isNull()){
+        pixmap = new QPixmap(":/default.jpg");
+    }
+    QApplication::processEvents();
+    ui->label_clothes_D->setScaledContents(true);
+    ui->label_clothes_D->setPixmap(*pixmap);
+    delete pixmap;
+    QApplication::processEvents();
+
+    ui->label_72->setText(id);
+    ui->label_73->setText(style);
+    ui->label_74->setText(price);
+    ui->label_75->setText(size);
+    QApplication::processEvents();
+
+    progressBar_fast();
+>>>>>>> dc53185c74bac0e0ea59db6aef92386714638b80
 
 }
 
