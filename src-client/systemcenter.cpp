@@ -21,11 +21,11 @@ SystemCenter::SystemCenter(QWidget *parent) :
     m_tcpsocket->connectToHost(QHostAddress::LocalHost,8848);//设置客户端的端口号
     connect(m_tcpsocket,SIGNAL(readyRead()),
             this,SLOT(readMessage()));//用于接受数据
-
-   m_socket = new QTcpSocket;
-   m_socket->connectToHost(QHostAddress::LocalHost, 7777);
-   connect(m_socket, SIGNAL(readyRead()),
-           this, SLOT(readMessage()));
+			
+	m_socket = new QTcpSocket;
+    m_socket->connectToHost(QHostAddress::LocalHost, 7777);
+    connect(m_socket, SIGNAL(readyRead()),
+			this, SLOT(readMessage()));
 
 
     this->setAttribute(Qt::WA_DeleteOnClose);
@@ -34,6 +34,10 @@ SystemCenter::SystemCenter(QWidget *parent) :
     this->setStyleSheet("QFrame{border-radius:10px;}");
 
     ui->progressBar->setVisible(false);
+    ui->pushButton_17->setVisible(false);
+    ui->pushButton_18->setVisible(false);
+    ui->add_warehouse->setVisible(false);
+    ui->edit_warehouse->setVisible(false);
     style = false;
 
     /*
@@ -219,6 +223,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_107->setText(QChar(0xf56e));
     ui->label_107->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_font_storeN->setFont(font);
+    ui->label_font_storeN->setText(QChar(0xf54e));
+    ui->label_font_storeN->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_manager->setFont(font);
+    ui->label_font_manager->setText(QChar(0xf222));
+    ui->label_font_manager->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_location->setFont(font);
+    ui->label_font_location->setText(QChar(0xf124));
+    ui->label_font_location->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
     ui->label_85->setFont(font);
     ui->label_85->setText(QChar(0xf1b3));
     ui->label_85->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
@@ -231,20 +247,55 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_191->setText(QChar(0xf52d));
     ui->label_191->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_194->setFont(font);
+    ui->label_194->setText(QChar(0xf474));
+    ui->label_194->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_196->setFont(font);
+    ui->label_196->setText(QChar(0xf1b3));
+    ui->label_196->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_198->setFont(font);
+    ui->label_198->setText(QChar(0xf59d));
+    ui->label_198->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_124->setFont(font);
+    ui->label_124->setText(QChar(0xf058));
+    ui->label_124->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_125->setFont(font);
+    ui->label_125->setText(QChar(0xf017));
+    ui->label_125->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_126->setFont(font);
+    ui->label_126->setText(QChar(0xf461));
+    ui->label_126->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_202->setFont(font);
+    ui->label_202->setText(QChar(0xf2d2));
+    ui->label_202->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_201->setFont(font);
+    ui->label_201->setText(QChar(0xf54e));
+    ui->label_201->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_204->setFont(font);
+    ui->label_204->setText(QChar(0xf0a4));
+    ui->label_204->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
-    sp_font.setPointSize(20);
+    sp_font.setPointSize(18);
 
     ui->pushButton_font_sellSearch->setFont(sp_font);
     ui->pushButton_font_sellSearch->setText(QChar(0xf0d0));
     ui->pushButton_font_sellSearch->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                                  "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->label_navigator->setFont(sp_font);
-    ui->label_navigator->setText(QChar(0xf59f));
+    ui->label_navigator->setText(QChar(0xf5a0));
     ui->label_navigator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
-
 
     //initialize search icon
 
@@ -254,7 +305,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search->setFont(icon_search);
     ui->icon_search->setText(QChar(0xf35a));
     ui->icon_search->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                   "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->icon_search_B->setFont(icon_search);
     ui->icon_search_B->setText(QChar(0xf35a));
@@ -265,13 +316,13 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search_C->setFont(icon_search);
     ui->icon_search_C->setText(QChar(0xf35a));
     ui->icon_search_C->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
 
     ui->icon_search_D->setFont(icon_search);
     ui->icon_search_D->setText(QChar(0xf35a));
     ui->icon_search_D->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
-                                    "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
     ui->style_change->setFont(icon_search);
     ui->style_change->setText(QChar(0xf204));
@@ -307,12 +358,12 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_C1->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C1->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
-//    ui->tableWidget_C1->setAlternatingRowColors(true);
+    //    ui->tableWidget_C1->setAlternatingRowColors(true);
 
     ui->tableWidget_C2->horizontalHeader()->setDefaultSectionSize(93);
     ui->tableWidget_C2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
-//    ui->tableWidget_C2->setAlternatingRowColors(true);
+    //    ui->tableWidget_C2->setAlternatingRowColors(true);
 
     ui->tableWidget_D1->horizontalHeader()->setDefaultSectionSize(150);
     ui->tableWidget_D1->horizontalHeader()->setStretchLastSection(true);
@@ -353,6 +404,39 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_B->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_B->setAlternatingRowColors(true);
 
+    ui->tableWidget_logistics_C->horizontalHeader()->setDefaultSectionSize(85);
+    ui->tableWidget_logistics_C->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_C->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_C->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_D->setColumnWidth(1, 70);
+    ui->tableWidget_logistics_D->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_D->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_D->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_2A->horizontalHeader()->setDefaultSectionSize(120);
+    ui->tableWidget_logistics_2A->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_2A->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_2A->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_C1->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_C1->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_C1->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_C1->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_C2->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_C2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_C2->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_C2->setAlternatingRowColors(true);
+
+    ui->tableWidget_route_via->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_route_via->verticalHeader()->setDefaultSectionSize(40);
+    ui->tableWidget_route_via->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_route_via->setAlternatingRowColors(true);
+
+
 
 
     QApplication::processEvents();
@@ -374,9 +458,14 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     QApplication::processEvents();
 
+    ui->label_sell_row->setVisible(false);
+    ui->label_sell_idPurchase->setVisible(false);
+    ui->pushButton_change->setVisible(false);
+    ui->pushButton_commit->setVisible(false);
+    ui->pushButton_reject->setVisible(false);
 
     /**
-     * purchase/deliver page date/time label display
+     * purchase page date/time label display
      *
      * @author Yihan Dong
      */
@@ -402,6 +491,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_orderGarment->setAlternatingRowColors(true);
     ui->tableWidget_orderGarment->verticalHeader()->setVisible(false);
     ui->tableWidget_orderGarment->setStyleSheet("selection-background-color::lightblue");
+
 
     /**
      *deliver page setting except time
@@ -467,7 +557,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_updateShowStaffInfo->verticalHeader()->setVisible(false);
     ui->tableWidget_updateShowStaffInfo->setStyleSheet("selection-background-color::lightblue");
 
-//    //initialize furry search
+    //initialize furry search
 
     QElapsedTimer t;
 
@@ -489,9 +579,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     ui->progressBar->setValue(50);
 
-//    QMovie *movie = new QMovie(":/movie.gif");
-//    ui->label_title->setMovie(movie);
-//    movie->start();
+    //    QMovie *movie = new QMovie(":/movie.gif");
+    //    ui->label_title->setMovie(movie);
+    //    movie->start();
 
 }
 
@@ -547,7 +637,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
     }
     if(index == 1){
-        ui->pushButton_A->setVisible(true);
+         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(false);
         ui->pushButton_D->setVisible(false);
@@ -564,9 +654,9 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
 
-        ui->pushButton_A->setText("");
-        ui->pushButton_B->setText("");
-        ui->pushButton_C->setText("");
+        ui->pushButton_A->setText("Replenish");
+        ui->pushButton_B->setText("History");
+        ui->pushButton_C->setText("Route");
         ui->pushButton_D->setText("");
 
     }
@@ -579,13 +669,13 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_A->setText("Info");
         ui->pushButton_B->setText("Cargo");
         ui->pushButton_C->setText("Stock");
-        ui->pushButton_D->setText("Replenish");
+        ui->pushButton_D->setText("Demand");
     }
     if(index == 4){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(false);
-        ui->pushButton_D->setVisible(false);
+        ui->pushButton_C->setVisible(true);
+        ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Record");
         ui->pushButton_B->setText("Delivery");
@@ -594,7 +684,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
     }
     if(index == 5){
-        ui->pushButton_A->setVisible(true);
+         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
@@ -606,7 +696,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
     }
     if(index == 6){
-        ui->pushButton_A->setVisible(true);
+         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(false);
@@ -634,6 +724,8 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_systempage_1->setVisible(true);
     ui->frame_personnelpage_1->setVisible(true);
     ui->frame_sell_A->setVisible(true);
+    ui->frame_logistics_A->setVisible(true);
+
 
     //B
     ui->frame_2B->setVisible(false);
@@ -641,15 +733,14 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_systempage_2->setVisible(false);
     ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
+    ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(false);
-    ui->frame_systempage_3->setVisible(false);
-    ui->frame_personnelpage_3->setVisible(false);
+    ui->frame_logistics_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
-    ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -665,6 +756,7 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_systempage_1->setVisible(false);
     ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
+    ui->frame_logistics_A->setVisible(false);
 
     //B
     ui->frame_2B->setVisible(true);
@@ -672,15 +764,16 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_systempage_2->setVisible(true);
     ui->frame_personnelpage_2->setVisible(true);
     ui->frame_sell_B->setVisible(true);
+    ui->frame_logistics_B->setVisible(true);
 
     //C
     ui->frame_2C->setVisible(false);
-    ui->frame_systempage_3->setVisible(false);
-    ui->frame_personnelpage_3->setVisible(false);
+    ui->frame_logistics_C->setVisible(false);
+	ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
-    ui->frame_personnelpage_4->setVisible(false);
+	ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -696,6 +789,7 @@ void SystemCenter::on_pushButton_C_clicked()
     ui->frame_systempage_1->setVisible(false);
     ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
+    ui->frame_logistics_A->setVisible(false);
 
     //B
     ui->frame_2B->setVisible(false);
@@ -703,15 +797,18 @@ void SystemCenter::on_pushButton_C_clicked()
     ui->frame_systempage_2->setVisible(false);
     ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
+    ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(true);
-    ui->frame_systempage_3->setVisible(true);
+    ui->frame_logistics_C->setVisible(true);
+	ui->frame_systempage_3->setVisible(true);
     ui->frame_personnelpage_3->setVisible(true);
+
 
     //D
     ui->frame_2D->setVisible(false);
-    ui->frame_personnelpage_4->setVisible(false);
+	ui->frame_personnelpage_4->setVisible(false);
 
 }
 
@@ -728,6 +825,7 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_systempage_1->setVisible(false);
     ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
+    ui->frame_logistics_A->setVisible(false);
 
     //B
     ui->frame_2B->setVisible(false);
@@ -735,14 +833,16 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_systempage_2->setVisible(false);
     ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
+    ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(false);
-    ui->frame_personnelpage_3->setVisible(false);
+    ui->frame_logistics_C->setVisible(false);
+	ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
-    ui->frame_personnelpage_4->setVisible(true);
+	ui->frame_personnelpage_4->setVisible(true);
 }
 
 
@@ -845,8 +945,6 @@ void SystemCenter::replyFinished(QNetworkReply *reply)
     }
 }
 
-
-
 void SystemCenter::on_style_change_clicked()
 {
     int fontId = QFontDatabase::addApplicationFont(":/font/fa-solid-900.ttf");
@@ -872,18 +970,4 @@ void SystemCenter::on_style_change_clicked()
                                         "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
     }
     style = !style;
-}
-
-
-
-void SystemCenter::error(QNetworkReply::NetworkError error)
-{
-    switch (error) {
-    case QNetworkReply::HostNotFoundError:
-        qDebug() << tr("主机没有找到");
-
-        break;
-    default:
-        break;
-    }
 }
