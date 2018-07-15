@@ -21,6 +21,11 @@ SystemCenter::SystemCenter(QWidget *parent) :
     m_tcpsocket->connectToHost(QHostAddress::LocalHost,8848);//设置客户端的端口号
     connect(m_tcpsocket,SIGNAL(readyRead()),
             this,SLOT(readMessage()));//用于接受数据
+			
+	m_socket = new QTcpSocket;
+    m_socket->connectToHost(QHostAddress::LocalHost, 7777);
+    connect(m_socket, SIGNAL(readyRead()),
+			this, SLOT(readMessage()));
 
 
     this->setAttribute(Qt::WA_DeleteOnClose);
@@ -480,7 +485,31 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_generateOrder->setAlternatingRowColors(true);
     ui->tableWidget_generateOrder->verticalHeader()->setVisible(false);
     ui->tableWidget_generateOrder->setStyleSheet("selection-background-color::lightblue");
+    ui->tableWidget_orderGarment->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_orderGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_orderGarment->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableWidget_orderGarment->setAlternatingRowColors(true);
+    ui->tableWidget_orderGarment->verticalHeader()->setVisible(false);
+    ui->tableWidget_orderGarment->setStyleSheet("selection-background-color::lightblue");
 
+
+    /**
+     *deliver page setting except time
+     *
+     * @author Yihan Dong
+    */
+
+    ui->tableWidget_deliverGarment->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_deliverGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_deliverGarment->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableWidget_deliverGarment->setAlternatingRowColors(true);
+    ui->tableWidget_deliverGarment->verticalHeader()->setVisible(false);
+    ui->tableWidget_deliverGarment->setStyleSheet("selection-background-color::lightblue");
+    ui->tableWidget_deliverProvider->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_deliverProvider->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_deliverProvider->setAlternatingRowColors(true);
+    ui->tableWidget_deliverProvider->verticalHeader()->setVisible(false);
+    ui->tableWidget_deliverProvider->setStyleSheet("selection-background-color::lightblue");
 
     /**
      * provider page tablewidget_prviderInfo setting
@@ -491,6 +520,8 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_providerInfo->verticalHeader()->setVisible(false);
     ui->tableWidget_providerInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_providerInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_providerInfo->setStyleSheet("selection-background-color::lightblue");
+    ui->label_showPicPath->setVisible(false);
 
     /**
      * Add new staff page setting
@@ -502,6 +533,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_newStaffEmailTip->setVisible(false);
     ui->label_repeatPasswordTip->setVisible(false);
     ui->label_showNewPortraitName->setVisible(false);
+    ui->label_showNewPortraitPath->setVisible(false);
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
     ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
@@ -510,6 +542,20 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(10);
+
+
+    ui->label_updateEmailTip->setVisible(false);
+    ui->label_updatePasswordTip->setVisible(false);
+    /**
+     * update staff information page setting
+     *
+     * @author Yihan Dong
+    */
+    ui->tableWidget_updateShowStaffInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_updateShowStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_updateShowStaffInfo->setAlternatingRowColors(true);
+    ui->tableWidget_updateShowStaffInfo->verticalHeader()->setVisible(false);
+    ui->tableWidget_updateShowStaffInfo->setStyleSheet("selection-background-color::lightblue");
 
     //initialize furry search
 
@@ -591,13 +637,13 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
     }
     if(index == 1){
-        ui->pushButton_A->setVisible(true);
+         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(true);
+        ui->pushButton_C->setVisible(false);
+        ui->pushButton_D->setVisible(false);
 
-        ui->pushButton_A->setText("");
-        ui->pushButton_B->setText("");
+        ui->pushButton_A->setText("Generate");
+        ui->pushButton_B->setText("Deliver");
         ui->pushButton_C->setText("");
         ui->pushButton_D->setText("");
 
@@ -638,26 +684,26 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
     }
     if(index == 5){
-        ui->pushButton_A->setVisible(true);
+         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Display");
         ui->pushButton_B->setText("Append");
-        ui->pushButton_C->setText("");
-        ui->pushButton_D->setText("");
+        ui->pushButton_C->setText("Addition");
+        ui->pushButton_D->setText("P&E");
 
     }
     if(index == 6){
-        ui->pushButton_A->setVisible(true);
+         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(true);
+        ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Garment");
-        ui->pushButton_B->setText("Provider");
-        ui->pushButton_C->setText("");
+        ui->pushButton_B->setText("Management");
+        ui->pushButton_C->setText("Addition");
         ui->pushButton_D->setText("");
 
     }
@@ -723,9 +769,11 @@ void SystemCenter::on_pushButton_B_clicked()
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
+	ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
+	ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -754,9 +802,13 @@ void SystemCenter::on_pushButton_C_clicked()
     //C
     ui->frame_2C->setVisible(true);
     ui->frame_logistics_C->setVisible(true);
+	ui->frame_systempage_3->setVisible(true);
+    ui->frame_personnelpage_3->setVisible(true);
+
 
     //D
     ui->frame_2D->setVisible(false);
+	ui->frame_personnelpage_4->setVisible(false);
 
 }
 
@@ -786,9 +838,11 @@ void SystemCenter::on_pushButton_D_clicked()
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
+	ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
+	ui->frame_personnelpage_4->setVisible(true);
 }
 
 

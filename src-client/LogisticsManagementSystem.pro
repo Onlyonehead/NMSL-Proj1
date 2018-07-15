@@ -43,6 +43,8 @@ SOURCES += main.cpp \
     providerpage.cpp \
     personnelpage_1.cpp \
     personnelpage_2.cpp \
+	deliverpage.cpp \
+    personnelpage_3.cpp \
     main_tab_sell.cpp \
     main_tab_stock.cpp \
     main_tab_record.cpp \

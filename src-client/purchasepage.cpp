@@ -1,5 +1,4 @@
 #include "systemcenter.h"
-#include "sqltool.h"
 #include "ui_systemcenter.h"
 #include <QDebug>
 #include <QTableWidget>
@@ -10,7 +9,7 @@
 #include <QDateTime>
 #include <QStringList>
 #include <QList>
-
+#include <QMessageBox>
 
 /**
  * tableWidget_generateOrder show garment information
@@ -36,106 +35,33 @@ void SystemCenter::on_pushButton_3_clicked()
  * @author Yihan Dong
  * @return void
  *
- * undone
- * todo:增加相同编号的服装 在表格中显示为一行
+ * done
  */
 
 
 
 void SystemCenter::on_pushButton_addGarment_clicked()
 {
-    //prepare job
-    QString orderID;
-    QString orderDatetime;
-    int garmentID;
-    int garmentNum;
-    int rowIndex = ui->tableWidget_generateOrder->currentRow();
-    orderDatetime = ui->label_showOrderTime->text();
-    orderID = orderDatetime;
-    garmentID = ui->tableWidget_generateOrder->item(rowIndex, 0)->text().toInt();
-    garmentNum = ui->lineEdit_garmentNum->text().toInt();
-    static QVector<QStringList> orderInfo;
-    QStringList list;
-    list.clear();
-    list.append(QString::number(garmentID, 10));
-    list.append(QString::number(garmentNum, 10));
-    orderInfo.append(list);
-    bool isRepeated = false;
-    int i = 0;
-    while (i < ui->tableWidget_orderGarment->rowCount()) {
-        if(ui->tableWidget_orderGarment->item(i, 0)->text().toInt() == garmentID){
-            int tempNum = ui->tableWidget_orderGarment->item(i, 1)->text().toInt();
-            tempNum += garmentNum;
-            ui->tableWidget_orderGarment->setItem(i, 1, new QTableWidgetItem(QString::number(tempNum)));
-            isRepeated = true;
+    int count = ui->tableWidget_orderGarment->rowCount();
+    for(int i = 0 ; i < count ; i++){
+        if(ui->tableWidget_generateOrder->currentItem()->text().toInt()
+                == ui->tableWidget_orderGarment->item(i, 0)->text().toInt()){
+            ui->tableWidget_orderGarment->item(i,1)->setText(
+                        QString::number(ui->lineEdit_garmentNum->text().toInt()
+                                        + ui->tableWidget_orderGarment->item(i,1)->text().toInt()));
+            return;
         }
-        i++;
     }
 
-    if(!isRepeated){
-        static int rowIndex2 = 0;
-        ui->tableWidget_orderGarment->setRowCount(orderInfo.size());
-        ui->tableWidget_orderGarment->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tableWidget_orderGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tableWidget_orderGarment->setAlternatingRowColors(true);
-        ui->tableWidget_orderGarment->verticalHeader()->setVisible(false);
+    ui->tableWidget_orderGarment->insertRow(count);
 
-        ui->tableWidget_orderGarment->setItem(rowIndex2, 0,
-                                              new QTableWidgetItem(QString::number(garmentID)));
-        ui->tableWidget_orderGarment->setItem(rowIndex2, 1,
-                                              new QTableWidgetItem(QString::number(garmentNum)));
+    ui->tableWidget_orderGarment->setItem(count, 0, new QTableWidgetItem(
+                                              ui->tableWidget_generateOrder->currentItem()->text()));
 
-        rowIndex2++;
-    }
+    ui->tableWidget_orderGarment->setItem(count, 1, new QTableWidgetItem(
+                                              ui->lineEdit_garmentNum->text()));
+    ui->tableWidget_orderGarment->setRowCount(count + 1);
 
-//    QStringList *data;
-//    data = orderInfo.data();
-//    QString temp = data->join(",");
-//    QString temp1 = temp.section(",", 0, 0);
-//    QString temp2 = temp.section(",", 1, 1);
-
-
-/**
-  *show information in tabelWidget_orderGarment
-  *
-  * @author Yihan Dong
-  *
-*/
-
-
-
-
-/**
-* merge the same garment ID order in tableWidget_OrderGarment
-*
-* @author Yihan dong
-* undone
-*
-* todo:把生成行和生成内容的语句也要放在这一块 应该是成功了 这段不注释下面的表什么都没有 但是最开始检查的是这次
-* 输入的服装的ID和已经显示的服装ID 所以一定会冲突
-* 在显示之前就整理好应该显示的信息
-*/
-
-//    int j = 0;
-//    while (j < ui->tableWidget_orderGarment->rowCount()) {
-//        if(ui->tableWidget_orderGarment->item(j, 0)->text() == QString::number(garmentID)){
-//            QString temp = data[j].join(",");
-//            QString temp1 = temp.section(",", 0, 0);//订单记录中相同编号
-//            QString temp2 = temp.section(",", 1, 1);//相同编号的服装数量
-//            int temp3 = temp2.toInt() + garmentNum;
-//            temp2 = QString::number(temp3);
-//            orderInfo.remove(j);
-//            orderInfo.removeLast();
-//            list.clear();
-//            list.append(temp1);
-//            list.append(temp2);
-//            ui->tableWidget_orderGarment->setRowCount(orderInfo.size());
-//            ui->tableWidget_orderGarment->setItem(j, 0, new QTableWidgetItem(temp1));
-//            ui->tableWidget_orderGarment->setItem(j, 0, new QTableWidgetItem(temp2));
-//            ui->tableWidget_orderGarment->removeRow(rowIndex2);
-
-//        }
-//    }
 
 
 
@@ -157,35 +83,55 @@ void SystemCenter::on_pushButton_addGarment_clicked()
 void SystemCenter::on_pushButton_deleteGarment_clicked()
 {
 
-    int rowIndex = ui->tableWidget_orderGarment->currentRow();
-    ui->tableWidget_orderGarment->removeRow(rowIndex);
+   QVector<int> rowIndex;
+   QItemSelectionModel *selections = ui->tableWidget_orderGarment->selectionModel();
+   QModelIndexList selectedrows = selections->selectedRows();
+
+   for(int i = 0 ; i < selectedrows.count() ; i++){
+       rowIndex.append(selectedrows.at(i).row());
+   }
+
+   for(int j = 0 ; j < rowIndex.size() ; j++){
+       ui->tableWidget_orderGarment->removeRow(rowIndex.at(j));
+   }
 
 }
 
 
 /**
-* confirm & save order & update the database
+* show order garment table to deliver page order table
 *
 * @author Yihan Dong
 * @return void
-* undone
-* need to redo
+* done
 */
 
 void SystemCenter::on_pushButton_ConfirmOrder_clicked()
 {
-    int rowIndex = 0;
-    QStringList productInfo;
-    QString datetime;
-    datetime = ui->label_showOrderTime->text();
-    while (rowIndex < ui->tableWidget_orderGarment->rowCount()) {
-        productInfo.append(ui->tableWidget_orderGarment->item(rowIndex, 0)->text());
-        productInfo.append(ui->tableWidget_orderGarment->item(rowIndex, 1)->text());
-        rowIndex++;
-    }
-//    Order order(1, datetime, productInfo);
+    QMessageBox msgbox;
+    msgbox.setText(tr("订单信息已生成。"));
+    msgbox.setInformativeText(tr("确认订单信息吗？"));
+    msgbox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
+    msgbox.setDefaultButton(QMessageBox::Save);
+    int ret  = msgbox.exec();
+    switch (ret) {
+    case QMessageBox::Save:
 
-//    Order::saveOrder(order);
+        ui->tableWidget_deliverGarment->setRowCount(ui->tableWidget_orderGarment->rowCount());
+        for(int i = 0; i < ui->tableWidget_orderGarment->rowCount() ; i++){
+            for(int j = 0 ; j < ui->tableWidget_orderGarment->columnCount() ; j++){
+                ui->tableWidget_deliverGarment->setItem(i, j, new QTableWidgetItem(
+                                                            ui->tableWidget_orderGarment->item(i, j)->text()));
+            }
+        }
+
+        break;
+    case QMessageBox::Cancel:
+        break;
+    }
+
+
+
 }
 
 
@@ -212,6 +158,11 @@ void SystemCenter::on_pushButton_cancelOrder_clicked()
     ui->tableWidget_orderGarment->setRowCount(0);
     ui->tableWidget_orderGarment->setHorizontalHeaderLabels(orderGarmentHeader);
     ui->lineEdit_garmentNum->clear();
+    ui->label_purchaseShowID->clear();
+    ui->label_purchaseShowPic->clear();
+    ui->label_purchaseShowPrice->clear();
+    ui->label_purchaseShowSize->clear();
+    ui->label_purchaseShowStyle->clear();
 
 }
 
@@ -231,8 +182,10 @@ void SystemCenter::timer_deal_slot_function()
     int m = datetime.date().month();
     int d = datetime.date().day();
     QString strTime = datetime.time().toString();
-    ui->label_showOrderTime->setText(QString::number(y) + "/" + QString::number(m) +
-                                     "/" + QString::number(d) + " " + strTime);
+    ui->label_showOrderTime->setText(QString::number(y) + "-" + QString::number(m) +
+                                     "-" + QString::number(d) + " " + strTime);
+    ui->label_showOrderTime_2->setText(QString::number(y) + "-" + QString::number(m) +
+                                       "-" + QString::number(d) + " " + strTime);
 }
 
 
@@ -246,14 +199,11 @@ void SystemCenter::timer_deal_slot_function()
  */
 void SystemCenter::on_tableWidget_generateOrder_cellClicked(int row, int column)
 {
+    QString ID = ui->tableWidget_generateOrder->item(row, 0)->text();
     Q_UNUSED(column);
-    ui->label_purchaseShowID->setText(ui->tableWidget_orderGarment->item(row, 0)->text());
-    ui->label_purchaseShowStyle->setText(ui->tableWidget_orderGarment->item(row, 1)->text());
-    ui->label_purchaseShowSize->setText(ui->tableWidget_orderGarment->item(row,2)->text());
-    ui->label_purchaseShowPrice->setText(ui->tableWidget_orderGarment->item(row, 4)->text());
     QStringList list;
     list.append("pcp_sgdi");
-    list.append(ui->tableWidget_orderGarment->item(row, 0)->text());
+    list.append(ID);
     sendMessage(list);
 }
 
