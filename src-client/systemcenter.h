@@ -162,12 +162,6 @@ private slots:
 
     void on_icon_search_D_clicked();
 
-    void on_pushButton_deliverShowProvider_clicked();
-
-    void on_tableWidget_deliverProvider_cellClicked(int row, int column);
-
-    void on_pushButton_deliverOrder_clicked();
-
     void on_w_search_A_clicked();
 
     void on_tableWidget_A_itemClicked(QTableWidgetItem *item);
@@ -258,32 +252,6 @@ private slots:
 
     void on_pushButton_showRoute_clicked();
 
-    void on_pushButton_deliverCancelChoose_clicked();
-
-    void on_pushButton_addProviderInfo_clicked();
-
-    void on_pushButton_confirmNewStaff_clicked();
-
-    void on_pushButton_addNewPortrait_clicked();
-
-    void on_pushButton_updatePageShowStaff_clicked();
-
-    void on_pushButton_updatePageClearStaff_clicked();
-
-    void on_tableWidget_updateShowStaffInfo_cellClicked(int row, int column);
-
-    void on_pushButton_changeStaffInfo_clicked();
-
-    void on_pushButton_cancelStaffInfoChange_clicked();
-
-    void on_lineEdit_inputStaffEmail_editingFinished();
-
-    void on_lineEdit_updateStaffOldpassword_editingFinished();
-
-    void on_pushButton_changeStaffpassword_clicked();
-
-    void error(QNetworkReply::NetworkError error);
-
 signals:
     void stringReturn(QString);
 
@@ -301,7 +269,6 @@ private:
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;
-    QTcpSocket *m_socket;
 
     // For transfer
     QVector<QStringList> stock;

@@ -27,6 +27,7 @@ public:
     //update provider information
     static void updateProviderInfo(int ID, QString alterAttribute, QString alterValue);
 
+
 private:
     int ID;
 

@@ -18,7 +18,7 @@ Staff::Staff()
 */
 
 void Staff::addNewStaff(QString username, QString password,
-                        QString name, QString gender, QString position, QString email, QString userPic)
+                        QString name, QString gender, QString email, QString userPic)
 {
 
     QStringList staffInfo;
@@ -26,7 +26,6 @@ void Staff::addNewStaff(QString username, QString password,
     staffInfo.append(password);
     staffInfo.append(name);
     staffInfo.append(gender);
-    staffInfo.append(position);
     staffInfo.append(email);
     staffInfo.append(userPic);
     SQLTool::insert("userdata", staffInfo);
@@ -84,30 +83,6 @@ void Staff::Info(QString searchAttribute, QString searchValue, QVector<QStringLi
         list.append(query.value(5).toString());
         list.append(query.value(6).toString());
         staffInfo.append(list);
-    }
-}
-
-
-/**
- * @brief Staff::Info
- * @param searchAttribute
- * @param searchValue
- * @param staffInfo
- * return signal staffInfo
- * @author Yihan Dong
- */
-void Staff::Info(QString searchAttribute, QString searchValue, QStringList &staffInfo)
-{
-    QSqlQuery query;
-    SQLTool::search(query, searchAttribute, searchValue, staffInfo);
-    if(query.next()){
-        staffInfo.append(query.value(0).toString());
-        staffInfo.append(query.value(1).toString());
-        staffInfo.append(query.value(2).toString());
-        staffInfo.append(query.value(3).toString());
-        staffInfo.append(query.value(4).toString());
-        staffInfo.append(query.value(5).toString());
-        staffInfo.append(query.value(6).toString());
     }
 }
 

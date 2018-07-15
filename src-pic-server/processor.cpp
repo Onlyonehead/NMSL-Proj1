@@ -65,8 +65,8 @@ void Processor::work ()
 
     QImage img;
     img.loadFromData(data);
+    img.save("/Users/Haibara/Desktop/nmsl.jpg");
 
-    img.save("./" + fileName);
 
     qDebug() << dataSize;
     qDebug() << fileName;

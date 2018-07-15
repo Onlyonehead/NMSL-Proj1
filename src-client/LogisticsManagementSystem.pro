@@ -50,12 +50,8 @@ SOURCES += main.cpp \
     sqltool.cpp \
     systemcenter_msg.cpp \
     order.cpp \
-    warehouse_d.cpp \
-    deliverpage.cpp \
     sell_a.cpp \
-    logistics.cpp \
-    personnelpage_3.cpp \
-    ftpmanager.cpp \
+    warehouse_d.cpp \
     sell_b.cpp \
     tool.cpp \
     logistics_a.cpp \
@@ -79,7 +75,6 @@ HEADERS  += \
     stable.h \
     sqltool.h \
     order.h \
-    ftpmanager.h \
     tool.h \
     qtmap.h \
     bridge.h
