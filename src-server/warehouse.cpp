@@ -18,8 +18,6 @@ void Warehouse::info(QVector<QStringList> &result){
         list.append(query.value(3).toString());
         list.append(query.value(4).toString());
         list.append(query.value(5).toString());
-        list.append(query.value(6).toString());
-        list.append(query.value(7).toString());
         result.append(list);
     }
 }
@@ -201,12 +199,12 @@ void Warehouse::replenish(QString id, Order& order){
         goods += clothes_id + " - " + l2.at(1) + "  quantity: " + quantity + "\n";
     }
 
-//    QStringList sqlist;
-//    sqlist.append(order.getDatetime());
-//    sqlist.append(order.getId());
-//    sqlist.append(id);
-//    sqlist.append(goods);
-//    SQLTool::insert("wh_history",sqlist);
+    QStringList sqlist;
+    sqlist.append(order.getDatetime());
+    sqlist.append(order.getId());
+    sqlist.append(id);
+    sqlist.append(goods);
+    SQLTool::insert("wh_history",sqlist);
 }
 
 void Warehouse::deliverGoods(QString id, Order& order){
@@ -232,6 +230,7 @@ void Warehouse::deliverGoods(QString id, Order& order){
         Warehouse::GInfo(clothes_id.toInt(),l2);
         goods += clothes_id + " - " + l2.at(1) + "  quantity: " + quantity + "\n";
     }
+
 
     QStringList sqlist;
     sqlist.append(order.getDatetime());

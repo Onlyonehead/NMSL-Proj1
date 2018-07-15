@@ -202,3 +202,20 @@ void SystemCenter::on_pushButton_cancelNewStaff_clicked()
 }
 
 
+/**
+ * @brief SystemCenter::on_pushButton_anpShowP_clicked
+ * show password & hide password
+ */
+void SystemCenter::on_pushButton_anpShowP_clicked()
+{
+    if(ui->pushButton_anpShowP->text() == "Show"){
+        ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Normal);
+        ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Normal);
+        ui->pushButton_anpShowP->setText("Hide");
+    }
+    if(ui->pushButton_anpShowP->text() == "Hide"){
+        ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
+        ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
+        ui->pushButton_anpShowP->setText("Show");
+    }
+}

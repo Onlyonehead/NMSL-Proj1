@@ -43,7 +43,6 @@ private:
     Ui::Login *ui;
     bool isBanned;
     QTcpSocket *m_tcpsocket;
-    QTcpSocket *m_socket;
 
     //check pwd.data and auto save password to file
     int checkpass(QString, QString, bool);

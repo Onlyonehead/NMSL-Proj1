@@ -403,7 +403,7 @@ QPushButton:hover{
 QPushButton:hover{
 	border: 2px solid rgb(179, 179, 179);
 	border-radius:15px;
-	background:white;
+	background:rgb(240, 240, 240);
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold ;
 }</string>

@@ -26,10 +26,6 @@
 #include <QCompleter>
 #include <QStringListModel>
 #include <QtNetwork>
-#include "tool.h"
-#include "qtmap.h"
-#include "ui_qtmap.h"
-#include <QDesktopWidget>
 
 
 namespace Ui {
@@ -176,16 +172,6 @@ private slots:
     
     void on_tableWidget_generateOrder_cellClicked(int row, int column);
 
-    void on_pushButton_showRequests_clicked();
-
-    void on_tableWidget_check_cellClicked(int row, int column);
-
-    void on_tableWidget_checkDetail_cellClicked(int row, int column);
-
-    void on_pushButton_change_clicked();
-
-    void on_pushButton_clearRequests_clicked();
-
     void on_pushButton_13_clicked();
 
     void on_pushButton_12_clicked();
@@ -194,69 +180,9 @@ private slots:
 
     void on_tableWidget_logistics_B_itemClicked(QTableWidgetItem *item);
 
-    void on_tableWidget_logistics_C_itemClicked(QTableWidgetItem *item);
-
     void on_style_change_clicked();
 
-    void on_logistics_ADD_clicked();
-
-    void on_logistics_send_clicked();
-
-    void on_pushButton_commit_clicked();
-
-    void on_pushButton_reject_clicked();
-
-    void on_pushButton_15_clicked();
-
-    void on_pushButton_14_clicked();
-
-    void on_pushButton_16_clicked();
-
-    void on_pushButton_17_clicked();
-
-    void on_tableWidget_logistics_2A_itemClicked(QTableWidgetItem *item);
-
-    void on_pushButton_18_clicked();
-
-    void on_pushButton_21_clicked();
-
-    void on_pushButton_20_clicked();
-
-    void on_pushButton_28_clicked();
-
-    void on_pushButton_22_clicked();
-
-    void on_pushButton_27_clicked();
-
-    void finishedSlot(QNetworkReply*);
-
-    void on_pushButton_30_clicked();
-
-    void on_pushButton_29_clicked();
-
-    void on_pushButton_23_clicked();
-
-    void on_tableWidget_itemClicked(QTableWidgetItem *item);
-
-    void finishedSlotForEdit(QNetworkReply* reply);
-
-    void on_pushButton_24_clicked();
-
-    void on_pushButton_25_clicked();
-
-    void on_pushButton_19_clicked();
-
-    void on_tableWidget_logistics_C1_itemClicked(QTableWidgetItem *item);
-
-    void on_tableWidget_logistics_C2_itemClicked(QTableWidgetItem *item);
-
-    void on_pushButton_add1_clicked();
-
-    void on_pushButton_add2_clicked();
-
-    void on_pushButton_add3_clicked();
-
-    void on_pushButton_showRoute_clicked();
+    void on_clothes_ADD_3_clicked();
 
     void on_pushButton_deliverCancelChoose_clicked();
 
@@ -284,10 +210,10 @@ private slots:
 
     void error(QNetworkReply::NetworkError error);
 
+    void on_pushButton_anpShowP_clicked();
+
 signals:
     void stringReturn(QString);
-
-    void webReturn(QVector<QStringList>);
 
 private:
     Ui::SystemCenter *ui;
@@ -303,42 +229,16 @@ private:
     QTcpSocket *m_tcpsocket;
     QTcpSocket *m_socket;
 
-    // For transfer
     QVector<QStringList> stock;
     QVector<QStringList> arriving;
     QVector<QStringList> clothes;
     QVector<QStringList> warehouse;
-    QVector<QStringList> stores;
     QMap<QString,QMap<QString, QString>> stock_map;
     QMap<QString, QMap<QString, QStringList>> arriving_map;
-    QMap<QString, QString> warehouse_map;
-
-    int count_dealt;
-    int count_ongoing;
-    int count_rejected;
-
-    QVector<QStringList> orderList; // For logistic A
-    QVector<QStringList> wh_history; // For warehouse A
-    QStringList wh_info_warehouse; // For warehouse A
-
-    QMap<QString, QMap<QString, QString>> replenishment; // For logistics A
-    QString wh_id; // For logistics A
-    QString order_id; // For logistics A
-    QStringList wh_info; // For logistics A
-    QString order_time; // For logistics A
-
-    QVector<QStringList> orderCheckedList; // For logistic B
-    QString orderCheckedId; // For logistic B
-
-    QStringList siteSelected; // For logistic C
-
-    QStringList siteFrom; // For logistic C
-    QStringList siteTo; // For logistic C
-    QVector<QStringList> siteVia; // For logistic C
+    QVector<QStringList> orderList;
+    QVector<QStringList> wh_history;
 
     bool style;
-
-    QVector<QStringList> qv_requests;
 
 };
 

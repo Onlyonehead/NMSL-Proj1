@@ -66,7 +66,7 @@ void Processor::work ()
     QImage img;
     img.loadFromData(data);
 
-    img.save("./" + fileName);
+    img.save("C:\\Users\\Dong9\\Desktop\\" + fileName);
 
     qDebug() << dataSize;
     qDebug() << fileName;

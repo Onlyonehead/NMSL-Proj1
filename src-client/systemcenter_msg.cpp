@@ -45,10 +45,6 @@ void SystemCenter::readMessage()
         QVector<QStringList> warehouse;
         QMap<QString,QMap<QString, QString>> stock_map;
         QMap<QString, QMap<QString, QStringList>> arriving_map;
-        QMap<QString, QString> warehouse_map;
-        QVector<QStringList> stores;
-
-
 
         in >> stock;
         in >> arriving;
@@ -56,11 +52,6 @@ void SystemCenter::readMessage()
         in >> warehouse;
         in >> stock_map;
         in >> arriving_map;
-        in >> warehouse_map;
-        in >> stores;
-        in >> count_dealt;
-        in >> count_ongoing;
-        in >> count_rejected;
 
         this->stock = stock;
         this->arriving = arriving;
@@ -68,12 +59,6 @@ void SystemCenter::readMessage()
         this->warehouse = warehouse;
         this->stock_map = stock_map;
         this->arriving_map = arriving_map;
-        this->warehouse_map = warehouse_map;
-        this->stores = stores;
-
-        ui->label_121->setText(QString::number(count_dealt));
-        ui->label_123->setText(QString::number(count_ongoing));
-        ui->label_128->setText(QString::number(count_rejected));
 
         for(QStringList list : stock){
             count1 += list.at(2).toInt();
@@ -279,7 +264,7 @@ void SystemCenter::readMessage()
                 QApplication::processEvents();
             }
             if(j.value().size() > 1){
-                //                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
+//                ui->tableWidget_C1->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C1->setSpan(count_i-j.value().size(), 0, j.value().size(), 1);
 
             }
@@ -312,7 +297,7 @@ void SystemCenter::readMessage()
                 count_j++;
             }
             if(j.value().size() > 1){
-                //                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
+//                ui->tableWidget_C2->item(count_i-j.value().size(), 0)->setBackground(QBrush(QColor(255,255,255)));
                 ui->tableWidget_C2->setSpan(count_j-j.value().size(), 0, j.value().size(), 1);
 
             }
@@ -513,8 +498,8 @@ void SystemCenter::readMessage()
     }
 
     if(from == "orderinfo"){
-        on_pushButton_12_clicked();
-
+        ui->tableWidget_logistics_A->setRowCount(0);
+        ui->tableWidget_logistics_B->setRowCount(0);
         QVector<QStringList> vlist;
         in >> vlist;
         this->orderList = vlist;
@@ -525,13 +510,26 @@ void SystemCenter::readMessage()
             ui->tableWidget_logistics_A->insertRow(count);
             ui->tableWidget_logistics_A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
             ui->tableWidget_logistics_A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
-            QStringList ss = l.at(2).split(QRegExp("[A-Z]"));
-            ui->tableWidget_logistics_A->setItem(count, 2, new QTableWidgetItem("Time: " + ss[0] + " " + ss[1]));
+            ui->tableWidget_logistics_A->setItem(count, 2, new QTableWidgetItem("Time: " + l.at(2)));
             QApplication::processEvents();
             count++;
         }
         ui->tableWidget_logistics_A->setRowCount(count);
 
+        QStringList list;
+        in >> list;
+
+        int n = list.size();
+
+        while(n){
+
+            QApplication::processEvents();
+            ui->tableWidget_logistics_B->insertRow(list.size()-n);
+            ui->tableWidget_logistics_B->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_logistics_B->setRowCount(list.size());
         progressBar();
     }
 
@@ -568,173 +566,37 @@ void SystemCenter::readMessage()
     }
 
     if(from == "tWlAiC"){
-        ui->tableWidget_logistics_B->setRowCount(0);
-        QStringList list;
-        in >> list;
+        ui->tableWidget_logistics_C->setRowCount(0);
+        QMap<QString, QString> stock;
+        in >> stock;
 
-        this->wh_info = list;
+        QMap<QString, QString> clothes;
+        in >> clothes;
 
-        int n = list.size();
-        QString s = ui->logistics_label_B->text().split("-")[0].trimmed();
-
-
-        int count = 0;
-        while(n){
-
-            QApplication::processEvents();
-            if(s != list.at(list.size()-n).split(QRegExp("[-:]"))[1].trimmed()){
-                ui->tableWidget_logistics_B->insertRow(count);
-                ui->tableWidget_logistics_B->setItem(count, 0, new QTableWidgetItem(list.at(list.size()-n)));
-                count++;
-            }
-            n--;
-        }
-
-        ui->tableWidget_logistics_B->setRowCount(count);
-    }
-
-    if(from == "send_replenishment"){
-        QString s;
-        in >> s;
-        if(s == "Done"){
-            QMessageBox::information(this,"完成", "\n补货成功！",QMessageBox::Ok);
-            on_pushButton_13_clicked();
-
-            count_ongoing--;
-            count_dealt++;
-            ui->label_121->setText(QString::number(count_dealt));
-            ui->label_123->setText(QString::number(count_ongoing));
-            ui->label_128->setText(QString::number(count_rejected));
-        }
-    }
-
-    if(from == "orderCheckedInfo"){
-        on_pushButton_14_clicked();
-        QVector<QStringList> vlist;
-        in >> vlist;
-        this->orderCheckedList = vlist;
+        QApplication::processEvents();
 
         int count = 0;
-        for(QStringList l : vlist){
+        for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
+            QString clothes_name;
+            clothes_name = clothes.value(i.key());
             QApplication::processEvents();
-            ui->tableWidget_logistics_2A->insertRow(count);
-            ui->tableWidget_logistics_2A->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
-            ui->tableWidget_logistics_2A->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
-            QStringList ss = l.at(2).split(QRegExp("[A-Z]"));
-            ui->tableWidget_logistics_2A->setItem(count, 2, new QTableWidgetItem("Time: " + ss[0] + " " + ss[1]));
+            ui->tableWidget_logistics_C->insertRow(count);
+            ui->tableWidget_logistics_C->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                       " - " + clothes_name));
+            ui->tableWidget_logistics_C->setItem(count, 1, new QTableWidgetItem(i.value()));
+
             QApplication::processEvents();
             count++;
         }
-        ui->tableWidget_logistics_2A->setRowCount(count);
 
-        progressBar();
+        ui->tableWidget_logistics_C->setRowCount(count);
+
+
+        progressBar_fast();
     }
 
-    if(from == "del_orderChecked"){
-        QString s;
-        in >> s;
-        if(s == "Done"){
-            on_pushButton_15_clicked();
-            QMessageBox::information(this,"完成", "\n删除成功！",QMessageBox::Ok);
-            orderCheckedId.clear();
 
-            count_dealt--;
-            ui->label_121->setText(QString::number(count_dealt));
-            ui->label_123->setText(QString::number(count_ongoing));
-            ui->label_128->setText(QString::number(count_rejected));
-        }
-        if(s == "REJECTED"){
-            on_pushButton_15_clicked();
-            QMessageBox::information(this,"完成", "\n删除成功！",QMessageBox::Ok);
-            orderCheckedId.clear();
 
-            count_rejected--;
-            ui->label_121->setText(QString::number(count_dealt));
-            ui->label_123->setText(QString::number(count_ongoing));
-            ui->label_128->setText(QString::number(count_rejected));
-        }
-    }
-    if(from == "reject_order"){
-        QString s;
-        in >> s;
-        if(s == "Done"){
-            QMessageBox::information(this,"完成", "\n已拒绝此次订单！",QMessageBox::Ok);
-            order_id.clear();
-            on_pushButton_13_clicked();
-
-            count_ongoing--;
-            count_rejected++;
-            ui->label_121->setText(QString::number(count_dealt));
-            ui->label_123->setText(QString::number(count_ongoing));
-            ui->label_128->setText(QString::number(count_rejected));
-        }
-    }
-
-    if(from == "add_warehouse"){
-        QString s;
-        in >> s;
-        if(s == "Done"){
-            QMessageBox::information(this,"完成", "\n已成功添加！",QMessageBox::Ok);
-            QStringList l;
-            in >> l;
-            l.replace(0, QString::number(warehouse.size() + 1));
-            warehouse.append(l);
-            warehouse_map.insert(l.at(0), l.at(1));
-            ui->warehouse_add_name->clear();
-            ui->warehouse_add_province->clear();
-            ui->warehouse_add_city->clear();
-            ui->warehouse_add_address->clear();
-            ui->add_warehouse->setVisible(false);
-            ui->pushButton_22->setEnabled(true);
-            ui->pushButton_23->setEnabled(true);
-            ui->pushButton_24->setEnabled(true);
-        }
-    }
-    if(from == "edit_warehouse"){
-        QString s;
-        in >> s;
-        if(s == "Done"){
-            QMessageBox::information(this,"完成", "\n已成功修改！",QMessageBox::Ok);
-            QStringList l;
-            in >> l;
-            for(int i = 0; i < warehouse.size(); i++){
-                if(l.at(0) == warehouse.at(i).at(0)){
-                    warehouse.replace(i, l);
-                    break;
-                }
-            }
-            warehouse_map[l.at(0)] = l.at(1);
-            ui->warehouse_edit_name->clear();
-            ui->warehouse_edit_province->clear();
-            ui->warehouse_edit_city->clear();
-            ui->warehouse_edit_address->clear();
-            on_pushButton_30_clicked();
-            on_pushButton_4_clicked();
-            ui->pushButton_22->setEnabled(true);
-            ui->pushButton_23->setEnabled(true);
-            ui->pushButton_24->setEnabled(true);
-        }
-    }
-
-    if(from == "del_warehouse"){
-        QString s;
-        in >> s;
-        if(s == "Done"){
-            QMessageBox::information(this,"完成", "\n已成功删除！",QMessageBox::Ok);
-            QString id;
-            in >> id;
-            for(int i = 0; i < warehouse.size(); i++){
-                if(id == warehouse.at(i).at(0)){
-                    warehouse.remove(i);
-                    break;
-                }
-            }
-
-            warehouse_map.remove(id);
-            wh_info_warehouse.clear();
-            on_pushButton_4_clicked();
-        }
-    }
 
     //systempage show garment info
     if(from == "sp_sg"){
@@ -1009,6 +871,9 @@ void SystemCenter::readMessage()
                                  QMessageBox::Yes, QMessageBox::Yes);
     }
 
+
+
+
     //sissyVI--Start
 
     if(from == "showStores"){
@@ -1065,137 +930,14 @@ void SystemCenter::readMessage()
 
             for(it2=m.begin(); it2!=m.end(); ++it2){
                 QApplication::processEvents();
-
-                QString styleS;
-                QString idC = it2.key();
-                QVector<QStringList>::const_iterator itC;
-                for(itC=clothes.constBegin(); itC!=clothes.constEnd(); ++itC){
-                    if(itC->at(0)==idC){
-                        styleS = itC->at(1)+" "+itC->at(2);
-                        break;
-                    }
-                }
-
-                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(styleS)); //style
+                ui->tableWidget_storeRecord->setItem(i,3,new QTableWidgetItem(it2.key())); //style
                 ui->tableWidget_storeRecord->setItem(i,4,new QTableWidgetItem(it2.value())); //amount
                 ++i;
-            }
-        }
-        if(record_size>0)
-            ui->tableWidget_storeRecord->setCurrentCell(0, 0);
-    }
-
-    if(from == "getAllRequests"){
-        in >> qv_requests;
-
-        ui->tableWidget_check->verticalHeader()->setVisible(false); //设置表垂直头不可见
-        ui->tableWidget_check->setRowCount(qv_requests.size());//设置行数，与公司所有私服种数相同
-        ui->tableWidget_check->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(0, 70); //设置列的宽度
-        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(1, 70);
-        ui->tableWidget_storeRecord->horizontalHeader()->resizeSection(2, 260);
-        ui->pushButton_change->setVisible(false);
-        ui->pushButton_commit->setVisible(false);
-        ui->pushButton_reject->setVisible(false);
-
-        int i=0;
-        QVector<QStringList>::const_iterator it;
-        for(it=qv_requests.constBegin(); it!=qv_requests.constEnd(); ++it){
-            ui->tableWidget_check->setItem(i, 0, new QTableWidgetItem(it->at(0)));
-            ui->tableWidget_check->setItem(i, 1, new QTableWidgetItem(it->at(1)));
-            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(it->at(2)));
-            ++i;
-        }
-    }
-
-    if(from == "getCheckDetail"){
-        QStringList qsl_s;//店铺信息
-        QVector<QStringList> qv;//请求详细信息
-        in >> qsl_s >> qv;
-
-        qDebug()<<qv.size();
-
-        ui->label_storeN->setText(qsl_s.at(0));
-        ui->label_manager->setText(qsl_s.at(1));
-        ui->label_location->setText(qsl_s.at(2));
-
-        ui->tableWidget_checkDetail->verticalHeader()->setVisible(false);
-        ui->tableWidget_checkDetail->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
-        ui->tableWidget_checkDetail->setRowCount(qv.size());//设置行数，与搜索结果size相同
-        ui->tableWidget_checkDetail->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-
-        int i=0;
-        QVector<QStringList>::const_iterator it;
-        for(it=qv.constBegin(); it!=qv.constEnd(); ++it){
-            for(int j=0; j<5; ++j){
-                ui->tableWidget_checkDetail->setItem(i,j,new QTableWidgetItem(it->at(j)));
-            }
-            ++i;
-        }
-
-        ui->pushButton_commit->setVisible(true);
-        ui->pushButton_reject->setVisible(true);
-    }
-
-    if(from == "changeAmount"){
-        QString amount;
-        in >> amount;
-        ui->tableWidget_checkDetail->item(ui->label_sell_row->text().toInt(), 4)->setText(amount);
-    }
-
-    if(from == "commitRequest"){
-        QString s;
-        in >> s;
-        QMessageBox::information(this,"completed", "\nrequest approved successfully!",QMessageBox::Ok);
-
-        count_ongoing++;
-        ui->label_121->setText(QString::number(count_dealt));
-        ui->label_123->setText(QString::number(count_ongoing));
-        ui->label_128->setText(QString::number(count_rejected));
-
-        ui->pushButton_change->setVisible(false);
-        ui->pushButton_commit->setVisible(false);
-        ui->pushButton_reject->setVisible(false);
-        ui->lineEdit_sell_amount->setText("");
-        ui->tableWidget_checkDetail->setRowCount(0);
-        ui->label_storeN->setText("");
-        ui->label_manager->setText("");
-        ui->label_location->setText("");
-
-        //从表中删去已处理请求
-        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
-            if(ui->label_sell_idPurchase->text()==ui->tableWidget_check->item(i, 0)->text()){
-                ui->tableWidget_check->removeRow(i);
-                break;
-            }
-        }
-    }
-
-    if(from == "requestReject"){
-        QString s;
-        in >> s;
-        QMessageBox::information(this,"completed", "\nrequest rejected successfully!",QMessageBox::Ok);
-
-        ui->pushButton_change->setVisible(false);
-        ui->pushButton_commit->setVisible(false);
-        ui->pushButton_reject->setVisible(false);
-        ui->lineEdit_sell_amount->setText("");
-        ui->tableWidget_checkDetail->setRowCount(0);
-        ui->label_storeN->setText("");
-        ui->label_manager->setText("");
-        ui->label_location->setText("");
-
-        //从表中删去已处理请求
-        for(int i=0; i<ui->tableWidget_check->rowCount(); ++i){
-            if(ui->label_sell_idPurchase->text()==ui->tableWidget_check->item(i, 0)->text()){
-                ui->tableWidget_check->removeRow(i);
-                break;
             }
         }
     }
 
     //sissyVI--Finish
 
-    //    m_tcpsocket->disconnectFromHost();
+//    m_tcpsocket->disconnectFromHost();
 }

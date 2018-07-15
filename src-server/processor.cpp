@@ -93,26 +93,6 @@ void Processor::work ()
         Warehouse::stock(stock_map);
         QMap<QString, QMap<QString, QStringList>> arriving_map;
         Warehouse::arriving(arriving_map);
-        QMap<QString, QString> warehouse_map;
-        Warehouse::info(warehouse_map);
-        QVector<QStringList> stores;
-        Store::getStores(stores);
-
-        QSqlQuery query;
-        SQLTool::search(query, "orderInfo");
-        int count_ongoing = query.size();
-        SQLTool::search(query, "orderChecked");
-        int count_dealt = 0;
-        int count_rejected = 0;
-
-        while(query.next()){
-            if(query.value(3).toString() == "REJECTED"){
-                count_rejected++;
-            }else{
-                count_dealt++;
-            }
-        }
-
         out << function;
         out << stock;
         out << arriving;
@@ -120,11 +100,6 @@ void Processor::work ()
         out << warehouse;
         out << stock_map;
         out << arriving_map;
-        out << warehouse_map;
-        out << stores;
-        out << count_dealt;
-        out << count_ongoing;
-        out << count_rejected;
     }
 
     if(function == "info_whEC"){
@@ -192,6 +167,120 @@ void Processor::work ()
         out << arriving;
     }
 
+    if(function == "pB5"){
+        QMap<QString, QString> warehouse;
+        Warehouse::info(warehouse);
+
+
+        out << function;
+        out << warehouse;
+    }
+
+    if(function == "pB8"){
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QStringList result;
+
+        for(QStringList l : g){
+            result.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result);
+        out << function;
+        out << result;
+    }
+
+
+    if(function == "tWBiC"){
+        QMap<QString, QString> warehouse;
+        Warehouse::info(warehouse);
+        QString s = list.at(0);
+
+        QStringList result;
+        Warehouse::GInfo(s.toInt(), result);
+        out << function;
+        out << warehouse;
+        out << result;
+
+    }
+
+    if(function == "sendOrder"){
+        QString orderID = list.at(0);
+        list.removeFirst();
+        QString datetime = list.at(0);
+        list.removeFirst();
+        QStringList productInfo;
+        for(QString s : list){
+            productInfo.append(s);
+        }
+
+        Order order(orderID, datetime, productInfo);
+        Warehouse::sendRequirement(order);
+        out << function;
+        out << QString("done");
+    }
+
+    if(function == "pB10"){
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QStringList result1;
+
+        for(QStringList l : g){
+            result1.append("Clothes id:  " + l.at(0) + "\n- Style: "
+                           + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result1);
+
+        QVector<QStringList> w;
+        Warehouse::info(w);
+
+        QStringList result2;
+
+        for(QStringList l : w){
+            result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
+                         + l.at(1));
+        }
+
+        Tool::QStringList_removeDuplicates(&result2);
+
+
+        out << function;
+        out << result1;
+        out << result2;
+    }
+
+    if(function == "tWD1iC"){
+        QString s = list.at(0);
+
+        QStringList result;
+        Warehouse::GInfo(s.toInt(), result);
+        out << function;
+        out << result;
+
+    }
+
+    if(function == "tWD2iC"){
+        QString s = list.at(0);
+
+        QMap<QString, QString> result;
+        Warehouse::stock(s.toInt(), result);
+
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
+
+        QMap<QString, QString> result1;
+
+        for(QStringList l : g){
+            result1.insert(l.at(0), l.at(1));
+        }
+        out << function;
+        out << result;
+        out << result1;
+    }
     if(function == "order_send"){
         QMap<QString, QMap<QString, QString>> orders;
         in >> orders;
@@ -275,12 +364,6 @@ void Processor::work ()
             vlist.append(l);
         }
 
-
-        out << function;
-        out << vlist;
-
-    }
-    if(function == "tWlAiC"){
         QVector<QStringList> w;
         Warehouse::info(w);
         QStringList result2;
@@ -291,186 +374,29 @@ void Processor::work ()
         }
 
         Tool::QStringList_removeDuplicates(&result2);
-
         out << function;
+        out << vlist;
         out << result2;
     }
 
-    if(function == "send_replenishment"){
-        QString warehouse_id;
-        QString order_id;
-        QMap<QString, QMap<QString, QString>> replenishment;
+    if(function == "tWlAiC"){
+        QString s = list.at(0);
 
-        QString order_time;
+        QMap<QString, QString> result;
+        Warehouse::stock(s.toInt(), result);
 
-        in >> order_id;
-        in >> warehouse_id;
-        in >> replenishment;
-        in >> order_time;
+        QVector<QStringList> g;
+        Warehouse::GInfo(g);
 
-        QDateTime current_date_time = QDateTime::currentDateTime();
-        QString time = current_date_time.addDays(3).toString("yyyy-MM-dd hh:mm:ss");
+        QMap<QString, QString> result1;
 
-
-
-        QStringList s_for_infochecked;
-
-        for(QMap<QString, QMap<QString, QString>>::const_iterator i
-            = replenishment.begin(); i != replenishment.end(); ++i){
-            QStringList l;
-            for(QMap<QString, QString>::const_iterator j
-                = i.value().begin(); j != i.value().end(); ++j){
-                l.append(j.key());
-                l.append(j.value());
-                s_for_infochecked.append(i.key());
-                s_for_infochecked.append(j.key());
-                s_for_infochecked.append(j.value());
-            }
-            Order order(i.key(), time, l);
-            QByteArray ba = warehouse_id.split("-")[0].trimmed().toLatin1();
-            const char *s = ba.data();
-
-            if(*s == 'S'){
-                Store::storeArrive(warehouse_id.split("-")[0].trimmed().split(QRegExp("[A-Z]"))[1], order_time, order);
-            }else{
-                Warehouse::replenish(warehouse_id.split("-")[0].trimmed(), order);
-            }
-            QString id = order.getId();
-            order.editInfo(warehouse_id.split("-")[0].trimmed(), order.getDatetime(), order.getProductInfo());
-            Warehouse::deliverGoods(id, order);
-        }
-        QSqlQuery query;
-        SQLTool::search(query, "orderInfo", "order_id", order_id);
-        if(query.next()){
-            QStringList l;
-            l.append(query.value(0).toString());
-            l.append(query.value(1).toString());
-            l.append(query.value(2).toString());
-            l.append(s_for_infochecked.join("#"));
-            SQLTool::insert("orderChecked", l);
-            SQLTool::del("orderInfo", "order_id", order_id);
+        for(QStringList l : g){
+            result1.insert(l.at(0), l.at(1));
         }
         out << function;
-        out << QString("Done");
+        out << result;
+        out << result1;
     }
-
-    if(function == "orderCheckedInfo"){
-        QSqlQuery query;
-        SQLTool::search(query, "orderChecked");
-        QVector<QStringList> vlist;
-
-        while(query.next()){
-            QStringList l;
-            l.append(query.value(0).toString());
-            l.append(query.value(1).toString());
-            l.append(query.value(2).toString());
-            l.append(query.value(3).toString());
-            vlist.append(l);
-        }
-
-
-        out << function;
-        out << vlist;
-    }
-
-    if(function == "del_orderChecked"){
-        QString id = list.at(0);
-
-        QSqlQuery query;
-        SQLTool::search(query, "orderChecked", "order_id", id);
-
-        SQLTool::del("orderChecked", "order_id", id);
-        out << function;
-        if(query.next()){
-            if(query.value(3).toString() == "REJECTED"){
-                out << QString("REJECTED");
-            }else{
-                out << QString("Done");
-            }
-        }
-    }
-
-    if(function == "reject_order"){
-        QString order_id = list.at(0);
-        QSqlQuery query;
-        SQLTool::search(query, "orderInfo", "order_id", order_id);
-        if(query.next()){
-            QStringList l;
-            l.append(query.value(0).toString());
-            l.append(query.value(1).toString());
-            l.append(query.value(2).toString());
-            l.append("REJECTED");
-            SQLTool::insert("orderChecked", l);
-            SQLTool::del("orderInfo", "order_id", order_id);
-        }
-        out << function;
-        out << QString("Done");
-    }
-
-    if(function == "add_warehouse"){
-        QString name = list.at(0);
-        QString province = list.at(1);
-        QString city = list.at(2);
-        QString address = list.at(3);
-        QString position_x = list.at(4);
-        QString position_y = list.at(5);
-        QStringList l;
-        l.append("0");
-        l.append(name);
-        l.append(province);
-        l.append(city);
-        l.append(address);
-        l.append("分仓库");
-        l.append(position_x);
-        l.append(position_y);
-        SQLTool::insert("warehouse", l);
-        out << function;
-        out << QString("Done");
-        out << l;
-
-    }
-
-    if(function == "edit_warehouse"){
-        QString id = list.at(0);
-        QString name = list.at(1);
-        QString province = list.at(2);
-        QString city = list.at(3);
-        QString address = list.at(4);
-        QString position_x = list.at(5);
-        QString position_y = list.at(6);
-        QStringList l;
-        l.append("id");
-        l.append(id);
-        SQLTool::update("warehouse","name", name, l);
-        SQLTool::update("warehouse","province", province, l);
-        SQLTool::update("warehouse","city", city, l);
-        SQLTool::update("warehouse","address", address, l);
-        SQLTool::update("warehouse","position_x", position_x, l);
-        SQLTool::update("warehouse","position_y", position_y, l);
-
-        QStringList msg;
-        msg.append(id);
-        msg.append(name);
-        msg.append(province);
-        msg.append(city);
-        msg.append(address);
-        msg.append("分仓库");
-        msg.append(position_x);
-        msg.append(position_y);
-        out << function;
-        out << QString("Done");
-        out << msg;
-    }
-
-    if(function == "del_warehouse"){
-        QString id = list.at(0);
-        SQLTool::del("warehouse", "id", id);
-        out << function;
-        out << QString("Done");
-        out << id;
-    }
-
-
 
 
     //system page show garment
@@ -737,51 +663,6 @@ void Processor::work ()
         }
     }
 
-    if(function == "getAllRequests"){
-        out << function;
-        QVector<QStringList> qv;
-        Store::getAllPurchaseInfo(qv);
-        out << qv;
-
-    }
-
-    if(function == "getCheckDetail"){
-        out << function;
-        QStringList qsl;
-        QVector<QStringList> qv;
-        Store::getPurchaseInfo(list.at(0), list.at(1), qsl, qv);
-        out << qsl << qv;
-    }
-
-    if(function == "changeAmount"){
-        out << function;
-
-        Store::changePAmount(list.at(0), list.at(1), list.at(2));
-
-        out << list.at(2);
-
-    }
-
-    if(function == "commitRequest"){
-        out << function;
-
-        QString purchase_id, store_id, time;
-        purchase_id = list.at(0);
-        store_id = "S"+list.at(1);
-        time = list.at(2);
-        list.removeFirst();
-        list.removeFirst();
-        list.removeFirst();
-
-        SQLTool::update("store_pRecord", "checked", "1", "id_purchase", purchase_id);
-        SQLTool::update("store_pRecord", "date_check", time, "id_purchase", purchase_id);
-
-        Order order(store_id, time, list);
-        Warehouse::sendRequirement(order);
-
-        out << "success";
-    }
-
     //门店
     if(function == "getRecord"){
         out << function;
@@ -817,6 +698,12 @@ void Processor::work ()
         QVector<QVector<QString> > qv;
         Store::getStock(list.at(0), qv);
         out << qv;
+    }
+
+    if(function == "getPicPath"){
+        out << function;
+        QString path = Store::getPicPath(list.at(1));
+        out<<list.at(0)<<path;
     }
 
     if(function == "sellGoods"){
@@ -889,53 +776,6 @@ void Processor::work ()
         }
 
         out<< size;
-    }
-
-    if(function == "sendRequest"){
-        out << function;
-
-        QMap<QString, QString> m;
-        in >> m;
-        Store::purchase(list.at(0), m);
-
-        QString message = "request complete";
-        out << message;
-    }
-
-    if(function == "getRequests"){
-        QVector<QStringList> qv;
-        QMap<QString, QMap<QString, QString>> m;
-        Store::getPurchaseInfo(list.at(0), qv, m);
-
-        out << function << qv << m;
-    }
-
-    if(function == "test_cc"){
-
-        QStringList list1;
-        list1.append("1");
-        list1.append("100");
-        list1.append("3");
-        list1.append("300");
-
-        Order order1("5", "2020-03-03 12:22:21", list1);
-
-
-        out << function;
-        QString store_id = "1";
-        QString time_com = "2018-07-11 14:38:47";
-        Store::storeArrive(store_id, time_com, order1);
-
-        out << "success";
-    }
-
-    if(function == "requestReject"){
-        out << function;
-
-        //将chencked的值设为2，代表请求被拒
-        SQLTool::update("store_pRecord", "checked", "2", "id_purchase", list.at(0));
-
-        out << "rejected";
     }
 
     //sissyVI--Finish

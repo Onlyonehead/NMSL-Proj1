@@ -62,6 +62,7 @@ void MainWindow::on_pushButton_sell_clicked()
     if("0"!=ui->label_sell_totalCount->text()){
         QString message = "交易总额为"+ui->label_sell_totalPrice->text()+"，共有"+ui->label_sell_totalCount->text()+"件服装。";
         if(QMessageBox::Yes==QMessageBox::question(this, tr("交易确认"), message, QMessageBox::Yes, QMessageBox::No)) {
+            QElapsedTimer t;
 
             //交易进度条
             ui->progressBar_sell->setVisible(true);

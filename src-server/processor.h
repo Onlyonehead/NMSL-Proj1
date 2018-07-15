@@ -45,8 +45,6 @@ public slots:
 
 private:
     QTcpSocket *m_socket;
-    quint16 blocksize;
-    QStringList list;
 
 };
 

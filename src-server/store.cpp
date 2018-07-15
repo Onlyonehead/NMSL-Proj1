@@ -7,7 +7,7 @@
 /**
  * get pic path according to pic id
  *
- * @author sissyVI
+ * @author Chang Chen
  * @param id cloth's id
  * @return picture path
  */
@@ -22,13 +22,6 @@ QString Store::getPicPath(QString id){
     return sq.value(0).toString();
 }
 
-/**
- * get the style and size of a cloth according to it's id
- *
- * @author sissyVI
- * @param id
- * @return
- */
 QString Store::getClothStyle(QString id){
     QStringList qsl;
     qsl.append(QString("style"));
@@ -41,13 +34,6 @@ QString Store::getClothStyle(QString id){
     return sq.value(0).toString()+"  "+sq.value(1).toString();
 }
 
-/**
- * get cloth details according to it's id
- *
- * @author sissyVI
- * @param id cloth id
- * @param qsl a QStringList used to store info
- */
 void Store::getClothDetail(QString id, QStringList& qsl){
     QSqlQuery sq_cloth;
     SQLTool::search(sq_cloth, "clothes", "ID", id);
@@ -57,12 +43,6 @@ void Store::getClothDetail(QString id, QStringList& qsl){
         <<sq_cloth.value(4).toString();
 }
 
-/**
- * get all clothes' details
- *
- * @brief Store::getAllClothes
- * @param clothes
- */
 void Store::getAllClothes(QVector<QStringList>& clothes){
     QSqlDatabase db = QSqlDatabase::database();
     QSqlQuery query(db);
@@ -83,7 +63,7 @@ void Store::getAllClothes(QVector<QStringList>& clothes){
 /**
  * get store info
  *
- * @author sissyVI
+ * @author Chang Chen
  * @param username belongs to store manager
  * @param size number of values
  * @return
@@ -102,7 +82,7 @@ void Store::getStoreInfo(QString username, QString s_size, QVector<QString>& qv)
 /**
  * get the stock info of the store
  *
- * @author sissyVI
+ * @author Chang Chen
  * @param warehouse_n table name of the warehouse
  * @return groups of cloth's id and amount
  */
@@ -143,7 +123,7 @@ void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
 
         QMap<QString, QString> map;
         while(sq2.next()){
-            map.insert(sq2.value(0).toString(), sq2.value(1).toString());//插入服装id和数量
+            map.insert(Store::getClothStyle(sq2.value(0).toString()), sq2.value(1).toString());
             count++;
         }
         re.loadDetails(map);
@@ -155,13 +135,13 @@ void Store::getRecord(int id_store, int& size, QVector<Record>& qv){
 /**
  * Store::sellGoods
  *
- * @author sissyVI
+ * @author Chang Chen
  * @param storeId
  * @param totalPrices the total prices in this transaction
  * @param clothes_amount the amount of clothes in this transaction
  * @return
  */
-bool Store::sellGoods(QString storeId, QString totalPrices, QVector<int>& clothes_amount){
+bool Store::sellGoods(QString storeId, QString totalPrices, QVector<int> clothes_amount){
     QSqlQuery sq;
 
     //获取交易时间
@@ -215,162 +195,9 @@ void Store::getStores(QVector<QStringList> &qv){
     SQLTool::search(sq, "store");
     while(sq.next()){
         qsl.clear();
-        for(int i=0; i<8; ++i){
+        for(int i=0; i<6; ++i){
             qsl<<sq.value(i).toString();
         }
         qv.append(qsl);
     }
 }
-
-void Store::purchase(QString store_id, QMap<QString, QString> &m){
-    QSqlQuery sq;
-    QMap<QString, QString>::const_iterator mit;
-    QDateTime current_date_time = QDateTime::currentDateTime();
-    QString current_date =current_date_time.toString("yyyy-MM-dd hh:mm:ss");
-
-    QStringList qsl;
-    qsl.append("0");
-    qsl.append(store_id);
-    qsl.append(current_date);
-    qsl.append("0");
-    qsl.append(current_date);
-    SQLTool::insert(sq, "store_pRecord", qsl);
-    SQLTool::search(sq, "store_pRecord", "date", current_date);
-    sq.next();
-    QString id_pur = sq.value(0).toString();
-
-    for(mit=m.constBegin(); mit!=m.constEnd(); ++mit){
-        qsl.clear();
-        qsl.append(id_pur);
-        qsl.append(mit.key());
-        qsl.append(mit.value());
-        SQLTool::insert(sq, "store_pDetail", qsl);
-    }
-}
-
-/**
- * get store info and clothes info
- *
- * @author sissyVI
- * @param purchase_id the only id of a purchase request
- * @param store_id
- * @param qsl to keep store info
- * @param qv to keep clothes' info
- */
-void Store::getPurchaseInfo(QString purchase_id, QString store_id, QStringList& qsl, QVector<QStringList>& qv){
-    QSqlQuery sq, sq2, sq3;
-    SQLTool::search(sq, "store", "id_store", store_id);
-    sq.next();
-    qsl.append(sq.value(1).toString());//name
-    qsl.append(sq.value(5).toString());//user
-    QString p, c;
-    p = sq.value(2).toString();
-    c = sq.value(3).toString();
-
-    //location
-    if(c == "")
-        qsl.append(p+"市");
-    else
-        qsl.append(p+"省"+c+"市");
-
-    SQLTool::search(sq, "store_pDetail", "id_purchase", purchase_id);
-    while(sq.next()){
-        QStringList qsl2;
-        SQLTool::search(sq2, "clothes", "ID", sq.value(1).toString());
-        sq2.next();
-        qsl2.append(sq.value(1).toString());//id_clothes
-        qsl2.append(sq2.value(1).toString());//style
-        qsl2.append(sq2.value(2).toString());//size
-
-        QStringList qsl3;
-        qsl3.append("store_id");
-        qsl3.append(store_id);
-        qsl3.append("clothes_id");
-        qsl3.append(sq.value(1).toString());
-        SQLTool::search(sq3, "quantity", "store_warehouse", qsl3);
-        sq3.next();
-
-        if(!sq3.isValid())
-            qsl2.append(QString::number(0, 10));
-        else
-            qsl2.append(sq3.value(0).toString());//exist
-        qsl2.append(sq.value(2).toString());//amount
-        qsl2.append(sq.value(2).toString());//amount(changeable)
-        qv.append(qsl2);
-    }
-}
-
-void Store::getPurchaseInfo(QString store_id, QVector<QStringList> &qv, QMap<QString, QMap<QString, QString> > &m){
-    QSqlQuery sq, sq2;
-    SQLTool::search(sq, "store_pRecord", "id_store", store_id);
-    while(sq.next()){
-        QStringList qsl;
-        qsl.append(sq.value(0).toString());//id
-        qsl.append(sq.value(2).toString());//date
-        qsl.append(sq.value(3).toString());//check
-        qv.append(qsl);
-
-        SQLTool::search(sq2, "store_pDetail", "id_purchase", sq.value(0).toString());
-        QMap<QString, QString> m2;
-        while(sq2.next()){
-            m2.insert(sq2.value(1).toString(), sq2.value(2).toString());
-        }
-        m.insert(sq.value(0).toString(), m2);
-    }
-}
-
-void Store::getAllPurchaseInfo(QVector<QStringList> &qv){
-    QSqlQuery sq;
-    SQLTool::search(sq, "store_pRecord", "checked", QString::number(0, 10));
-    while(sq.next()){
-        QStringList qsl;
-        qsl.append(sq.value(0).toString());
-        qsl.append(sq.value(1).toString());
-        qsl.append(sq.value(2).toString());
-        qv.append(qsl);
-    }
-}
-
-void Store::changePAmount(QString id_p, QString id_c, QString amount){
-    QStringList qsl;
-    qsl.append("id_purchase");
-    qsl.append(id_p);
-    qsl.append("id_clothes");
-    qsl.append(id_c);
-    SQLTool::update("store_pDetail", "amount", amount, qsl);
-}
-
-/**
- *
- *
- * @author sissyVI
- * @param store_id the store id of destination
- * @param time_com commit time
- * @param qv from id and details(cloth id and quantity)
- * @param m from id and arrive time
- */
-void Store::storeArrive(QString store_id, QString time_com, Order& o){
-    QSqlQuery sq;
-    QStringList qsl;
-    qsl.append("id_store");
-    qsl.append(store_id);
-    qsl.append("date_check");
-    qsl.append(time_com);
-    SQLTool::search(sq, "id_purchase", "store_pRecord", qsl);
-    sq.next();
-    QString purchase_id = sq.value(0).toString();
-    qDebug()<<"purchase_id: "<<purchase_id;
-
-    QString from_id = o.getId();
-    QString date_arr = o.getDatetime();
-    QStringList qsl_c = o.getProductInfo();
-
-    for(int i=0; i<qsl_c.size();){
-        QStringList qsl_arr;
-        qDebug() << store_id << qsl_c.at(i) << qsl_c.at(i+1) << date_arr << from_id << purchase_id;
-        qsl_arr << store_id << qsl_c.at(i++) << qsl_c.at(i++) << date_arr << from_id << purchase_id;
-        SQLTool::insert("store_arriving", qsl_arr);
-    }
-
-}
-
