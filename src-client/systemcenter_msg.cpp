@@ -947,40 +947,6 @@ void SystemCenter::readMessage()
     if(from == "pp3_csi"){
         QMessageBox::information(NULL, tr("提示"), tr("用户信息更改成功！已经赋予新的权限。"),
                                  QMessageBox::Yes, QMessageBox::Yes);
-    }// purchase page show garment detailed information
-    if(from == "pcp_sgdi"){
-        QStringList result;
-        in >> result;
-
-        QString ID = result.at(0);
-        QString style = result.at(1);
-        QString size = result.at(2);
-        QString path = result.at(3);
-        QString price = result.at(4);
-
-        QApplication::processEvents();
-        QPixmap *pixmap = new QPixmap(USER_DIR + path);
-        if(pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
-        }
-
-        if (pixmap->isNull()){
-            pixmap = new QPixmap(":/default.jpg");
-        }
-        QApplication::processEvents();
-        ui->label_purchaseShowPic->setScaledContents(true);
-        ui->label_purchaseShowPic->setPixmap(*pixmap);
-        delete pixmap;
-        QApplication::processEvents();
-
-        ui->label_purchaseShowID->setText(ID);
-        ui->label_purchaseShowPrice->setText(price);
-        ui->label_purchaseShowSize->setText(size);
-        ui->label_purchaseShowStyle->setText(style);
-        QApplication::processEvents();
-
-        progressBar_fast();
-
     }// deliver page show provider ids
     if(from == "dp_sp"){
         int i = 0;
@@ -990,6 +956,7 @@ void SystemCenter::readMessage()
         for(QStringList list : result){
             ui->tableWidget_deliverProvider->insertRow(i);
             ui->tableWidget_deliverProvider->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_deliverProvider->setItem(i, 1, new QTableWidgetItem(list.at(2)));
             i++;
         }
         ui->tableWidget_deliverProvider->setRowCount(i);

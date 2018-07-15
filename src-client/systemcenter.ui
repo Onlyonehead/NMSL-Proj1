@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>5</number>
     </property>
     <property name="iconSize">
      <size>
@@ -782,56 +782,12 @@ QTabBar::tab:selected {
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_purchaseShowTime">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>10</y>
-         <width>110</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>当前日期时间：</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_chooseGTip_2">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>110</y>
-         <width>110</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>选择数量：</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="pushButton_addGarment">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>470</y>
-         <width>90</width>
+         <x>570</x>
+         <y>200</y>
+         <width>110</width>
          <height>28</height>
         </rect>
        </property>
@@ -859,15 +815,14 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_orderGarment">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>250</y>
-         <width>250</width>
-         <height>200</height>
+         <x>400</x>
+         <y>290</y>
+         <width>260</width>
+         <height>170</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QTableWidget
+        <string notr="true">QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -882,7 +837,6 @@ QTableWidget
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
-
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -899,8 +853,18 @@ QTableWidget QHeaderView
 }
 QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
-}</string>
+}
+</string>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>服装编号</string>
@@ -915,9 +879,9 @@ QTableWidget::item{
       <widget class="QPushButton" name="pushButton_deleteGarment">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>470</y>
-         <width>90</width>
+         <x>420</x>
+         <y>490</y>
+         <width>100</width>
          <height>28</height>
         </rect>
        </property>
@@ -945,19 +909,19 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_ConfirmOrder">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>520</y>
-         <width>90</width>
+         <x>540</x>
+         <y>490</y>
+         <width>100</width>
          <height>28</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
 	border-radius:10px;
-	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
+	font: 75 15pt &quot;Helvetica&quot; bold;
 }
 
 QPushButton:hover{
@@ -965,7 +929,7 @@ QPushButton:hover{
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
+	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
        <property name="text">
@@ -976,14 +940,13 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>45</y>
-         <width>250</width>
+         <y>30</y>
+         <width>491</width>
          <height>200</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QTableWidget
+        <string notr="true">QTableWidget
 {
     	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
     gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
@@ -998,7 +961,6 @@ QTableWidget
     padding:0px 0px;  /*表格与边框的间距*/
 	height: 30px;
 }
-
 
 /*设置表头属性*/
 QTableWidget QHeaderView
@@ -1015,8 +977,18 @@ QTableWidget QHeaderView
 }
 QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
-}</string>
+}
+</string>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>服装编号</string>
@@ -1046,63 +1018,39 @@ QTableWidget::item{
       <widget class="QPushButton" name="pushButton_3">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>10</y>
-         <width>90</width>
+         <x>570</x>
+         <y>40</y>
+         <width>110</width>
          <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px dashed rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
 	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold ;
 }
 
-
 QPushButton:hover{
-	border: 2px dashed rgb(15, 128, 255);
+	border: 2px solid rgb(15, 128, 255);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
 	font: 75 14pt &quot;Helvetica&quot; bold;
-}
-</string>
-       </property>
-       <property name="text">
-        <string>选择服装</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_showOrderTime">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>50</y>
-         <width>300</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Display all</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_cancelOrder">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>520</y>
-         <width>90</width>
+         <x>570</x>
+         <y>90</y>
+         <width>110</width>
          <height>28</height>
         </rect>
        </property>
@@ -1124,32 +1072,14 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_garmentNum">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>170</y>
-         <width>110</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLineEdit{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	font: 15pt &quot;Times&quot; bold;
-}
-</string>
+        <string>Clear</string>
        </property>
       </widget>
       <widget class="QGroupBox" name="groupBox_6">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>240</y>
+         <x>50</x>
+         <y>260</y>
          <width>291</width>
          <height>191</height>
         </rect>
@@ -1567,6 +1497,192 @@ background: none;
         </property>
        </widget>
       </widget>
+      <widget class="QLabel" name="label_chooseGTip_2">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>130</y>
+         <width>71</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Quantity:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_garmentNum">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>160</y>
+         <width>90</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border: 2px solid rgb(179, 179, 179);
+	border-radius:10px;
+	font: 15pt &quot;Times&quot; bold;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_showOrderTime">
+       <property name="geometry">
+        <rect>
+         <x>91</x>
+         <y>500</y>
+         <width>201</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: none;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 15pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_308">
+       <property name="geometry">
+        <rect>
+         <x>517</x>
+         <y>247</y>
+         <width>121</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Order:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_309">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>260</y>
+         <width>18</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Warehouses:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_311">
+       <property name="geometry">
+        <rect>
+         <x>133</x>
+         <y>473</y>
+         <width>18</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background: white;
+	border-image:none;
+	border: 0px;
+	color: rgb(76, 76, 76);
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Order:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_310">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>460</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>Current time:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_pB">
       <property name="geometry">
@@ -1593,8 +1709,8 @@ background: none;
       <widget class="QTableWidget" name="tableWidget_deliverGarment">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>320</y>
+         <x>50</x>
+         <y>310</y>
          <width>250</width>
          <height>200</height>
         </rect>
@@ -1635,6 +1751,15 @@ QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
 }</string>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>服装编号</string>
@@ -1649,9 +1774,9 @@ QTableWidget::item{
       <widget class="QTableWidget" name="tableWidget_deliverProvider">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>50</y>
-         <width>125</width>
+         <x>50</x>
+         <y>80</y>
+         <width>250</width>
          <height>200</height>
         </rect>
        </property>
@@ -1691,18 +1816,32 @@ QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
 }</string>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>供货商编号</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>sadf</string>
         </property>
        </column>
       </widget>
       <widget class="QPushButton" name="pushButton_deliverShowProvider">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>10</y>
-         <width>100</width>
+         <x>60</x>
+         <y>30</y>
+         <width>110</width>
          <height>30</height>
         </rect>
        </property>
@@ -1724,35 +1863,14 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>Choose Provider</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_deliverChooseGarmentTip">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>270</y>
-         <width>200</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-background: none;
-	border: 0px;
-	color: rgb(106, 106, 106);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>选择服装，可选择多行</string>
+        <string>Display All</string>
        </property>
       </widget>
       <widget class="QGroupBox" name="groupBox_9">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>110</y>
+         <x>370</x>
+         <y>180</y>
          <width>300</width>
          <height>200</height>
         </rect>
@@ -1786,9 +1904,9 @@ background: rgb(248, 248, 248);
        <widget class="QLabel" name="label_deliverShowIDTip">
         <property name="geometry">
          <rect>
-          <x>60</x>
+          <x>70</x>
           <y>29</y>
-          <width>31</width>
+          <width>90</width>
           <height>41</height>
          </rect>
         </property>
@@ -1819,9 +1937,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowAdsTip">
         <property name="geometry">
          <rect>
-          <x>59</x>
+          <x>69</x>
           <y>65</y>
-          <width>41</width>
+          <width>91</width>
           <height>41</height>
          </rect>
         </property>
@@ -1852,7 +1970,7 @@ background: none;
        <widget class="QLabel" name="label_130">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>42</y>
           <width>18</width>
           <height>16</height>
@@ -1878,7 +1996,7 @@ background: none;
        <widget class="QLabel" name="label_131">
         <property name="geometry">
          <rect>
-          <x>29</x>
+          <x>39</x>
           <y>78</y>
           <width>18</width>
           <height>16</height>
@@ -1904,7 +2022,7 @@ background: none;
        <widget class="QLabel" name="label_132">
         <property name="geometry">
          <rect>
-          <x>29</x>
+          <x>39</x>
           <y>116</y>
           <width>18</width>
           <height>16</height>
@@ -1930,9 +2048,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowNameTip">
         <property name="geometry">
          <rect>
-          <x>59</x>
+          <x>69</x>
           <y>103</y>
-          <width>41</width>
+          <width>90</width>
           <height>41</height>
          </rect>
         </property>
@@ -1963,7 +2081,7 @@ background: none;
        <widget class="QLabel" name="label_133">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>154</y>
           <width>18</width>
           <height>16</height>
@@ -1989,9 +2107,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowProductTip">
         <property name="geometry">
          <rect>
-          <x>60</x>
+          <x>70</x>
           <y>141</y>
-          <width>31</width>
+          <width>90</width>
           <height>41</height>
          </rect>
         </property>
@@ -2022,9 +2140,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowID">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>150</x>
           <y>40</y>
-          <width>51</width>
+          <width>110</width>
           <height>20</height>
          </rect>
         </property>
@@ -2055,9 +2173,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowAds">
         <property name="geometry">
          <rect>
-          <x>169</x>
+          <x>150</x>
           <y>76</y>
-          <width>51</width>
+          <width>110</width>
           <height>20</height>
          </rect>
         </property>
@@ -2088,9 +2206,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowName">
         <property name="geometry">
          <rect>
-          <x>169</x>
+          <x>150</x>
           <y>115</y>
-          <width>51</width>
+          <width>110</width>
           <height>20</height>
          </rect>
         </property>
@@ -2121,9 +2239,9 @@ background: none;
        <widget class="QLabel" name="label_deliverShowProduct">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>150</x>
           <y>153</y>
-          <width>51</width>
+          <width>110</width>
           <height>20</height>
          </rect>
         </property>
@@ -2155,19 +2273,19 @@ background: none;
       <widget class="QPushButton" name="pushButton_deliverOrder">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>360</y>
-         <width>100</width>
+         <x>440</x>
+         <y>430</y>
+         <width>170</width>
          <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
+	border: 2px solid rgb(15, 128, 255);
+	background:rgba(15, 128, 255, 93);
 	border-radius:10px;
-	background:rgba(248, 248, 248,220);
 	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
+	font: 75 15pt &quot;Helvetica&quot; bold;
 }
 
 QPushButton:hover{
@@ -2175,7 +2293,7 @@ QPushButton:hover{
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
+	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
        <property name="text">
@@ -2185,8 +2303,8 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_deliverCancelChoose">
        <property name="geometry">
         <rect>
-         <x>180</x>
-         <y>10</y>
+         <x>190</x>
+         <y>30</y>
          <width>100</width>
          <height>30</height>
         </rect>
@@ -2209,15 +2327,15 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>Cancel</string>
+        <string>Clear</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_showOrderTime_2">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>60</y>
-         <width>300</width>
+         <x>410</x>
+         <y>90</y>
+         <width>201</width>
          <height>40</height>
         </rect>
        </property>
@@ -2233,29 +2351,79 @@ QPushButton:hover{
        <property name="text">
         <string>TextLabel</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_deliverShowTimeTip">
+      <widget class="QLabel" name="label_312">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>20</y>
-         <width>110</width>
-         <height>30</height>
+         <x>452</x>
+         <y>63</y>
+         <width>18</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QLabel{
-	background: none;
+	background: white;
 	border-image:none;
 	border: 0px;
 	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
+	font: 75 16pt &quot;Helvetica&quot; bold;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Order:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_313">
+       <property name="geometry">
+        <rect>
+         <x>479</x>
+         <y>50</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica 12</family>
+         <pointsize>14</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+background: none;
+	border: 0px;
+	color: rgb(106, 106, 106);
+	font: 75 14pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
        <property name="text">
-        <string>当前日期时间：</string>
+        <string>Current time:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
+      <zorder>tableWidget_deliverGarment</zorder>
+      <zorder>tableWidget_deliverProvider</zorder>
+      <zorder>pushButton_deliverShowProvider</zorder>
+      <zorder>groupBox_9</zorder>
+      <zorder>pushButton_deliverOrder</zorder>
+      <zorder>pushButton_deliverCancelChoose</zorder>
+      <zorder>label_showOrderTime_2</zorder>
+      <zorder>frame_pA</zorder>
+      <zorder>label_312</zorder>
+      <zorder>label_313</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="tab">
@@ -10360,12 +10528,12 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
+     <zorder>frame_2A</zorder>
      <zorder>edit_warehouse</zorder>
      <zorder>add_warehouse</zorder>
      <zorder>frame_2B</zorder>
      <zorder>frame_2C</zorder>
      <zorder>frame_2D</zorder>
-     <zorder>frame_2A</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
      <attribute name="title">
@@ -11946,10 +12114,10 @@ QPushButton:hover{
       <widget class="QTableWidget" name="tableWidget_showStaffInfo">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>50</y>
-         <width>705</width>
-         <height>200</height>
+         <x>40</x>
+         <y>90</y>
+         <width>646</width>
+         <height>220</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -11988,6 +12156,15 @@ QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
 }</string>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>用户名</string>
@@ -12017,9 +12194,9 @@ QTableWidget::item{
       <widget class="QPushButton" name="pushButton_showStaff">
        <property name="geometry">
         <rect>
-         <x>115</x>
-         <y>5</y>
-         <width>191</width>
+         <x>160</x>
+         <y>30</y>
+         <width>140</width>
          <height>28</height>
         </rect>
        </property>
@@ -12048,8 +12225,8 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>5</y>
-         <width>191</width>
+         <y>30</y>
+         <width>140</width>
          <height>28</height>
         </rect>
        </property>
@@ -12077,9 +12254,9 @@ QPushButton:hover{
       <widget class="QLabel" name="label_staffSearchTip">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>300</y>
-         <width>80</width>
+         <x>80</x>
+         <y>340</y>
+         <width>71</width>
          <height>31</height>
         </rect>
        </property>
@@ -12099,9 +12276,9 @@ QPushButton:hover{
       <widget class="QLineEdit" name="lineEdit_searchStaffValue">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>300</y>
-         <width>330</width>
+         <x>150</x>
+         <y>340</y>
+         <width>270</width>
          <height>30</height>
         </rect>
        </property>
@@ -12117,8 +12294,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label_staffSearchTip_2">
        <property name="geometry">
         <rect>
-         <x>490</x>
-         <y>300</y>
+         <x>450</x>
+         <y>340</y>
          <width>60</width>
          <height>30</height>
         </rect>
@@ -12133,50 +12310,105 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>属性：</string>
+        <string>From:</string>
        </property>
       </widget>
       <widget class="QComboBox" name="comboBox_searchStaffChosen">
        <property name="geometry">
         <rect>
-         <x>580</x>
-         <y>300</y>
-         <width>110</width>
-         <height>30</height>
+         <x>510</x>
+         <y>338</y>
+         <width>141</width>
+         <height>35</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+         <pointsize>15</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+	border: 2px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    padding: 1px 2px 1px 2px; 
+
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+
+    width: 20px;
+ 
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-radius: 0px;
+}
+ 
+QComboBox::down-arrow {
+}
+
+QComboBox QAbstractItemView {
+    border-radius: 0px;
+	border: 2px solid rgb(169, 169, 169);
+	border-radius:0px;
+	background:rgba(255, 255, 255,200);
+	color: rgb(76, 76, 76);
+	font: 15pt &quot;Times&quot; bold;
+}
+QComboBox QAbstractItemView::item {
+        height: 40px;
+}
+
+QComboBox QAbstractItemView::item:selected {
+        background: rgb(232, 241, 250);
+        color: rgb(2, 65, 132);
+}</string>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="frame">
+        <bool>false</bool>
        </property>
        <item>
         <property name="text">
-         <string>username</string>
+         <string>     username</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>name</string>
+         <string>     name</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>gender</string>
+         <string>     gender</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>position</string>
+         <string>     position</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>email</string>
+         <string>      email</string>
         </property>
        </item>
       </widget>
       <widget class="QPushButton" name="pushButton_searchStaffInfo">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>360</y>
-         <width>80</width>
+         <x>160</x>
+         <y>440</y>
+         <width>140</width>
          <height>30</height>
         </rect>
        </property>
@@ -12204,9 +12436,9 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_deleteStaffInfo">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>360</y>
-         <width>80</width>
+         <x>420</x>
+         <y>440</y>
+         <width>140</width>
          <height>30</height>
         </rect>
        </property>
@@ -13963,6 +14195,10 @@ QLabel{
        </widget>
       </widget>
      </widget>
+     <zorder>frame_personnelpage_2</zorder>
+     <zorder>frame_personnelpage_3</zorder>
+     <zorder>frame_personnelpage_4</zorder>
+     <zorder>frame_personnelpage_1</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">

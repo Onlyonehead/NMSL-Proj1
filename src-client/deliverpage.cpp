@@ -66,12 +66,11 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
 
     QVector<QString> product;
     for(int j = 0 ; j < rowIndex.size() ; j++){
-        product.append(ui->tableWidget_deliverGarment->item(rowIndex.at(j), 0)->text());
+        product.append(ui->tableWidget_deliverGarment->item(rowIndex.at(j), 0)->text().split(":")[1].trimmed());
     }
 
     QString providerTempProduct = ui->label_deliverShowProduct->text();
     QStringList providerProduct = providerTempProduct.split(",");
-    qDebug() << providerProduct;
 
     for(QString iter : product){
         if(!providerProduct.contains(iter)){
@@ -84,16 +83,16 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
     QStringList productTempInfo;
     for(int n = 0 ; n < rowIndex.size() ; n++){
         productTempInfo.append(product.at(n));
-        productTempInfo.append(ui->tableWidget_deliverGarment->item(rowIndex.at(n), 1)->text());
+        productTempInfo.append(ui->tableWidget_deliverGarment->item(rowIndex.at(n), 1)->text().split(":")[1].trimmed());
     }
     QString productInfo = productTempInfo.join("#");
-    qDebug() << productInfo;
 
 
     for(int m = 0 ; m < rowIndex.size() ; m++){
-        ui->tableWidget_deliverGarment->removeRow(rowIndex.at(m));
+        ui->tableWidget_deliverGarment->removeRow(rowIndex.at(m)-m);
     }
 
+    qDebug() << productInfo;
 
 
 

@@ -169,8 +169,6 @@ private slots:
     void on_tableWidget_A_itemClicked(QTableWidgetItem *item);
 
     void on_w_search_A_3_clicked();
-    
-    void on_tableWidget_generateOrder_cellClicked(int row, int column);
 
     void on_pushButton_showRequests_clicked();
 
@@ -256,6 +254,12 @@ private slots:
 	
 	void on_pushButton_deliverCancelChoose_clicked();
 
+    void on_pushButton_deliverShowProvider_clicked();
+
+    void on_pushButton_deliverOrder_clicked();
+
+    void on_tableWidget_deliverProvider_cellClicked(int row, int column);
+
     void on_pushButton_addProviderInfo_clicked();
 
     void on_pushButton_confirmNewStaff_clicked();
@@ -278,9 +282,9 @@ private slots:
 
     void on_pushButton_changeStaffpassword_clicked();
 
-    void error(QNetworkReply::NetworkError error);
-
     void on_pushButton_anpShowP_clicked();
+
+    void on_tableWidget_generateOrder_itemClicked(QTableWidgetItem *item);
 
 signals:
     void stringReturn(QString);
@@ -333,6 +337,8 @@ private:
     QStringList siteFrom; // For logistic C
     QStringList siteTo; // For logistic C
     QVector<QStringList> siteVia; // For logistic C
+
+    QStringList current_selected; // For purchasepage
 
     bool style;
 

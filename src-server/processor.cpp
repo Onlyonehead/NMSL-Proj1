@@ -653,14 +653,6 @@ void Processor::work ()
         out << function;
         out << result;
     }
-    //purchase page show garment detailed information
-    if(function == "pcp_sgdi"){
-        QString tempID = list.at(0);
-        QStringList result;
-        Garment::Info(tempID.toInt(), result);
-        out << function;
-        out << result;
-    }
     //deliver page show all providers IDs
     if(function == "dp_sp"){
         QVector<QStringList> result;

@@ -5,6 +5,7 @@
 #include "QElapsedTimer"
 #include <QHeaderView>
 #include <QMovie>
+#include <QListView>
 
 /**
  * SystemCenter UI initialize
@@ -38,6 +39,8 @@ SystemCenter::SystemCenter(QWidget *parent) :
     ui->pushButton_18->setVisible(false);
     ui->add_warehouse->setVisible(false);
     ui->edit_warehouse->setVisible(false);
+    ui->comboBox_searchStaffChosen->setView(new QListView());
+
     style = false;
 
     /*
@@ -283,6 +286,59 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_204->setText(QChar(0xf0a4));
     ui->label_204->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_309->setFont(font);
+    ui->label_309->setText(QChar(0xf0e3));
+    ui->label_309->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_311->setFont(font);
+    ui->label_311->setText(QChar(0xf017));
+    ui->label_311->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_79->setFont(font);
+    ui->label_79->setText(QChar(0xf02d));
+    ui->label_79->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    QApplication::processEvents();
+
+    ui->label_88->setFont(font);
+    ui->label_88->setText(QChar(0xf471));
+    ui->label_88->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_89->setFont(font);
+    ui->label_89->setText(QChar(0xf155));
+    ui->label_89->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_91->setFont(font);
+    ui->label_91->setText(QChar(0xf022));
+    ui->label_91->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_312->setFont(font);
+    ui->label_312->setText(QChar(0xf017));
+    ui->label_312->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_130->setFont(font);
+    ui->label_130->setText(QChar(0xf02d));
+    ui->label_130->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    QApplication::processEvents();
+
+    ui->label_131->setFont(font);
+    ui->label_131->setText(QChar(0xf471));
+    ui->label_131->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_132->setFont(font);
+    ui->label_132->setText(QChar(0xf155));
+    ui->label_132->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_133->setFont(font);
+    ui->label_133->setText(QChar(0xf022));
+    ui->label_133->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
@@ -437,6 +493,33 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_route_via->setAlternatingRowColors(true);
 
 
+    ui->tableWidget_generateOrder->horizontalHeader()->setDefaultSectionSize(95);
+    ui->tableWidget_generateOrder->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_generateOrder->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_generateOrder->setAlternatingRowColors(true);
+
+    ui->tableWidget_orderGarment->horizontalHeader()->setDefaultSectionSize(115);
+    ui->tableWidget_orderGarment->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_orderGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_orderGarment->setAlternatingRowColors(true);
+
+    ui->tableWidget_deliverGarment->horizontalHeader()->setDefaultSectionSize(115);
+    ui->tableWidget_deliverGarment->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_deliverGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_deliverGarment->setAlternatingRowColors(true);
+    ui->tableWidget_deliverGarment->setSelectionMode(QAbstractItemView::MultiSelection);
+
+    ui->tableWidget_deliverProvider->horizontalHeader()->setDefaultSectionSize(115);
+    ui->tableWidget_deliverProvider->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_deliverProvider->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_deliverProvider->setAlternatingRowColors(true);
+
+    ui->tableWidget_showStaffInfo->horizontalHeader()->setDefaultSectionSize(105);
+    ui->tableWidget_showStaffInfo->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_showStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_showStaffInfo->setAlternatingRowColors(true);
+
+
 
 
     QApplication::processEvents();
@@ -456,6 +539,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     connect(ui->quantity_logistics, SIGNAL(returnPressed()), ui->logistics_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
 
+    connect(ui->lineEdit_garmentNum, SIGNAL(returnPressed()), ui->pushButton_addGarment, SIGNAL(clicked()), Qt::UniqueConnection);
+
+    connect(ui->lineEdit_searchStaffValue, SIGNAL(returnPressed()), ui->pushButton_searchStaffInfo, SIGNAL(clicked()), Qt::UniqueConnection);
+
+
     QApplication::processEvents();
 
     ui->label_sell_row->setVisible(false);
@@ -472,44 +560,6 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(timer_deal_slot_function()));
     timer->start(1000);
-
-
-    /**
-     * purchase page setting
-     *
-     * @author Yihan Dong
-     */
-    ui->tableWidget_generateOrder->setRowCount(0);
-    ui->tableWidget_generateOrder->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_generateOrder->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_generateOrder->setAlternatingRowColors(true);
-    ui->tableWidget_generateOrder->verticalHeader()->setVisible(false);
-    ui->tableWidget_generateOrder->setStyleSheet("selection-background-color::lightblue");
-    ui->tableWidget_orderGarment->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_orderGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_orderGarment->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableWidget_orderGarment->setAlternatingRowColors(true);
-    ui->tableWidget_orderGarment->verticalHeader()->setVisible(false);
-    ui->tableWidget_orderGarment->setStyleSheet("selection-background-color::lightblue");
-
-
-    /**
-     *deliver page setting except time
-     *
-     * @author Yihan Dong
-    */
-
-    ui->tableWidget_deliverGarment->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_deliverGarment->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_deliverGarment->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableWidget_deliverGarment->setAlternatingRowColors(true);
-    ui->tableWidget_deliverGarment->verticalHeader()->setVisible(false);
-    ui->tableWidget_deliverGarment->setStyleSheet("selection-background-color::lightblue");
-    ui->tableWidget_deliverProvider->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_deliverProvider->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_deliverProvider->setAlternatingRowColors(true);
-    ui->tableWidget_deliverProvider->verticalHeader()->setVisible(false);
-    ui->tableWidget_deliverProvider->setStyleSheet("selection-background-color::lightblue");
 
     /**
      * provider page tablewidget_prviderInfo setting
@@ -639,11 +689,11 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 1){
          ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(false);
-        ui->pushButton_D->setVisible(false);
+        ui->pushButton_C->setVisible(true);
+        ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Generate");
-        ui->pushButton_B->setText("Deliver");
+        ui->pushButton_B->setText("Delivery");
         ui->pushButton_C->setText("");
         ui->pushButton_D->setText("");
 
@@ -690,19 +740,19 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Display");
-        ui->pushButton_B->setText("Append");
-        ui->pushButton_C->setText("Addition");
-        ui->pushButton_D->setText("P&E");
+        ui->pushButton_B->setText("Add");
+        ui->pushButton_C->setText("Modify");
+        ui->pushButton_D->setText("Security");
 
     }
     if(index == 6){
          ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(false);
+        ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Garment");
-        ui->pushButton_B->setText("Management");
+        ui->pushButton_B->setText("Manage");
         ui->pushButton_C->setText("Addition");
         ui->pushButton_D->setText("");
 
@@ -738,9 +788,12 @@ void SystemCenter::on_pushButton_A_clicked()
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -770,6 +823,7 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_2C->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
 	ui->frame_personnelpage_3->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
@@ -839,6 +893,7 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_2C->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
 	ui->frame_personnelpage_3->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
