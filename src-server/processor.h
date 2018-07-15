@@ -18,8 +18,6 @@
 #include <QDateTime>
 #include <QTime>
 #include <QDate>
-#include <QImage>
-#include <QImageReader>
 
 #include "myserver.h"
 #include "login.h"
@@ -45,6 +43,8 @@ public slots:
 
 private:
     QTcpSocket *m_socket;
+    quint16 blocksize;
+    QStringList list;
 
 };
 
