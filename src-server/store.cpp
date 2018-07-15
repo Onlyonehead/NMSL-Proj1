@@ -206,21 +206,8 @@ void Store::purchase(QString store_id, QMap<QString, QString> &m){
  * @param qsl to keep store info
  * @param qv to keep clothes' info
  */
-void Store::getPurchaseInfo(QString purchase_id, QString store_id, QStringList& qsl, QVector<QStringList>& qv){
+void Store::getPurchaseInfo(QString purchase_id, QString store_id, QVector<QStringList>& qv){
     QSqlQuery sq, sq3;
-    SQLTool::search(sq, "store", "id_store", store_id);
-    sq.next();
-    qsl.append(sq.value(1).toString());//name
-    qsl.append(sq.value(5).toString());//user
-    QString p, c;
-    p = sq.value(2).toString();
-    c = sq.value(3).toString();
-
-    //location
-    if(c == "")
-        qsl.append(p+"市");
-    else
-        qsl.append(p+"省"+c+"市");
 
     SQLTool::search(sq, "store_pDetail", "id_purchase", purchase_id);
     while(sq.next()){
@@ -332,5 +319,33 @@ void Store::logisticsReject(QString store_id, QString time_com){
     qsl.append("date_check");
     qsl.append(time_com);
     SQLTool::update("store_pRecord", "checked", "2", qsl);
+}
+
+void Store::readStoreArrive(QString store_id){
+    QSqlQuery sq, sq2;
+    SQLTool::search(sq, "date_c", "store_check", "id_store", store_id);
+    sq.next();
+    QString d = sq.value(0).toString();
+    QDateTime current_date_time = QDateTime::currentDateTime();
+    QString current_date =current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+
+    QString sql="SELECT id_clothes,quantity FROM store_arriving WHERE date_arrive>'"+d+"' AND date_arrive<'"+current_date+"' AND id_store='"+store_id+"'";
+    sq.exec(sql);
+
+    while(sq.next()){
+        QStringList qsl;
+        qsl.append("store_id");
+        qsl.append(store_id);
+        qsl.append("clothes_id");
+        qsl.append(sq.value(0).toString());
+        SQLTool::search(sq2, "quantity", "store_warehouse", qsl);
+        sq2.next();
+        int quantity = sq2.value(0).toInt();
+        quantity += sq.value(1).toInt();
+
+        SQLTool::update("store_warehouse", "quantity", QString::number(quantity, 10), qsl);
+    }
+
+    SQLTool::update("store_check", "date_c", current_date, "id_store", store_id);
 }
 

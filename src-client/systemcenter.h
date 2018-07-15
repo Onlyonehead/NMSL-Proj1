@@ -219,6 +219,30 @@ private slots:
 
     void on_pushButton_clearRequests_4_clicked();
 
+    void on_pushButton_19_clicked();
+
+    void on_pushButton_20_clicked();
+
+    void on_pushButton_49_clicked();
+
+    void on_tw_sellD1_cellClicked(int row, int column);
+
+    void on_pushButton_24_clicked();
+
+    void on_pushButton_50_clicked();
+
+    void on_pushButton_53_clicked();
+
+    void on_tw_sellD2_cellClicked(int row, int column);
+
+    void on_pushButton_sell_right_clicked();
+
+    void on_pushButton_sell_left_clicked();
+
+    void on_pushButton_23_clicked();
+
+    void on_pushButton_54_clicked();
+
 signals:
     void stringReturn(QString);
 

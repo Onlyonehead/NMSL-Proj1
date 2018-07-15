@@ -852,6 +852,8 @@ void SystemCenter::readMessage()
             }
             ++i;
         }
+
+        progressBar();
     }
 
     if(from == "storesClicked"){
@@ -881,7 +883,8 @@ void SystemCenter::readMessage()
             QMap<QString, QString>::iterator it2;
 
             ui->tableWidget_storeRecord->setItem(i,0,new QTableWidgetItem(id_trans)); //id_trans
-            ui->tableWidget_storeRecord->setItem(i,1,new QTableWidgetItem(date)); //date
+            QStringList sIndex = date.split("T");
+            ui->tableWidget_storeRecord->setItem(i,1,new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1))); //date
             ui->tableWidget_storeRecord->setItem(i,2,new QTableWidgetItem(prices)); //prices
 
             if(m.size()>1){
@@ -910,6 +913,8 @@ void SystemCenter::readMessage()
         }
         if(record_size>0)
             ui->tableWidget_storeRecord->setCurrentCell(0, 0);
+
+        progressBar();
     }
 
     if(from == "getAllRequests"){
@@ -930,21 +935,33 @@ void SystemCenter::readMessage()
         for(it=qv_requests.constBegin(); it!=qv_requests.constEnd(); ++it){
             ui->tableWidget_check->setItem(i, 0, new QTableWidgetItem(it->at(0)));
             ui->tableWidget_check->setItem(i, 1, new QTableWidgetItem(it->at(1)));
-            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(it->at(2)));
+            QStringList sIndex = it->at(2).split("T");
+            ui->tableWidget_check->setItem(i, 2, new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1)));
             ++i;
         }
+
+        progressBar();
     }
 
     if(from == "getCheckDetail"){
-        QStringList qsl_s;//店铺信息
+        QString store_id;
         QVector<QStringList> qv;//请求详细信息
-        in >> qsl_s >> qv;
 
-        qDebug()<<qv.size();
+        in >> store_id >>  qv;
 
-        ui->label_storeN->setText(qsl_s.at(0));
-        ui->label_manager->setText(qsl_s.at(1));
-        ui->label_location->setText(qsl_s.at(2));
+        QVector<QStringList>::const_iterator its;
+        for(its=stores.constBegin(); its!=stores.constEnd(); ++its){
+            if(its->at(0)==store_id){
+                ui->label_storeN->setText(its->at(1));
+                ui->label_manager->setText(its->at(5));
+                QString location;
+                if(its->at(3)=="")
+                    location = its->at(2)+"市";
+                else
+                    location = its->at(2)+"省"+its->at(3)+"市";
+                ui->label_location->setText(location);
+            }
+        }
 
         ui->tableWidget_checkDetail->verticalHeader()->setVisible(false);
         ui->tableWidget_checkDetail->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
@@ -975,12 +992,16 @@ void SystemCenter::readMessage()
 
         ui->pushButton_commit->setVisible(true);
         ui->pushButton_reject->setVisible(true);
+
+        progressBar();
     }
 
     if(from == "changeAmount"){
         QString amount;
         in >> amount;
         ui->tableWidget_checkDetail->item(ui->label_sell_row->text().toInt(), 4)->setText(amount);
+
+        progressBar();
     }
 
     if(from == "commitRequest"){
@@ -1009,6 +1030,8 @@ void SystemCenter::readMessage()
                 break;
             }
         }
+
+        progressBar();
     }
 
     if(from == "requestReject"){
@@ -1032,6 +1055,8 @@ void SystemCenter::readMessage()
                 break;
             }
         }
+
+        progressBar();
     }
 
     if(from == "getArriveRecord"){
@@ -1052,7 +1077,8 @@ void SystemCenter::readMessage()
         for(ita=qv.constBegin(); ita!=qv.constEnd(); ++ita, ++i){
             //id, time, state
             ui->tw_sell_C2->setItem(i, 0, new QTableWidgetItem(ita->at(0)));
-            ui->tw_sell_C2->setItem(i, 1, new QTableWidgetItem(ita->at(2)));
+            QStringList sIndex = ita->at(2).split("T");
+            ui->tw_sell_C2->setItem(i, 1, new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1)));
 
             QString state;
             if(ita->at(1)=="1")
@@ -1061,6 +1087,8 @@ void SystemCenter::readMessage()
                 state = "Rejected";
             ui->tw_sell_C2->setItem(i, 2, new QTableWidgetItem(state));
         }
+
+        progressBar();
     }
 
     if(from == "getArriveDetail"){
@@ -1086,7 +1114,8 @@ void SystemCenter::readMessage()
             QString from_id = ita.key();
             ui->tw_sell_C3->setItem(i, 0, new QTableWidgetItem(warehouse_map.value(from_id)));
 
-            ui->tw_sell_C3->setItem(i, 1, new QTableWidgetItem(qmt.value(from_id)));
+            QStringList sIndex = qmt.value(from_id).split("T");
+            ui->tw_sell_C3->setItem(i, 1, new QTableWidgetItem(sIndex.at(0)+" "+sIndex.at(1)));
 
             int height = ita.value().size();
             if(height>1){
@@ -1109,6 +1138,50 @@ void SystemCenter::readMessage()
                 ui->tw_sell_C3->setItem(i, 3, new QTableWidgetItem(its->at(1)));
             }
         }
+
+        progressBar();
+    }
+
+    if(from == "changeUserName"){
+        QStringList users, users2;
+        in >> users;
+        for(int i=0; i<users.size(); ++i){
+            if(users.at(i)!=ui->label_2->text()){
+                users2.append(users.at(i));
+            }
+        }
+        ui->comboBox_sellDUserName->addItems(users2);
+
+        progressBar();
+    }
+
+    if(from == "changeUserName2"){
+        QStringList users, users2;
+        in >> users;
+        for(int i=0; i<users.size(); ++i){
+            if(users.at(i)!=ui->label_2->text()){
+                users2.append(users.at(i));
+            }
+        }
+        ui->comboBox_2->addItems(users2);
+
+        progressBar();
+    }
+
+    if(from == "storeInfoChange"){
+        QMessageBox::information(this,"completed", "\nstore infomation changed successfully!",QMessageBox::Ok);
+
+        this->on_pushButton_50_clicked();
+
+        QStringList qsl;
+        qsl.append("reloadStores");//更新商店信息
+        sendMessage(qsl);
+
+        progressBar();
+    }
+
+    if(from == "reloadStores"){
+        in >> stores;
     }
 
     //sissyVI--Finish

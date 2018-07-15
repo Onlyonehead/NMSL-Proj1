@@ -577,9 +577,13 @@ void MainWindow::readMessage()
 
     if(from == "MainWindowInit"){
         in >> qv_clothes;
-        ui->progressBar->setValue(70);
         in >> qv_stock;
-        ui->progressBar->setValue(80);
+        QApplication::processEvents();
+        ui->progressBar->setValue(100);
+        QTime t;
+        t.start();
+        while(t.elapsed()<100)
+            QCoreApplication::processEvents();
 
         int qv_size;//获取QVector的大小
         QString id_trans;
@@ -595,8 +599,8 @@ void MainWindow::readMessage()
             r.loadDetails(m);
             qv_record.append(r);
         }
+        QApplication::processEvents();
         in >> record_size;
-        ui->progressBar->setValue(100);
         ui->progressBar->setVisible(false);
     }
 

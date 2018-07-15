@@ -21,6 +21,7 @@
         <file>background12</file>
         <file>bg5.png</file>
         <file>welcome2.png</file>
+        <file>angle-downcc</file>
     </qresource>
     <qresource prefix="/font">
         <file>fa-brands-400.ttf</file>

@@ -5,6 +5,8 @@
 #include "QElapsedTimer"
 #include <QHeaderView>
 #include <QMovie>
+#include <QIntValidator>
+#include <QListView>
 
 /**
  * SystemCenter UI initialize
@@ -32,6 +34,10 @@ SystemCenter::SystemCenter(QWidget *parent) :
     ui->pushButton_17->setVisible(false);
     ui->pushButton_18->setVisible(false);
     style = false;
+
+
+    ui->comboBox_sellDUserName->setView(new QListView());
+    ui->comboBox_2->setView(new QListView());
 
     /*
      * Add anything here to function 'showString' in this page
@@ -330,6 +336,58 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
                                     "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
 
+    //frame_sell_D
+    ui->label_font_sellD1Name->setFont(font);
+    ui->label_font_sellD1Name->setText(QChar(0xf1ad));
+    ui->label_font_sellD1Name->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD1Province->setFont(font);
+    ui->label_font_sellD1Province->setText(QChar(0xf19c));
+    ui->label_font_sellD1Province->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD1City->setFont(font);
+    ui->label_font_sellD1City->setText(QChar(0xf015));
+    ui->label_font_sellD1City->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD1Address->setFont(font);
+    ui->label_font_sellD1Address->setText(QChar(0xf124));
+    ui->label_font_sellD1Address->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD1Administrator->setFont(font);
+    ui->label_font_sellD1Administrator->setText(QChar(0xf4fe));
+    ui->label_font_sellD1Administrator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD2Name->setFont(font);
+    ui->label_font_sellD2Name->setText(QChar(0xf1ad));
+    ui->label_font_sellD2Name->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD2Province->setFont(font);
+    ui->label_font_sellD2Province->setText(QChar(0xf19c));
+    ui->label_font_sellD2Province->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD2City->setFont(font);
+    ui->label_font_sellD2City->setText(QChar(0xf015));
+    ui->label_font_sellD2City->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD2Address->setFont(font);
+    ui->label_font_sellD2Address->setText(QChar(0xf124));
+    ui->label_font_sellD2Address->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellD2Administrator->setFont(font);
+    ui->label_font_sellD2Administrator->setText(QChar(0xf4fe));
+    ui->label_font_sellD2Administrator->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_font_sellDCloth->setFont(font);
+    ui->label_font_sellDCloth->setText(QChar(0xf553));
+    ui->label_font_sellDCloth->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    QFont icon_direction;
+    icon_direction.setFamily(fontFamilies.at(0));
+    icon_direction.setPointSize(20);
+    ui->pushButton_sell_right->setFont(icon_direction);
+    ui->pushButton_sell_right->setText(QChar(0xf0a4));
+    ui->pushButton_sell_left->setFont(icon_direction);
+    ui->pushButton_sell_left->setText(QChar(0xf0a5));
 
     QApplication::processEvents();
 
@@ -441,11 +499,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     QApplication::processEvents();
 
+    ui->stackedWidget_sellD->setCurrentIndex(0);
+    ui->label_sellDStoreId->setVisible(false);
     ui->label_sell_row->setVisible(false);
     ui->label_sell_idPurchase->setVisible(false);
     ui->pushButton_change->setVisible(false);
     ui->pushButton_commit->setVisible(false);
     ui->pushButton_reject->setVisible(false);
+    ui->tw_sellD3->verticalHeader()->setVisible(false);
+
+    QIntValidator *validator = new QIntValidator(1, 2000, this);
+    ui->lineEdit_sellDAmount->setValidator(validator);
+    ui->lineEdit_sell_amount->setValidator(validator);
 
     /**
      * purchase page date/time label display
@@ -621,7 +686,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_A->setText("Record");
         ui->pushButton_B->setText("Delivery");
         ui->pushButton_C->setText("Arrive");
-        ui->pushButton_D->setText("");
+        ui->pushButton_D->setText("Manage");
 
     }
     if(index == 5){
@@ -681,6 +746,7 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_sell_D->setVisible(false);
 }
 
 /**
@@ -712,6 +778,7 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_sell_D->setVisible(false);
 }
 
 /**
@@ -743,6 +810,7 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_sell_D->setVisible(false);
 
 }
 
@@ -771,9 +839,11 @@ void SystemCenter::on_pushButton_D_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_sell_C->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
+    ui->frame_sell_D->setVisible(true);
 }
 
 

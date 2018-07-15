@@ -56,7 +56,8 @@ SOURCES += main.cpp \
     tool.cpp \
     logistics_a.cpp \
     logistics_b.cpp \
-    sell_c.cpp
+    sell_c.cpp \
+    sell_d.cpp
 
 
 

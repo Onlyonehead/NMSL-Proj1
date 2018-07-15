@@ -556,10 +556,9 @@ void Processor::work ()
 
     if(function == "getCheckDetail"){
         out << function;
-        QStringList qsl;
         QVector<QStringList> qv;
-        Store::getPurchaseInfo(list.at(0), list.at(1), qsl, qv);
-        out << qsl << qv;
+        Store::getPurchaseInfo(list.at(0), list.at(1), qv);
+        out << list.at(1) <<  qv;
     }
 
     if(function == "changeAmount"){
@@ -651,6 +650,9 @@ void Processor::work ()
 
     if(function == "MainWindowInit"){
         out << function;
+
+        //readStoreArrive
+        Store::readStoreArrive(list.at(0));
 
         //getAllClothes
         QVector<QStringList> qv;
@@ -784,6 +786,86 @@ void Processor::work ()
         }
 
         out << size << qm << qmt;
+    }
+
+    if(function == "changeUserName"){
+        out << function;
+        QSqlQuery sq;
+        QStringList users;
+        sq.exec("SELECT username FROM userdata WHERE username NOT IN (SELECT username FROM store)");
+        while (sq.next())
+            users.append(sq.value(0).toString());
+
+        out << users;
+    }
+
+    if(function == "changeUserName2"){
+        out << function;
+        QSqlQuery sq;
+        QStringList users;
+        sq.exec("SELECT username FROM userdata WHERE username NOT IN (SELECT username FROM store)");
+        while (sq.next())
+            users.append(sq.value(0).toString());
+
+        out << users;
+    }
+
+    if(function == "storeInfoChange"){
+        out << function;
+
+        QSqlQuery sq;
+        SQLTool::search(sq, "position", "userdata", "username", list.at(5));
+        sq.next();
+        SQLTool::update("userdata", "position", sq.value(0).toString(), "username", list.at(6));
+        SQLTool::update("userdata", "position", "门店人员", "username", list.at(5));
+
+        QString sql = "update store set name='"+list.at(1)+"',province='"+list.at(2)+"',city='"+list.at(3)+"',address='"+list.at(4)+"',username='"+list.at(5)+"' where id_store='"+list.at(0)+"'";
+        sq.exec(sql);
+    }
+
+    if(function == "reloadStores"){
+        out << function;
+        QVector<QStringList> qv;
+        Store::getStores(qv);
+
+        out << qv;
+    }
+
+    if(function == "createStore"){
+        out << function;
+
+        QString name, province, city, address, username;
+        name = list.at(0);list.removeFirst();
+        province = list.at(0);list.removeFirst();
+        city = list.at(0);list.removeFirst();
+        address = list.at(0);list.removeFirst();
+        username = list.at(0);list.removeFirst();
+
+        QStringList qsl;
+        qsl<<"0"<<name<<province<<city<<address<<username<<"121.6216"<<"29.859515";
+        SQLTool::insert("store", qsl);
+
+        QSqlQuery sq;
+        SQLTool::search(sq,"id_store", "store", "username", username);
+        sq.next();
+        QString store_id = sq.value(0).toString();
+
+        QStringList qsl2;
+        for(int i=0; i<list.size();){
+            qsl2.clear();
+            qsl2.append(store_id);
+            qsl2.append(list.at(i++));
+            qsl2.append(list.at(i++));
+            SQLTool::insert("store_warehouse", qsl2);
+        }
+
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString time = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+        QStringList qsl3;
+        qsl3 << store_id << time;
+        SQLTool::insert("store_check", qsl3);
+
+        SQLTool::update("userdata", "position", "门店人员", "username", username);
     }
 
     //sissyVI--Finish
