@@ -21,6 +21,7 @@
         <file>background12</file>
         <file>bg5.png</file>
         <file>welcome2.png</file>
+        <file>angle-downcc</file>
         <file>down_arrow</file>
     </qresource>
     <qresource prefix="/font">

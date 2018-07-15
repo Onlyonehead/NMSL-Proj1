@@ -134,8 +134,8 @@ void Processor::work ()
         QStringList wordlist1;
         for (QStringList list : result){
             wordlist1 << list.at(0) << list.at(1) <<
-                    list.at(2) << list.at(3) <<
-                    list.at(4) << list.at(5);
+                         list.at(2) << list.at(3) <<
+                         list.at(4) << list.at(5);
         }
         Tool::QStringList_removeDuplicates(&wordlist1);
 
@@ -287,7 +287,7 @@ void Processor::work ()
 
         for(QStringList l : w){
             result2.append("Warehouse id:  " + l.at(0) + "\n- Name: "
-                         + l.at(1));
+                           + l.at(1));
         }
 
         Tool::QStringList_removeDuplicates(&result2);
@@ -707,15 +707,16 @@ void Processor::work ()
         QString store_id = list.at(0);
         int size;
 
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
+        QVector<QStringList> qv_record;
+        QMap<QString, QMap<QString, QString> > qm_detail;
+        Store::getRecord(store_id, size, qv_record, qm_detail);
 
         out<< size;//条目总数
         out << qv_record.size();//记录总数
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_record.constBegin(); it!=qv_record.constEnd(); ++it){
+            out << it->at(0) << it->at(1) << it->at(2) << it->at(3);
+            out << qm_detail.value(it->at(0));
         }
     }
 
@@ -729,10 +730,9 @@ void Processor::work ()
 
     if(function == "getCheckDetail"){
         out << function;
-        QStringList qsl;
         QVector<QStringList> qv;
-        Store::getPurchaseInfo(list.at(0), list.at(1), qsl, qv);
-        out << qsl << qv;
+        Store::getPurchaseInfo(list.at(0), list.at(1), qv);
+        out << list.at(1) <<  qv;
     }
 
     if(function == "changeAmount"){
@@ -765,24 +765,6 @@ void Processor::work ()
     }
 
     //门店
-    if(function == "getRecord"){
-        out << function;
-        QString store_id = list.at(0);
-        int size;
-
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
-
-        out << qv_record.size();
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
-        }
-
-        out<< size;
-
-    }
 
     if(function == "getStoreInfo"){
         out << function;
@@ -825,16 +807,15 @@ void Processor::work ()
         //getRecord
         int size;
 
-        qDebug()<<"店铺ID为："<<store_id;
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
-        qDebug()<<"记录大小为："<<qv_record.size();
+        QVector<QStringList> qv_record;
+        QMap<QString, QMap<QString, QString> > qm_detail;
+        Store::getRecord(store_id, size, qv_record, qm_detail);
 
-        out << qv_record.size();
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
+        out << qv_record.size();//记录总数
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_record.constBegin(); it!=qv_record.constEnd(); ++it){
+            out << it->at(0) << it->at(1) << it->at(2) << it->at(3);
+            out << qm_detail.value(it->at(0));
         }
 
         out<< size;
@@ -843,6 +824,9 @@ void Processor::work ()
 
     if(function == "MainWindowInit"){
         out << function;
+
+        //readStoreArrive
+        Store::readStoreArrive(list.at(0));
 
         //getAllClothes
         QVector<QStringList> qv;
@@ -858,16 +842,15 @@ void Processor::work ()
         QString store_id = list.at(0);
         int size;
 
-        qDebug()<<"店铺ID为："<<store_id;
-        QVector<Record> qv_record;
-        Store::getRecord(store_id.toInt(), size, qv_record);
-        qDebug()<<"记录大小为："<<qv_record.size();
+        QVector<QStringList> qv_record;
+        QMap<QString, QMap<QString, QString> > qm_detail;
+        Store::getRecord(store_id, size, qv_record, qm_detail);
 
-        out << qv_record.size();
-        QVector<Record>::iterator it;
-        for(it=qv_record.begin(); it!=qv_record.end(); ++it){
-            out<<it->getIdTrans()<<it->getIdStore()<<it->getDate()<<it->getPrices();
-            out<<it->getDetails();
+        out << qv_record.size();//记录总数
+        QVector<QStringList>::const_iterator it;
+        for(it=qv_record.constBegin(); it!=qv_record.constEnd(); ++it){
+            out << it->at(0) << it->at(1) << it->at(2) << it->at(3);
+            out << qm_detail.value(it->at(0));
         }
 
         out<< size;
@@ -918,6 +901,145 @@ void Processor::work ()
         SQLTool::update("store_pRecord", "checked", "2", "id_purchase", list.at(0));
 
         out << "rejected";
+    }
+
+    if(function == "getArriveRecord"){
+        out << function;
+
+        QString store_id = list.at(0);
+        QVector<QStringList> qv;
+        QSqlQuery sq;
+        QStringList qsl;
+        qsl.append("id_purchase");
+        qsl.append("checked");
+        qsl.append("date_check");
+        SQLTool::search(sq, qsl, "store_pRecord", "id_store", store_id);
+        while(sq.next()){
+            if(sq.value(1).toString()!="0"){
+                QStringList qsla;
+                qsla.append(sq.value(0).toString());
+                qsla.append(sq.value(1).toString());
+                qsla.append(sq.value(2).toString());
+                qv.append(qsla);
+            }
+        }
+
+        out << qv;
+    }
+
+    if(function == "getArriveDetail"){
+        out << function;
+
+        QString purchase_id = list.at(0);
+        QMap<QString, QVector<QStringList> > qm;
+        QMap<QString, QString> qmt;
+        int size;
+        QStringList qsl;
+        qsl.append("id_from");
+        qsl.append("date_arrive");
+        qsl.append("id_clothes");
+        qsl.append("quantity");
+        QSqlQuery sq;
+        SQLTool::search(sq, qsl, "store_arriving", "id_purchase", purchase_id);
+        size = sq.size();
+        while(sq.next()){
+            QStringList qsld;
+            qsld.append(sq.value(2).toString());
+            qsld.append(sq.value(3).toString());
+            if(qm.contains(sq.value(0).toString())){
+                QVector<QStringList> qv = qm.value(sq.value(0).toString());
+                qv.append(qsld);
+                qm.insert(sq.value(0).toString(), qv);
+            }else{
+                QVector<QStringList> qv;
+                qv.append(qsld);
+                qm.insert(sq.value(0).toString(), qv);
+
+                qmt.insert(sq.value(0).toString(), sq.value(1).toString());
+            }
+        }
+
+        out << size << qm << qmt;
+    }
+
+    if(function == "changeUserName"){
+        out << function;
+        QSqlQuery sq;
+        QStringList users;
+        sq.exec("SELECT username FROM userdata WHERE username NOT IN (SELECT username FROM store)");
+        while (sq.next())
+            users.append(sq.value(0).toString());
+
+        out << users;
+    }
+
+    if(function == "changeUserName2"){
+        out << function;
+        QSqlQuery sq;
+        QStringList users;
+        sq.exec("SELECT username FROM userdata WHERE username NOT IN (SELECT username FROM store)");
+        while (sq.next())
+            users.append(sq.value(0).toString());
+
+        out << users;
+    }
+
+    if(function == "storeInfoChange"){
+        out << function;
+
+        QSqlQuery sq;
+        SQLTool::search(sq, "position", "userdata", "username", list.at(5));
+        sq.next();
+        SQLTool::update("userdata", "position", sq.value(0).toString(), "username", list.at(6));
+        SQLTool::update("userdata", "position", "门店人员", "username", list.at(5));
+
+        QString sql = "update store set name='"+list.at(1)+"',province='"+list.at(2)+"',city='"+list.at(3)+"',address='"+list.at(4)+"',username='"+list.at(5)+"' where id_store='"+list.at(0)+"'";
+        sq.exec(sql);
+    }
+
+    if(function == "reloadStores"){
+        out << function;
+        QVector<QStringList> qv;
+        Store::getStores(qv);
+
+        out << qv;
+    }
+
+    if(function == "createStore"){
+        out << function;
+
+        QString name, province, city, address, username;
+        name = list.at(0);list.removeFirst();
+        province = list.at(0);list.removeFirst();
+        city = list.at(0);list.removeFirst();
+        address = list.at(0);list.removeFirst();
+        username = list.at(0);list.removeFirst();
+
+        QStringList qsl;
+        qsl<<"0"<<name<<province<<city<<address<<username<<"121.6216"<<"29.859515";
+        SQLTool::insert("store", qsl);
+
+        QSqlQuery sq;
+        SQLTool::search(sq,"id_store", "store", "username", username);
+        sq.next();
+        QString store_id = sq.value(0).toString();
+
+        QStringList qsl2;
+        for(int i=0; i<list.size();){
+            qsl2.clear();
+            qsl2.append(store_id);
+            qsl2.append(list.at(i++));
+            qsl2.append(list.at(i++));
+            SQLTool::insert("store_warehouse", qsl2);
+        }
+
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString time = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+        QStringList qsl3;
+        qsl3 << store_id << time;
+        SQLTool::insert("store_check", qsl3);
+
+        SQLTool::update("userdata", "position", "门店人员", "username", username);
     }
 
     //sissyVI--Finish
