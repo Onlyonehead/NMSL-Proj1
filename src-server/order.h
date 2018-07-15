@@ -26,6 +26,9 @@ public:
 
     QString getId();
 
+    //save order in providerOrder
+    static void saveProviderOrder(QString providerOrderID, Order &providerOrder);
+
 private:
     QString orderID;
 

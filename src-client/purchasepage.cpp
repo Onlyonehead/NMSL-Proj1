@@ -35,8 +35,7 @@ void SystemCenter::on_pushButton_3_clicked()
  * @author Yihan Dong
  * @return void
  *
- * undone
- * todo:增加相同编号的服装 在表格中显示为一行
+ * done
  */
 
 
@@ -86,7 +85,7 @@ void SystemCenter::on_pushButton_deleteGarment_clicked()
 
    QVector<int> rowIndex;
    QItemSelectionModel *selections = ui->tableWidget_orderGarment->selectionModel();
-   QModelIndexList selectedrows = selections->selectedIndexes();
+   QModelIndexList selectedrows = selections->selectedRows();
 
    for(int i = 0 ; i < selectedrows.count() ; i++){
        rowIndex.append(selectedrows.at(i).row());
@@ -125,6 +124,9 @@ void SystemCenter::on_pushButton_ConfirmOrder_clicked()
                                                             ui->tableWidget_orderGarment->item(i, j)->text()));
             }
         }
+
+        ui->frame_pA->setVisible(false);
+        ui->frame_pB->setVisible(true);
 
         break;
     case QMessageBox::Cancel:
@@ -183,10 +185,10 @@ void SystemCenter::timer_deal_slot_function()
     int m = datetime.date().month();
     int d = datetime.date().day();
     QString strTime = datetime.time().toString();
-    ui->label_showOrderTime->setText(QString::number(y) + "/" + QString::number(m) +
-                                     "/" + QString::number(d) + " " + strTime);
-    ui->label_showOrderTime_2->setText(QString::number(y) + "/" + QString::number(m) +
-                                       "/" + QString::number(d) + " " + strTime);
+    ui->label_showOrderTime->setText(QString::number(y) + "-" + QString::number(m) +
+                                     "-" + QString::number(d) + " " + strTime);
+    ui->label_showOrderTime_2->setText(QString::number(y) + "-" + QString::number(m) +
+                                       "-" + QString::number(d) + " " + strTime);
 }
 
 
@@ -202,10 +204,6 @@ void SystemCenter::on_tableWidget_generateOrder_cellClicked(int row, int column)
 {
     QString ID = ui->tableWidget_generateOrder->item(row, 0)->text();
     Q_UNUSED(column);
-    ui->label_purchaseShowID->setText(ui->tableWidget_orderGarment->item(row, 0)->text());
-    ui->label_purchaseShowStyle->setText(ui->tableWidget_orderGarment->item(row, 1)->text());
-    ui->label_purchaseShowSize->setText(ui->tableWidget_orderGarment->item(row,2)->text());
-    ui->label_purchaseShowPrice->setText(ui->tableWidget_orderGarment->item(row, 4)->text());
     QStringList list;
     list.append("pcp_sgdi");
     list.append(ID);

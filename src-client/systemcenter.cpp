@@ -22,6 +22,11 @@ SystemCenter::SystemCenter(QWidget *parent) :
     connect(m_tcpsocket,SIGNAL(readyRead()),
             this,SLOT(readMessage()));//用于接受数据
 
+   m_socket = new QTcpSocket;
+   m_socket->connectToHost(QHostAddress::LocalHost, 7777);
+   connect(m_socket, SIGNAL(readyRead()),
+           this, SLOT(readMessage()));
+
 
     this->setAttribute(Qt::WA_DeleteOnClose);
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowMinimizeButtonHint);
@@ -213,6 +218,18 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_107->setText(QChar(0xf56e));
     ui->label_107->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_85->setFont(font);
+    ui->label_85->setText(QChar(0xf1b3));
+    ui->label_85->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_110->setFont(font);
+    ui->label_110->setText(QChar(0xf560));
+    ui->label_110->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_191->setFont(font);
+    ui->label_191->setText(QChar(0xf52d));
+    ui->label_191->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
     QFont sp_font;
     sp_font.setFamily(fontFamilies.at(0));
@@ -329,6 +346,12 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_A->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_A->setAlternatingRowColors(true);
 
+    ui->tableWidget_logistics_B->horizontalHeader()->setDefaultSectionSize(150);
+    ui->tableWidget_logistics_B->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_B->verticalHeader()->setDefaultSectionSize(50);
+    ui->tableWidget_logistics_B->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_B->setAlternatingRowColors(true);
+
 
 
     QApplication::processEvents();
@@ -345,7 +368,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     connect(ui->quantity_D, SIGNAL(returnPressed()), ui->clothes_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
 
     connect(ui->warehouse_id, SIGNAL(returnPressed()), ui->w_search_A, SIGNAL(clicked()), Qt::UniqueConnection);
+
+    connect(ui->quantity_logistics, SIGNAL(returnPressed()), ui->logistics_ADD, SIGNAL(clicked()), Qt::UniqueConnection);
+
     QApplication::processEvents();
+
 
     /**
      * purchase/deliver page date/time label display
@@ -402,6 +429,8 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_providerInfo->verticalHeader()->setVisible(false);
     ui->tableWidget_providerInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_providerInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_providerInfo->setStyleSheet("selection-background-color::lightblue");
+    ui->label_showPicPath->setVisible(false);
 
     /**
      * Add new staff page setting
@@ -413,11 +442,28 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_newStaffEmailTip->setVisible(false);
     ui->label_repeatPasswordTip->setVisible(false);
     ui->label_showNewPortraitName->setVisible(false);
+    ui->label_showNewPortraitPath->setVisible(false);
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
-    ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
 
 
+    ui->progressBar->setVisible(true);
+    ui->progressBar->setRange(0, 100);
+    ui->progressBar->setValue(10);
+
+
+    ui->label_updateEmailTip->setVisible(false);
+    ui->label_updatePasswordTip->setVisible(false);
+    /**
+     * update staff information page setting
+     *
+     * @author Yihan Dong
+    */
+    ui->tableWidget_updateShowStaffInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_updateShowStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_updateShowStaffInfo->setAlternatingRowColors(true);
+    ui->tableWidget_updateShowStaffInfo->verticalHeader()->setVisible(false);
+    ui->tableWidget_updateShowStaffInfo->setStyleSheet("selection-background-color::lightblue");
 
 //    //initialize furry search
 
@@ -426,15 +472,20 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     warehouseEditComplete();
     m_tcpsocket->flush();
 
+    ui->progressBar->setValue(20);
+
 
     t.start();
     while(t.elapsed()<1000)
         QCoreApplication::processEvents();
 
+    ui->progressBar->setValue(35);
 
     //initialize arriving table
     transfer();
     m_tcpsocket->flush();
+
+    ui->progressBar->setValue(50);
 
 //    QMovie *movie = new QMovie(":/movie.gif");
 //    ui->label_title->setMovie(movie);
@@ -495,9 +546,9 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     }
     if(index == 1){
         ui->pushButton_A->setVisible(true);
-        ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(true);
+        ui->pushButton_B->setVisible(false);
+        ui->pushButton_C->setVisible(false);
+        ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Generate");
         ui->pushButton_B->setText("Deliver");
@@ -531,8 +582,8 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 4){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(true);
-        ui->pushButton_D->setVisible(true);
+        ui->pushButton_C->setVisible(false);
+        ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Record");
         ui->pushButton_B->setText("Delivery");
@@ -543,24 +594,24 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     if(index == 5){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(false);
-        ui->pushButton_D->setVisible(false);
+        ui->pushButton_C->setVisible(true);
+        ui->pushButton_D->setVisible(true);
 
         ui->pushButton_A->setText("Display");
         ui->pushButton_B->setText("Append");
-        ui->pushButton_C->setText("");
-        ui->pushButton_D->setText("");
+        ui->pushButton_C->setText("Addition");
+        ui->pushButton_D->setText("P&E");
 
     }
     if(index == 6){
         ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
-        ui->pushButton_C->setVisible(false);
+        ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(false);
 
         ui->pushButton_A->setText("Garment");
-        ui->pushButton_B->setText("Provider");
-        ui->pushButton_C->setText("");
+        ui->pushButton_B->setText("Management");
+        ui->pushButton_C->setText("Addition");
         ui->pushButton_D->setText("");
 
     }
@@ -591,9 +642,12 @@ void SystemCenter::on_pushButton_A_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -619,9 +673,12 @@ void SystemCenter::on_pushButton_B_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_systempage_3->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 }
 
 /**
@@ -647,9 +704,12 @@ void SystemCenter::on_pushButton_C_clicked()
 
     //C
     ui->frame_2C->setVisible(true);
+    ui->frame_systempage_3->setVisible(true);
+    ui->frame_personnelpage_3->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
+    ui->frame_personnelpage_4->setVisible(false);
 
 }
 
@@ -676,9 +736,11 @@ void SystemCenter::on_pushButton_D_clicked()
 
     //C
     ui->frame_2C->setVisible(false);
+    ui->frame_personnelpage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
+    ui->frame_personnelpage_4->setVisible(true);
 }
 
 
@@ -808,4 +870,18 @@ void SystemCenter::on_style_change_clicked()
                                         "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
     }
     style = !style;
+}
+
+
+
+void SystemCenter::error(QNetworkReply::NetworkError error)
+{
+    switch (error) {
+    case QNetworkReply::HostNotFoundError:
+        qDebug() << tr("主机没有找到");
+
+        break;
+    default:
+        break;
+    }
 }

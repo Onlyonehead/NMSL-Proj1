@@ -87,6 +87,7 @@ void SystemCenter::on_pushButton_updateProviderInfo_clicked()
  */
 void SystemCenter::on_tableWidget_providerInfo_cellClicked(int row, int column)
 {
+    Q_UNUSED(column);
     ui->label_providerID->setText(ui->tableWidget_providerInfo->item(row, 0)->text());
     ui->lineEdit_changeProviderAds->setText(ui->tableWidget_providerInfo->item(row, 1)->text());
     ui->lineEdit_changeProviderName->setText(ui->tableWidget_providerInfo->item(row, 2)->text());
@@ -97,4 +98,25 @@ void SystemCenter::on_tableWidget_providerInfo_cellClicked(int row, int column)
     qDebug() << ui->tableWidget_providerInfo->item(row, 3)->text() << endl;
 
 }
+
+
+
+/**
+ * @brief SystemCenter::on_pushButton_addProviderInfo_clicked
+ * add provider information
+ * @author Yihan Dong
+ */
+void SystemCenter::on_pushButton_addProviderInfo_clicked()
+{
+    QString providerAds = ui->lineEdit_addProviderAds->text();
+    QString providerName = ui->lineEdit_addProviderName->text();
+    QString providerProduct = ui->lineEdit_addProvideProduct->text();
+    QStringList list;
+    list.append("pp_api");
+    list.append(providerAds);
+    list.append(providerName);
+    list.append(providerProduct);
+    sendMessage(list);
+}
+
 

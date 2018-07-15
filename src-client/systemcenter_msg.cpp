@@ -35,7 +35,7 @@ void SystemCenter::readMessage()
     qDebug() << "From: " << from << endl;
     if(from == "transfer"){
 
-        ui->progressBar->setValue(70);
+        ui->progressBar->setValue(80);
         int count1 = 0;
         int count2 = 0;
 
@@ -64,7 +64,7 @@ void SystemCenter::readMessage()
             count1 += list.at(2).toInt();
         }
 
-        ui->progressBar->setValue(80);
+        ui->progressBar->setValue(85);
 
 
         for(QStringList list: arriving){
@@ -88,8 +88,6 @@ void SystemCenter::readMessage()
     }
 
     if(from == "info_whEC"){
-        ui->progressBar->setVisible(true);
-        ui->progressBar->setRange(0, 100);
 
         QStringList wordlist;
         in >> wordlist;
@@ -104,7 +102,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_A->setCompleter(completer);
 
-        ui->progressBar->setValue(10);
+        ui->progressBar->setValue(55);
 
         wordlist.clear();
         in >> wordlist;
@@ -118,7 +116,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_C->setCompleter(completer);
 
-        ui->progressBar->setValue(20);
+        ui->progressBar->setValue(60);
 
 
         wordlist.clear();
@@ -134,7 +132,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_B->setCompleter(completer);
 
-        ui->progressBar->setValue(30);
+        ui->progressBar->setValue(65);
 
         wordlist.clear();
         in >> wordlist;
@@ -149,7 +147,7 @@ void SystemCenter::readMessage()
                                           "	font: 17pt \"Times\" bold;");
         ui->warehouse_search_D->setCompleter(completer);
 
-        ui->progressBar->setValue(40);
+        ui->progressBar->setValue(70);
     }
     if(from == "isC"){
         ui->tableWidget_C1->setRowCount(0);
@@ -500,6 +498,8 @@ void SystemCenter::readMessage()
     }
 
     if(from == "orderinfo"){
+        ui->tableWidget_logistics_A->setRowCount(0);
+        ui->tableWidget_logistics_B->setRowCount(0);
         QVector<QStringList> vlist;
         in >> vlist;
         this->orderList = vlist;
@@ -515,6 +515,21 @@ void SystemCenter::readMessage()
             count++;
         }
         ui->tableWidget_logistics_A->setRowCount(count);
+
+        QStringList list;
+        in >> list;
+
+        int n = list.size();
+
+        while(n){
+
+            QApplication::processEvents();
+            ui->tableWidget_logistics_B->insertRow(list.size()-n);
+            ui->tableWidget_logistics_B->setItem(list.size()-n, 0, new QTableWidgetItem(list.at(list.size()-n)));
+            n--;
+        }
+
+        ui->tableWidget_logistics_B->setRowCount(list.size());
         progressBar();
     }
 
@@ -550,6 +565,36 @@ void SystemCenter::readMessage()
         progressBar();
     }
 
+    if(from == "tWlAiC"){
+        ui->tableWidget_logistics_C->setRowCount(0);
+        QMap<QString, QString> stock;
+        in >> stock;
+
+        QMap<QString, QString> clothes;
+        in >> clothes;
+
+        QApplication::processEvents();
+
+        int count = 0;
+        for(QMap<QString, QString>::const_iterator i = stock.begin(); i != stock.end(); ++i){
+            QString clothes_name;
+            clothes_name = clothes.value(i.key());
+            QApplication::processEvents();
+            ui->tableWidget_logistics_C->insertRow(count);
+            ui->tableWidget_logistics_C->setItem(count, 0, new QTableWidgetItem(i.key() +
+                                                                       " - " + clothes_name));
+            ui->tableWidget_logistics_C->setItem(count, 1, new QTableWidgetItem(i.value()));
+
+            QApplication::processEvents();
+            count++;
+        }
+
+        ui->tableWidget_logistics_C->setRowCount(count);
+
+
+        progressBar_fast();
+    }
+
 
 
 
@@ -569,7 +614,14 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_garmentInfo->setRowCount(i);
         progressBar();
-    } //providerpage show provider info
+    } // system page add new garment
+    if(from == "sp_confirmAddG"){
+        QMessageBox::information(NULL, tr("提示"), tr("新服装已添加完成，已可查看"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    } // system page save picture
+    if(from == "sp_sendPic"){
+        qDebug() << "save picture success";
+    }//providerpage show provider info
     if(from == "pp_sp"){
         ui->tableWidget_providerInfo->setRowCount(0);
         int i = 0;
@@ -589,8 +641,13 @@ void SystemCenter::readMessage()
         progressBar();
     } // providerpage hange provider info
     if(from == "pp_cpi"){
-        qDebug() << "Change information successfully";
-    } // personnelpage1 show staff info
+        QMessageBox::information(NULL, tr("提示"), tr("供货商信息修改成功！"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    } // provider page add new provider
+    if(from == "pp_api"){
+        QMessageBox::information(NULL, tr("提示"), tr("新供货商已添加成功！现在已可查看或下发订单。"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    }// personnelpage1 show staff info
     if(from == "pp1_ss"){
         QVector<QStringList> result;
         in >> result;
@@ -630,7 +687,7 @@ void SystemCenter::readMessage()
         progressBar();
     } // perspnnel page 1 delete staff info
     if(from == "pp1_dsi"){
-        qDebug() << "Delete staff infomation successfully";
+        QMessageBox::information(NULL, tr("提示"), tr("删除员工成功！"), QMessageBox::Yes, QMessageBox::Yes);
     } // personnel page 2 ad  neu staff name
     if(from == "pp2_anu"){
         bool isExisted;
@@ -652,24 +709,7 @@ void SystemCenter::readMessage()
             ui->pushButton_addNewPortrait->setEnabled(true);
             ui->pushButton_confirmNewStaff->setEnabled(true);
         }
-    } //personnel page 2 check password and repeatpassword
-    if(from == "pp2_rp"){
-        bool isSame;
-        in >> isSame;
-        if(isSame == false){
-            ui->label_repeatPasswordTip->setVisible(true);
-            ui->lineEdit_addNewName->setEnabled(false);
-            ui->lineEdit_addNewEmail->setEnabled(false);
-            ui->pushButton_addNewPortrait->setEnabled(false);
-            ui->pushButton_confirmNewStaff->setEnabled(false);
-        }else {
-            ui->label_repeatPasswordTip->setVisible(false);
-            ui->lineEdit_addNewName->setEnabled(true);
-            ui->lineEdit_addNewEmail->setEnabled(true);
-            ui->pushButton_addNewPortrait->setEnabled(true);
-            ui->pushButton_confirmNewStaff->setEnabled(true);
-        }
-    } // personnel page 2 add new email
+    }  // personnel page 2 add new email
     if(from == "pp2_ane"){
         bool isExisted;
         in >> isExisted;
@@ -682,7 +722,58 @@ void SystemCenter::readMessage()
             ui->pushButton_addNewPortrait->setEnabled(true);
             ui->pushButton_confirmNewStaff->setEnabled(true);
         }
-    } // purchase page show garment info
+    } // personnel page 2 add new portrait
+    if(from == "pp2_anp"){
+        qDebug() << "add portrait success!";
+    }
+    // personnel page 2 confirm add new staff
+    if(from == "pp2_cns"){
+        QMessageBox::information(NULL, tr("提示"), tr("添加新员工成功！现已可查询此员工信息。"),
+                                 QMessageBox::Yes , QMessageBox::Yes);
+        ui->lineEdit_addNewUsername->clear();
+        ui->lineEdit_addNewPassword->clear();
+        ui->lineEdit_repeatPassword->clear();
+        ui->lineEdit_addNewName->clear();
+        ui->lineEdit_addNewEmail->clear();
+        ui->label_showNewPortrait->clear();
+        ui->label_showNewPortraitName->clear();
+        ui->label_showNewPortraitPath->clear();
+    }// personnel page 4 check if email exists
+    if(from == "pp4_ise"){
+        bool isEmailExisted;
+        in >> isEmailExisted;
+        if(!isEmailExisted){
+            ui->label_updateEmailTip->setVisible(true);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(false);
+            ui->lineEdit_updateStaffOldpassword->setEnabled(false);
+            ui->lineEdit_updateStaffUsername->setEnabled(false);
+            ui->pushButton_changeStaffpassword->setEnabled(false);
+        }else {
+            ui->label_updateEmailTip->setVisible(false);
+            ui->lineEdit_updateStaffOldpassword->setEnabled(true);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(true);
+            ui->lineEdit_updateStaffUsername->setEnabled(true);
+            ui->pushButton_changeStaffpassword->setEnabled(true);
+        }
+    }// personnel page 4 check if old password right
+    if(from == "pp4_cop"){
+        bool isPasswordRight;
+        in >> isPasswordRight;
+        if(!isPasswordRight){
+            ui->label_updatePasswordTip->setVisible(true);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(false);
+            ui->lineEdit_updateStaffUsername->setEnabled(false);
+            ui->pushButton_changeStaffpassword->setEnabled(false);
+        }else {
+            ui->label_updatePasswordTip->setVisible(false);
+            ui->lineEdit_updateStaffNewpassword->setEnabled(true);
+            ui->lineEdit_updateStaffUsername->setEnabled(true);
+            ui->pushButton_changeStaffpassword->setEnabled(true);
+        }
+    }//personnel page 4 update password & username
+    if(from == "pp4_csp"){
+        QMessageBox::information(NULL, tr("提示"), tr("用户名和密码已修改。"), QMessageBox::Yes, QMessageBox::Yes);
+    }// purchase page show garment info
     if(from == "pcp_sg"){
         int i = 0;
         QVector<QStringList> result;
@@ -698,7 +789,27 @@ void SystemCenter::readMessage()
         }
         ui->tableWidget_generateOrder->setRowCount(i);
         progressBar();
-    } // purchase page show garment detailed information
+    }// personnel page 3 show staff
+    if(from == "pp3_upss"){
+        int i = 0;
+        QVector<QStringList> result;
+        in >> result;
+        for(QStringList list : result){
+            ui->tableWidget_updateShowStaffInfo->insertRow(i);
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 1, new QTableWidgetItem(list.at(2)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 2, new QTableWidgetItem(list.at(3)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 3, new QTableWidgetItem(list.at(4)));
+            ui->tableWidget_updateShowStaffInfo->setItem(i, 4, new QTableWidgetItem(list.at(5)));
+            i++;
+        }
+        ui->tableWidget_updateShowStaffInfo->setRowCount(i);
+        progressBar();
+    }// personnel page 3 update staff information
+    if(from == "pp3_csi"){
+        QMessageBox::information(NULL, tr("提示"), tr("用户信息更改成功！已经赋予新的权限。"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
+    }// purchase page show garment detailed information
     if(from == "pcp_sgdi"){
         QStringList result;
         in >> result;
@@ -754,6 +865,10 @@ void SystemCenter::readMessage()
         ui->label_deliverShowName->setText(result.at(2));
         ui->label_deliverShowProduct->setText(result.at(3));
         progressBar();
+    }//deliver page deliver order successfully information
+    if(from == "dp_do"){
+        QMessageBox::information(NULL, tr("提示"), tr("订单分发成功，预计三天后送达至总仓库，现已可查询"),
+                                 QMessageBox::Yes, QMessageBox::Yes);
     }
 
 

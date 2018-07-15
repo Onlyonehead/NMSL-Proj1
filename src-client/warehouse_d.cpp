@@ -37,8 +37,6 @@ void SystemCenter::on_pushButton_11_clicked()
 
 void SystemCenter::on_tableWidget_D1_itemClicked(QTableWidgetItem *item){
 
-    ui->tableWidget_B_2->setRowCount(0);
-    ui->label_35->clear();
     QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
     QStringList msg;
@@ -50,8 +48,6 @@ void SystemCenter::on_tableWidget_D1_itemClicked(QTableWidgetItem *item){
 
 void SystemCenter::on_tableWidget_D2_itemClicked(QTableWidgetItem *item){
 
-    ui->tableWidget_B_2->setRowCount(0);
-    ui->label_35->clear();
     QString s = item->text().split(QRegExp("[-:]"))[1].trimmed();
 
     ui->warehouse_label_D->setText(item->text().split(QRegExp("[-:]"))[3].trimmed());
