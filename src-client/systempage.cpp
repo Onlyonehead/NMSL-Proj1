@@ -70,85 +70,60 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
 {
 
 
+    QString picName = ui->label_showPicName->text();
 
-//    QStringList list;
-//    list.append("sp_confirmAddG");
-
-
-//    QString garmentStyle;
-//    QString garmentSize;
-//    QString garmentPic;
-//    QString garmentValue;
-
-//    garmentStyle = ui->lineEdit_addGStyle->text();//add garment style
-//    garmentPic = ui->label_showPicName->text();//add garment pic
-//    garmentValue = ui->lineEdit_addGValue->text();//add garment value
-//    list.append(garmentStyle);
-//    list.append(garmentPic);
-//    list.append(garmentValue);
-//    if(ui->checkBox_GsizeS->isChecked()){
-//        garmentSize = ui->checkBox_GsizeS->text();
-//        list.append(garmentSize);
-//        sendMessage(list);
-//    }if(ui->checkBox_GsizeM->isChecked()){
-//        garmentSize = ui->checkBox_GsizeM->text();
-//        list.append(garmentSize);
-//        sendMessage(list);
-//    }if(ui->checkBox_GsizeL->isChecked()){
-//        garmentSize = ui->checkBox_GsizeL->text();
-//        list.append(garmentSize);
-//        sendMessage(list);
-//    }
-
-//    ui->lineEdit_addGStyle->clear();
-//    ui->checkBox_GsizeS->setChecked(false);
-//    ui->checkBox_GsizeM->setChecked(false);
-//    ui->checkBox_GsizeL->setChecked(false);
-//    ui->lineEdit_addGValue->clear();
-//    ui->label_showGPic->clear();
-
-//    QString showPic = ui->label_showPicPath->text();
-//    QImage img(showPic);
-//    QString pictureName = ui->label_showPicName->text();
-
-//    QStringList list;
-//    list.append("sp_sendPic");
-//    list.append(pictureName);
+    QStringList list;
+    list.append("sp_confirmAddG");
 
 
-//    QByteArray message;
-//    QBuffer buffer(&message);
-//    QDataStream out(&message,QIODevice::WriteOnly);
+    QString garmentStyle;
+    QString garmentSize;
+    QString garmentValue;
 
-//    out.setVersion(QDataStream::Qt_5_7);
-//    out << (quint16) 0;
-//    buffer.open(QIODevice::ReadWrite);
-//    img.save(&buffer, "PNG");
-//    out << list;
-//    out << buffer.data();
-//    qDebug() << buffer.data();
+    garmentStyle = ui->lineEdit_addGStyle->text();//add garment style
+    garmentValue = ui->lineEdit_addGValue->text();//add garment value
+    list.append(garmentStyle);
+    list.append(picName);
+    list.append(garmentValue);
+    if(ui->checkBox_GsizeS->isChecked()){
+        garmentSize = ui->checkBox_GsizeS->text();
+        list.append(garmentSize);
+        sendMessage(list);
+    }if(ui->checkBox_GsizeM->isChecked()){
+        garmentSize = ui->checkBox_GsizeM->text();
+        list.append(garmentSize);
+        sendMessage(list);
+    }if(ui->checkBox_GsizeL->isChecked()){
+        garmentSize = ui->checkBox_GsizeL->text();
+        list.append(garmentSize);
+        sendMessage(list);
+    }
 
-//    message.append(buffer.data());
+    ui->lineEdit_addGStyle->clear();
+    ui->checkBox_GsizeS->setChecked(false);
+    ui->checkBox_GsizeM->setChecked(false);
+    ui->checkBox_GsizeL->setChecked(false);
+    ui->lineEdit_addGValue->clear();
+    ui->label_showGPic->clear();
 
-
-//    out.device()->seek(0);
-//    out << (quint16) (message.size() - sizeof(quint16));
-//    m_tcpsocket->write(message);
-
-//    qDebug() << message.count();
 
 
     QString picPath = ui->label_showPicPath->text();
-    QString picName = ui->label_showPicName->text();
-    qDebug() << picPath;
-    qDebug() << picName;
-    ftpManager m_ftp;
-    m_ftp.setHostPort("39.108.155.50", 21);
-    m_ftp.setUserInfo("root", "abcd1234");
-    m_ftp.put(picPath, "/project1/clothes/" + picName);
-    qDebug() << "/project1/clothes/" + picName;
-    connect(&m_ftp, SIGNAL(error(QNetworkReply::NetworkError)), this,SLOT(error(QNetworkReply::NetworkError)));
+    QBuffer buffer;
+    QByteArray message;
+    QDataStream out(&message,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    buffer.open(QIODevice::ReadWrite);
+    QImage img;
+    img.load(picPath);
+    img.save(&buffer,"JPG");
+    out << qint32(buffer.size());
+    out << QString(picName);
+    out << buffer.data();
 
+    m_socket->write(message);
+    m_socket->flush();
+    qDebug("sendpic");
 
 }
 

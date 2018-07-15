@@ -125,6 +125,9 @@ void SystemCenter::on_pushButton_ConfirmOrder_clicked()
             }
         }
 
+        ui->frame_pA->setVisible(false);
+        ui->frame_pB->setVisible(true);
+
         break;
     case QMessageBox::Cancel:
         break;

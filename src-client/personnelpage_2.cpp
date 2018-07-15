@@ -43,12 +43,21 @@ void SystemCenter::on_lineEdit_addNewUsername_editingFinished()
 
 void SystemCenter::on_lineEdit_repeatPassword_editingFinished()
 {
-    QStringList list;
     QString repeatPassword = ui->lineEdit_repeatPassword->text();
     QString password = ui->lineEdit_addNewPassword->text();
-    list.append("pp2_rp");
-    list.append(password);
-    list.append(repeatPassword);
+    if(repeatPassword != password){
+        ui->label_repeatPasswordTip->setVisible(true);
+        ui->lineEdit_addNewName->setEnabled(false);
+        ui->lineEdit_addNewEmail->setEnabled(false);
+        ui->pushButton_addNewPortrait->setEnabled(false);
+        ui->pushButton_confirmNewStaff->setEnabled(false);
+    }else {
+        ui->label_repeatPasswordTip->setVisible(false);
+        ui->lineEdit_addNewName->setEnabled(true);
+        ui->lineEdit_addNewEmail->setEnabled(true);
+        ui->pushButton_addNewPortrait->setEnabled(true);
+        ui->pushButton_confirmNewStaff->setEnabled(true);
+    }
 
 }
 
@@ -92,6 +101,7 @@ void SystemCenter::on_pushButton_addNewPortrait_clicked()
 
     QImage tempPortrait(showPic);
     QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(100, 100, Qt::IgnoreAspectRatio));
+    ui->label_showNewPortraitPath->setText(showPic);
     ui->label_showNewPortrait->setPixmap(portrait);
     ui->label_showNewPortraitName->setText(pictureName);
     ui->label_showNewPortrait->show();
@@ -100,17 +110,6 @@ void SystemCenter::on_pushButton_addNewPortrait_clicked()
     list.append("pp2_anp");
     list.append(pictureName);
 
-    QByteArray message;
-    QDataStream out(&message, QIODevice::ReadOnly);
-    out.setVersion(QDataStream::Qt_5_7);
-    out << (quint16) 0;
-
-    out << list;
-    out << portrait;
-
-    out.device()->seek(0);
-    out << (quint16)(message.size() - sizeof(quint16));
-    m_tcpsocket->write(message);
 
 
 }
@@ -137,6 +136,12 @@ void SystemCenter::on_pushButton_confirmNewStaff_clicked()
     QString position;
     QString email;
     QString pic;
+    QString picPath = ui->label_showNewPortraitPath->text();
+    QBuffer buffer;
+    QByteArray message;
+    QDataStream out(&message,QIODevice::WriteOnly);
+    QImage img;
+
     int ret = msgbox.exec();
     switch (ret) {
     case QMessageBox::Save:
@@ -156,6 +161,19 @@ void SystemCenter::on_pushButton_confirmNewStaff_clicked()
         list.append(email);
         list.append(pic);
         sendMessage(list);
+
+
+        out.setVersion(QDataStream::Qt_5_7);
+        buffer.open(QIODevice::ReadWrite);
+        img.load(picPath);
+        img.save(&buffer,"JPG");
+        out << qint32(buffer.size());
+        out << QString(pic);
+        out << buffer.data();
+
+        m_socket->write(message);
+        m_socket->flush();
+        qDebug("sendpic");
         break;
     case QMessageBox::Cancel:
         break;
@@ -182,3 +200,5 @@ void SystemCenter::on_pushButton_cancelNewStaff_clicked()
     ui->lineEdit_addNewEmail->clear();
     ui->label_showNewPortrait->clear();
 }
+
+

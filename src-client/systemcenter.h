@@ -225,6 +225,7 @@ private:
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;
+    QTcpSocket *m_socket;
 
     QVector<QStringList> stock;
     QVector<QStringList> arriving;

@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -2257,6 +2257,8 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
+     <zorder>frame_pB</zorder>
+     <zorder>frame_pA</zorder>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -9088,34 +9090,17 @@ QPushButton:hover{
          <string/>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_anpShowP">
+       <widget class="QLabel" name="label_showNewPortraitPath">
         <property name="geometry">
          <rect>
-          <x>310</x>
-          <y>90</y>
-          <width>30</width>
-          <height>30</height>
+          <x>50</x>
+          <y>520</y>
+          <width>100</width>
+          <height>20</height>
          </rect>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string/>
         </property>
        </widget>
       </widget>
@@ -10257,9 +10242,9 @@ QLabel{
       </widget>
      </widget>
      <zorder>frame_personnelpage_1</zorder>
-     <zorder>frame_personnelpage_2</zorder>
      <zorder>frame_personnelpage_4</zorder>
      <zorder>frame_personnelpage_3</zorder>
+     <zorder>frame_personnelpage_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -11311,9 +11296,6 @@ background: rgb(248, 248, 248);
        </widget>
       </widget>
      </widget>
-     <zorder>frame_systempage_3</zorder>
-     <zorder>frame_systempage_2</zorder>
-     <zorder>frame_systempage_1</zorder>
     </widget>
    </widget>
    <widget class="QProgressBar" name="progressBar">

@@ -22,6 +22,11 @@ SystemCenter::SystemCenter(QWidget *parent) :
     connect(m_tcpsocket,SIGNAL(readyRead()),
             this,SLOT(readMessage()));//用于接受数据
 
+   m_socket = new QTcpSocket;
+   m_socket->connectToHost(QHostAddress::LocalHost, 7777);
+   connect(m_socket, SIGNAL(readyRead()),
+           this, SLOT(readMessage()));
+
 
     this->setAttribute(Qt::WA_DeleteOnClose);
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowMinimizeButtonHint);
@@ -437,9 +442,9 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_newStaffEmailTip->setVisible(false);
     ui->label_repeatPasswordTip->setVisible(false);
     ui->label_showNewPortraitName->setVisible(false);
+    ui->label_showNewPortraitPath->setVisible(false);
     ui->lineEdit_addNewPassword->setEchoMode(QLineEdit::Password);
     ui->lineEdit_repeatPassword->setEchoMode(QLineEdit::Password);
-    ui->pushButton_anpShowP->setIcon(QIcon("/new/prefix1/showPassword.jpg"));
 
 
     ui->progressBar->setVisible(true);
@@ -541,7 +546,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
     }
     if(index == 1){
         ui->pushButton_A->setVisible(true);
-        ui->pushButton_B->setVisible(true);
+        ui->pushButton_B->setVisible(false);
         ui->pushButton_C->setVisible(false);
         ui->pushButton_D->setVisible(false);
 

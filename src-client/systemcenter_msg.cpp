@@ -709,24 +709,7 @@ void SystemCenter::readMessage()
             ui->pushButton_addNewPortrait->setEnabled(true);
             ui->pushButton_confirmNewStaff->setEnabled(true);
         }
-    } //personnel page 2 check password and repeatpassword
-    if(from == "pp2_rp"){
-        bool isSame;
-        in >> isSame;
-        if(isSame == false){
-            ui->label_repeatPasswordTip->setVisible(true);
-            ui->lineEdit_addNewName->setEnabled(false);
-            ui->lineEdit_addNewEmail->setEnabled(false);
-            ui->pushButton_addNewPortrait->setEnabled(false);
-            ui->pushButton_confirmNewStaff->setEnabled(false);
-        }else {
-            ui->label_repeatPasswordTip->setVisible(false);
-            ui->lineEdit_addNewName->setEnabled(true);
-            ui->lineEdit_addNewEmail->setEnabled(true);
-            ui->pushButton_addNewPortrait->setEnabled(true);
-            ui->pushButton_confirmNewStaff->setEnabled(true);
-        }
-    } // personnel page 2 add new email
+    }  // personnel page 2 add new email
     if(from == "pp2_ane"){
         bool isExisted;
         in >> isExisted;
@@ -747,13 +730,14 @@ void SystemCenter::readMessage()
     if(from == "pp2_cns"){
         QMessageBox::information(NULL, tr("提示"), tr("添加新员工成功！现已可查询此员工信息。"),
                                  QMessageBox::Yes , QMessageBox::Yes);
-        ui->lineEdit_addNewName->clear();
+        ui->lineEdit_addNewUsername->clear();
         ui->lineEdit_addNewPassword->clear();
         ui->lineEdit_repeatPassword->clear();
         ui->lineEdit_addNewName->clear();
         ui->lineEdit_addNewEmail->clear();
         ui->label_showNewPortrait->clear();
         ui->label_showNewPortraitName->clear();
+        ui->label_showNewPortraitPath->clear();
     }// personnel page 4 check if email exists
     if(from == "pp4_ise"){
         bool isEmailExisted;

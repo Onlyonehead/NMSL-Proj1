@@ -416,32 +416,7 @@ void Processor::work ()
         Garment::addGarmentForm(garmentSytle, garmentSize, garmentPic, garmentPrice);
         out << function;
     }
-    //system page send picture to server
-    if(function == "sp_sendPic"){
-//        QString pictureName;
-//        pictureName = list.at(0);
-//        QByteArray byte;
-//        in >> byte;
-//        QImage img;
 
-//        qDebug() << byte;
-//        pictureName = "./clothes/" + pictureName;
-//        qDebug() << pictureName;
-//        img.loadFromData(byte, "PNG");
-//        img.save(pictureName, "PNG", -1);
-//        qDebug() << img;
-
-//        out << function;
-//        QImage image;
-//        in >> image;
-//        qDebug() << image;
-//        QString pictureName = list.at(0);
-//        pictureName = "./clothes/" + pictureName;
-//        qDebug() << pictureName;
-//        QPixmap pixmap = QPixmap::fromImage(image);
-//        pixmap.save(pictureName, "jpg", -1);
-//        out << function;
-    }
     //providerpage show provider info
     if(function == "pp_sp"){
         QVector<QStringList> result;
@@ -508,20 +483,6 @@ void Processor::work ()
         out << function;
         out << isExisted;
     }
-    //personnel page 2 check password
-    if(function == "pp2_rp"){
-        QString password, repeatPassword;
-        password = list.at(0);
-        repeatPassword = list.at(1);
-        bool isSame;
-        if(password == repeatPassword){
-            isSame = true;
-        }else {
-            isSame = false;
-        }
-        out << function;
-        out << isSame;
-    }
     //personnel page 2 add new email
     if(function == "pp2_ane"){
         QString email = list.at(0);
@@ -553,6 +514,8 @@ void Processor::work ()
         QString position = list.at(4);
         QString email = list.at(5);
         QString userPic = list.at(6);
+        qDebug() << position <<endl;
+        qDebug() << email << endl;
         Staff::addNewStaff(username, password, name, gender,
                            position, email, userPic);
         out << function;

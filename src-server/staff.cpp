@@ -18,7 +18,7 @@ Staff::Staff()
 */
 
 void Staff::addNewStaff(QString username, QString password,
-                        QString name, QString gender, QString email, QString position, QString userPic)
+                        QString name, QString gender, QString position, QString email, QString userPic)
 {
 
     QStringList staffInfo;
