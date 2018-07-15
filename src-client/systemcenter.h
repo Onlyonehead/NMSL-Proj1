@@ -246,8 +246,6 @@ private slots:
 
     void on_pushButton_54_clicked();
 
-    void on_pushButton_20_clicked();
-
     void on_pushButton_28_clicked();
 
     void on_pushButton_22_clicked();
@@ -260,17 +258,11 @@ private slots:
 
     void on_pushButton_29_clicked();
 
-    void on_pushButton_23_clicked();
-
     void on_tableWidget_itemClicked(QTableWidgetItem *item);
 
     void finishedSlotForEdit(QNetworkReply* reply);
 
-    void on_pushButton_24_clicked();
-
     void on_pushButton_25_clicked();
-
-    void on_pushButton_19_clicked();
 
     void on_tableWidget_logistics_C1_itemClicked(QTableWidgetItem *item);
 

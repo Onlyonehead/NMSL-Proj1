@@ -2414,16 +2414,6 @@ background: none;
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <zorder>tableWidget_deliverGarment</zorder>
-      <zorder>tableWidget_deliverProvider</zorder>
-      <zorder>pushButton_deliverShowProvider</zorder>
-      <zorder>groupBox_9</zorder>
-      <zorder>pushButton_deliverOrder</zorder>
-      <zorder>pushButton_deliverCancelChoose</zorder>
-      <zorder>label_showOrderTime_2</zorder>
-      <zorder>frame_pA</zorder>
-      <zorder>label_312</zorder>
-      <zorder>label_313</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="tab">

@@ -43,7 +43,7 @@ SOURCES += main.cpp \
     providerpage.cpp \
     personnelpage_1.cpp \
     personnelpage_2.cpp \
-	deliverpage.cpp \
+    deliverpage.cpp \
     personnelpage_3.cpp \
     main_tab_sell.cpp \
     main_tab_stock.cpp \
@@ -59,7 +59,7 @@ SOURCES += main.cpp \
     logistics_a.cpp \
     logistics_b.cpp \
     sell_c.cpp \
-    sell_d.cpp
+    sell_d.cpp \
     qtmap.cpp \
     bridge.cpp \
     logistics_c.cpp
