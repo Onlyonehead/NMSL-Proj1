@@ -1597,6 +1597,9 @@ background: none;
          <y>320</y>
          <width>250</width>
          <height>200</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
      <zorder>frame_pB</zorder>
      <zorder>frame_pA</zorder>
@@ -1786,7 +1789,9 @@ QTableWidget::item{
          <y>50</y>
          <width>125</width>
          <height>200</height>
-		 
+         </rect>
+        </property>
+       </widget>
       <widget class="QLabel" name="label_109">
        <property name="geometry">
         <rect>
@@ -1877,7 +1882,8 @@ QTableWidget::item{
          <x>30</x>
          <y>10</y>
          <width>100</width>
-         <string>id</string>
+        </rect>
+        <string>id</string>
         </property>
         <property name="foreground">
          <brush brushstyle="SolidPattern">
@@ -1888,7 +1894,6 @@ QTableWidget::item{
           </color>
          </brush>
         </property>
-       </column>
        <column>
         <property name="text">
          <string>quantity</string>
