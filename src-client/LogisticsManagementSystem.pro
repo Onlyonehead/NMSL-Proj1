@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LogisticsManagementSystem
 TEMPLATE = app
 
-PRECOMPILED_HEADER = stable.h
+PRECOMPILED_HEADER =
 
 CONFIG+=resources_big
 
@@ -36,8 +36,6 @@ SOURCES += main.cpp \
     warehouse_c.cpp \
     purchasepage.cpp \
     systempage.cpp \
-    garment.cpp \
-    provider.cpp \
     warehouse_b.cpp \
     record.cpp \
     providerpage.cpp \
@@ -49,9 +47,7 @@ SOURCES += main.cpp \
     main_tab_stock.cpp \
     main_tab_record.cpp \
     main_tab_delivery.cpp \
-    sqltool.cpp \
     systemcenter_msg.cpp \
-    order.cpp \
     sell_a.cpp \
     warehouse_d.cpp \
     sell_b.cpp \
@@ -71,12 +67,7 @@ HEADERS  += \
     systemcenter.h \
     forgetpassword.h \
     mainwindow.h\
-    garment.h \
-    provider.h \
     record.h \
-    stable.h \
-    sqltool.h \
-    order.h \
     tool.h \
     qtmap.h \
     bridge.h

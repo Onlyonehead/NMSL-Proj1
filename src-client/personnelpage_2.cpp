@@ -1,6 +1,5 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
-#include "sqltool.h"
 #include <QDebug>
 #include <QTableWidget>
 #include <QAbstractItemView>

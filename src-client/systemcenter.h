@@ -24,7 +24,6 @@
 #include <QTime>
 #include <QDateTime>
 #include <QDate>
-#include "garment.h"
 #include <QCompleter>
 #include <QStringListModel>
 #include <QtNetwork>

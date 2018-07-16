@@ -1,7 +1,5 @@
 #include "systemcenter.h"
-#include "sqltool.h"
 #include "ui_systemcenter.h"
-#include "garment.h"
 #include "ftpmanager.h"
 #include <QPixmap>
 #include <QVector>

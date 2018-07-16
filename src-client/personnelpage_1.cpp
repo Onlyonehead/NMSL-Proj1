@@ -1,6 +1,5 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
-#include "sqltool.h"
 #include <QDebug>
 #include <QTableWidget>
 #include <QAbstractItemView>
@@ -48,6 +47,7 @@ void SystemCenter::on_pushButton_showStaff_clicked()
 
 void SystemCenter::on_pushButton_clearStaff_clicked()
 {
+
     ui->tableWidget_showStaffInfo->setRowCount(0);
 }
 
