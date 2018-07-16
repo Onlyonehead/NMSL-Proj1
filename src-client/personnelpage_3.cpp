@@ -13,11 +13,6 @@
 #include <QDataStream>
 
 
-
-
-
-
-
 /**
  * @brief SystemCenter::on_pushButton_updatePageShowStaff_clicked
  * personnel page 3 show staff info

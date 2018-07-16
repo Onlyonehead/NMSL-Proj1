@@ -14952,9 +14952,9 @@ QTableWidget::item{
       <widget class="QTableWidget" name="tableWidget_showStaffInfo">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>90</y>
-         <width>646</width>
+         <x>50</x>
+         <y>80</y>
+         <width>630</width>
          <height>280</height>
         </rect>
        </property>
@@ -15032,10 +15032,10 @@ QTableWidget::item{
       <widget class="QPushButton" name="pushButton_showStaff">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>115</x>
          <y>30</y>
-         <width>140</width>
-         <height>28</height>
+         <width>191</width>
+         <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -15064,8 +15064,8 @@ QPushButton:hover{
         <rect>
          <x>420</x>
          <y>30</y>
-         <width>140</width>
-         <height>28</height>
+         <width>191</width>
+         <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -18948,9 +18948,9 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
+     <zorder>frame_systempage_3</zorder>
      <zorder>frame_systempage_1</zorder>
      <zorder>frame_systempage_2</zorder>
-     <zorder>frame_systempage_3</zorder>
     </widget>
    </widget>
    <widget class="QProgressBar" name="progressBar">
