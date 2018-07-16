@@ -359,9 +359,9 @@ void SystemCenter::readMessage()
         QString price = result.at(4);
 
         QApplication::processEvents();
-        QPixmap *pixmap = new QPixmap(USER_DIR + path);
-        if(pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
+        QPixmap *pixmap = new QPixmap(DIR + QString("/clothes/") + path);
+        if (pixmap->isNull()){
+            download("/clothes/" + path, DIR + QString("/clothes/") + path);
         }
 
         if (pixmap->isNull()){
@@ -449,11 +449,10 @@ void SystemCenter::readMessage()
         QString price = result.at(4);
 
         QApplication::processEvents();
-        QPixmap *pixmap = new QPixmap(USER_DIR + path);
-        if(pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
+        QPixmap *pixmap = new QPixmap(DIR + QString("/clothes/") + path);
+        if (pixmap->isNull()){
+            download("/clothes/" + path, DIR + QString("/clothes/") + path);
         }
-
         if (pixmap->isNull()){
             pixmap = new QPixmap(":/default.jpg");
         }
@@ -736,30 +735,36 @@ void SystemCenter::readMessage()
         }
     }
 
-    //systempage show garment info
-    if(from == "sp_sg"){
-        QVector<QStringList> result;
-        in >> result;
-        int i = 0;
-        for(QStringList list : result){
-            ui->tableWidget_garmentInfo->insertRow(i);
-            ui->tableWidget_garmentInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
-            ui->tableWidget_garmentInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
-            ui->tableWidget_garmentInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
-            ui->tableWidget_garmentInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
-            ui->tableWidget_garmentInfo->setItem(i, 4, new QTableWidgetItem(list.at(4)));
-            i++;
+    if(from == "createStore"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n已成功添加！",QMessageBox::Ok);
+            on_pushButton_54_clicked();
         }
-        ui->tableWidget_garmentInfo->setRowCount(i);
-        progressBar();
-    } // system page add new garment
+    }
+
+
+    // system page add new garment
     if(from == "sp_confirmAddG"){
+        QVector<QStringList> garmentInfo;
+        in >> garmentInfo;
+
         QMessageBox::information(NULL, tr("提示"), tr("新服装已添加完成，已可查看"),
                                  QMessageBox::Yes, QMessageBox::Yes);
-    } // system page save picture
+        on_clearGarment_clicked();
+
+        for(QStringList l : garmentInfo){
+            this->clothes.append(l);
+        }
+    }
+    // system page save picture
+
     if(from == "sp_sendPic"){
         qDebug() << "save picture success";
-    }//providerpage show provider info
+    }
+    //providerpage show provider info
+
     if(from == "pp_sp"){
         ui->tableWidget_providerInfo->setRowCount(0);
         int i = 0;
@@ -771,8 +776,8 @@ void SystemCenter::readMessage()
             ui->tableWidget_providerInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
             ui->tableWidget_providerInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
             ui->tableWidget_providerInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
-            QTableWidgetItem *item = ui->tableWidget_providerInfo->item(i, 0);
-            item->setFlags(item->flags() & (Qt::ItemIsEditable));
+//            QTableWidgetItem *item = ui->tableWidget_providerInfo->item(i, 0);
+//            item->setFlags(item->flags() & (Qt::ItemIsEditable));
             i++;
         }
         ui->tableWidget_providerInfo->setRowCount(i);
@@ -781,10 +786,12 @@ void SystemCenter::readMessage()
     if(from == "pp_cpi"){
         QMessageBox::information(NULL, tr("提示"), tr("供货商信息修改成功！"),
                                  QMessageBox::Yes, QMessageBox::Yes);
+        on_pushButton_clearProvider_clicked();
     } // provider page add new provider
     if(from == "pp_api"){
         QMessageBox::information(NULL, tr("提示"), tr("新供货商已添加成功！现在已可查看或下发订单。"),
                                  QMessageBox::Yes, QMessageBox::Yes);
+        on_pushButton_addProviderInfo_2_clicked();
     }// personnelpage1 show staff info
     if(from == "pp1_ss"){
         QVector<QStringList> result;
@@ -909,7 +916,27 @@ void SystemCenter::readMessage()
         }
     }//personnel page 4 update password & username
     if(from == "pp4_csp"){
+
+
+
+        QString newUsername, oldUsername;
+        in >> newUsername;
+        in >> oldUsername;
         QMessageBox::information(NULL, tr("提示"), tr("用户名和密码已修改。"), QMessageBox::Yes, QMessageBox::Yes);
+        if(ui->label_2->text().trimmed() == oldUsername){
+            QFile file(DIR + QString("/pwd.data"));
+            if (file.exists()){
+                file.remove();
+            }
+
+            Login *lg = new Login;
+            connect(this, SIGNAL(stringReturn(QString)), lg, SLOT(showString(QString)));
+            emit stringReturn(newUsername);
+            this->close();
+        }else{
+            on_pushButton_cancelStaffpasswordChange_clicked();
+        }
+
     }// purchase page show garment info
     if(from == "pcp_sg"){
         int i = 0;
@@ -944,8 +971,9 @@ void SystemCenter::readMessage()
         progressBar();
     }// personnel page 3 update staff information
     if(from == "pp3_csi"){
-        QMessageBox::information(NULL, tr("提示"), tr("用户信息更改成功！已经赋予新的权限。"),
+        QMessageBox::information(NULL, tr("提示"), tr("用户信息更改成功!"),
                                  QMessageBox::Yes, QMessageBox::Yes);
+        on_pushButton_updatePageClearStaff_clicked();
     }// deliver page show provider ids
     if(from == "dp_sp"){
         int i = 0;
@@ -1203,14 +1231,7 @@ void SystemCenter::readMessage()
 
         QVector<QStringList> qv;
         in >> qv;
-
-        ui->tw_sell_C2->verticalHeader()->setVisible(false);
         ui->tw_sell_C2->setRowCount(qv.size());
-        ui->tw_sell_C2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-        ui->tw_sell_C2->horizontalHeader()->resizeSection(0, 40);
-        ui->tw_sell_C2->horizontalHeader()->resizeSection(1, 170);
-        ui->tw_sell_C2->horizontalHeader()->resizeSection(2, 75);
 
         int i=0;
         QVector<QStringList>::const_iterator ita;
@@ -1287,7 +1308,7 @@ void SystemCenter::readMessage()
         in >> users;
         for(int i=0; i<users.size(); ++i){
             if(users.at(i)!=ui->label_2->text()){
-                users2.append(users.at(i));
+                users2.append("                   " + users.at(i));
             }
         }
         ui->comboBox_sellDUserName->addItems(users2);
@@ -1300,7 +1321,7 @@ void SystemCenter::readMessage()
         in >> users;
         for(int i=0; i<users.size(); ++i){
             if(users.at(i)!=ui->label_2->text()){
-                users2.append(users.at(i));
+                users2.append("                   " + users.at(i));
             }
         }
         ui->comboBox_2->addItems(users2);

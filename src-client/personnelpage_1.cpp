@@ -93,26 +93,24 @@ void SystemCenter::on_pushButton_searchStaffInfo_clicked()
 
 void SystemCenter::on_pushButton_deleteStaffInfo_clicked()
 {
-    QMessageBox msgbox;
-    msgbox.setText("准备删除选中的员工。");
-    msgbox.setInformativeText("确定删除这名员工吗？");
-    msgbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgbox.setDefaultButton(QMessageBox::No);
-    int ret = msgbox.exec();
     QStringList list;
+
+    if(ui->tableWidget_showStaffInfo->currentItem() == NULL){
+        QMessageBox::warning(this,"警告", "\n请选中一个员工！",QMessageBox::Close);
+        return ;
+    }
+
     int rowIndex = ui->tableWidget_showStaffInfo->currentRow();
     QString username = ui->tableWidget_showStaffInfo->item(rowIndex, 0)->text();
-    switch (ret) {
-    case QMessageBox::Yes:
+
+
+    if(QMessageBox::Yes==QMessageBox::question(this, "警告", "Confirm to delete this staff ?",
+                                               QMessageBox::Yes, QMessageBox::No)){
         list.append("pp1_dsi");
         list.append(username);
         sendMessage(list);
         ui->tableWidget_showStaffInfo->removeRow(rowIndex);
-        break;
-    case QMessageBox::No:
-        break;
     }
-
 
 }
 

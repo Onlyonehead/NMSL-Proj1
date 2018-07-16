@@ -1,7 +1,7 @@
 #ifndef SYSTEMCENTER_H
 #define SYSTEMCENTER_H
 
-#define USER_DIR "/Users/Haibara/Documents/qt build files/Userfiles/"
+#define DIR "/Users/Haibara/Documents/qt build files/Clientfiles"
 
 #include <QWidget>
 #include <QFont>
@@ -31,6 +31,8 @@
 #include "tool.h"
 #include "qtmap.h"
 #include "ui_qtmap.h"
+#include "login.h"
+#include "record.h"
 #include <QDesktopWidget>
 
 
@@ -81,8 +83,6 @@ private slots:
 
     void on_pushButton_5_clicked();
 
-    void on_pushButton_cancelAddG_clicked();
-
     void on_pushButton_showGarment_clicked();
 
     void on_pushButton_setGPic_clicked();
@@ -101,7 +101,7 @@ private slots:
 
     void on_pushButton_9_clicked();
 
-    void replyFinished(QNetworkReply *reply);
+    void replyFinished();
 
     void on_pushButton_deleteGarment_clicked();
 
@@ -222,15 +222,15 @@ private slots:
 
     void on_pushButton_clearRequests_4_clicked();
 
-    void on_pushButton_19_clicked();
+    void on_pushButton_57_clicked();
 
-    void on_pushButton_20_clicked();
+    void on_pushButton_58_clicked();
 
     void on_pushButton_49_clicked();
 
     void on_tw_sellD1_cellClicked(int row, int column);
 
-    void on_pushButton_24_clicked();
+    void on_pushButton_59_clicked();
 
     void on_pushButton_50_clicked();
 
@@ -242,11 +242,17 @@ private slots:
 
     void on_pushButton_sell_left_clicked();
 
-    void on_pushButton_23_clicked();
+    void on_pushButton_62_clicked();
 
     void on_pushButton_54_clicked();
 
     void on_pushButton_28_clicked();
+
+    void on_pushButton_23_clicked();
+
+    void on_pushButton_24_clicked();
+
+    void on_pushButton_20_clicked();
 
     void on_pushButton_22_clicked();
 
@@ -263,6 +269,8 @@ private slots:
     void finishedSlotForEdit(QNetworkReply* reply);
 
     void on_pushButton_25_clicked();
+
+    void on_pushButton_19_clicked();
 
     void on_tableWidget_logistics_C1_itemClicked(QTableWidgetItem *item);
 
@@ -308,6 +316,13 @@ private slots:
 
     void on_tableWidget_generateOrder_itemClicked(QTableWidgetItem *item);
 
+
+    void on_pushButton_cancelStaffpasswordChange_clicked();
+
+    void on_pushButton_addNewPortrait_2_clicked();
+
+    void on_pushButton_addProviderInfo_2_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -326,6 +341,9 @@ private:
     QString filepath;
     QTcpSocket *m_tcpsocket;
 	QTcpSocket *m_socket;
+
+    qint32 dataSize = 0;
+    QString fileName;
 
     // For transfer
     QVector<QStringList> stock;
@@ -361,6 +379,8 @@ private:
     QVector<QStringList> siteVia; // For logistic C
 
     QStringList current_selected; // For purchasepage
+
+    QString store_name; // For sell_d
 
     bool style;
 

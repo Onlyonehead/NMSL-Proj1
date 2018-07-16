@@ -442,7 +442,7 @@ QPushButton{
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="tabsClosable">
      <bool>true</bool>
@@ -690,7 +690,7 @@ QScrollBar::add-line{background:transparent;}
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>725</width>
+         <width>780</width>
          <height>530</height>
         </rect>
        </property>
@@ -704,7 +704,7 @@ QScrollBar::add-line{background:transparent;}
 }</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page_purchase">
         <widget class="QTableWidget" name="tableWidget_delivery_cloth">
@@ -768,8 +768,8 @@ QScrollBar::add-line{background:transparent;}
           <rect>
            <x>580</x>
            <y>80</y>
-           <width>140</width>
-           <height>140</height>
+           <width>180</width>
+           <height>180</height>
           </rect>
          </property>
          <property name="text">
@@ -795,8 +795,8 @@ QScrollBar::add-line{background:transparent;}
         <widget class="QPushButton" name="pushButton_sendRequest">
          <property name="geometry">
           <rect>
-           <x>580</x>
-           <y>470</y>
+           <x>610</x>
+           <y>460</y>
            <width>130</width>
            <height>40</height>
           </rect>
@@ -872,9 +872,9 @@ QPushButton:hover{
         <widget class="QFrame" name="frame_13">
          <property name="geometry">
           <rect>
-           <x>590</x>
+           <x>600</x>
            <y>360</y>
-           <width>110</width>
+           <width>150</width>
            <height>80</height>
           </rect>
          </property>
@@ -890,7 +890,7 @@ QPushButton:hover{
          <widget class="QLabel" name="label_font_totalCount_2">
           <property name="geometry">
            <rect>
-            <x>18</x>
+            <x>36</x>
             <y>30</y>
             <width>25</width>
             <height>25</height>
@@ -906,9 +906,9 @@ QPushButton:hover{
          <widget class="QLabel" name="label_purchase_totalCount">
           <property name="geometry">
            <rect>
-            <x>52</x>
+            <x>70</x>
             <y>30</y>
-            <width>40</width>
+            <width>50</width>
             <height>25</height>
            </rect>
           </property>
@@ -926,8 +926,8 @@ QPushButton:hover{
         <widget class="QLabel" name="label_delivery_style">
          <property name="geometry">
           <rect>
-           <x>595</x>
-           <y>225</y>
+           <x>620</x>
+           <y>270</y>
            <width>110</width>
            <height>20</height>
           </rect>
@@ -943,241 +943,6 @@ QPushButton:hover{
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="page_message">
-        <widget class="QLabel" name="label_3">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>80</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>request:</string>
-         </property>
-        </widget>
-        <widget class="QTableWidget" name="tableWidget_allRequests">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>35</y>
-           <width>360</width>
-           <height>208</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QScrollBar{background:transparent; height:10px;}
-QScrollBar::handle{background:lightgray; border:0px;}
-QScrollBar::handle:hover{background:gray;}
-QScrollBar::sub-line{background:transparent;}
-QScrollBar::add-line{background:transparent;}
-</string>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-         <column>
-          <property name="text">
-           <string>date</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>amount</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>condition</string>
-          </property>
-         </column>
-        </widget>
-        <widget class="QTableWidget" name="tableWidget_requestDetail">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>35</y>
-           <width>300</width>
-           <height>208</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QScrollBar{background:transparent; height:10px;}
-QScrollBar::handle{background:lightgray; border:0px;}
-QScrollBar::handle:hover{background:gray;}
-QScrollBar::sub-line{background:transparent;}
-QScrollBar::add-line{background:transparent;}
-</string>
-         </property>
-         <column>
-          <property name="text">
-           <string>style</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>size</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>count</string>
-          </property>
-         </column>
-        </widget>
-        <widget class="QPushButton" name="pushButton_sell_2">
-         <property name="geometry">
-          <rect>
-           <x>530</x>
-           <y>476</y>
-           <width>170</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:rgb(0, 0, 0);
-	background-color: rgb(1, 145, 255);
-	border:0px;
-	border-radius:7px; 
-}
-QPushButton:hover{
-	background-color:rgb(126, 143, 255);
-}</string>
-         </property>
-         <property name="text">
-          <string>Clear</string>
-         </property>
-        </widget>
-        <widget class="QTableWidget" name="tableWidget_arriving">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>280</y>
-           <width>490</width>
-           <height>226</height>
-          </rect>
-         </property>
-         <column>
-          <property name="text">
-           <string>from</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>date_arrive</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>新建列</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>新建列</string>
-          </property>
-         </column>
-        </widget>
-        <widget class="QLabel" name="label_13">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>252</y>
-           <width>80</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>arriving:</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QPushButton" name="pushButton_purchase">
-       <property name="geometry">
-        <rect>
-         <x>732</x>
-         <y>20</y>
-         <width>40</width>
-         <height>220</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{background-color:rgb(1, 145, 255);
-border-bottom-left-radius:3px; 
-border-bottom-right-radius:3px; 
-border-top-left-radius:3px; 
-border-top-right-radius:3px; }
-QPushButton:hover{
-	background-color:rgb(126, 143, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>P
-u
-r
-c
-h
-a
-s
-e</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_message">
-       <property name="geometry">
-        <rect>
-         <x>732</x>
-         <y>290</y>
-         <width>40</width>
-         <height>220</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{background-color:rgb(1, 145, 255);
-border-bottom-left-radius:3px; 
-border-bottom-right-radius:3px; 
-border-top-left-radius:3px; 
-border-top-right-radius:3px; }
-QPushButton:hover{
-	background-color:rgb(126, 143, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>M
-e
-s
-s
-a
-g
-e</string>
-       </property>
       </widget>
      </widget>
     </widget>

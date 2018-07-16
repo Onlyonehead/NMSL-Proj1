@@ -1,7 +1,5 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
-#include "login.h"
-#include "record.h"
 #include "QElapsedTimer"
 #include <QHeaderView>
 #include <QMovie>
@@ -27,28 +25,13 @@ SystemCenter::SystemCenter(QWidget *parent) :
 	m_socket = new QTcpSocket;
     m_socket->connectToHost(QHostAddress::LocalHost, 7777);
     connect(m_socket, SIGNAL(readyRead()),
-			this, SLOT(readMessage()));
+            this, SLOT(replyFinished()));
 
 
     this->setAttribute(Qt::WA_DeleteOnClose);
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowMinimizeButtonHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setStyleSheet("QFrame{border-radius:10px;}");
-
-    ui->progressBar->setVisible(false);
-    ui->pushButton_17->setVisible(false);
-    ui->pushButton_18->setVisible(false);
-    ui->add_warehouse->setVisible(false);
-    ui->edit_warehouse->setVisible(false);
-    ui->comboBox_searchStaffChosen->setView(new QListView());
-    ui->comboBox_addNewGender->setView(new QListView());
-    ui->comboBox_addNewPosition->setView(new QListView());
-
-    style = false;
-
-
-    ui->comboBox_sellDUserName->setView(new QListView());
-    ui->comboBox_2->setView(new QListView());
 
     /*
      * Add anything here to function 'showString' in this page
@@ -108,14 +91,36 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_12->setText(s4);
     ui->label_14->setText(s5);
 
+    ui->pushButton_57->setStyleSheet("QPushButton{border: 2px solid  rgb(15, 128, 255);"
+                                     "background:rgba(15, 128, 255, 43);"
+                                     "border-radius:29px;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 15pt \"Helvetica\" bold;}");
+    ui->progressBar->setVisible(false);
+    ui->pushButton_17->setVisible(false);
+    ui->pushButton_18->setVisible(false);
+    ui->add_warehouse->setVisible(false);
+    ui->edit_warehouse->setVisible(false);
+    ui->label_showEditPortraitPath->setVisible(false);
+    ui->comboBox_searchStaffChosen->setView(new QListView());
+    ui->comboBox_addNewGender->setView(new QListView());
+    ui->comboBox_addNewPosition->setView(new QListView());
+    ui->comboBox_updateStaffGender->setView(new QListView());
+    ui->comboBox_updateStaffPosition->setView(new QListView());
+
+    style = false;
+
+
+    ui->comboBox_sellDUserName->setView(new QListView());
+    ui->comboBox_2->setView(new QListView());
     QApplication::processEvents();
 
-    connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 
-    QPixmap *pixmap = new QPixmap(USER_DIR + s6);
+    QPixmap *pixmap = new QPixmap(DIR + QString("/users/") + s6);
     if (pixmap->isNull()){
-        download("http://39.108.155.50/project1/users/" + s6, USER_DIR + s6);
+        download("/users/" + s6, DIR + QString("/users/") + s6);
     }
+
     if(pixmap->isNull()){
         pixmap = new QPixmap(":/user.png");
     }
@@ -357,6 +362,116 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_133->setText(QChar(0xf022));
     ui->label_133->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_143->setFont(font);
+    ui->label_143->setText(QChar(0xf2b6));
+    ui->label_143->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_141->setFont(font);
+    ui->label_141->setText(QChar(0xf5ab));
+    ui->label_141->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_142->setFont(font);
+    ui->label_142->setText(QChar(0xf4cd));
+    ui->label_142->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_140->setFont(font);
+    ui->label_140->setText(QChar(0xf0c7));
+    ui->label_140->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_134->setFont(font);
+    ui->label_134->setText(QChar(0xf3e0));
+    ui->label_134->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_135->setFont(font);
+    ui->label_135->setText(QChar(0xf0fe));
+    ui->label_135->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_136->setFont(font);
+    ui->label_136->setText(QChar(0xf183));
+    ui->label_136->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_137->setFont(font);
+    ui->label_137->setText(QChar(0xf593));
+    ui->label_137->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_139->setFont(font);
+    ui->label_139->setText(QChar(0xf2b6));
+    ui->label_139->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+    ui->label_144->setFont(font);
+    ui->label_144->setText(QChar(0xf05a));
+    ui->label_144->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_145->setFont(font);
+    ui->label_145->setText(QChar(0xf53c));
+    ui->label_145->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_146->setFont(font);
+    ui->label_146->setText(QChar(0xf248));
+    ui->label_146->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_147->setFont(font);
+    ui->label_147->setText(QChar(0xf599));
+    ui->label_147->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_148->setFont(font);
+    ui->label_148->setText(QChar(0xf182));
+    ui->label_148->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_149->setFont(font);
+    ui->label_149->setText(QChar(0xf0e0));
+    ui->label_149->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_150->setFont(font);
+    ui->label_150->setText(QChar(0xf362));
+    ui->label_150->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_155->setFont(font);
+    ui->label_155->setText(QChar(0xf192));
+    ui->label_155->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_156->setFont(font);
+    ui->label_156->setText(QChar(0xf4ba));
+    ui->label_156->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_157->setFont(font);
+    ui->label_157->setText(QChar(0xf56a));
+    ui->label_157->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_151->setFont(font);
+    ui->label_151->setText(QChar(0xf1b2));
+    ui->label_151->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_152->setFont(font);
+    ui->label_152->setText(QChar(0xf563));
+    ui->label_152->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_153->setFont(font);
+    ui->label_153->setText(QChar(0xf520));
+    ui->label_153->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_154->setFont(font);
+    ui->label_154->setText(QChar(0xf51e));
+    ui->label_154->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_159->setFont(font);
+    ui->label_159->setText(QChar(0xf522));
+    ui->label_159->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_160->setFont(font);
+    ui->label_160->setText(QChar(0xf254));
+    ui->label_160->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_162->setFont(font);
+    ui->label_162->setText(QChar(0xf3d1));
+    ui->label_162->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+
+
 
 
     QFont sp_font;
@@ -375,11 +490,6 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     QFont sp_font2;
     sp_font2.setFamily(fontFamilies.at(0));
     sp_font2.setPointSize(90);
-
-    ui->label_font_truck->setFont(sp_font2);
-    ui->label_font_truck->setText(QChar(0xf0d1));
-    ui->label_font_truck->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
-
 
     //initialize search icon
 
@@ -458,6 +568,8 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_font_sellDCloth->setText(QChar(0xf553));
     ui->label_font_sellDCloth->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_font_sellDCloth->setVisible(false);
+
     QFont icon_direction;
     icon_direction.setFamily(fontFamilies.at(0));
     icon_direction.setPointSize(20);
@@ -519,7 +631,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_D3->setAlternatingRowColors(true);
 
     ui->tableWidget_D4->setColumnWidth(0,73);
-    ui->tableWidget_D4->setColumnWidth(1,103);
+    ui->tableWidget_D4->setColumnWidth(1,123);
     ui->tableWidget_D4->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D4->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_D4->setAlternatingRowColors(true);
@@ -599,6 +711,50 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_showStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_showStaffInfo->setAlternatingRowColors(true);
 
+    ui->tw_sellD1->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_sellD1->setAlternatingRowColors(true);
+
+    ui->tw_sellD2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_sellD2->setAlternatingRowColors(true);
+
+    ui->tw_sellD3->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_sellD3->setAlternatingRowColors(true);
+
+    ui->tw_sell_C2->setColumnWidth(0, 40);
+    ui->tw_sell_C2->setColumnWidth(1, 200);
+    ui->tw_sell_C2->horizontalHeader()->setStretchLastSection(true);
+    ui->tw_sell_C2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_sell_C2->setAlternatingRowColors(true);
+
+    ui->tableWidget_check->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_check->setAlternatingRowColors(true);
+
+    ui->tableWidget_checkDetail->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_checkDetail->setAlternatingRowColors(true);
+
+    ui->tw_sell_C1->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_sell_C1->setAlternatingRowColors(true);
+
+    ui->tableWidget_stores->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_stores->setAlternatingRowColors(true);
+
+    ui->tableWidget_updateShowStaffInfo->horizontalHeader()->setDefaultSectionSize(105);
+    ui->tableWidget_updateShowStaffInfo->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_updateShowStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_updateShowStaffInfo->setAlternatingRowColors(true);
+
+    ui->tableWidget_providerInfo->horizontalHeader()->setDefaultSectionSize(130);
+    ui->tableWidget_providerInfo->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_providerInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_providerInfo->setAlternatingRowColors(true);
+    ui->label_showPicPath->setVisible(false);
+
+    ui->tableWidget_garmentInfo->horizontalHeader()->setDefaultSectionSize(120);
+    ui->tableWidget_garmentInfo->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_garmentInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_garmentInfo->setAlternatingRowColors(true);
+
+
 
 
 
@@ -648,17 +804,6 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     connect(timer, SIGNAL(timeout()), this, SLOT(timer_deal_slot_function()));
     timer->start(1000);
 
-    /**
-     * provider page tablewidget_prviderInfo setting
-     *
-     * @author Yihan Dong
-    */
-    ui->label_showPicName->setVisible(false);
-    ui->tableWidget_providerInfo->verticalHeader()->setVisible(false);
-    ui->tableWidget_providerInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_providerInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_providerInfo->setStyleSheet("selection-background-color::lightblue");
-    ui->label_showPicPath->setVisible(false);
 
     /**
      * Add new staff page setting
@@ -681,16 +826,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     ui->label_updateEmailTip->setVisible(false);
     ui->label_updatePasswordTip->setVisible(false);
-    /**
-     * update staff information page setting
-     *
-     * @author Yihan Dong
-    */
-    ui->tableWidget_updateShowStaffInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_updateShowStaffInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget_updateShowStaffInfo->setAlternatingRowColors(true);
-    ui->tableWidget_updateShowStaffInfo->verticalHeader()->setVisible(false);
-    ui->tableWidget_updateShowStaffInfo->setStyleSheet("selection-background-color::lightblue");
+
 
     //initialize furry search
 
@@ -1068,16 +1204,19 @@ void SystemCenter::on_pushButton_switch_clicked()
  * @param surl pic url
  * @param filePath local file path
  */
-void SystemCenter::download(const QString &surl, const QString &filePath)
+void SystemCenter::download(const QString &url, const QString &filePath)
 {
-    QUrl url;
-    url = QUrl(surl);
 
-    QNetworkRequest request;
-    request.setUrl(url);
+    QByteArray message;
+    QDataStream out(&message,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << (quint32) (sizeof(QString));
+    out << url;
+    out.device()->seek(0);
+    m_socket->write(message);
 
-    netManager.get(request);
     this->filepath = filePath;
+
 }
 
 /**
@@ -1086,23 +1225,37 @@ void SystemCenter::download(const QString &surl, const QString &filePath)
  * @author Zicun Hang
  * @param reply NetworkReply
  */
-void SystemCenter::replyFinished(QNetworkReply *reply)
+void SystemCenter::replyFinished()
 {
-    if(reply->error() == QNetworkReply::NoError)
-    {
-        QByteArray bytes = reply->readAll();
+    QDataStream in(m_socket);
+    in.setVersion (QDataStream::Qt_5_7);
 
-        QFile file(filepath);
-        if (file.open(QIODevice::ReadWrite))
-        {
-            file.write(bytes);
-        }
-        file.close();
-    }
-    else
+    if(dataSize == 0)
     {
-        qDebug() << "Error\n";
+       if(m_socket->bytesAvailable() < (qint32)(sizeof(quint32)+sizeof(QString)) )
+       {
+            return;
+       }
+       in >> dataSize;
+       in >> fileName;
     }
+
+    if(dataSize > qint32(m_socket->bytesAvailable()))
+    {
+       return;
+    }
+
+    QByteArray data;
+
+    in>>data;
+
+    QImage img;
+    img.loadFromData(data);
+
+    img.save(DIR + fileName);
+
+    dataSize = 0;
+    fileName.clear();
 }
 
 void SystemCenter::on_style_change_clicked()

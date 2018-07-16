@@ -74,8 +74,6 @@ HEADERS  += \
     garment.h \
     provider.h \
     record.h \
-    logistics.h \
-    staff.h \
     stable.h \
     sqltool.h \
     order.h \

@@ -1,18 +1,39 @@
 #include "systemcenter.h"
 #include "ui_systemcenter.h"
 
-void SystemCenter::on_pushButton_19_clicked()
+void SystemCenter::on_pushButton_57_clicked()
 {
     ui->stackedWidget_sellD->setCurrentIndex(0);
+    ui->pushButton_57->setStyleSheet("QPushButton{border: 2px solid  rgb(15, 128, 255);"
+                                     "background:rgba(15, 128, 255, 43);"
+                                     "border-radius:29px;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 15pt \"Helvetica\" bold;}");
+    ui->pushButton_58->setStyleSheet("QPushButton{border: 2px solid rgb(200, 200, 200);"
+                                     "border-radius:29px;"
+                                     "background:none;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 13pt \"Helvetica\" bold;}");
 }
 
-void SystemCenter::on_pushButton_20_clicked()
+void SystemCenter::on_pushButton_58_clicked()
 {
     ui->stackedWidget_sellD->setCurrentIndex(1);
+    ui->pushButton_58->setStyleSheet("QPushButton{border: 2px solid  rgb(15, 128, 255);"
+                                     "background:rgba(15, 128, 255, 43);"
+                                     "border-radius:29px;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 15pt \"Helvetica\" bold;}");
+    ui->pushButton_57->setStyleSheet("QPushButton{border: 2px solid rgb(200, 200, 200);"
+                                     "border-radius:29px;"
+                                     "background:none;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 13pt \"Helvetica\" bold;}");
 }
 
 void SystemCenter::on_pushButton_49_clicked()
 {
+    this->store_name.clear();
     ui->tw_sellD1->verticalHeader()->setVisible(false);
     ui->tw_sellD1->setRowCount(stores.size());
     ui->tw_sellD1->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -31,6 +52,7 @@ void SystemCenter::on_tw_sellD1_cellClicked(int row, int column)
 
     ui->comboBox_sellDUserName->clear();
     QString store_name = ui->tw_sellD1->item(row, 0)->text();
+    this->store_name = store_name;
     QVector<QStringList>::const_iterator it;
     for(it=stores.constBegin(); it!=stores.constEnd(); ++it){
         if(it->at(1) == store_name){
@@ -40,7 +62,7 @@ void SystemCenter::on_tw_sellD1_cellClicked(int row, int column)
             ui->lineEdit_sellDCity->setText(it->at(3));
             ui->lineEdit_sellDAddress->setText(it->at(4));
             QString username = it->at(5);
-            ui->comboBox_sellDUserName->addItem(username);
+            ui->comboBox_sellDUserName->addItem("                   " + username);
         }
     }
     QStringList qsl;
@@ -48,14 +70,14 @@ void SystemCenter::on_tw_sellD1_cellClicked(int row, int column)
     sendMessage(qsl);
 }
 
-void SystemCenter::on_pushButton_24_clicked()
+void SystemCenter::on_pushButton_59_clicked()
 {
-    QString id = ui->label_sellDStoreId->text();
-    QString name = ui->lineEdit_sellDStoreName->text();
-    QString province = ui->lineEdit_sellDProvince->text();
-    QString city = ui->lineEdit_sellDCity->text();
-    QString address = ui->lineEdit_sellDAddress->text();
-    QString user = ui->comboBox_sellDUserName->currentText();
+    QString id = ui->label_sellDStoreId->text().trimmed();
+    QString name = ui->lineEdit_sellDStoreName->text().trimmed();
+    QString province = ui->lineEdit_sellDProvince->text().trimmed();
+    QString city = ui->lineEdit_sellDCity->text().trimmed();
+    QString address = ui->lineEdit_sellDAddress->text().trimmed();
+    QString user = ui->comboBox_sellDUserName->currentText().trimmed();
     QString exuser;
     qDebug()<<user;
     bool changed = false;
@@ -80,7 +102,7 @@ void SystemCenter::on_pushButton_24_clicked()
     //检测店名重复
     if(!changed){
         for(it=stores.constBegin(); it!=stores.constEnd(); ++it){
-            if(name == it->at(1)) {
+            if(name == it->at(1) && name != store_name) {
                 QMessageBox::warning(this, "Warning", "Unusable store name", QMessageBox::Yes);
                 return;
             }
@@ -101,6 +123,7 @@ void SystemCenter::on_pushButton_50_clicked()
     ui->lineEdit_sellDCity->setText("");
     ui->lineEdit_sellDAddress->setText("");
     ui->comboBox_sellDUserName->clear();
+    this->store_name.clear();
 }
 
 void SystemCenter::on_pushButton_53_clicked()
@@ -116,6 +139,7 @@ void SystemCenter::on_pushButton_53_clicked()
     QVector<QStringList>::const_iterator it;
     for(it=clothes.constBegin(); it!=clothes.constEnd(); ++it, ++i){
         ui->tw_sellD2->setItem(i, 0, new QTableWidgetItem(it->at(1)+" "+it->at(2)));
+        ui->tw_sellD2->item(i,0)->setTextAlignment(Qt::AlignCenter);
     }
 
     QStringList qsl;
@@ -137,15 +161,18 @@ void SystemCenter::on_tw_sellD2_cellClicked(int row, int column)
         }
     }
 
-    QPixmap *pixmap = new QPixmap("./" + path);
+
+    QPixmap *pixmap = new QPixmap(DIR + QString("/clothes/") + path);
     if (pixmap->isNull()){
-        download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+        download("/clothes/" + path, DIR + QString("/clothes/") + path);
     }
     if (pixmap->isNull()){
         pixmap = new QPixmap(":/default.jpg");
     }
     ui->label_sellDClothes->setScaledContents(true);
     ui->label_sellDClothes->setPixmap(*pixmap);
+
+    ui->label_font_sellDCloth->setVisible(true);
 
     ui->label_sellDStyle->setText(style);
 }
@@ -189,9 +216,10 @@ void SystemCenter::on_pushButton_sell_left_clicked()
             }
         }
 
-        QPixmap *pixmap = new QPixmap("./" + path);
+
+        QPixmap *pixmap = new QPixmap(DIR + QString("/clothes/") + path);
         if (pixmap->isNull()){
-            download("http://39.108.155.50/project1/clothes/" + path, "./" + path);
+            download("/clothes/" + path, DIR + QString("/clothes/") + path);
         }
         if (pixmap->isNull()){
             pixmap = new QPixmap(":/default.jpg");
@@ -209,14 +237,14 @@ void SystemCenter::on_pushButton_sell_left_clicked()
 /**
  * @author sissyVI
  */
-void SystemCenter::on_pushButton_23_clicked()
+void SystemCenter::on_pushButton_62_clicked()
 {
     QString name, province, city, address, username;
-    name = ui->lineEdit_501->text();
-    province = ui->lineEdit_502->text();
-    city = ui->lineEdit_503->text();
-    address = ui->lineEdit_504->text();
-    username = ui->comboBox_2->currentText();
+    name = ui->lineEdit_501->text().trimmed();
+    province = ui->lineEdit_502->text().trimmed();
+    city = ui->lineEdit_503->text().trimmed();
+    address = ui->lineEdit_504->text().trimmed();
+    username = ui->comboBox_2->currentText().trimmed();
     if(name==""||province==""||city==""||address==""||username==""){
         QMessageBox::warning(this, "Warning", "Informations should not be empty", QMessageBox::Yes);
         return;
@@ -260,4 +288,5 @@ void SystemCenter::on_pushButton_54_clicked()
     ui->lineEdit_503->setText("");
     ui->lineEdit_504->setText("");
     ui->comboBox_2->clear();
+    ui->label_font_sellDCloth->setVisible(false);
 }

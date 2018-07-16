@@ -37,9 +37,10 @@ void SystemCenter::on_tableWidget_generateOrder_itemClicked(QTableWidgetItem *it
     QString price = result.at(4);
 
     QApplication::processEvents();
-    QPixmap *pixmap = new QPixmap(USER_DIR + path);
-    if(pixmap->isNull()){
-        download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
+
+    QPixmap *pixmap = new QPixmap(DIR + QString("/clothes/") + path);
+    if (pixmap->isNull()){
+        download("/clothes/" + path, DIR +QString("/clothes/")+ path);
     }
 
     if (pixmap->isNull()){

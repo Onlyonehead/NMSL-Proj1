@@ -26,6 +26,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_tcpsocket,SIGNAL(readyRead()),
             this,SLOT(readMessage()));//用于接受数据'
 
+    m_socket = new QTcpSocket;
+    m_socket->connectToHost(QHostAddress::LocalHost, 7777);
+    connect(m_socket, SIGNAL(readyRead()),
+            this, SLOT(replyFinished()));
+
+
     sellSignal = false;
     purchaseSignal = false;
 
@@ -333,6 +339,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     }
 }
 
+
 /**
  * download picture
  *
@@ -340,16 +347,19 @@ void MainWindow::on_tabWidget_currentChanged(int index)
  * @param surl pic url
  * @param filePath local file path
  */
-void MainWindow::download(const QString &surl, const QString &filePath)
+void MainWindow::download(const QString &url, const QString &filePath)
 {
-    QUrl url;
-    url = QUrl(surl);
 
-    QNetworkRequest request;
-    request.setUrl(url);
+    QByteArray message;
+    QDataStream out(&message,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << (quint32) (sizeof(QString));
+    out << url;
+    out.device()->seek(0);
+    m_socket->write(message);
 
-    netManager.get(request);
     this->filepath = filePath;
+
 }
 
 /**
@@ -358,25 +368,43 @@ void MainWindow::download(const QString &surl, const QString &filePath)
  * @author Zicun Hang
  * @param reply NetworkReply
  */
-void MainWindow::replyFinished(QNetworkReply *reply)
+void MainWindow::replyFinished()
 {
-    if(reply->error() == QNetworkReply::NoError)
-    {
-        QByteArray bytes = reply->readAll();
+    QDataStream in(m_socket);
+    in.setVersion (QDataStream::Qt_5_7);
 
-        qDebug() <<filepath << endl;
-
-        QFile file(filepath);
-        if (file.open(QIODevice::ReadWrite))
-        {
-            file.write(bytes);
-        }
-        file.close();
-    }
-    else
+    if(dataSize == 0)
     {
-        qDebug() << "Error\n";
+       qDebug() << m_socket->bytesAvailable();
+       qDebug() << (sizeof(quint32)+sizeof(QString));
+       if(m_socket->bytesAvailable() < (sizeof(quint32)+sizeof(QString)))
+       {
+            return;
+       }
+       in >> dataSize;
+       in >> fileName;
+       qDebug() << dataSize;
+       qDebug() << fileName;
     }
+
+    if(dataSize > qint32(m_socket->bytesAvailable()))
+    {
+       return;
+    }
+
+    QByteArray data;
+
+    in>>data;
+
+    QImage img;
+    img.loadFromData(data);
+
+    img.save(DIR + fileName);
+
+    qDebug() << "Download: " + fileName;
+
+    dataSize = 0;
+    fileName.clear();
 }
 
 /**
@@ -424,12 +452,15 @@ void MainWindow::showString(QString s1, QString s2, QString s3, QString s4, QStr
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(removeSubTab(int)));
     ui->frame_exit->installEventFilter(this);
     setCursor();
-    connect(&netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
     ui->progressBar->setValue(20);
 
     QApplication::processEvents();
-    download("http://39.108.155.50/project1/users/" + s6, USER_DIR + s6);
-    QPixmap *pixmap = new QPixmap(USER_DIR + s6);
+
+    QPixmap *pixmap = new QPixmap(DIR + QString("/users/") + s6);
+    if (pixmap->isNull()){
+        download("/users/" + s6, DIR + QString("/users/") + s6);
+    }
+
     if (pixmap->isNull()){
         pixmap = new QPixmap(":/user.png");
     }

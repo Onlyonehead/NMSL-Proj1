@@ -283,13 +283,17 @@ void Warehouse::transfer(){
             list.append("clothes_id");
             list.append(clothes_id);
             SQLTool::search(query2, "quantity", "stock", list);
+            SQLTool::del("arriving", list);
             if(query2.next()){
                 int stock = query2.value(0).toInt();
                 SQLTool::update("stock", "quantity",
                                 QString::number(stock + quantity), list);
-                SQLTool::del("arriving", list);
             }else{
-                qDebug() << "Update arriving failed!" << endl;
+                list.clear();
+                list.append(query.value(0).toString());
+                list.append(query.value(1).toString());
+                list.append(query.value(2).toString());
+                SQLTool::insert("stock", list);
             }
 
         }

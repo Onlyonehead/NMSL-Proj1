@@ -67,46 +67,6 @@ void MainWindow::setStackedWidget_delivery(){
     sendMessage(qsl);
 }
 
-void MainWindow::on_pushButton_purchase_clicked()
-{
-    ui->stackedWidget_delivery->setCurrentIndex(0);
-}
-
-void MainWindow::on_pushButton_message_clicked()
-{
-
-    ui->tableWidget_allRequests->clearContents();
-    ui->tableWidget_allRequests->setEditTriggers(QAbstractItemView::NoEditTriggers);//设置不可编辑,但是不会像设置Enable那样使界面变灰
-    ui->tableWidget_allRequests->setRowCount(qv_allRequest.size());//设置行数，与搜索结果size相同
-    ui->tableWidget_allRequests->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //自适应列宽
-
-    int i=0;
-    QVector<QStringList>::const_iterator it;
-    for(it=qv_allRequest.constBegin(); it!=qv_allRequest.constEnd(); ++it){
-        ui->tableWidget_allRequests->setItem(i, 0, new QTableWidgetItem(it->at(1)));
-
-        int count=0;
-        QMap<QString, QString> m = m_requestDetail.value(it->at(0));
-        QMap<QString, QString>::const_iterator itm;
-        for(itm=m.constBegin(); itm!=m.constEnd(); ++itm){
-            count += itm.value().toInt();
-        }
-        ui->tableWidget_allRequests->setItem(i, 1, new QTableWidgetItem(QString::number(count, 10)));
-
-        if(it->at(2) == "0"){
-            ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("U"));
-        } else if(it->at(2) == "1"){
-            ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("C"));
-        } else{
-            ui->tableWidget_allRequests->setItem(i, 2, new QTableWidgetItem("X"));
-        }
-        ++i;
-    }
-
-    ui->stackedWidget_delivery->setCurrentIndex(1);
-}
-
-
 void MainWindow::on_tableWidget_delivery_cloth_cellClicked(int row, int column)
 {
     Q_UNUSED(column);
@@ -120,9 +80,9 @@ void MainWindow::on_tableWidget_delivery_cloth_cellClicked(int row, int column)
         }
     }
 
-    QPixmap *pixmap = new QPixmap(USER_DIR + path);
+    QPixmap *pixmap = new QPixmap(DIR + QString("/clothes/") + path);
     if (pixmap->isNull()){
-        download("http://39.108.155.50/project1/clothes/" + path, USER_DIR + path);
+        download("/clothes/" + path, DIR + QString("/clothes/") + path);
     }
     if (pixmap->isNull()){
         pixmap = new QPixmap(":/default.jpg");
@@ -213,10 +173,4 @@ void MainWindow::on_pushButton_sendRequest_clicked()
             qDebug()<<"放弃";
         }
     }
-}
-
-void MainWindow::on_tableWidget_allRequests_cellClicked(int row, int column)
-{
-    Q_UNUSED(column);
-
 }

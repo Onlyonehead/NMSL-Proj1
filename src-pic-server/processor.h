@@ -19,7 +19,6 @@ public slots:
 
 private:
     QTcpSocket *m_socket;
-    QByteArray buff;
     qint32 dataSize = 0;
     QString fileName;
 

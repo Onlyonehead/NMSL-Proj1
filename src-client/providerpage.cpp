@@ -39,11 +39,11 @@ void SystemCenter::on_pushButton_showProvider_clicked()
 
 void SystemCenter::on_pushButton_clearProvider_clicked()
 {
-    QStringList providerInfoHeader;
-    providerInfoHeader << tr("供货商编号") << tr("供货商地址") << tr("供货商名称") << tr("所提供服装");
-    ui->tableWidget_providerInfo->clear();
     ui->tableWidget_providerInfo->setRowCount(0);
-    ui->tableWidget_providerInfo->setHorizontalHeaderLabels(providerInfoHeader);
+    ui->label_providerID->clear();
+    ui->lineEdit_changeProviderAds->clear();
+    ui->lineEdit_changeProviderName->clear();
+    ui->lineEdit_changeProvideProduct->clear();
 }
 
 
@@ -68,6 +68,12 @@ void SystemCenter::on_pushButton_updateProviderInfo_clicked()
     changeProviderAds = ui->lineEdit_changeProviderAds->text();
     changeProviderName = ui->lineEdit_changeProviderName->text();
     changeProviderPruduct = ui->lineEdit_changeProvideProduct->text();
+
+    if(providerID == "" || changeProviderAds == "" || changeProviderName == "" ||
+            changeProviderPruduct == ""){
+        QMessageBox::warning(this,"警告", "\n请输入全部字段！",QMessageBox::Close);
+        return;
+    }
     list.append("pp_cpi");
     list.append(providerID);
     list.append(changeProviderAds);
@@ -92,10 +98,6 @@ void SystemCenter::on_tableWidget_providerInfo_cellClicked(int row, int column)
     ui->lineEdit_changeProviderAds->setText(ui->tableWidget_providerInfo->item(row, 1)->text());
     ui->lineEdit_changeProviderName->setText(ui->tableWidget_providerInfo->item(row, 2)->text());
     ui->lineEdit_changeProvideProduct->setText(ui->tableWidget_providerInfo->item(row, 3)->text());
-    qDebug() << ui->tableWidget_providerInfo->item(row, 0)->text() << endl;
-    qDebug() << ui->tableWidget_providerInfo->item(row, 1)->text() << endl;
-    qDebug() << ui->tableWidget_providerInfo->item(row, 2)->text() << endl;
-    qDebug() << ui->tableWidget_providerInfo->item(row, 3)->text() << endl;
 
 }
 
@@ -108,15 +110,28 @@ void SystemCenter::on_tableWidget_providerInfo_cellClicked(int row, int column)
  */
 void SystemCenter::on_pushButton_addProviderInfo_clicked()
 {
-    QString providerAds = ui->lineEdit_addProviderAds->text();
-    QString providerName = ui->lineEdit_addProviderName->text();
-    QString providerProduct = ui->lineEdit_addProvideProduct->text();
+    QString providerAds = ui->lineEdit_addProviderAds->text().trimmed();
+    QString providerName = ui->lineEdit_addProviderName->text().trimmed();
+    QString providerProduct = ui->lineEdit_addProvideProduct->text().trimmed();
+
+    if(providerAds == "" || providerName == "" || providerProduct == ""){
+        QMessageBox::warning(this,"警告", "\n请输入全部字段！",QMessageBox::Close);
+        return;
+    }
+
     QStringList list;
     list.append("pp_api");
     list.append(providerAds);
     list.append(providerName);
     list.append(providerProduct);
     sendMessage(list);
+}
+
+void SystemCenter::on_pushButton_addProviderInfo_2_clicked()
+{
+    ui->lineEdit_addProviderAds->clear();
+    ui->lineEdit_addProviderName->clear();
+    ui->lineEdit_addProvideProduct->clear();
 }
 
 

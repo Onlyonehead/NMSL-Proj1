@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QtNetwork>
 
-#define LOGIN_DIR "/Users/Haibara/Documents/qt build files/Userfiles/pwd.data"
+#define LOGIN_DIR "/Users/Haibara/Documents/qt build files/Clientfiles/pwd.data"
 
 namespace Ui {
 class Login;

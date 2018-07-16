@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#define DIR "/Users/Haibara/Documents/qt build files/Clientfiles"
+
 #include <QMainWindow>
 #include <QMouseEvent>
 #include <QSqlQuery>
@@ -55,13 +57,9 @@ private slots:
 
     void on_tableWidget_sellGoods_cellChanged(int row, int column);
 
-    void replyFinished(QNetworkReply *reply);
+    void replyFinished();
 
     void on_lineEdit_sellSearch_textChanged(const QString &arg1);
-
-    void on_pushButton_purchase_clicked();
-
-    void on_pushButton_message_clicked();
 
     void on_tableWidget_delivery_cloth_cellChanged(int row, int column);
 
@@ -74,8 +72,6 @@ private slots:
     void readMessage();
 
     void on_pushButton_sendRequest_clicked();
-
-    void on_tableWidget_allRequests_cellClicked(int row, int column);
 
 private:
     void addFont();
@@ -117,6 +113,9 @@ private:
     QNetworkAccessManager netManager;
     QString filepath;
     QTcpSocket *m_tcpsocket;
+    QTcpSocket *m_socket;
+    qint32 dataSize = 0;
+    QString fileName;
 
     Q_ENUM(Option)
 };

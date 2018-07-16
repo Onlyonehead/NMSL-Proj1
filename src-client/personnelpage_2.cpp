@@ -92,7 +92,6 @@ void SystemCenter::on_lineEdit_addNewEmail_editingFinished()
 void SystemCenter::on_pushButton_addNewPortrait_clicked()
 {
     QStringList picture = QFileDialog::getOpenFileNames(this, tr("open file"),
-                                                        "c:/users/Dong9/Pictures/Saved Pictures",
                                                         tr("图片文件(*png *jpg)"));
     if(picture.isEmpty()){
         return ;
@@ -161,7 +160,7 @@ void SystemCenter::on_pushButton_confirmNewStaff_clicked()
         img.load(picPath);
         img.save(&buffer,"JPG");
         out << qint32(buffer.size());
-        out << QString(pic);
+        out << QString("/users/" + pic);
         out << buffer.data();
 
         m_socket->write(message);

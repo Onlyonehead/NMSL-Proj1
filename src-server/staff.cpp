@@ -73,7 +73,7 @@ void Staff::Info(QString searchAttribute, QString searchValue, QVector<QStringLi
 {
     QSqlQuery query;
     QStringList list;
-    SQLTool::fuzzySearch(query, "userdata", searchAttribute, searchValue);
+    SQLTool::search(query, "userdata", searchAttribute, searchValue);
     while (query.next()) {
         list.clear();
         list.append(query.value(0).toString());
@@ -188,6 +188,7 @@ bool Staff::isUsernameExisted(QString username)
 
 bool Staff::isEmailExisted(QString email)
 {
+    qDebug() << "sb";
     QSqlQuery query;
     SQLTool::search(query, "email", "userdata", "email", email);
     if(query.next()){

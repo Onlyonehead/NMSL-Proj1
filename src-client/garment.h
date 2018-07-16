@@ -22,15 +22,12 @@ public:
     static void updateGarmentInfo(int ID, QString alterAttribute, QString alterValue);//update garment information to database
 
 private:
-    int garmentID;
 
     QString garmentStyle;
 
     QString garmentSize;
 
     QString picPath;
-
-    int value;
 
 };
 

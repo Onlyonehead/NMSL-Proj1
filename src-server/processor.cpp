@@ -31,6 +31,8 @@ void Processor::work ()
     QString function = list.at(0);
     list.removeFirst();
 
+    qDebug() << function << endl;
+
     out << (quint16) 0;
 
     /*
@@ -470,25 +472,25 @@ void Processor::work ()
         out << id;
     }
 
-
-
-
-    //system page show garment
-    if(function == "sp_sg"){
-        QVector<QStringList> result;
-        Garment::Info(result);
-        out << function;
-        out << result;
-
-    }
     //system page add new garment
     if(function == "sp_confirmAddG"){
         QString garmentSytle = list.at(0);
-        QString garmentPic = list.at(1);
-        QString garmentPrice = list.at(2);
-        QString garmentSize = list.at(3);
-        Garment::addGarmentForm(garmentSytle, garmentSize, garmentPic, garmentPrice);
+        list.removeFirst();
+        QString garmentPic = list.at(0);
+        list.removeFirst();
+        QString garmentPrice = list.at(0);
+        list.removeFirst();
+        for(int i = 0; i < list.size(); i++){
+            QString garmentSize = list.at(i);
+            Garment::addGarmentForm(garmentSytle, garmentSize, garmentPic, garmentPrice);
+        }
+
+        QVector<QStringList> garmentInfo;
+
+        Garment::Info(garmentSytle, garmentInfo);
+
         out << function;
+        out << garmentInfo;
     }
 
     //providerpage show provider info
@@ -535,9 +537,23 @@ void Processor::work ()
         QString searchAttribute, searchValue;
         searchAttribute = list.at(0);
         searchValue = list.at(1);
-        Staff::Info(searchAttribute, searchValue, result);
+        QVector<QStringList> staffInfo;
+        QSqlQuery query;
+        QStringList list;
+        SQLTool::fuzzySearch(query, "userdata", searchAttribute, searchValue);
+        while (query.next()) {
+            list.clear();
+            list.append(query.value(0).toString());
+            list.append(query.value(1).toString());
+            list.append(query.value(2).toString());
+            list.append(query.value(3).toString());
+            list.append(query.value(4).toString());
+            list.append(query.value(5).toString());
+            list.append(query.value(6).toString());
+            staffInfo.append(list);
+        }
         out << function;
-        out << result;
+        out << staffInfo;
     }
     //personnel page 1 delete staff info
     if(function == "pp1_dsi"){
@@ -606,7 +622,9 @@ void Processor::work ()
     }
     // personnel page 4 check if email exists
     if(function == "pp4_ise"){
+        qDebug() << list;
         QString email = list.at(0);
+        qDebug() << email;
         bool isEmailExisted = Staff::isEmailExisted(email);
         out << function;
         out << isEmailExisted;
@@ -615,10 +633,13 @@ void Processor::work ()
     if(function == "pp4_cop"){
         QString email = list.at(0);
         QString oldPassword = list.at(1);
-        QStringList result;
+        QVector<QStringList> result;
         Staff::Info("email", email, result);
+        if(result.isEmpty()){
+            return ;
+        }
         bool isPasswordRight;
-        if(oldPassword == result.at(1)){
+        if(oldPassword == result.at(0).at(1)){
             isPasswordRight = true;
         }else {
             isPasswordRight = false;
@@ -634,7 +655,12 @@ void Processor::work ()
         QString newUsername = list.at(2);
         Staff::alterStaffUsername(email, newUsername);
         Staff::updateStaffInfo(newUsername, "password", newPassword);
+        QSqlQuery query;
+        SQLTool::search(query, "userdata", "email", email);
+        query.next();
         out << function;
+        out << newUsername;
+        out << query.value(0).toString();
     }
     // purchase page show garment info
     if(function == "pcp_sg"){
@@ -1006,7 +1032,6 @@ void Processor::work ()
     }
 
     if(function == "createStore"){
-        out << function;
 
         QString name, province, city, address, username;
         name = list.at(0);list.removeFirst();
@@ -1040,13 +1065,15 @@ void Processor::work ()
         SQLTool::insert("store_check", qsl3);
 
         SQLTool::update("userdata", "position", "门店人员", "username", username);
+
+        out << function;
+        out << QString("Done");
     }
 
     //sissyVI--Finish
 
     out.device()->seek(0);
     out << (quint16) (message.size() - sizeof(quint16));
-    qDebug() << function << endl;
     m_socket->write(message);
     m_socket->flush();
 }

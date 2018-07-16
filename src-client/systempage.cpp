@@ -32,11 +32,18 @@
 void SystemCenter::on_pushButton_showGarment_clicked()
 {
     ui->tableWidget_garmentInfo->setRowCount(0);
-    ui->tableWidget_garmentInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_garmentInfo->verticalHeader()->setVisible(false);
-    QStringList list;
-    list.append("sp_sg");
-    sendMessage(list);
+    int i = 0;
+    for(QStringList list : clothes){
+        ui->tableWidget_garmentInfo->insertRow(i);
+        ui->tableWidget_garmentInfo->setItem(i, 0, new QTableWidgetItem(list.at(0)));
+        ui->tableWidget_garmentInfo->setItem(i, 1, new QTableWidgetItem(list.at(1)));
+        ui->tableWidget_garmentInfo->setItem(i, 2, new QTableWidgetItem(list.at(2)));
+        ui->tableWidget_garmentInfo->setItem(i, 3, new QTableWidgetItem(list.at(3)));
+        ui->tableWidget_garmentInfo->setItem(i, 4, new QTableWidgetItem(list.at(4)));
+        i++;
+    }
+    ui->tableWidget_garmentInfo->setRowCount(i);
+    progressBar();
 }
 
 /**
@@ -48,13 +55,15 @@ void SystemCenter::on_pushButton_showGarment_clicked()
 
 void SystemCenter::on_clearGarment_clicked()
 {
-    qDebug() << "clear garment info";
-    ui->tableWidget_garmentInfo->clear();
     ui->tableWidget_garmentInfo->setRowCount(0);
-    QStringList header;
 
-    header << tr("服装编号") << tr("服装样式") << tr("服装大小") << tr("服装图片") << tr("服装价格");
-    ui->tableWidget_garmentInfo->setHorizontalHeaderLabels(header);
+    ui->lineEdit_addGStyle->clear();;
+    ui->checkBox_GsizeS->setChecked(false);
+    ui->checkBox_GsizeM->setChecked(false);
+    ui->checkBox_GsizeL->setChecked(false);
+    ui->lineEdit_addGValue->clear();
+    ui->label_showGPic->clear();
+    ui->label_showPicPath->clear();
 }
 
 /**
@@ -69,9 +78,6 @@ void SystemCenter::on_clearGarment_clicked()
 void SystemCenter::on_pushButton_confirmAddG_clicked()
 {
 
-
-    QString picName = ui->label_showPicName->text();
-
     QStringList list;
     list.append("sp_confirmAddG");
 
@@ -80,35 +86,51 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
     QString garmentSize;
     QString garmentValue;
 
-    garmentStyle = ui->lineEdit_addGStyle->text();//add garment style
-    garmentValue = ui->lineEdit_addGValue->text();//add garment value
+    garmentStyle = ui->lineEdit_addGStyle->text().trimmed();//add garment style
+    garmentValue = ui->lineEdit_addGValue->text().trimmed();//add garment value
+
+    QString picName = garmentStyle + ".jpg";
+
+    QString picPath = ui->label_showPicPath->text();
+
+    if(garmentStyle == "" || garmentValue == "" || picPath == ""){
+        QMessageBox::warning(this,"警告", "\n请输入全部字段！",QMessageBox::Close);
+        return;
+    }
+
+    if(!ui->checkBox_GsizeS->isChecked() &&
+            !ui->checkBox_GsizeM->isChecked() &&
+            !ui->checkBox_GsizeL->isChecked()){
+        QMessageBox::warning(this,"警告", "\n请至少选中一个size！",QMessageBox::Close);
+        return;
+    }
+
+    QByteArray ba = garmentValue.toLatin1();
+    const char *s = ba.data();
+    while(*s && *s>='0' && *s<='9') s++;
+
+    if (*s)
+    {
+        QMessageBox::warning(this,"警告", "\n价格请输入纯数字！",QMessageBox::Close);
+        return;
+    }
+
     list.append(garmentStyle);
     list.append(picName);
     list.append(garmentValue);
     if(ui->checkBox_GsizeS->isChecked()){
         garmentSize = ui->checkBox_GsizeS->text();
         list.append(garmentSize);
-        sendMessage(list);
     }if(ui->checkBox_GsizeM->isChecked()){
         garmentSize = ui->checkBox_GsizeM->text();
         list.append(garmentSize);
-        sendMessage(list);
     }if(ui->checkBox_GsizeL->isChecked()){
         garmentSize = ui->checkBox_GsizeL->text();
         list.append(garmentSize);
-        sendMessage(list);
     }
 
-    ui->lineEdit_addGStyle->clear();
-    ui->checkBox_GsizeS->setChecked(false);
-    ui->checkBox_GsizeM->setChecked(false);
-    ui->checkBox_GsizeL->setChecked(false);
-    ui->lineEdit_addGValue->clear();
-    ui->label_showGPic->clear();
+    sendMessage(list);
 
-
-
-    QString picPath = ui->label_showPicPath->text();
     QBuffer buffer;
     QByteArray message;
     QDataStream out(&message,QIODevice::WriteOnly);
@@ -118,12 +140,11 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
     img.load(picPath);
     img.save(&buffer,"JPG");
     out << qint32(buffer.size());
-    out << QString(picName);
+    out << QString("/clothes/" + picName);
     out << buffer.data();
 
     m_socket->write(message);
     m_socket->flush();
-    qDebug("sendpic");
 
 }
 
@@ -139,73 +160,22 @@ void SystemCenter::on_pushButton_confirmAddG_clicked()
 void SystemCenter::on_pushButton_setGPic_clicked()
 {
     QStringList picture = QFileDialog::getOpenFileNames(this, tr("Open File"),
-                                                       "C:\\Users\\Dong9\\Pictures\\Saved Pictures",
                                                        tr("图片文件(*png *jpg)"));
+    if(picture.isEmpty()){
+        return ;
+    }
     QString showPic = picture.join("/");
     QString picturePath = picture.at(0);
     QStringList Piclist = picturePath.split("/");
     QString pictureName = Piclist.at(Piclist.length() - 1);
-    qDebug() << pictureName;
 
 
     QPixmap pixmap(showPic);
     ui->label_showPicPath->setText(showPic);
-    ui->label_showGPic->setPixmap(pixmap.scaled(ui->label_showGPic->size(), Qt::IgnoreAspectRatio));
+    ui->label_showGPic->setPixmap(pixmap.scaled(162, 162, Qt::IgnoreAspectRatio));
     ui->label_showGPic->show();
-    ui->label_showPicName->setText(pictureName);
-
-
-
-
-//    QFile pushPic(picturePath);
-//    pushPic.open(QIODevice::ReadOnly);
-//    QByteArray by_pushPic = pushPic.readAll();
-//    pushPic.close();
-//    QNetworkAccessManager manager;
-//    qDebug() << pictureName;
-//    QString serverPath = "http://39.108.155.50/ftpuser/project1/clothes/";
-//    QUrl URL = QUrl(serverPath + pictureName);
-//    qDebug() << URL;
-//    URL.setUserName("root");
-//    URL.setPassword("abcd1234");
-//    URL.setPort(21);
-
-
-
-//    QNetworkRequest pushRequest;
-//    pushRequest.setUrl(URL);
-
-//    QNetworkReply *pushReply = manager.put(pushRequest, by_pushPic);
-
-
-
-
-
-
-//    if(pushReply->error() == QNetworkReply::NoError){
-//        qDebug() << "success";
-//    }else {
-//        qDebug() << "fail";
-//    }
 
 }
 
-
-/**
- * cancel create new garment
- *
- * @author Yihan Dong
- * @return void
- */
-
-void SystemCenter::on_pushButton_cancelAddG_clicked()
-{
-    ui->lineEdit_addGStyle->clear();;
-    ui->checkBox_GsizeS->setChecked(false);
-    ui->checkBox_GsizeM->setChecked(false);
-    ui->checkBox_GsizeL->setChecked(false);
-    ui->lineEdit_addGValue->clear();
-    ui->label_showGPic->clear();
-}
 
 
