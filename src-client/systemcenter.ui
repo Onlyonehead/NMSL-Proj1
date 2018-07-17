@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -14918,10 +14918,10 @@ QTableWidget::item{
        </property>
       </widget>
      </widget>
+     <zorder>frame_sell_C</zorder>
      <zorder>frame_sell_B</zorder>
      <zorder>frame_sell_D</zorder>
      <zorder>frame_sell_A</zorder>
-     <zorder>frame_sell_C</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">

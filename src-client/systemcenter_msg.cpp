@@ -1010,16 +1010,18 @@ void SystemCenter::readMessage()
         QVector<QStringList> qv_stores;
         in >> qv_stores;
 
+        ui->tableWidget_stores->setRowCount(0);
         qDebug()<<"门店数量："<<qv_stores.size();
-        ui->tableWidget_stores->setRowCount(qv_stores.size());
         int i=0;
         QVector<QStringList>::const_iterator it;
         for(it=qv_stores.constBegin(); it!=qv_stores.constEnd(); ++it){
+            ui->tableWidget_stores->insertRow(i);
             for(int j=0; j<6; ++j){
                 ui->tableWidget_stores->setItem(i, j, new QTableWidgetItem(it->at(j)));
             }
             ++i;
         }
+        ui->tableWidget_stores->setRowCount(qv_stores.size());
 
         progressBar();
     }

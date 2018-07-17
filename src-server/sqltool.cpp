@@ -8,11 +8,11 @@
  */
 void SQLTool::connection(){
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("kousz.top");
+    db.setHostName("127.0.0.1");
     db.setPort(3306);
     db.setUserName("root");
     db.setPassword("abcd1234");
-    db.setDatabaseName("project1");
+    db.setDatabaseName("Project1");
     if(!db.open()){
         qDebug() << "Unable to open database" << endl;
     }else{
