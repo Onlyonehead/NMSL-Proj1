@@ -206,8 +206,6 @@ void SystemCenter::finishedSlot(QNetworkReply* reply){
                         QString address = ui->warehouse_add_address->text();
                         QString position_x = position.split(",")[0];
                         QString position_y = position.split(",")[1];
-                        qDebug() << position_x;
-                        qDebug() << position_y;
 
                         QStringList msg;
                         msg.append("add_warehouse");
