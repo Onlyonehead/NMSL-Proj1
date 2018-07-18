@@ -20,6 +20,7 @@ void SystemCenter::on_tw_sell_C1_cellClicked(int row, int column)
 {
     Q_UNUSED(column);
 
+    ui->tw_sell_C3->setRowCount(0);
     //groupBox_shopC
     QString store_id, location, username;
     QString name = ui->tw_sell_C1->item(row, 0)->text();

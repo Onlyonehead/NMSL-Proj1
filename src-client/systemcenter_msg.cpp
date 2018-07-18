@@ -507,6 +507,11 @@ void SystemCenter::readMessage()
         if(msg == "Done"){
             QMessageBox::information(this,"完成", "\n提交订单成功！",QMessageBox::Ok);
             ui->tableWidget_D4->setRowCount(0);
+            count_ongoing++;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
+
         }
         ui->tableWidget_B->setRowCount(0);
     }
@@ -669,6 +674,22 @@ void SystemCenter::readMessage()
         }
     }
 
+    if(from == "reject_order_D"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n已拒绝此次订单！",QMessageBox::Ok);
+            order_id.clear();
+            on_pushButton_26_clicked();
+
+            count_ongoing--;
+            count_rejected++;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
+        }
+    }
+
     if(from == "add_warehouse"){
         QString s;
         in >> s;
@@ -743,6 +764,45 @@ void SystemCenter::readMessage()
             on_pushButton_54_clicked();
         }
     }
+
+    if(from == "orderinfo_D"){
+        on_pushButton_26_clicked();
+
+        QVector<QStringList> vlist;
+        in >> vlist;
+        this->orderList = vlist;
+
+        int count = 0;
+        for(QStringList l : vlist){
+            QApplication::processEvents();
+            ui->tableWidget_logistics_D1->insertRow(count);
+            ui->tableWidget_logistics_D1->setItem(count, 0, new QTableWidgetItem("Order id: " + l.at(0)));
+            ui->tableWidget_logistics_D1->setItem(count, 1, new QTableWidgetItem("Sender: " + l.at(1)));
+            QStringList ss = l.at(2).split(QRegExp("[A-Z]"));
+            ui->tableWidget_logistics_D1->setItem(count, 2, new QTableWidgetItem("Time: " + ss[0] + " " + ss[1]));
+            QApplication::processEvents();
+            count++;
+        }
+        ui->tableWidget_logistics_D1->setRowCount(count);
+
+        progressBar();
+    }
+
+    if(from == "auto_replenish"){
+        QString s;
+        in >> s;
+        if(s == "Done"){
+            QMessageBox::information(this,"完成", "\n补货成功！",QMessageBox::Ok);
+            on_pushButton_31_clicked();
+
+            count_ongoing--;
+            count_dealt++;
+            ui->label_121->setText(QString::number(count_dealt));
+            ui->label_123->setText(QString::number(count_ongoing));
+            ui->label_128->setText(QString::number(count_rejected));
+        }
+    }
+
 
 
     // system page add new garment
@@ -1081,8 +1141,6 @@ void SystemCenter::readMessage()
                 ++i;
             }
         }
-        if(record_size>0)
-            ui->tableWidget_storeRecord->setCurrentCell(0, 0);
 
         progressBar();
     }

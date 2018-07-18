@@ -322,6 +322,23 @@ private slots:
 
     void on_pushButton_addProviderInfo_2_clicked();
 
+    void finishedSlotForAuto(QNetworkReply*);
+
+
+    void on_pushButton_31_clicked();
+
+    void on_pushButton_26_clicked();
+
+    void on_pushButton_32_clicked();
+
+    void on_tableWidget_logistics_D1_itemClicked(QTableWidgetItem *item);
+
+    void on_logistics_showmap_clicked();
+
+    void on_logistics_send_D_clicked();
+
+    void on_logistics_route_D_clicked();
+
 signals:
     void stringReturn(QString);
 
@@ -335,6 +352,8 @@ private:
 
     void searchTableWidget(QTableWidget*, const QString&, QVector<int>&);
     void setTableWidgetItemHidden(QTableWidget*, const QString&);
+
+    void generateNewRoute(); // For logistics D
 
     QNetworkAccessManager netManager;
     QString filepath;
@@ -380,6 +399,14 @@ private:
     QStringList current_selected; // For purchasepage
 
     QString store_name; // For sell_d
+
+    int url_num; // For logistic D
+
+    int progress_num; // For logistic D
+
+    QMap<int, QStringList> auto_route; // For logistic D
+
+    QStringList current_order; // For logistic D
 
     bool style;
 

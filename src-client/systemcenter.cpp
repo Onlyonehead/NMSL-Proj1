@@ -80,6 +80,43 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tabWidget->setCurrentIndex(0);
     on_tabWidget_tabBarClicked(0);
 
+    if(s3 == "管理员"){
+        ui->tabWidget->removeTab(1);
+        ui->tabWidget->removeTab(2);
+        ui->tabWidget->removeTab(3);
+        ui->tabWidget->removeTab(4);
+    }
+    if(s3 == "采购人员"){
+        ui->tabWidget->removeTab(2);
+        ui->tabWidget->removeTab(3);
+        ui->tabWidget->removeTab(4);
+        ui->tabWidget->removeTab(6);
+    }
+
+    if(s3 == "物流管理"){
+        ui->tabWidget->removeTab(1);
+        ui->tabWidget->removeTab(3);
+        ui->tabWidget->removeTab(4);
+        ui->tabWidget->removeTab(6);
+
+    }
+
+    if(s3 == "仓库管理"){
+        ui->tabWidget->removeTab(1);
+        ui->tabWidget->removeTab(2);
+        ui->tabWidget->removeTab(4);
+        ui->tabWidget->removeTab(6);
+
+    }
+
+    if(s3 == "销售管理"){
+        ui->tabWidget->removeTab(1);
+        ui->tabWidget->removeTab(2);
+        ui->tabWidget->removeTab(3);
+        ui->tabWidget->removeTab(6);
+
+    }
+
     /*
      * slow start
      *
@@ -470,6 +507,14 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->label_162->setText(QChar(0xf3d1));
     ui->label_162->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
 
+    ui->label_164->setFont(font);
+    ui->label_164->setText(QChar(0xf058));
+    ui->label_164->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
+    ui->label_165->setFont(font);
+    ui->label_165->setText(QChar(0xf277));
+    ui->label_165->setStyleSheet("border: 0px; color: rgb(106, 106, 106);background:none;");
+
 
 
 
@@ -754,6 +799,21 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_garmentInfo->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_garmentInfo->setAlternatingRowColors(true);
 
+    ui->tableWidget_logistics_D1->horizontalHeader()->setDefaultSectionSize(120);
+    ui->tableWidget_logistics_D1->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_D1->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_D1->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_D4->setColumnWidth(1, 70);
+    ui->tableWidget_logistics_D4->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_D4->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_D4->setAlternatingRowColors(true);
+
+    ui->tableWidget_logistics_D2->horizontalHeader()->setDefaultSectionSize(90);
+    ui->tableWidget_logistics_D2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_logistics_D2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_logistics_D2->setAlternatingRowColors(true);
+
 
 
 
@@ -928,7 +988,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_A->setText("Replenish");
         ui->pushButton_B->setText("History");
         ui->pushButton_C->setText("Route");
-        ui->pushButton_D->setText("");
+        ui->pushButton_D->setText("Auto");
 
     }
     if(index == 3){
@@ -955,15 +1015,24 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
     }
     if(index == 5){
-         ui->pushButton_A->setVisible(true);
+        ui->pushButton_A->setVisible(true);
         ui->pushButton_B->setVisible(true);
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
 
-        ui->pushButton_A->setText("Display");
-        ui->pushButton_B->setText("Add");
-        ui->pushButton_C->setText("Modify");
-        ui->pushButton_D->setText("Security");
+        if(ui->label_8->text() == "管理员"){
+            ui->pushButton_A->setText("Display");
+            ui->pushButton_B->setText("Add");
+            ui->pushButton_C->setText("Modify");
+            ui->pushButton_D->setText("Security");
+        }else{
+             ui->pushButton_A->setText("Security");
+             ui->pushButton_B->setText("");
+             ui->pushButton_C->setText("");
+             ui->pushButton_D->setText("");
+        }
+
+
 
     }
     if(index == 6){
@@ -993,7 +1062,6 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_2A->setVisible(true);
     ui->frame_pA->setVisible(true);
     ui->frame_systempage_1->setVisible(true);
-    ui->frame_personnelpage_1->setVisible(true);
     ui->frame_sell_A->setVisible(true);
     ui->frame_logistics_A->setVisible(true);
 
@@ -1002,24 +1070,33 @@ void SystemCenter::on_pushButton_A_clicked()
     ui->frame_2B->setVisible(false);
     ui->frame_pB->setVisible(false);
     ui->frame_systempage_2->setVisible(false);
-    ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
     ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_sell_C->setVisible(false);
-
-    //D
-    ui->frame_2D->setVisible(false);
-    ui->frame_sell_D->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
-    ui->frame_personnelpage_3->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
-    ui->frame_personnelpage_4->setVisible(false);
+    ui->frame_sell_D->setVisible(false);
+    ui->frame_logistics_D->setVisible(false);
+
+    if(ui->label_8->text() == "管理员" ||
+            ui->label_8->text() == "测试用"){
+        ui->frame_personnelpage_1->setVisible(true);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(false);
+    }else{
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(true);
+    }
+
 }
 
 /**
@@ -1033,7 +1110,6 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_2A->setVisible(false);
     ui->frame_pA->setVisible(false);
     ui->frame_systempage_1->setVisible(false);
-    ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
     ui->frame_logistics_A->setVisible(false);
 
@@ -1041,24 +1117,32 @@ void SystemCenter::on_pushButton_B_clicked()
     ui->frame_2B->setVisible(true);
     ui->frame_pB->setVisible(true);
     ui->frame_systempage_2->setVisible(true);
-    ui->frame_personnelpage_2->setVisible(true);
     ui->frame_sell_B->setVisible(true);
     ui->frame_logistics_B->setVisible(true);
 
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_sell_C->setVisible(false);
-
-    //D
-    ui->frame_2D->setVisible(false);
-    ui->frame_sell_D->setVisible(false);
     ui->frame_logistics_C->setVisible(false);
-	ui->frame_personnelpage_3->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(false);
-	ui->frame_personnelpage_4->setVisible(false);
+    ui->frame_sell_D->setVisible(false);
+    ui->frame_logistics_D->setVisible(false);
+
+    if(ui->label_8->text() == "管理员" ||
+            ui->label_8->text() == "测试用"){
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(true);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(false);
+    }else{
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(true);
+    }
 }
 
 /**
@@ -1072,7 +1156,6 @@ void SystemCenter::on_pushButton_C_clicked()
     ui->frame_2A->setVisible(false);
     ui->frame_pA->setVisible(false);
     ui->frame_systempage_1->setVisible(false);
-    ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
     ui->frame_logistics_A->setVisible(false);
 
@@ -1080,25 +1163,32 @@ void SystemCenter::on_pushButton_C_clicked()
     ui->frame_2B->setVisible(false);
     ui->frame_pB->setVisible(false);
     ui->frame_systempage_2->setVisible(false);
-    ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
     ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(true);
     ui->frame_sell_C->setVisible(true);
+    ui->frame_logistics_C->setVisible(true);
+    ui->frame_systempage_3->setVisible(true);
 
     //D
     ui->frame_2D->setVisible(false);
     ui->frame_sell_D->setVisible(false);
-    ui->frame_logistics_C->setVisible(true);
-	ui->frame_systempage_3->setVisible(true);
-    ui->frame_personnelpage_3->setVisible(true);
+    ui->frame_logistics_D->setVisible(false);
 
-
-    //D
-    ui->frame_2D->setVisible(false);
-	ui->frame_personnelpage_4->setVisible(false);
+    if(ui->label_8->text() == "管理员" ||
+            ui->label_8->text() == "测试用"){
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(true);
+        ui->frame_personnelpage_4->setVisible(false);
+    }else{
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(true);
+    }
 
 }
 
@@ -1113,7 +1203,6 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_2A->setVisible(false);
     ui->frame_pA->setVisible(false);
     ui->frame_systempage_1->setVisible(false);
-    ui->frame_personnelpage_1->setVisible(false);
     ui->frame_sell_A->setVisible(false);
     ui->frame_logistics_A->setVisible(false);
 
@@ -1121,24 +1210,32 @@ void SystemCenter::on_pushButton_D_clicked()
     ui->frame_2B->setVisible(false);
     ui->frame_pB->setVisible(false);
     ui->frame_systempage_2->setVisible(false);
-    ui->frame_personnelpage_2->setVisible(false);
     ui->frame_sell_B->setVisible(false);
     ui->frame_logistics_B->setVisible(false);
 
     //C
     ui->frame_2C->setVisible(false);
     ui->frame_sell_C->setVisible(false);
-
-    //D
-    ui->frame_2D->setVisible(true);
-    ui->frame_sell_D->setVisible(true);
     ui->frame_logistics_C->setVisible(false);
-	ui->frame_personnelpage_3->setVisible(false);
     ui->frame_systempage_3->setVisible(false);
 
     //D
     ui->frame_2D->setVisible(true);
-	ui->frame_personnelpage_4->setVisible(true);
+    ui->frame_sell_D->setVisible(true);
+    ui->frame_logistics_D->setVisible(true);
+
+    if(ui->label_8->text() == "管理员" ||
+            ui->label_8->text() == "测试用"){
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(true);
+    }else{
+        ui->frame_personnelpage_1->setVisible(false);
+        ui->frame_personnelpage_2->setVisible(false);
+        ui->frame_personnelpage_3->setVisible(false);
+        ui->frame_personnelpage_4->setVisible(true);
+    }
 }
 
 

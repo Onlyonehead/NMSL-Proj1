@@ -290,7 +290,6 @@ void Store::storeArrive(QString store_id, QString time_com, Order& o){
     SQLTool::search(sq, "id_purchase", "store_pRecord", qsl);
     sq.next();
     QString purchase_id = sq.value(0).toString();
-    qDebug()<<"purchase_id: "<<purchase_id;
 
     QString from_id = o.getId();
     QString date_arr = o.getDatetime();
@@ -298,7 +297,6 @@ void Store::storeArrive(QString store_id, QString time_com, Order& o){
 
     for(int i=0; i<qsl_c.size();){
         QStringList qsl_arr;
-        qDebug() << store_id << qsl_c.at(i) << qsl_c.at(i+1) << date_arr << from_id << purchase_id;
         qsl_arr << store_id << qsl_c.at(i++) << qsl_c.at(i++) << date_arr << from_id << purchase_id;
         SQLTool::insert("store_arriving", qsl_arr);
     }

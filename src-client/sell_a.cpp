@@ -3,6 +3,7 @@
 
 void SystemCenter::on_pushButton_showStores_clicked()
 {
+    ui->lineEdit_sell_search->clear();
     QStringList qsl;
     qsl.append("showStores");
     sendMessage(qsl);

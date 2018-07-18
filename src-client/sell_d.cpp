@@ -13,7 +13,12 @@ void SystemCenter::on_pushButton_57_clicked()
                                      "border-radius:29px;"
                                      "background:none;"
                                      "color: rgb(76, 76, 76);"
-                                     "font: 75 13pt \"Helvetica\" bold;}");
+                                     "font: 75 13pt \"Helvetica\" bold;}"
+                                     "QPushButton:hover{"
+                                     "border: 2px solid rgb(200, 200, 200);"
+                                     "background:white;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 15pt \"Helvetica\" bold;}");
 }
 
 void SystemCenter::on_pushButton_58_clicked()
@@ -28,7 +33,17 @@ void SystemCenter::on_pushButton_58_clicked()
                                      "border-radius:29px;"
                                      "background:none;"
                                      "color: rgb(76, 76, 76);"
-                                     "font: 75 13pt \"Helvetica\" bold;}");
+                                     "font: 75 13pt \"Helvetica\" bold;}"
+                                     "QPushButton:hover{"
+                                     "border: 2px solid rgb(200, 200, 200);"
+                                     "background:white;"
+                                     "color: rgb(76, 76, 76);"
+                                     "font: 75 15pt \"Helvetica\" bold;}");
+
+    ui->comboBox_2->clear();
+    QStringList qsl;
+    qsl.append("changeUserName2");
+    sendMessage(qsl);
 }
 
 void SystemCenter::on_pushButton_49_clicked()
@@ -82,7 +97,7 @@ void SystemCenter::on_pushButton_59_clicked()
     qDebug()<<user;
     bool changed = false;
 
-    if(name==""&&province==""&&city==""&&address==""&&user=="") {
+    if(name==""&&province==""&&address==""&&user=="") {
         QMessageBox::warning(this, "Warning", "Informations should not be empty", QMessageBox::Yes);
         return;
     }
@@ -128,8 +143,6 @@ void SystemCenter::on_pushButton_50_clicked()
 
 void SystemCenter::on_pushButton_53_clicked()
 {
-    ui->comboBox_2->clear();
-
     ui->tw_sellD2->verticalHeader()->setVisible(false);
     ui->tw_sellD2->setRowCount(clothes.size());
     ui->tw_sellD2->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -141,10 +154,6 @@ void SystemCenter::on_pushButton_53_clicked()
         ui->tw_sellD2->setItem(i, 0, new QTableWidgetItem(it->at(1)+" "+it->at(2)));
         ui->tw_sellD2->item(i,0)->setTextAlignment(Qt::AlignCenter);
     }
-
-    QStringList qsl;
-    qsl.append("changeUserName2");
-    sendMessage(qsl);
 }
 
 void SystemCenter::on_tw_sellD2_cellClicked(int row, int column)
@@ -245,7 +254,7 @@ void SystemCenter::on_pushButton_62_clicked()
     city = ui->lineEdit_503->text().trimmed();
     address = ui->lineEdit_504->text().trimmed();
     username = ui->comboBox_2->currentText().trimmed();
-    if(name==""||province==""||city==""||address==""||username==""){
+    if(name==""||province==""||address==""||username==""){
         QMessageBox::warning(this, "Warning", "Informations should not be empty", QMessageBox::Yes);
         return;
     }
@@ -287,6 +296,5 @@ void SystemCenter::on_pushButton_54_clicked()
     ui->lineEdit_502->setText("");
     ui->lineEdit_503->setText("");
     ui->lineEdit_504->setText("");
-    ui->comboBox_2->clear();
     ui->label_font_sellDCloth->setVisible(false);
 }

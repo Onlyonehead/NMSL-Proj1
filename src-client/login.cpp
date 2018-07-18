@@ -303,20 +303,20 @@ void Login::readMessage()
         QStringList list;
         in >> list;
 
-        if(list.at(2) == "管理员"){
-            QApplication::processEvents();
-            SystemCenter *sc = new SystemCenter;
-            connect(this, SIGNAL(stringReturn1(QString, QString, QString, QString, QString, QString)),
-                    sc, SLOT(showString(QString, QString, QString, QString, QString, QString)));
-            emit stringReturn1(list.at(0),list.at(1),list.at(2),list.at(3),list.at(4),list.at(5));
-        }
         if(list.at(2) == "门店人员"){
             QApplication::processEvents();
             MainWindow *m = new MainWindow;
             connect(this, SIGNAL(stringReturn2(QString, QString, QString, QString, QString, QString)),
                     m, SLOT(showString(QString, QString, QString, QString, QString, QString)));
             emit stringReturn2(list.at(0),list.at(1),list.at(2),list.at(3),list.at(4),list.at(5));
+        }else{
+            QApplication::processEvents();
+            SystemCenter *sc = new SystemCenter;
+            connect(this, SIGNAL(stringReturn1(QString, QString, QString, QString, QString, QString)),
+                    sc, SLOT(showString(QString, QString, QString, QString, QString, QString)));
+            emit stringReturn1(list.at(0),list.at(1),list.at(2),list.at(3),list.at(4),list.at(5));
         }
+
 
         this->close();
     }

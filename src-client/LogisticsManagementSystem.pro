@@ -58,7 +58,8 @@ SOURCES += main.cpp \
     sell_d.cpp \
     qtmap.cpp \
     bridge.cpp \
-    logistics_c.cpp
+    logistics_c.cpp \
+    logistics_d.cpp
 
 
 

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "sqltool.h"
 #include "login.h"
 #include "record.h"
 

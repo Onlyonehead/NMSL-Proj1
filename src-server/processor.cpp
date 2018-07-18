@@ -311,7 +311,8 @@ void Processor::work ()
         in >> order_time;
 
         QDateTime current_date_time = QDateTime::currentDateTime();
-        QString time = current_date_time.addDays(3).toString("yyyy-MM-dd hh:mm:ss");
+        QString time = current_date_time.addDays(2).addSecs(10000).
+                addMSecs(warehouse_id.toInt() * 1000000).toString("yyyy-MM-dd hh:mm:ss");
 
 
 
@@ -409,6 +410,23 @@ void Processor::work ()
         out << QString("Done");
     }
 
+    if(function == "reject_order_D"){
+        QString order_id = list.at(0);
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo", "order_id", order_id);
+        if(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append("REJECTED");
+            SQLTool::insert("orderChecked", l);
+            SQLTool::del("orderInfo", "order_id", order_id);
+        }
+        out << function;
+        out << QString("Done");
+    }
+
     if(function == "add_warehouse"){
         QString name = list.at(0);
         QString province = list.at(1);
@@ -471,6 +489,91 @@ void Processor::work ()
         out << QString("Done");
         out << id;
     }
+
+    if(function == "orderinfo_D"){
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo");
+        QVector<QStringList> vlist;
+
+        while(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(query.value(3).toString());
+            vlist.append(l);
+        }
+
+
+        out << function;
+        out << vlist;
+    }
+
+    if(function == "auto_replenish"){
+        QString warehouse_id;
+        QString order_id;
+        QMap<QString, QMap<QString, QString>> replenishment;
+
+        QString order_time;
+
+        int max_time;
+
+        in >> order_id;
+        in >> warehouse_id;
+        in >> replenishment;
+        in >> order_time;
+        in >> max_time;
+
+        QDateTime current_date_time = QDateTime::currentDateTime();
+
+        QStringList s_for_infochecked;
+
+        for(QMap<QString, QMap<QString, QString>>::const_iterator i
+            = replenishment.begin(); i != replenishment.end(); ++i){
+            QStringList l;
+            QString time;
+            for(QMap<QString, QString>::const_iterator j
+                = i.value().begin(); j != i.value().end(); ++j){
+                if(j.key() == "duration"){
+                    time = current_date_time.addSecs(j.value().toInt()).toString("yyyy-MM-dd hh:mm:ss");
+                }else{
+                    l.append(j.key());
+                    l.append(j.value());
+                    s_for_infochecked.append(i.key());
+                    s_for_infochecked.append(j.key());
+                    s_for_infochecked.append(j.value());
+                }
+            }
+            Order order(i.key(), time, l);
+            QByteArray ba = warehouse_id.split("-")[0].trimmed().toLatin1();
+            const char *s = ba.data();
+
+            if(*s == 'S'){
+                Store::storeArrive(warehouse_id.split("-")[0].trimmed().split(QRegExp("[A-Z]"))[1], order_time, order);
+            }else{
+                Warehouse::replenish(warehouse_id.split("-")[0].trimmed(), order);
+            }
+            QString id = order.getId();
+            order.editInfo(warehouse_id.split("-")[0].trimmed(), order.getDatetime(), order.getProductInfo());
+            Warehouse::deliverGoods(id, order);
+        }
+        QSqlQuery query;
+        SQLTool::search(query, "orderInfo", "order_id", order_id);
+        if(query.next()){
+            QStringList l;
+            l.append(query.value(0).toString());
+            l.append(query.value(1).toString());
+            l.append(query.value(2).toString());
+            l.append(s_for_infochecked.join("#"));
+            SQLTool::insert("orderChecked", l);
+            SQLTool::del("orderInfo", "order_id", order_id);
+        }
+        out << function;
+        out << QString("Done");
+    }
+
+
+
 
     //system page add new garment
     if(function == "sp_confirmAddG"){

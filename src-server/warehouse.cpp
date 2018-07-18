@@ -299,6 +299,7 @@ void Warehouse::transfer(){
         }
 
     }
+    SQLTool::del("stock", "quantity", "0");
 }
 
 void Warehouse::GInfo(QVector<QStringList> &garmentInfo)
