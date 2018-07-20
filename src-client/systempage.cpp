@@ -60,7 +60,7 @@ void SystemCenter::on_clearGarment_clicked()
     ui->checkBox_GsizeM->setChecked(false);
     ui->checkBox_GsizeL->setChecked(false);
     ui->lineEdit_addGValue->clear();
-    ui->label_showGPic->clear();
+    ui->label_showGPic->setText("Preview");
     ui->label_showPicPath->clear();
 }
 

@@ -49,6 +49,9 @@ void SystemCenter::on_pushButton_19_clicked()
     ui->tableWidget_logistics_C1->setRowCount(0);
     ui->tableWidget_logistics_C2->setRowCount(0);
     ui->tableWidget_route_via->setRowCount(0);
+    ui->label_recently_selected->setText("-");
+
+    siteSelected.clear();
 
     ui->route_from->clear();
     ui->route_to->clear();
@@ -104,6 +107,12 @@ void SystemCenter::on_tableWidget_logistics_C2_itemClicked(QTableWidgetItem *ite
 
 void SystemCenter::on_pushButton_add1_clicked()
 {
+
+    if(siteSelected.isEmpty()){
+        QMessageBox::warning(this,"警告", "请选中条目",QMessageBox::Ok);
+        return ;
+    }
+
     if(!siteFrom.isEmpty() && siteSelected.at(1) == siteFrom.at(1)){
         QMessageBox::warning(this,"警告", "请添加未添加过的条目",QMessageBox::Ok);
         return ;
@@ -128,6 +137,11 @@ void SystemCenter::on_pushButton_add1_clicked()
 
 void SystemCenter::on_pushButton_add2_clicked()
 {
+    if(siteSelected.isEmpty()){
+        QMessageBox::warning(this,"警告", "请选中条目",QMessageBox::Ok);
+        return ;
+    }
+
     if(!siteFrom.isEmpty() && siteSelected.at(1) == siteFrom.at(1)){
         QMessageBox::warning(this,"警告", "请添加未添加过的条目",QMessageBox::Ok);
         return ;
@@ -158,6 +172,11 @@ void SystemCenter::on_pushButton_add2_clicked()
 
 void SystemCenter::on_pushButton_add3_clicked()
 {
+    if(siteSelected.isEmpty()){
+        QMessageBox::warning(this,"警告", "请选中条目",QMessageBox::Ok);
+        return ;
+    }
+
     if(!siteFrom.isEmpty() && siteSelected.at(1) == siteFrom.at(1)){
         QMessageBox::warning(this,"警告", "请添加未添加过的条目",QMessageBox::Ok);
         return ;

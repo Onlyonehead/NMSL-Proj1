@@ -9,7 +9,7 @@
 /**
  * SystemCenter UI initialize
  *
- * @author Zicun Hang
+ * @author hzc
  */
 SystemCenter::SystemCenter(QWidget *parent) :
     QWidget(parent),
@@ -26,6 +26,8 @@ SystemCenter::SystemCenter(QWidget *parent) :
     m_socket->connectToHost(QHostAddress::LocalHost, 7777);
     connect(m_socket, SIGNAL(readyRead()),
             this, SLOT(replyFinished()));
+
+    ui->label_navigator->setVisible(false);
 
 
     this->setAttribute(Qt::WA_DeleteOnClose);
@@ -44,7 +46,7 @@ SystemCenter::SystemCenter(QWidget *parent) :
 /**
  * SystemCenter UI destory
  *
- * @author Zicun Hang
+ * @author hzc
  */
 SystemCenter::~SystemCenter()
 {
@@ -55,7 +57,7 @@ SystemCenter::~SystemCenter()
 /**
  * on_pushButton_clicked
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_quit_clicked()
 {
@@ -65,7 +67,7 @@ void SystemCenter::on_pushButton_quit_clicked()
 /**
  * slot method
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s1 username
  * @param s2 name
  * @param s3 position
@@ -675,13 +677,17 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_D3->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_D3->setAlternatingRowColors(true);
 
+    ui->tableWidget_D4->horizontalHeader()->setDefaultSectionSize(10);
     ui->tableWidget_D4->setColumnWidth(0,73);
-    ui->tableWidget_D4->setColumnWidth(1,123);
+    ui->tableWidget_D4->setColumnWidth(1,130);
     ui->tableWidget_D4->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_D4->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_D4->setAlternatingRowColors(true);
 
-    ui->tableWidget_stores->horizontalHeader()->setDefaultSectionSize(93);
+
+    ui->tableWidget_stores->horizontalHeader()->setDefaultSectionSize(90);
+    ui->tableWidget_stores->setColumnWidth(0,40);
+    ui->tableWidget_stores->setColumnWidth(4,220);
     ui->tableWidget_stores->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_stores->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_stores->setAlternatingRowColors(true);
@@ -922,7 +928,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 /**
  * shape picture to circle
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s1 username
  * @param s2 name
  * @param s3 position
@@ -950,7 +956,7 @@ void SystemCenter::getRoundPixmap(QPixmap* src,QSize size)
 /**
  * slot method
  *
- * @author Zicun Hang
+ * @author hzc
  * @param index tab index of tab widget
  */
 void SystemCenter::on_tabWidget_tabBarClicked(int index){
@@ -999,7 +1005,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 
         ui->pushButton_A->setText("Info");
         ui->pushButton_B->setText("Cargo");
-        ui->pushButton_C->setText("Stock");
+        ui->pushButton_C->setText("Inventory");
         ui->pushButton_D->setText("Demand");
     }
     if(index == 4){
@@ -1020,7 +1026,8 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
         ui->pushButton_C->setVisible(true);
         ui->pushButton_D->setVisible(true);
 
-        if(ui->label_8->text() == "管理员"){
+        if(ui->label_8->text() == "管理员" ||
+                ui->label_8->text() == "测试用"){
             ui->pushButton_A->setText("Display");
             ui->pushButton_B->setText("Add");
             ui->pushButton_C->setText("Modify");
@@ -1052,7 +1059,7 @@ void SystemCenter::on_tabWidget_tabBarClicked(int index){
 /**
  * on_pushButton_A_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_A_clicked()
 {
@@ -1102,7 +1109,7 @@ void SystemCenter::on_pushButton_A_clicked()
 /**
  * on_pushButton_B_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_B_clicked()
 {
@@ -1148,7 +1155,7 @@ void SystemCenter::on_pushButton_B_clicked()
 /**
  * on_pushButton_C_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_C_clicked()
 {
@@ -1195,7 +1202,7 @@ void SystemCenter::on_pushButton_C_clicked()
 /**
  * on_pushButton_D_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_D_clicked()
 {
@@ -1242,7 +1249,7 @@ void SystemCenter::on_pushButton_D_clicked()
 /**
  * progress bar
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::progressBar()
 {
@@ -1262,7 +1269,7 @@ void SystemCenter::progressBar()
 /**
  * fast version progress bar
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::progressBar_fast()
 {
@@ -1283,7 +1290,7 @@ void SystemCenter::progressBar_fast()
 /**
  * on_pushButton_2_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_switch_clicked()
 {
@@ -1297,7 +1304,7 @@ void SystemCenter::on_pushButton_switch_clicked()
 /**
  * download picture
  *
- * @author Zicun Hang
+ * @author hzc
  * @param surl pic url
  * @param filePath local file path
  */
@@ -1319,7 +1326,7 @@ void SystemCenter::download(const QString &url, const QString &filePath)
 /**
  * save picture
  *
- * @author Zicun Hang
+ * @author hzc
  * @param reply NetworkReply
  */
 void SystemCenter::replyFinished()
@@ -1372,7 +1379,7 @@ void SystemCenter::on_style_change_clicked()
         ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
                                         "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
     }else{
-        ui->frame->setStyleSheet("QFrame{background: rgba(255, 255, 255, 10);"
+        ui->frame->setStyleSheet("QFrame{background: rgba(255, 255, 255, 0);"
                                  "border-image:url(:/bg5.png);}");
         ui->style_change->setFont(icon_search);
         ui->style_change->setText(QChar(0xf205));

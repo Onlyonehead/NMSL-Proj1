@@ -4,7 +4,7 @@
 /**
  * on_pushButton_4_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_4_clicked()
 {
@@ -29,7 +29,7 @@ void SystemCenter::on_pushButton_4_clicked()
 /**
  * on_pushButton_6_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_6_clicked()
 {
@@ -43,7 +43,7 @@ void SystemCenter::on_pushButton_6_clicked()
 /**
  * furry search init
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::warehouseEditComplete(){
     QStringList list;
@@ -56,7 +56,7 @@ void SystemCenter::warehouseEditComplete(){
 /**
  * on_icon_search_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_icon_search_clicked()
 {

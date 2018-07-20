@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1882,9 +1882,9 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox{
-	border: 2px solid rgb(210, 210, 210);
+	border: 2px solid rgb(220, 220, 220);
 	border-radius:20px;
-	background:white;
+	background: rgba(248, 248, 248, 200);
 	margin-top: 11 px;
 }
 
@@ -1892,7 +1892,7 @@ QGroupBox::title {
 background: rgb(248, 248, 248);
 	subcontrol-origin: margin;
 	subcontrol-position: top center;	
-	padding: 2 1px;
+	padding: 1 4px;
 	color: rgba(15, 128, 255, 193);
 	border: 2px solid rgba(15, 128, 255, 193);
 	border-radius:10px;
@@ -3769,7 +3769,7 @@ QPushButton:hover{
         <string notr="true">QGroupBox{
 	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
-	background:white;
+	background: rgba(248, 248, 248, 200);
 	margin-top: 11 px;
 }
 
@@ -4068,9 +4068,9 @@ background: none;
        <widget class="Line" name="line_8">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>2</x>
           <y>187</y>
-          <width>130</width>
+          <width>127</width>
           <height>2</height>
          </rect>
         </property>
@@ -4084,9 +4084,9 @@ background: none;
        <widget class="Line" name="line_9">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>2</x>
           <y>100</y>
-          <width>130</width>
+          <width>127</width>
           <height>2</height>
          </rect>
         </property>
@@ -5909,10 +5909,10 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
-     <zorder>frame_logistics_B</zorder>
-     <zorder>frame_logistics_C</zorder>
      <zorder>frame_logistics_A</zorder>
      <zorder>frame_logistics_D</zorder>
+     <zorder>frame_logistics_B</zorder>
+     <zorder>frame_logistics_C</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -7442,7 +7442,7 @@ QTableWidget::item{
         <string notr="true">QGroupBox{
 	border: 2px solid rgb(210, 210, 210);
 	border-radius:20px;
-	background:white;
+	background: rgba(248, 248, 248, 200);
 	margin-top: 11 px;
 }
 
@@ -7741,9 +7741,9 @@ background: none;
        <widget class="Line" name="line_3">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>2</x>
           <y>146</y>
-          <width>179</width>
+          <width>167</width>
           <height>2</height>
          </rect>
         </property>
@@ -7757,9 +7757,9 @@ background: none;
        <widget class="Line" name="line_4">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>2</x>
           <y>80</y>
-          <width>179</width>
+          <width>167</width>
           <height>2</height>
          </rect>
         </property>
@@ -8363,10 +8363,10 @@ QTableWidget::item{
       <widget class="QGroupBox" name="groupBox_4">
        <property name="geometry">
         <rect>
-         <x>219</x>
-         <y>80</y>
-         <width>471</width>
-         <height>271</height>
+         <x>230</x>
+         <y>110</y>
+         <width>450</width>
+         <height>240</height>
         </rect>
        </property>
        <property name="font">
@@ -8398,8 +8398,8 @@ background: rgb(248, 248, 248);
        <widget class="QLabel" name="label_38">
         <property name="geometry">
          <rect>
-          <x>339</x>
-          <y>37</y>
+          <x>310</x>
+          <y>31</y>
           <width>61</width>
           <height>41</height>
          </rect>
@@ -8431,8 +8431,8 @@ background: none;
        <widget class="QLabel" name="label_40">
         <property name="geometry">
          <rect>
-          <x>339</x>
-          <y>89</y>
+          <x>310</x>
+          <y>81</y>
           <width>61</width>
           <height>41</height>
          </rect>
@@ -8464,8 +8464,8 @@ background: none;
        <widget class="QLabel" name="label_42">
         <property name="geometry">
          <rect>
-          <x>309</x>
-          <y>50</y>
+          <x>280</x>
+          <y>44</y>
           <width>18</width>
           <height>16</height>
          </rect>
@@ -8490,8 +8490,8 @@ background: none;
        <widget class="QLabel" name="label_43">
         <property name="geometry">
          <rect>
-          <x>309</x>
-          <y>102</y>
+          <x>280</x>
+          <y>94</y>
           <width>18</width>
           <height>16</height>
          </rect>
@@ -8516,8 +8516,8 @@ background: none;
        <widget class="QLabel" name="label_44">
         <property name="geometry">
          <rect>
-          <x>309</x>
-          <y>161</y>
+          <x>280</x>
+          <y>144</y>
           <width>18</width>
           <height>16</height>
          </rect>
@@ -8542,8 +8542,8 @@ background: none;
        <widget class="QLabel" name="label_45">
         <property name="geometry">
          <rect>
-          <x>339</x>
-          <y>148</y>
+          <x>310</x>
+          <y>131</y>
           <width>61</width>
           <height>41</height>
          </rect>
@@ -8577,8 +8577,8 @@ background: none;
          <rect>
           <x>30</x>
           <y>30</y>
-          <width>230</width>
-          <height>230</height>
+          <width>200</width>
+          <height>200</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -8593,8 +8593,8 @@ background: white;</string>
        <widget class="QLabel" name="label_46">
         <property name="geometry">
          <rect>
-          <x>309</x>
-          <y>221</y>
+          <x>280</x>
+          <y>194</y>
           <width>18</width>
           <height>16</height>
          </rect>
@@ -8619,8 +8619,8 @@ background: white;</string>
        <widget class="QLabel" name="label_47">
         <property name="geometry">
          <rect>
-          <x>339</x>
-          <y>208</y>
+          <x>310</x>
+          <y>181</y>
           <width>61</width>
           <height>41</height>
          </rect>
@@ -8652,8 +8652,8 @@ background: none;
        <widget class="QLabel" name="label_29">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>48</y>
+          <x>350</x>
+          <y>42</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -8685,8 +8685,8 @@ background: none;
        <widget class="QLabel" name="label_30">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>100</y>
+          <x>350</x>
+          <y>92</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -8718,8 +8718,8 @@ background: none;
        <widget class="QLabel" name="label_31">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>160</y>
+          <x>350</x>
+          <y>143</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -8751,8 +8751,8 @@ background: none;
        <widget class="QLabel" name="label_32">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>220</y>
+          <x>350</x>
+          <y>193</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -11266,9 +11266,9 @@ QPushButton:hover{
      </widget>
      <zorder>frame_2A</zorder>
      <zorder>frame_2B</zorder>
-     <zorder>frame_2C</zorder>
      <zorder>add_warehouse</zorder>
      <zorder>edit_warehouse</zorder>
+     <zorder>frame_2C</zorder>
      <zorder>frame_2D</zorder>
     </widget>
     <widget class="QWidget" name="tab_sell">
@@ -11733,7 +11733,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>70</y>
+         <y>80</y>
          <width>70</width>
          <height>20</height>
         </rect>
@@ -11855,7 +11855,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>94</y>
+         <y>104</y>
          <width>400</width>
          <height>181</height>
         </rect>
@@ -11960,7 +11960,7 @@ QTableWidget::item{
        <property name="geometry">
         <rect>
          <x>450</x>
-         <y>84</y>
+         <y>94</y>
          <width>255</width>
          <height>190</height>
         </rect>
@@ -11984,7 +11984,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>Store Info</string>
+        <string>  Store Info  </string>
        </property>
        <widget class="QLabel" name="label_96">
         <property name="geometry">
@@ -12328,7 +12328,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>127</x>
-         <y>300</y>
+         <y>306</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -12361,9 +12361,9 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_showRequests">
        <property name="geometry">
         <rect>
-         <x>200</x>
-         <y>26</y>
-         <width>111</width>
+         <x>115</x>
+         <y>30</y>
+         <width>191</width>
          <height>30</height>
         </rect>
        </property>
@@ -12409,9 +12409,9 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_clearRequests">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>26</y>
-         <width>111</width>
+         <x>420</x>
+         <y>30</y>
+         <width>191</width>
          <height>30</height>
         </rect>
        </property>
@@ -12458,7 +12458,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>132</x>
-         <y>70</y>
+         <y>80</y>
          <width>70</width>
          <height>20</height>
         </rect>
@@ -12492,7 +12492,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>285</x>
-         <y>70</y>
+         <y>80</y>
          <width>70</width>
          <height>20</height>
         </rect>
@@ -12526,7 +12526,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>217</x>
-         <y>300</y>
+         <y>306</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -12560,7 +12560,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>307</x>
-         <y>300</y>
+         <y>306</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -12593,8 +12593,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label_99">
        <property name="geometry">
         <rect>
-         <x>436</x>
-         <y>300</y>
+         <x>430</x>
+         <y>306</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -12741,7 +12741,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>38</x>
-         <y>300</y>
+         <y>306</y>
          <width>80</width>
          <height>20</height>
         </rect>
@@ -12858,7 +12858,7 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page_change">
         <widget class="QLabel" name="label_320">
@@ -13830,7 +13830,7 @@ background: rgb(248, 248, 248);
 }</string>
          </property>
          <property name="title">
-          <string>Picture</string>
+          <string>  Picture  </string>
          </property>
          <widget class="QLabel" name="label_sellDClothes">
           <property name="geometry">
@@ -13879,28 +13879,27 @@ background: white;</string>
          <widget class="QLabel" name="label_sellDStyle">
           <property name="geometry">
            <rect>
-            <x>184</x>
+            <x>180</x>
             <y>90</y>
-            <width>56</width>
+            <width>70</width>
             <height>25</height>
            </rect>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica 12</family>
-            <pointsize>13</pointsize>
-            <weight>9</weight>
+            <family>Times 12</family>
+            <pointsize>14</pointsize>
+            <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLabel{
-	background: none;
-	border-image:none;
+background: none;
 	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 13pt &quot;Helvetica&quot; bold;
+	color: rgb(106, 106, 106);
+	font: 14pt &quot;Times&quot; bold;
 }</string>
           </property>
           <property name="text">
@@ -14784,9 +14783,9 @@ QPushButton:checked{
       <widget class="QPushButton" name="pushButton_clearRequests_4">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>26</y>
-         <width>111</width>
+         <x>420</x>
+         <y>30</y>
+         <width>191</width>
          <height>30</height>
         </rect>
        </property>
@@ -14832,9 +14831,9 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_showArrive">
        <property name="geometry">
         <rect>
-         <x>200</x>
-         <y>26</y>
-         <width>111</width>
+         <x>115</x>
+         <y>30</y>
+         <width>191</width>
          <height>30</height>
         </rect>
        </property>
@@ -14964,7 +14963,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>Store Info</string>
+        <string>  Store Info  </string>
        </property>
        <widget class="QLabel" name="label_335">
         <property name="geometry">
@@ -15703,36 +15702,27 @@ QTableWidget::item{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QTableWidget
+        <string notr="true">QTableWidget
 {
-    	color: rgb(106, 106, 106);    /*前景色：文字颜色*/
-    gridline-color:rgb(200, 200, 200);      /*表格中的网格线条颜色*/
+    	color: rgb(106, 106, 106);  
+    gridline-color:rgb(200, 200, 200);   
     background:white;
-    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
-    /*alternate-background-color:red;   */
-    selection-color:rgb(15, 128, 255);    /*鼠标选中时前景色：文字颜色*/
-    selection-background-color:lightgray;   /*鼠标选中时背景色*/
+    selection-color:rgb(15, 128, 255);   
+    selection-background-color:lightgray;
 	border: 2px solid rgb(210, 210, 210);
 	border-radius:5px;
 	font: 15pt &quot;Times&quot; bold;
-    padding:0px 0px;  /*表格与边框的间距*/
+    padding:0px 0px; 
 	height: 30px;
 }
 
-
-/*设置表头属性*/
 QTableWidget QHeaderView
 {
 	font: 75 15pt &quot;Helvetica&quot; bold ;
-    background-color:#F0F0F0;  /*lightgray*/
+    background-color:#F0F0F0; 
 	border:0px solid grey;
 	border-bottom:1px solid rgb(200, 200, 200);
 	border-radius:0px;
-    /*color:black;*/
-    /*padding-left:4px;*/
-    /*border:3px solid red;*/   /*表头边框线的宽度、颜色*/
-    /*border:1px solid gray;*/
 }
 QTableWidget::item{
 	border: 1px solid rgb(250, 250, 250);
@@ -17097,7 +17087,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>Detail Information</string>
+        <string>  Detailed Information  </string>
        </property>
        <widget class="QLabel" name="label_updateSShowsuernameTip">
         <property name="geometry">
@@ -17799,7 +17789,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>     Update Password and Email       </string>
+        <string>   Update Password and Email     </string>
        </property>
        <widget class="QLabel" name="label_updateSShowsuernameTip_2">
         <property name="geometry">
@@ -18051,8 +18041,12 @@ background: none;
 	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
 	font: 15pt &quot;Times&quot; bold;
+	lineedit-password-mask-delay: 1000;
 }
 </string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -18093,8 +18087,12 @@ background: none;
 	border: 2px solid rgb(179, 179, 179);
 	border-radius:10px;
 	font: 15pt &quot;Times&quot; bold;
+	lineedit-password-mask-delay: 1000;
 }
 </string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -18171,10 +18169,10 @@ not exist !</string>
        </widget>
       </widget>
      </widget>
+     <zorder>frame_personnelpage_2</zorder>
      <zorder>frame_personnelpage_3</zorder>
      <zorder>frame_personnelpage_4</zorder>
      <zorder>frame_personnelpage_1</zorder>
-     <zorder>frame_personnelpage_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -18401,7 +18399,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>    Detailed information    </string>
+        <string>   Detailed information   </string>
        </property>
        <widget class="QLabel" name="label_providerIDTip">
         <property name="geometry">
@@ -18979,7 +18977,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>    Add new garment    </string>
+        <string>   Add new garment   </string>
        </property>
        <widget class="QLabel" name="label_deliverShowAdsTip_4">
         <property name="geometry">
@@ -19429,7 +19427,7 @@ background: rgb(248, 248, 248);
 }</string>
        </property>
        <property name="title">
-        <string>     Add Provider information    </string>
+        <string>    Add Provider information   </string>
        </property>
        <widget class="QLabel" name="label_providerAdsTip_2">
         <property name="geometry">
@@ -19692,9 +19690,9 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
-     <zorder>frame_systempage_3</zorder>
      <zorder>frame_systempage_1</zorder>
      <zorder>frame_systempage_2</zorder>
+     <zorder>frame_systempage_3</zorder>
     </widget>
    </widget>
    <widget class="QProgressBar" name="progressBar">

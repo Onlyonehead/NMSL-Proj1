@@ -215,9 +215,6 @@ void SystemCenter::on_pushButton_cancelOrder_clicked()
     QStringList generateOrderHeader, orderGarmentHeader;
     ui->tableWidget_generateOrder->clear();
     ui->tableWidget_generateOrder->setRowCount(0);
-//    generateOrderHeader << tr("服装编号") << tr("服装样式")
-//                        << tr("服装大小") << tr("服装图片") << tr("服装价格");
-//    orderGarmentHeader << tr("服装编号") << tr("服装数量");
     ui->tableWidget_generateOrder->setHorizontalHeaderLabels(generateOrderHeader);
     ui->tableWidget_orderGarment->clear();
     ui->tableWidget_orderGarment->setRowCount(0);

@@ -18,7 +18,7 @@ QtMap::QtMap(QString surl) :
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setStyleSheet("QFrame{border-radius:10px;}");
 
-    move(185,80);
+    move(185,30);
 
 
     QWebChannel *channel = new QWebChannel(this);

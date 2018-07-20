@@ -5,6 +5,12 @@ MyServer::MyServer()
 
 }
 
+/**
+ * override
+ *
+ * @author hzc
+ * @param socketDescriptor
+ */
 void MyServer::incomingConnection(qintptr socketDescriptor)
 {
     SocketThread *thread = new SocketThread(socketDescriptor,this);

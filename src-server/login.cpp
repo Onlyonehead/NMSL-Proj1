@@ -5,7 +5,7 @@
 /**
  * login method
  *
- * @author Zicun Hang
+ * @author hzc
  * @param username username
  * @param password password
  * @param isChecked true if checkbox is checked
@@ -104,6 +104,13 @@ int Login::login(QString username, QString password){
 
 }
 
+/**
+ * return infomation
+ *
+ * @author hzc
+ * @param username username
+ * @return infomation of user
+ */
 QStringList Login::info(QString username){
     QSqlQuery query;
     SQLTool::search(query, "userdata", "username", username);

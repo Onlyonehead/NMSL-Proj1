@@ -4,7 +4,7 @@
 /**
  * connect database
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SQLTool::connection(){
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
@@ -35,7 +35,7 @@ void SQLTool::connection(){
 /**
  * disconnect database
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SQLTool::disconnection(){
     QSqlDatabase::removeDatabase("qt_sql_default_connection");
@@ -46,7 +46,7 @@ void SQLTool::disconnection(){
 /**
  * E.g. "select * from blacklist"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s table name
  */
@@ -66,7 +66,7 @@ void SQLTool::search(QSqlQuery &query, QString s){
 /**
  * E.g. "select id from blacklist"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s1 field you want to select
  * @param s1 table name
@@ -88,7 +88,7 @@ void SQLTool::search(QSqlQuery &query, QString s1, QString s2){
 /**
  * E.g. "select username,password from blacklist"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param list fields you want to select
  * @param s table name
@@ -118,7 +118,7 @@ void SQLTool::search(QSqlQuery &query, QStringList list, QString s){
 /**
  * E.g. "select username from blacklist where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s1 field you want to select
  * @param s2 table name
@@ -140,7 +140,7 @@ void SQLTool::search(QSqlQuery &query, QString s1, QString s2, QString s3, QStri
 /**
  * E.g. "select username,password from blacklist where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param list fields you want to select
  * @param s1 table name
@@ -171,7 +171,7 @@ void SQLTool::search(QSqlQuery &query, QStringList list, QString s1, QString s2,
 /**
  * E.g. "select * from blacklist where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s1 table name
  * @param s2 field name (for specific row you want to select)
@@ -191,7 +191,7 @@ void SQLTool::search(QSqlQuery &query, QString s1, QString s2, QString s3){
 /**
  * E.g. "select * from blacklist where username='koushizon' and password='123'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s table name
  * @param list field name and field value
@@ -236,7 +236,7 @@ void SQLTool::fuzzySearch(QSqlQuery &query, QString s1, QString s2, QString s3)
 /**
  * E.g. "select till_time from blacklist where username='koushizon' and password='123'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s1 field you want to select
  * @param s2 table name
@@ -266,7 +266,7 @@ void SQLTool::search(QSqlQuery &query, QString s1, QString s2, QStringList list)
 /**
  * E.g. "delete from blacklist where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s1 table name
  * @param s2 field name (for specific row you want to delete)
@@ -287,7 +287,7 @@ void SQLTool::del(QSqlQuery &query, QString s1, QString s2, QString s3){
 /**
  * E.g. "update userdata set password='123' where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s1 table name
  * @param s2 field you want to update
@@ -311,7 +311,7 @@ void SQLTool::update(QSqlQuery &query, QString s1, QString s2, QString s3, QStri
 /**
  * E.g. "insert into userdata valuses ('koushizon','123','杭咨存','男','管理员','koushizon@outlook.com')"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param query QSqlQuery
  * @param s table name
  * @param list values
@@ -339,7 +339,7 @@ void SQLTool::insert(QSqlQuery &query, QString s, QStringList list){
 /**
  * E.g. "delete from blacklist where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s1 table name
  * @param s2 field name (for specific row you want to delete)
  * @param s3 field value
@@ -359,7 +359,7 @@ void SQLTool::del(QString s1, QString s2, QString s3){
 /**
  * E.g. "delete from blacklist where username='koushizon' and password='123'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s table name
  * @param list field name and field value
  */
@@ -389,7 +389,7 @@ void SQLTool::del(QString s, QStringList list){
 /**
  * E.g. "update userdata set password='123' where username='koushizon'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s1 table name
  * @param s2 field you want to update
  * @param s3 field value
@@ -414,7 +414,7 @@ void SQLTool::update(QString s1, QString s2, QString s3, QString s4, QString s5)
 /**
  * E.g. "update userdata set password='123' where username='koushizon' and gender='男'"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s1 table name
  * @param s2 field you want to update
  * @param s3 field value
@@ -448,7 +448,7 @@ void SQLTool::update(QString s1, QString s2, QString s3, QStringList list){
 /**
  * E.g. "insert into userdata valuses ('koushizon','123','杭咨存','男','管理员','koushizon@outlook.com')"
  *
- * @author Zicun Hang
+ * @author hzc
  * @param s table name
  * @param list values
  */

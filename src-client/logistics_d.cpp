@@ -169,6 +169,10 @@ void SystemCenter::on_logistics_showmap_clicked()
 
 void SystemCenter::on_logistics_send_D_clicked()
 {
+    if(ui->tableWidget_logistics_D2->rowCount() < 2){
+        QMessageBox::warning(this," 警告", "\n请先计算路线",QMessageBox::Close);
+        return ;
+    }
     if(QMessageBox::Yes==QMessageBox::question(this, "警告", "Confirm to send this replenishment ?",
                                                QMessageBox::Yes, QMessageBox::No)){
         QStringList list;
@@ -198,6 +202,8 @@ void SystemCenter::on_logistics_route_D_clicked()
         return ;
     }
 
+    ui->tableWidget_logistics_D1->setEnabled(false);
+
     QNetworkAccessManager *m_accessManager = new QNetworkAccessManager(this);
     QObject::connect(m_accessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(finishedSlotForAuto(QNetworkReply*)));
     QUrl url;
@@ -225,6 +231,7 @@ void SystemCenter::on_logistics_route_D_clicked()
             }
         }
     }
+
 
     QStringList urls;
 
@@ -303,6 +310,7 @@ void SystemCenter::finishedSlotForAuto(QNetworkReply* reply){
 
                         if(url_num == 0){
                             generateNewRoute();
+                            ui->tableWidget_logistics_D1->setEnabled(true);
                         }
 
                         flag = true;

@@ -35,6 +35,7 @@ void SystemCenter::searchTableWidget(QTableWidget* table, const QString &arg1, Q
         }
     }
 }
+
 void SystemCenter::setTableWidgetItemHidden(QTableWidget *table, const QString &arg1){
     QVector<int> qv_row;
 

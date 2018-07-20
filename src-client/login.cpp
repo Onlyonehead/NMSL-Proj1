@@ -22,7 +22,7 @@
 /**
  * Login UI initialize
  *
- * @author Zicun Hang
+ * @author hzc
  */
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -77,7 +77,7 @@ Login::Login(QWidget *parent) :
     file.close();
 
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
-    pic_num = 1 + qrand() % (13 - 1);
+    pic_num = 1 + qrand() % (21 - 1);
     ui->titlepic->setStyleSheet("QFrame{border-image:url(:/background"+ QString::number(pic_num) +");border: 8px solid rgb(128, 128, 128);}");
 
 
@@ -86,7 +86,7 @@ Login::Login(QWidget *parent) :
 /**
  * Login UI destory
  *
- * @author Zicun Hang
+ * @author hzc
  */
 Login::~Login()
 {
@@ -100,7 +100,7 @@ Login::~Login()
 /**
  * on_pushButton_clicked()
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void Login::on_pushButton_clicked()
 {
@@ -110,7 +110,7 @@ void Login::on_pushButton_clicked()
 /**
  * on_pushButton_2_clicked()
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void Login::on_pushButton_2_clicked()
 {
@@ -145,7 +145,7 @@ void Login::on_pushButton_2_clicked()
 /**
  * tool method
  *
- * @author Zicun Hang
+ * @author hzc
  * @param username username
  */
 void Login::sendSignalForLogin(QString username){
@@ -161,7 +161,7 @@ void Login::sendSignalForLogin(QString username){
 /**
  * on_pushButton_3_clicked
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void Login::on_pushButton_3_clicked()
 {
@@ -174,7 +174,7 @@ void Login::on_pushButton_3_clicked()
 /**
  * slot method
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void Login::showString(QString s){
     QApplication::processEvents();
@@ -187,7 +187,7 @@ void Login::showString(QString s){
 /**
  * check pwd.data and auto save password to file
  *
- * @author Zicun Hang
+ * @author hzc
  * @param username username
  * @param passwordEntered password entered by user
  * @param status check status of checkbox

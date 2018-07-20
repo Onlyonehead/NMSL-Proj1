@@ -128,6 +128,3 @@ void SystemCenter::on_pushButton_deliverCancelChoose_clicked()
     QMessageBox::information(NULL, tr("提示"), tr("供货商信息已被清空，请选择新的供货商！"), QMessageBox::Yes, QMessageBox::Yes);
 }
 
-
-
-

@@ -4,6 +4,14 @@
 
 
 
+/**
+ * constructor
+ *
+ * @author hzc
+ * @param id order id
+ * @param datetime time of order
+ * @param productInfo product infomation of this order
+ */
 
 Order::Order(QString id, QString datetime, QStringList productInfo)
 {
@@ -20,12 +28,27 @@ Order::Order(){
 
 }
 
+/**
+ * edit information of this order
+ *
+ * @author hzc
+ * @param id order id
+ * @param datetime time of this order
+ * @param productInfo product information of this order
+ */
+
 void Order::editInfo(QString id, QString datetime, QStringList productInfo){
     this->id = id;
     this->datetime = datetime;
     this->productInfo = productInfo;
 }
 
+/**
+ * convert order information to string
+ *
+ * @author hzc
+ * @param list
+ */
 void Order::toString(QStringList &list){
     list.append(id);
     list.append(datetime);
@@ -38,6 +61,12 @@ void Order::toString(QStringList &list){
     }
 }
 
+/**
+ * get product information of this order
+ *
+ * @author hzc
+ * @return list of information
+ */
 QStringList Order::getProductInfo(){
     QStringList list;
     int n = this->productInfo.size();
@@ -49,10 +78,35 @@ QStringList Order::getProductInfo(){
     return list;
 }
 
+/**
+ * get id of this order
+ *
+ * @author hzc
+ * @return id
+ */
 QString Order::getId(){
     return this->id;
 }
 
+/**
+ * get datetime of this order
+ *
+ * @author hzc
+ * @return datetime
+ */
+QString Order::getDatetime(){
+    return this->datetime;
+}
+
+
+
+/**
+ * save order from provider
+ *
+ * @author Dong Yihan
+ * @param providerOrderID id of this order
+ * @param providerOrder this order
+ */
 void Order::saveProviderOrder(QString providerOrderID, Order &providerOrder)
 {
     QStringList list;
@@ -67,10 +121,13 @@ void Order::saveProviderOrder(QString providerOrderID, Order &providerOrder)
     SQLTool::insert("providerOrder", list);
 }
 
-QString Order::getDatetime(){
-    return this->datetime;
-}
-
+/**
+ * return information with given id
+ *
+ * @author Dong Yihan
+ * @param orderID id of this order
+ * @param orderInformation
+ */
 void Order::info(QString orderID, QStringList &orderInformation)
 {
     QSqlQuery query;
@@ -83,6 +140,12 @@ void Order::info(QString orderID, QStringList &orderInformation)
 
 }
 
+/**
+ * return information of all orders
+ *
+ * @author Dong Yihan
+ * @param orderInformation
+ */
 void Order::info(QVector<QStringList> &orderInformation)
 {
     QSqlQuery query;

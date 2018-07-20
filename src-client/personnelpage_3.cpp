@@ -143,6 +143,7 @@ void SystemCenter::on_pushButton_cancelStaffInfoChange_clicked()
     ui->label_updateShowUsername->clear();
     ui->lineEdit_updateStaffName->clear();
     ui->lineEdit_updateStaffEmail->clear();
+    ui->label_showEditPortrait->setText("Preview");
 }
 
 
@@ -155,6 +156,7 @@ void SystemCenter::on_lineEdit_inputStaffEmail_editingFinished()
 {
     QStringList list;
     QString email = ui->lineEdit_inputStaffEmail->text();
+
     list.append("pp4_ise");
     list.append(email);
     sendMessage(list);
@@ -188,6 +190,14 @@ void SystemCenter::on_pushButton_changeStaffpassword_clicked()
     QString email = ui->lineEdit_inputStaffEmail->text();
     QString newPassword = ui->lineEdit_updateStaffNewpassword->text();
     QString newUsername = ui->lineEdit_updateStaffUsername->text();
+
+    if(email.trimmed() == "" || ui->lineEdit_updateStaffOldpassword->text().
+            trimmed() == "" || ui->lineEdit_updateStaffNewpassword->text().
+            trimmed() == "" || ui->lineEdit_updateStaffUsername->text().
+            trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入全部信息！",QMessageBox::Close);
+        return ;
+    }
     list.append("pp4_csp");
     list.append(email);
     list.append(newPassword);

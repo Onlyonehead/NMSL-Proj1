@@ -3,7 +3,7 @@
 /**
  * return all warehouses' information
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::info(QVector<QStringList> &result){
@@ -28,7 +28,7 @@ void Warehouse::info(QVector<QStringList> &result){
 /**
  * return all warehouses' <id, name>
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::info(QMap<QString, QString> &result){
@@ -43,7 +43,7 @@ void Warehouse::info(QMap<QString, QString> &result){
 /**
  * return information of warehouse with given id
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::info(int id, QStringList &result){
@@ -62,7 +62,7 @@ void Warehouse::info(int id, QStringList &result){
 /**
  * return stock information of warehouse with given id
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::stock(int id, QMap<QString, QString> &result){
@@ -78,7 +78,7 @@ void Warehouse::stock(int id, QMap<QString, QString> &result){
 /**
  * return arriving information of warehouse with given id
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::arriving(int id, QMap<QString,QStringList> &result){
@@ -98,7 +98,7 @@ void Warehouse::arriving(int id, QMap<QString,QStringList> &result){
 /**
  * return all warehouses' stock information
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::stock(QVector<QStringList> &result){
@@ -118,7 +118,7 @@ void Warehouse::stock(QVector<QStringList> &result){
 /**
  * return all warehouses' stock information with classification
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::stock(QMap<QString,QMap<QString, QString>> &result){
@@ -136,7 +136,7 @@ void Warehouse::stock(QMap<QString,QMap<QString, QString>> &result){
 /**
  * return all warehouses' arriving information
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::arriving(QVector<QStringList> &result){
@@ -158,7 +158,7 @@ void Warehouse::arriving(QVector<QStringList> &result){
 /**
  * return all warehouses' arriving information with classification
  *
- * @author Zicun Hang
+ * @author hzc
  * @return information
  */
 void Warehouse::arriving(QMap<QString, QMap<QString, QStringList>> &result){
@@ -245,7 +245,7 @@ void Warehouse::deliverGoods(QString id, Order& order){
 /**
  * transfer arriving clothes to stock
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void Warehouse::transfer(){
     QDateTime current_date_time = QDateTime::currentDateTime();

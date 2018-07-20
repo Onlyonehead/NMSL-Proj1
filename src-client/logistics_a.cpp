@@ -202,6 +202,15 @@ void SystemCenter::on_logistics_ADD_clicked()
                 ui->quantity_logistics->clear();
                 return;
             }
+
+            if(ui->tableWidget_logistics_C->item(ui->tableWidget_logistics_C->currentItem()
+                                                 ->row(), 1)->text().trimmed().toInt() <
+                    quantity.trimmed().toInt()){
+                QMessageBox::warning(this,"警告", "\n添加数量超出库存数！",QMessageBox::Close);
+                ui->quantity_logistics->clear();
+                return;
+            }
+
             if((ui->tableWidget_logistics_D->item(i, 2)->text().split(":")[1].trimmed().toInt()-
                     ui->tableWidget_logistics_D->item(i, 1)->text().trimmed().toInt()
                  < quantity.trimmed().toInt())){

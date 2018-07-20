@@ -7,7 +7,7 @@
 /**
  * on_pushButton_7_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_7_clicked()
 {
@@ -19,7 +19,7 @@ void SystemCenter::on_pushButton_7_clicked()
 /**
  * on_icon_search_C_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_icon_search_C_clicked()
 {
@@ -41,7 +41,7 @@ void SystemCenter::on_icon_search_C_clicked()
 /**
  * on_pushButton_5_clicked slot
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void SystemCenter::on_pushButton_5_clicked()
 {

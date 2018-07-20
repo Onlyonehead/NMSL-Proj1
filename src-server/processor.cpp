@@ -36,7 +36,7 @@ void Processor::work ()
     out << (quint16) 0;
 
     /*
-     * H-ZC
+     * hzc
      *
      */
 
@@ -516,13 +516,11 @@ void Processor::work ()
 
         QString order_time;
 
-        int max_time;
 
         in >> order_id;
         in >> warehouse_id;
         in >> replenishment;
         in >> order_time;
-        in >> max_time;
 
         QDateTime current_date_time = QDateTime::currentDateTime();
 
@@ -725,9 +723,7 @@ void Processor::work ()
     }
     // personnel page 4 check if email exists
     if(function == "pp4_ise"){
-        qDebug() << list;
         QString email = list.at(0);
-        qDebug() << email;
         bool isEmailExisted = Staff::isEmailExisted(email);
         out << function;
         out << isEmailExisted;

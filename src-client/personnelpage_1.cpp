@@ -47,7 +47,6 @@ void SystemCenter::on_pushButton_showStaff_clicked()
 
 void SystemCenter::on_pushButton_clearStaff_clicked()
 {
-
     ui->tableWidget_showStaffInfo->setRowCount(0);
 }
 

@@ -4,7 +4,7 @@
 /**
  * remove duplicates for QStringList
  *
- * @author Zicun Hang
+ * @author hzc
  * @param that qstringlist object
  * @return number of string removed
  */

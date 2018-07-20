@@ -6,13 +6,24 @@ Logistics::Logistics()
 
 }
 
-
+/**
+ * receive order
+ *
+ * @author hzc
+ * @param order order instance
+ */
 void Logistics::receiveOrder(Order &order)
 {
     Logistics::saveOrder(order);
 }
 
 
+/**
+ * save order details to database
+ *
+ * @author hzc
+ * @param order order instance
+ */
 void Logistics::saveOrder(Order &order)
 {
     QStringList list;

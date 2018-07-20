@@ -184,6 +184,6 @@ void SystemCenter::on_pushButton_cancelNewStaff_clicked()
     ui->lineEdit_repeatPassword->clear();
     ui->lineEdit_addNewName->clear();
     ui->lineEdit_addNewEmail->clear();
-    ui->label_showNewPortrait->clear();
+    ui->label_showNewPortrait->setText("Preview");
 }
 

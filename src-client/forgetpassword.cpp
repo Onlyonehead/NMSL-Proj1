@@ -9,7 +9,7 @@
 /**
  * ForgetPassword UI initialize
  *
- * @author Zicun Hang
+ * @author hzc
  */
 ForgetPassword::ForgetPassword(QWidget *parent) :
     QWidget(parent),
@@ -33,7 +33,7 @@ ForgetPassword::ForgetPassword(QWidget *parent) :
 /**
  * ForgetPassword UI destory
  *
- * @author Zicun Hang
+ * @author hzc
  */
 ForgetPassword::~ForgetPassword()
 {
@@ -43,7 +43,7 @@ ForgetPassword::~ForgetPassword()
 /**
  * on_pushButton_clicked
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void ForgetPassword::on_pushButton_clicked()
 {
@@ -55,7 +55,7 @@ void ForgetPassword::on_pushButton_clicked()
 /**
  * initialize title picture
  *
- * @author Zicun Hang
+ * @author hzc
  * @param i number of picture
  */
 void ForgetPassword::init_pic(int i){
@@ -70,7 +70,7 @@ void ForgetPassword::init_pic(int i){
 /**
  * on_pushButton_2_clicked
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void ForgetPassword::on_pushButton_2_clicked()
 {
@@ -87,7 +87,7 @@ void ForgetPassword::on_pushButton_2_clicked()
 /**
  * on_pushButton_3_clicked
  *
- * @author Zicun Hang
+ * @author hzc
  */
 void ForgetPassword::on_pushButton_3_clicked()
 {

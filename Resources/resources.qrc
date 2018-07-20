@@ -20,6 +20,14 @@
         <file>background12</file>
         <file>bg5.png</file>
         <file>welcome2.png</file>
+        <file>background13</file>
+        <file>background14</file>
+        <file>background15</file>
+        <file>background16</file>
+        <file>background17</file>
+        <file>background18</file>
+        <file>background19</file>
+        <file>background20</file>
     </qresource>
     <qresource prefix="/font">
         <file>fa-brands-400.ttf</file>

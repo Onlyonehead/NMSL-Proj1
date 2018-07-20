@@ -342,7 +342,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 /**
  * download picture
  *
- * @author Zicun Hang
+ * @author hzc
  * @param surl pic url
  * @param filePath local file path
  */
@@ -364,7 +364,7 @@ void MainWindow::download(const QString &url, const QString &filePath)
 /**
  * save picture
  *
- * @author Zicun Hang
+ * @author hzc
  * @param reply NetworkReply
  */
 void MainWindow::replyFinished()

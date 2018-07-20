@@ -3,7 +3,7 @@
 /**
  * send security code
  *
- * @author Zicun Hang
+ * @author hzc
  * @param username username
  * @param email email
  */
@@ -84,7 +84,7 @@ int ForgetPassword::sendCode(QString username, QString email, QString securityCo
 /**
  * check code and update password
  *
- * @author Zicun Hang
+ * @author hzc
  * @param username username
  * @param pw1 first entered password
  * @param pw2 second entered password
