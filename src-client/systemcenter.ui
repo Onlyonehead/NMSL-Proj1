@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>6</number>
     </property>
     <property name="iconSize">
      <size>
@@ -16294,7 +16294,7 @@ signed !</string>
 	background: none;
 	border-image:none;
 	border-radius:7px;
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
@@ -16333,27 +16333,27 @@ exists !</string>
       <widget class="QPushButton" name="pushButton_addNewPortrait">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>430</y>
-         <width>131</width>
-         <height>60</height>
+         <x>150</x>
+         <y>439</y>
+         <width>110</width>
+         <height>50</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	background:rgba(15, 128, 255, 93);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
+	font: 75 13pt &quot;Helvetica&quot; bold;
 }
 
 QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
+	font: 75 14pt &quot;Helvetica&quot; bold;
 }</string>
        </property>
        <property name="text">
@@ -17613,7 +17613,7 @@ QComboBox QAbstractItemView::item:selected {
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	background:rgba(15, 128, 255, 93);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -17621,7 +17621,7 @@ QComboBox QAbstractItemView::item:selected {
 }
 
 QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	background:rgba(15, 128, 255, 43);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
@@ -17661,7 +17661,7 @@ profile picture</string>
 	background: none;
 	border-image:none;
 	border-radius:7px;
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
@@ -18169,10 +18169,10 @@ not exist !</string>
        </widget>
       </widget>
      </widget>
-     <zorder>frame_personnelpage_2</zorder>
      <zorder>frame_personnelpage_3</zorder>
      <zorder>frame_personnelpage_4</zorder>
      <zorder>frame_personnelpage_1</zorder>
+     <zorder>frame_personnelpage_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -18849,7 +18849,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>580</x>
-         <y>400</y>
+         <y>405</y>
          <width>93</width>
          <height>50</height>
         </rect>
@@ -18879,7 +18879,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>390</x>
-         <y>340</y>
+         <y>345</y>
          <width>170</width>
          <height>170</height>
         </rect>
@@ -18889,7 +18889,7 @@ QPushButton:hover{
 	background: none;
 	border-image:none;
 	border-radius:7px;
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	color: rgb(76, 76, 76);
 	font: 75 15pt &quot;Helvetica&quot; bold;
 }</string>
@@ -18905,18 +18905,18 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>410</x>
-         <y>300</y>
+         <y>305</y>
          <width>130</width>
          <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	border: 2px solid rgb(15, 128, 255);
+	border: 2px solid rgba(15, 128, 255, 193);
 	background:rgba(15, 128, 255, 93);
 	border-radius:10px;
 	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
+	font: 75 14pt &quot;Helvetica&quot; bold;
 }
 
 QPushButton:hover{
@@ -19690,9 +19690,9 @@ QPushButton:hover{
        </property>
       </widget>
      </widget>
-     <zorder>frame_systempage_1</zorder>
      <zorder>frame_systempage_2</zorder>
      <zorder>frame_systempage_3</zorder>
+     <zorder>frame_systempage_1</zorder>
     </widget>
    </widget>
    <widget class="QProgressBar" name="progressBar">
