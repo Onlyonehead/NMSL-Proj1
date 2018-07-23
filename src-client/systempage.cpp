@@ -170,9 +170,100 @@ void SystemCenter::on_pushButton_setGPic_clicked()
 
     QPixmap pixmap(showPic);
     ui->label_showPicPath->setText(showPic);
-    ui->label_showGPic->setPixmap(pixmap.scaled(162, 162, Qt::IgnoreAspectRatio));
+    ui->label_showGPic->setPixmap(pixmap.scaled(162, 162, Qt::KeepAspectRatio,
+                                                Qt::SmoothTransformation));
     ui->label_showGPic->show();
 
+}
+
+//老子写的
+
+bool SystemCenter::eventFilter(QObject *watched, QEvent *event) {
+    if (watched == ui->label_showGPic) {
+        if (event->type() == QEvent::DragEnter) {
+            // [[2]]: 当拖放时鼠标进入label时, label接受拖放的动作
+            QDragEnterEvent *dee = dynamic_cast<QDragEnterEvent *>(event);
+            dee->acceptProposedAction();
+            return true;
+        } else if (event->type() == QEvent::Drop) {
+            // [[3]]: 当放操作发生后, 取得拖放的数据
+            QDropEvent *de = dynamic_cast<QDropEvent *>(event);
+            QList<QUrl> urls = de->mimeData()->urls();
+
+            if (urls.isEmpty()) { return true; }
+            QString path = urls.first().toLocalFile();
+
+            // [[4]]: 在label上显示拖放的图片
+            QImage image(path); // QImage对I/O优化过, QPixmap对显示优化
+            if (!image.isNull()) {
+                image = image.scaled(162, 162,
+                                     Qt::KeepAspectRatio,
+                                     Qt::SmoothTransformation);
+                ui->label_showGPic->setPixmap(QPixmap::fromImage(image));
+                ui->label_showPicPath->setText(path);
+            }
+
+            return true;
+        }
+    }
+
+    if (watched == ui->label_showNewPortrait) {
+        if (event->type() == QEvent::DragEnter) {
+            // [[2]]: 当拖放时鼠标进入label时, label接受拖放的动作
+            QDragEnterEvent *dee = dynamic_cast<QDragEnterEvent *>(event);
+            dee->acceptProposedAction();
+            return true;
+        } else if (event->type() == QEvent::Drop) {
+            // [[3]]: 当放操作发生后, 取得拖放的数据
+            QDropEvent *de = dynamic_cast<QDropEvent *>(event);
+            QList<QUrl> urls = de->mimeData()->urls();
+
+            if (urls.isEmpty()) { return true; }
+            QString path = urls.first().toLocalFile();
+
+            // [[4]]: 在label上显示拖放的图片
+            QImage image(path); // QImage对I/O优化过, QPixmap对显示优化
+            if (!image.isNull()) {
+                image = image.scaled(142, 142,
+                                     Qt::KeepAspectRatio,
+                                     Qt::SmoothTransformation);
+                ui->label_showNewPortrait->setPixmap(QPixmap::fromImage(image));
+                ui->label_showNewPortraitPath->setText(path);
+            }
+
+            return true;
+        }
+    }
+
+    if (watched == ui->label_showEditPortrait) {
+        if (event->type() == QEvent::DragEnter) {
+            // [[2]]: 当拖放时鼠标进入label时, label接受拖放的动作
+            QDragEnterEvent *dee = dynamic_cast<QDragEnterEvent *>(event);
+            dee->acceptProposedAction();
+            return true;
+        } else if (event->type() == QEvent::Drop) {
+            // [[3]]: 当放操作发生后, 取得拖放的数据
+            QDropEvent *de = dynamic_cast<QDropEvent *>(event);
+            QList<QUrl> urls = de->mimeData()->urls();
+
+            if (urls.isEmpty()) { return true; }
+            QString path = urls.first().toLocalFile();
+
+            // [[4]]: 在label上显示拖放的图片
+            QImage image(path); // QImage对I/O优化过, QPixmap对显示优化
+            if (!image.isNull()) {
+                image = image.scaled(92, 92,
+                                     Qt::KeepAspectRatio,
+                                     Qt::SmoothTransformation);
+                ui->label_showEditPortrait->setPixmap(QPixmap::fromImage(image));
+                ui->label_showEditPortraitPath->setText(path);
+            }
+
+            return true;
+        }
+    }
+
+    return QWidget::eventFilter(watched, event);
 }
 
 

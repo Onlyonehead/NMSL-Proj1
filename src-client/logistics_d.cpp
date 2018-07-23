@@ -484,12 +484,18 @@ void SystemCenter::generateNewRoute(){
 
 
         ui->tableWidget_logistics_D2->insertRow(count);
+        ui->tableWidget_logistics_D2->setSpan(count, 0, 1, 3);
         ui->tableWidget_logistics_D2->setItem(count, 3, new QTableWidgetItem("* Total:"));
         ui->tableWidget_logistics_D2->setItem(count, 4, new QTableWidgetItem(QString::number(clothes_count)));
         count++;
 
+//        ui->tableWidget_logistics_D2->insertRow(count);
+//        ui->tableWidget_logistics_D2->setSpan(count, 0, 1, 5);
+//        count++;
+
         ui->tableWidget_logistics_D2->insertRow(count);
-        ui->tableWidget_logistics_D2->setItem(count, 0, new QTableWidgetItem("--------"));
+        ui->tableWidget_logistics_D2->setSpan(count, 0, 1, 5);
+        ui->tableWidget_logistics_D2->setItem(count, 0, new QTableWidgetItem("====================================="));
         ui->tableWidget_logistics_D2->item(count,0)->setTextAlignment(Qt::AlignCenter);
         ui->tableWidget_logistics_D2->setItem(count, 1, new QTableWidgetItem("--------"));
         ui->tableWidget_logistics_D2->item(count,1)->setTextAlignment(Qt::AlignCenter);
@@ -500,6 +506,7 @@ void SystemCenter::generateNewRoute(){
         ui->tableWidget_logistics_D2->setItem(count, 4, new QTableWidgetItem("--------"));
         ui->tableWidget_logistics_D2->item(count,4)->setTextAlignment(Qt::AlignCenter);
         count++;
+
 
         QString car_type = "";
         double oil_consumed = 0;

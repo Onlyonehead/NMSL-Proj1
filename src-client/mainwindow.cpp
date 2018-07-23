@@ -187,6 +187,9 @@ void MainWindow::addFont(){
     ui->label_font_totalCount_2->setFont(font_solid10);
     ui->label_font_totalCount_2->setText(QChar(0xf553));
     ui->label_font_totalCount_2->setStyleSheet("color: rgb(106, 106, 106)");
+
+    ui->tableWidget_warehouse->setAlternatingRowColors(true);
+    ui->tableWidget_warehouse->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 void MainWindow::setCursor(){
@@ -214,8 +217,8 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event){
             ui->label_tuichu->setStyleSheet("color:white;");
             ui->frame_exit->setCursor(Qt::ArrowCursor);
         } else if(event->type() == QEvent::MouseButtonRelease){
-            Login *lg = new Login;
-            lg->show();
+//            Login *lg = new Login;
+//            lg->show();
             this->close();
         }
         return true;

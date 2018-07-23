@@ -70,10 +70,12 @@ void SystemCenter::on_icon_search_clicked()
     QVector<QStringList> result = warehouse;
     int i = 0;
     for(QStringList list: result){
-        qDebug() << list.at(0) << endl;
-        if(list.at(0) == text || list.at(1) == text ||
-                list.at(2) == text || list.at(3) == text ||
-                list.at(4) == text || list.at(5) == text) {
+        if(list.at(0).contains(text, Qt::CaseInsensitive) ||
+                list.at(1).contains(text, Qt::CaseInsensitive) ||
+                list.at(2).contains(text, Qt::CaseInsensitive) ||
+                list.at(3).contains(text, Qt::CaseInsensitive) ||
+                list.at(4).contains(text, Qt::CaseInsensitive) ||
+                list.at(5).contains(text, Qt::CaseInsensitive)) {
             ui->tableWidget->insertRow(i);
             ui->tableWidget->setItem(i, 0, new QTableWidgetItem(list.at(0)));
             ui->tableWidget->setItem(i, 1, new QTableWidgetItem(list.at(1)));
@@ -116,14 +118,17 @@ void SystemCenter::on_w_search_A_clicked()
 void SystemCenter::on_tableWidget_A_itemClicked(QTableWidgetItem *item){
     QString s;
     s += "\n";
+    s += "Time: ";
     s += ui->tableWidget_A->item(item->row(), 2)->text();
     s += "\n";
     s += "\n";
     s += ui->tableWidget_A->item(item->row(), 0)->text();
     s += "\n";
+    s += "\n";
     s += ui->tableWidget_A->item(item->row(), 1)->text();
-    s += "\n";
-    s += "\n";
+    s += "\n\n";
+    s += "----------------------";
+    s += "\n\n";
     for(QStringList l : wh_history){
         QStringList temp = l.at(0).split(QRegExp("[A-Z]"));
         if(l.at(1) == ui->tableWidget_A->item(item->row(), 0)->text().split(":")[1].trimmed() &&
@@ -197,6 +202,10 @@ void SystemCenter::finishedSlot(QNetworkReply* reply){
                         qDebug() << "error:" << obj["error"];
                     }else{
                         QJsonArray jarray = obj.value("geocodes").toArray();
+                        if(jarray.size() == 0){
+                            QMessageBox::warning(this," 警告", "\n添加失败",QMessageBox::Close);
+                            return ;
+                        }
 
                         QString position = jarray[0].toObject().value("location").toString();
 
@@ -306,6 +315,11 @@ void SystemCenter::finishedSlotForEdit(QNetworkReply* reply){
                         qDebug() << "error:" << obj["error"];
                     }else{
                         QJsonArray jarray = obj.value("geocodes").toArray();
+
+                        if(jarray.size() == 0){
+                            QMessageBox::warning(this," 警告", "\n修改失败",QMessageBox::Close);
+                            return ;
+                        }
 
                         QString position = jarray[0].toObject().value("location").toString();
 

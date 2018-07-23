@@ -3,6 +3,8 @@
 
 #define DIR "/Users/Haibara/Documents/qt build files/Clientfiles"
 
+#define CONFIG_DIR "/Users/Haibara/Documents/qt build files/Clientfiles/config.data"
+
 #include <QWidget>
 #include <QFont>
 #include <QTabBar>
@@ -33,6 +35,7 @@
 #include "login.h"
 #include "record.h"
 #include <QDesktopWidget>
+#include <QDragEnterEvent>
 
 
 namespace Ui {
@@ -49,6 +52,7 @@ public:
     void getRoundPixmap(QPixmap* src,QSize size);
     void download(const QString &url, const QString &filePath);
     void transfer();
+    bool eventFilter(QObject *watched, QEvent *event);
 
 
 private slots:
@@ -117,7 +121,7 @@ private slots:
 
     void on_pushButton_clearStaff_clicked();
 
-    void on_pushButton_searchStaffInfo_clicked();
+    void on_pushButton_font_sellSearch_2_clicked();
 
     void on_pushButton_deleteStaffInfo_clicked();
 
@@ -304,8 +308,6 @@ private slots:
     void on_tableWidget_updateShowStaffInfo_cellClicked(int row, int column);
 
     void on_pushButton_changeStaffInfo_clicked();
-
-    void on_pushButton_cancelStaffInfoChange_clicked();
 
     void on_lineEdit_inputStaffEmail_editingFinished();
 

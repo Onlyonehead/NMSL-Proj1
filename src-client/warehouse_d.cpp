@@ -279,7 +279,8 @@ void SystemCenter::on_icon_search_D_clicked()
 
     int i = 0;
     for(QStringList list : result){
-        if(list.at(0) == text || list.at(1) == text){
+        if(list.at(0).contains(text, Qt::CaseInsensitive) ||
+                list.at(1).contains(text, Qt::CaseInsensitive)){
             ui->tableWidget_D1->insertRow(i);
             ui->tableWidget_D1->setItem(i, 0, new QTableWidgetItem(list.at(0) + " - " + list.at(1)));
             i++;
@@ -291,7 +292,8 @@ void SystemCenter::on_icon_search_D_clicked()
     result = this->warehouse;
     i = 0;
     for(QStringList list : result){
-        if(list.at(0) == text || list.at(1) == text){
+        if(list.at(0).contains(text, Qt::CaseInsensitive) ||
+                list.at(1).contains(text, Qt::CaseInsensitive)){
             ui->tableWidget_D2->insertRow(i);
             ui->tableWidget_D2->setItem(i, 0, new QTableWidgetItem(list.at(0) + " - " + list.at(1)));
             i++;

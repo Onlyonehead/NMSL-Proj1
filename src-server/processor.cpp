@@ -173,7 +173,8 @@ void Processor::work ()
         QString text = list.at(0);
         int id;
         for (QStringList list : w){
-            if(list.at(0) == text || list.at(1) == text){
+            if(list.at(0).contains(text, Qt::CaseInsensitive) ||
+                    list.at(1).contains(text, Qt::CaseInsensitive)){
                 id = list.at(0).toInt();
                 break;
             }
@@ -635,24 +636,27 @@ void Processor::work ()
     // personnel page 1 search staff info multi results
     if(function == "pp1_ssi"){
         QVector<QStringList> result;
-        QString searchAttribute, searchValue;
-        searchAttribute = list.at(0);
-        searchValue = list.at(1);
+        QString searchValue;
+        searchValue = list.at(0);
         QVector<QStringList> staffInfo;
         QSqlQuery query;
         QStringList list;
-        SQLTool::fuzzySearch(query, "userdata", searchAttribute, searchValue);
-        while (query.next()) {
-            list.clear();
-            list.append(query.value(0).toString());
-            list.append(query.value(1).toString());
-            list.append(query.value(2).toString());
-            list.append(query.value(3).toString());
-            list.append(query.value(4).toString());
-            list.append(query.value(5).toString());
-            list.append(query.value(6).toString());
-            staffInfo.append(list);
+        QStringList l = {"username", "name", "gender", "position", "email"};
+        for(QString s : l){
+            SQLTool::fuzzySearch(query, "userdata", s, searchValue);
+            while (query.next()) {
+                list.clear();
+                list.append(query.value(0).toString());
+                list.append(query.value(1).toString());
+                list.append(query.value(2).toString());
+                list.append(query.value(3).toString());
+                list.append(query.value(4).toString());
+                list.append(query.value(5).toString());
+                list.append(query.value(6).toString());
+                staffInfo.append(list);
+            }
         }
+
         out << function;
         out << staffInfo;
     }
@@ -795,6 +799,7 @@ void Processor::work ()
         QStringList productInfo = productTectmpInfo.split("#");
         Order providerOrder(providerID, datetime, productInfo);
         QString providerOrderID;
+
         if(isFirstOrder == "Y"){
             SQLTool::search(query, "orderID", "providerOrder");
             query.last();

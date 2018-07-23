@@ -73,6 +73,7 @@ private slots:
 
     void on_pushButton_sendRequest_clicked();
 
+
 private:
     void addFont();
     void setCursor();

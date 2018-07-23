@@ -124,6 +124,15 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
      *
      */
 
+    ui->label_showEditPortrait->installEventFilter(this);
+    ui->label_showEditPortrait->setAcceptDrops(true);
+
+    ui->label_showNewPortrait->installEventFilter(this);
+    ui->label_showNewPortrait->setAcceptDrops(true);
+
+    ui->label_showGPic->installEventFilter(this);
+    ui->label_showGPic->setAcceptDrops(true);
+
     ui->label_2->setText(s1);
     ui->label_4->setText(s2);
     ui->label_8->setText(s3);
@@ -141,13 +150,10 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->add_warehouse->setVisible(false);
     ui->edit_warehouse->setVisible(false);
     ui->label_showEditPortraitPath->setVisible(false);
-    ui->comboBox_searchStaffChosen->setView(new QListView());
     ui->comboBox_addNewGender->setView(new QListView());
     ui->comboBox_addNewPosition->setView(new QListView());
     ui->comboBox_updateStaffGender->setView(new QListView());
     ui->comboBox_updateStaffPosition->setView(new QListView());
-
-    style = false;
 
 
     ui->comboBox_sellDUserName->setView(new QListView());
@@ -565,6 +571,11 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->icon_search_D->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
                                      "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
 
+    ui->pushButton_font_sellSearch_2->setFont(icon_search);
+    ui->pushButton_font_sellSearch_2->setText(QChar(0xf35a));
+    ui->pushButton_font_sellSearch_2->setStyleSheet("QPushButton{border: 0px; color: rgb(127, 127, 127);} "
+                                     "QPushButton:hover{border: 0px; color: rgb(15, 128, 255);} ");
+
     ui->style_change->setFont(icon_search);
     ui->style_change->setText(QChar(0xf204));
     ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
@@ -816,9 +827,39 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
     ui->tableWidget_logistics_D4->setAlternatingRowColors(true);
 
     ui->tableWidget_logistics_D2->horizontalHeader()->setDefaultSectionSize(90);
+    ui->tableWidget_logistics_D2->setColumnWidth(3, 100);
+    ui->tableWidget_logistics_D2->setColumnWidth(4, 85);
     ui->tableWidget_logistics_D2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_logistics_D2->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_logistics_D2->setAlternatingRowColors(true);
+
+
+
+    style = false;
+    QFile *file = new QFile(CONFIG_DIR);
+    if(file->exists()){
+        if (file->open(QFile::ReadWrite | QFile::Text)){
+           QString status;
+           status = file->readLine().trimmed();
+           if(status == "1"){
+               style = !style;
+               int fontId = QFontDatabase::addApplicationFont(":/font/fa-solid-900.ttf");
+               QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+               QFont icon_search;
+               icon_search.setFamily(fontFamilies.at(0));
+               icon_search.setPointSize(24);
+               ui->frame->setStyleSheet("QFrame{background: rgba(255, 255, 255, 0);"
+                                        "border-image:url(:/bg5.png);}");
+               ui->style_change->setFont(icon_search);
+               ui->style_change->setText(QChar(0xf205));
+               ui->style_change->setStyleSheet("QPushButton{border: 0px; color: white;} "
+                                               "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
+           }
+        }else{
+            qDebug()<<"打开失败";
+        }
+    }
+    file->close();
 
 
 
@@ -843,7 +884,7 @@ void SystemCenter::showString(QString s1, QString s2, QString s3, QString s4, QS
 
     connect(ui->lineEdit_garmentNum, SIGNAL(returnPressed()), ui->pushButton_addGarment, SIGNAL(clicked()), Qt::UniqueConnection);
 
-    connect(ui->lineEdit_searchStaffValue, SIGNAL(returnPressed()), ui->pushButton_searchStaffInfo, SIGNAL(clicked()), Qt::UniqueConnection);
+    connect(ui->lineEdit_searchStaffValue, SIGNAL(returnPressed()), ui->pushButton_font_sellSearch_2, SIGNAL(clicked()), Qt::UniqueConnection);
 
 
     QApplication::processEvents();
@@ -1387,4 +1428,13 @@ void SystemCenter::on_style_change_clicked()
                                         "QPushButton:hover{border: 0px; color: rgba(15, 128, 255, 190);} ");
     }
     style = !style;
+
+    QFile *file = new QFile(CONFIG_DIR);
+    if (file->open(QFile::ReadWrite | QFile::Text)){
+        QTextStream out(file);
+        out << style << "\n";
+    }else{
+        qDebug()<<"打开失败";
+    }
+    file->close();
 }

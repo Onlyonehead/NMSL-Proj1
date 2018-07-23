@@ -60,6 +60,11 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
     QItemSelectionModel *selection = ui->tableWidget_deliverGarment->selectionModel();
     QModelIndexList selectedRows = selection->selectedRows();
 
+    if(selectedRows.count() == 0){
+        QMessageBox::warning(this,"警告", "\n请选中条目！",QMessageBox::Close);
+        return;
+    }
+
     for(int i = 0 ; i < selectedRows.count() ; i++){
         rowIndex.append(selectedRows.at(i).row());
     }
@@ -71,7 +76,6 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
 
     QString providerTempProduct = ui->label_deliverShowProduct->text();
     QStringList providerProduct = providerTempProduct.split(",");
-
     for(QString iter : product){
         if(!providerProduct.contains(iter)){
             QMessageBox::critical(NULL, tr("警告！"), tr("所选供货商不能生产订单中的某类商品！"),
@@ -107,7 +111,6 @@ void SystemCenter::on_pushButton_deliverOrder_clicked()
     sendMessage(list);
 
     isFirstOrder = "N";
-
 
 }
 

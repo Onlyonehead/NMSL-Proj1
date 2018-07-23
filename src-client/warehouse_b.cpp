@@ -49,6 +49,7 @@ void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
         }
     }
 
+
     QMap<QString, QString> warehouse = this->warehouse_map;
     QVector<QStringList> stock = this->stock;
 
@@ -85,6 +86,10 @@ void SystemCenter::on_tableWidget_B_itemClicked(QTableWidgetItem *item){
 
     for(QStringList list : stock){
         QApplication::processEvents();
+        if(!warehouse.contains(list.at(0))){
+            continue;
+        }
+
         if(list.at(1) == id){
             ui->tableWidget_B_2->insertRow(i);
             ui->tableWidget_B_2->setItem(i, 0, new QTableWidgetItem(warehouse.find(list.at(0)).value()));
@@ -136,7 +141,8 @@ void SystemCenter::on_icon_search_B_clicked()
 
     int i = 0;
     for(QStringList list : result){
-        if(list.at(0) == text || list.at(1) == text){
+        if(list.at(0).contains(text, Qt::CaseInsensitive) ||
+                list.at(1).contains(text, Qt::CaseInsensitive)){
             ui->tableWidget_B->insertRow(i);
             ui->tableWidget_B->setItem(i, 0, new QTableWidgetItem(list.at(0) + " - " + list.at(1)));
             i++;

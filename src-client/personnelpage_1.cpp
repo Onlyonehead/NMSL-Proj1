@@ -48,6 +48,7 @@ void SystemCenter::on_pushButton_showStaff_clicked()
 void SystemCenter::on_pushButton_clearStaff_clicked()
 {
     ui->tableWidget_showStaffInfo->setRowCount(0);
+    ui->lineEdit_searchStaffValue->clear();
 }
 
 
@@ -61,15 +62,17 @@ void SystemCenter::on_pushButton_clearStaff_clicked()
  */
 
 
-void SystemCenter::on_pushButton_searchStaffInfo_clicked()
+void SystemCenter::on_pushButton_font_sellSearch_2_clicked()
 {
     QStringList list;
-    QString searchAttribute, searchValue;
-    searchAttribute = ui->comboBox_searchStaffChosen->currentText();
+    QString searchValue;
     searchValue = ui->lineEdit_searchStaffValue->text();
 
+    if(searchValue.trimmed() == ""){
+        QMessageBox::warning(this,"警告", "\n请输入关键字！",QMessageBox::Close);
+        return ;
+    }
     list.append("pp1_ssi");
-    list.append(searchAttribute);
     list.append(searchValue);
     sendMessage(list);
 

@@ -35,7 +35,7 @@ void SystemCenter::on_pushButton_updatePageClearStaff_clicked()
     ui->label_updateShowUsername->clear();
     ui->lineEdit_updateStaffName->clear();
     ui->lineEdit_updateStaffEmail->clear();
-    ui->label_showEditPortrait->clear();
+    ui->label_showEditPortrait->setText("Preview");
     ui->label_showEditPortraitPath->clear();
 }
 
@@ -71,11 +71,13 @@ void SystemCenter::on_pushButton_addNewPortrait_2_clicked()
     }
 
     QImage tempPortrait(picture.at(0));
-    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(92, 92, Qt::IgnoreAspectRatio));
+    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(92, 92, Qt::KeepAspectRatio,
+                                                              Qt::SmoothTransformation));
     ui->label_showEditPortraitPath->setText(picture.at(0));
     ui->label_showEditPortrait->setPixmap(portrait);
     ui->label_showEditPortrait->show();
 }
+
 
 
 
@@ -132,19 +134,6 @@ void SystemCenter::on_pushButton_changeStaffInfo_clicked()
     }
 }
 
-
-/**
- * @brief SystemCenter::on_pushButton_cancelStaffInfoChange_clicked
- * clear update information
- * @author Yihan Dong
- */
-void SystemCenter::on_pushButton_cancelStaffInfoChange_clicked()
-{
-    ui->label_updateShowUsername->clear();
-    ui->lineEdit_updateStaffName->clear();
-    ui->lineEdit_updateStaffEmail->clear();
-    ui->label_showEditPortrait->setText("Preview");
-}
 
 
 /**

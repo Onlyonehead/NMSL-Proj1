@@ -718,7 +718,7 @@ QTabBar::tab:selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -15425,7 +15425,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_339">
        <property name="geometry">
         <rect>
-         <x>410</x>
+         <x>380</x>
          <y>310</y>
          <width>140</width>
          <height>20</height>
@@ -15459,7 +15459,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_340">
        <property name="geometry">
         <rect>
-         <x>560</x>
+         <x>570</x>
          <y>310</y>
          <width>80</width>
          <height>20</height>
@@ -15493,7 +15493,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_341">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>78</y>
          <width>80</width>
          <height>25</height>
@@ -15527,7 +15527,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_342">
        <property name="geometry">
         <rect>
-         <x>310</x>
+         <x>340</x>
          <y>78</y>
          <width>130</width>
          <height>25</height>
@@ -15561,7 +15561,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_343">
        <property name="geometry">
         <rect>
-         <x>480</x>
+         <x>520</x>
          <y>78</y>
          <width>80</width>
          <height>25</height>
@@ -15595,7 +15595,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_344">
        <property name="geometry">
         <rect>
-         <x>590</x>
+         <x>600</x>
          <y>78</y>
          <width>80</width>
          <height>25</height>
@@ -15629,7 +15629,7 @@ QTableWidget::item{
       <widget class="QLabel" name="label_345">
        <property name="geometry">
         <rect>
-         <x>330</x>
+         <x>310</x>
          <y>310</y>
          <width>60</width>
          <height>20</height>
@@ -15661,10 +15661,10 @@ QTableWidget::item{
        </property>
       </widget>
      </widget>
-     <zorder>frame_sell_C</zorder>
      <zorder>frame_sell_B</zorder>
      <zorder>frame_sell_D</zorder>
      <zorder>frame_sell_A</zorder>
+     <zorder>frame_sell_C</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -15698,7 +15698,7 @@ QTableWidget::item{
          <x>50</x>
          <y>80</y>
          <width>630</width>
-         <height>280</height>
+         <height>340</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -15826,8 +15826,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label_staffSearchTip">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>410</y>
+         <x>120</x>
+         <y>470</y>
          <width>71</width>
          <height>31</height>
         </rect>
@@ -15848,9 +15848,9 @@ QPushButton:hover{
       <widget class="QLineEdit" name="lineEdit_searchStaffValue">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>410</y>
-         <width>270</width>
+         <x>190</x>
+         <y>470</y>
+         <width>231</width>
          <height>30</height>
         </rect>
        </property>
@@ -15862,65 +15862,16 @@ QPushButton:hover{
 }
 </string>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_staffSearchTip_2">
-       <property name="geometry">
-        <rect>
-         <x>450</x>
-         <y>410</y>
-         <width>60</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	background: none;
-	border-image:none;
-	border: 0px;
-	color: rgb(76, 76, 76);
-	font: 75 15pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>From:</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_searchStaffInfo">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>480</y>
-         <width>140</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>Search</string>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_deleteStaffInfo">
        <property name="geometry">
         <rect>
-         <x>420</x>
-         <y>480</y>
-         <width>140</width>
+         <x>500</x>
+         <y>470</y>
+         <width>110</width>
          <height>30</height>
         </rect>
        </property>
@@ -15945,82 +15896,21 @@ QPushButton:hover{
         <string>Delete</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_searchStaffChosen">
+      <widget class="QPushButton" name="pushButton_font_sellSearch_2">
        <property name="geometry">
         <rect>
-         <x>520</x>
-         <y>408</y>
-         <width>140</width>
-         <height>35</height>
+         <x>430</x>
+         <y>470</y>
+         <width>30</width>
+         <height>30</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QComboBox {
-	border: 2px solid rgb(179, 179, 179);
-    border-radius: 10px;
-    padding: 1px 2px 1px 2px; 
-	font: 15px;
-
-}
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-
-    width: 20px;
- 
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid; /* just a single line */
-    border-radius: 0px;
-}
- 
-QComboBox::down-arrow {
-}
-
-QComboBox QAbstractItemView {
-    border-radius: 0px;
-	border: 2px solid rgb(169, 169, 169);
-	border-radius:0px;
-	background:rgba(255, 255, 255,200);
-	color: rgb(76, 76, 76);
-	font: 15pt &quot;Times&quot; bold;
-}
-QComboBox QAbstractItemView::item {
-        height: 40px;
-}
-
-QComboBox QAbstractItemView::item:selected {
-        background: rgb(232, 241, 250);
-        color: rgb(2, 65, 132);
-}
-</string>
+        <string notr="true"/>
        </property>
-       <item>
-        <property name="text">
-         <string>     username</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>     name</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>     gender</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>     position</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>     email</string>
-        </property>
-       </item>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </widget>
      <widget class="QFrame" name="frame_personnelpage_2">
@@ -16166,6 +16056,11 @@ QComboBox QAbstractItemView::item:selected {
        <item>
         <property name="text">
          <string>      门店人员</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>      测试用</string>
         </property>
        </item>
       </widget>
@@ -16648,6 +16543,11 @@ QComboBox QAbstractItemView::item:selected {
          <string>           女</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>           其他</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLabel" name="label_144">
        <property name="geometry">
@@ -16998,7 +16898,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>590</x>
-         <y>420</y>
+         <y>450</y>
          <width>90</width>
          <height>30</height>
         </rect>
@@ -17022,36 +16922,6 @@ QPushButton:hover{
        </property>
        <property name="text">
         <string>Update</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_cancelStaffInfoChange">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>470</y>
-         <width>90</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	border: 2px solid rgb(179, 179, 179);
-	border-radius:10px;
-	background:rgba(248, 248, 248,220);
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold ;
-}
-
-QPushButton:hover{
-	border: 2px solid rgb(15, 128, 255);
-	background:rgba(15, 128, 255, 43);
-	border-radius:10px;
-	color: rgb(76, 76, 76);
-	font: 75 14pt &quot;Helvetica&quot; bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>Clear</string>
        </property>
       </widget>
       <widget class="QGroupBox" name="groupBox_10">
@@ -17506,6 +17376,11 @@ QComboBox QAbstractItemView::item:selected {
           <string>      门店人员</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>      测试用</string>
+         </property>
+        </item>
        </widget>
        <widget class="QComboBox" name="comboBox_updateStaffGender">
         <property name="geometry">
@@ -17565,6 +17440,11 @@ QComboBox QAbstractItemView::item:selected {
         <item>
          <property name="text">
           <string>          女</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>          其他</string>
          </property>
         </item>
        </widget>
@@ -17651,7 +17531,7 @@ profile picture</string>
        <property name="geometry">
         <rect>
          <x>585</x>
-         <y>300</y>
+         <y>330</y>
          <width>100</width>
          <height>100</height>
         </rect>
@@ -18169,10 +18049,10 @@ not exist !</string>
        </widget>
       </widget>
      </widget>
-     <zorder>frame_personnelpage_3</zorder>
      <zorder>frame_personnelpage_4</zorder>
      <zorder>frame_personnelpage_1</zorder>
      <zorder>frame_personnelpage_2</zorder>
+     <zorder>frame_personnelpage_3</zorder>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -18708,9 +18588,9 @@ background: rgb(248, 248, 248);
       <widget class="QTableWidget" name="tableWidget_garmentInfo">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>60</x>
          <y>80</y>
-         <width>630</width>
+         <width>610</width>
          <height>190</height>
         </rect>
        </property>
@@ -18848,7 +18728,7 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButton_confirmAddG">
        <property name="geometry">
         <rect>
-         <x>580</x>
+         <x>578</x>
          <y>405</y>
          <width>93</width>
          <height>50</height>
@@ -18947,7 +18827,7 @@ QPushButton:hover{
       <widget class="QGroupBox" name="groupBox_12">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>62</x>
          <y>290</y>
          <width>301</width>
          <height>240</height>
@@ -20142,7 +20022,6 @@ QPushButton:checked{
   <tabstop>pushButton_showStaff</tabstop>
   <tabstop>pushButton_clearStaff</tabstop>
   <tabstop>lineEdit_searchStaffValue</tabstop>
-  <tabstop>pushButton_searchStaffInfo</tabstop>
   <tabstop>pushButton_deleteStaffInfo</tabstop>
   <tabstop>pushButton_D</tabstop>
   <tabstop>comboBox_addNewPosition</tabstop>
@@ -20157,7 +20036,6 @@ QPushButton:checked{
   <tabstop>pushButton_updatePageShowStaff</tabstop>
   <tabstop>pushButton_updatePageClearStaff</tabstop>
   <tabstop>pushButton_changeStaffInfo</tabstop>
-  <tabstop>pushButton_cancelStaffInfoChange</tabstop>
   <tabstop>pushButton_ConfirmOrder</tabstop>
   <tabstop>style_change</tabstop>
   <tabstop>comboBox_updateStaffPosition</tabstop>
@@ -20190,7 +20068,6 @@ QPushButton:checked{
   <tabstop>pushButton_58</tabstop>
   <tabstop>pushButton_57</tabstop>
   <tabstop>comboBox_addNewGender</tabstop>
-  <tabstop>comboBox_searchStaffChosen</tabstop>
   <tabstop>pushButton_addNewPortrait_2</tabstop>
  </tabstops>
  <resources>

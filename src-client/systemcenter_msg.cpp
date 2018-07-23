@@ -1015,6 +1015,7 @@ void SystemCenter::readMessage()
         progressBar();
     }// personnel page 3 show staff
     if(from == "pp3_upss"){
+        on_pushButton_updatePageClearStaff_clicked();
         int i = 0;
         QVector<QStringList> result;
         in >> result;
@@ -1033,7 +1034,7 @@ void SystemCenter::readMessage()
     if(from == "pp3_csi"){
         QMessageBox::information(NULL, tr("提示"), tr("用户信息更改成功!"),
                                  QMessageBox::Yes, QMessageBox::Yes);
-        on_pushButton_updatePageClearStaff_clicked();
+        on_pushButton_updatePageShowStaff_clicked();
     }// deliver page show provider ids
     if(from == "dp_sp"){
         int i = 0;

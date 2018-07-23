@@ -196,6 +196,7 @@ void SystemCenter::on_pushButton_ConfirmOrder_clicked()
     }
 
     QMessageBox::information(this,"提示", "\n添加成功！",QMessageBox::Close);
+    ui->tableWidget_orderGarment->setRowCount(0);
 
 }
 

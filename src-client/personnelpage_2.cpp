@@ -97,7 +97,8 @@ void SystemCenter::on_pushButton_addNewPortrait_clicked()
     }
 
     QImage tempPortrait(picture.at(0));
-    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(142, 142, Qt::IgnoreAspectRatio));
+    QPixmap portrait = QPixmap::fromImage(tempPortrait.scaled(142, 142, Qt::KeepAspectRatio,
+                                                              Qt::SmoothTransformation));
     ui->label_showNewPortraitPath->setText(picture.at(0));
     ui->label_showNewPortrait->setPixmap(portrait);
     ui->label_showNewPortrait->show();
@@ -185,5 +186,6 @@ void SystemCenter::on_pushButton_cancelNewStaff_clicked()
     ui->lineEdit_addNewName->clear();
     ui->lineEdit_addNewEmail->clear();
     ui->label_showNewPortrait->setText("Preview");
+    ui->label_showNewPortraitPath->clear();
 }
 
