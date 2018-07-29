@@ -205,7 +205,7 @@ void SystemCenter::on_pushButton_showRoute_clicked()
         QMessageBox::warning(this,"警告", "请添加条目",QMessageBox::Ok);
         return ;
     }
-    QtMap *qtMap = new QtMap("http://39.108.155.50/project1/src/route.html");
+    QtMap *qtMap = new QtMap("http://kousz.top/repo/project1/src/route.html");
     connect(this, SIGNAL(webReturn(QVector<QStringList>)),
             qtMap, SLOT(webInit(QVector<QStringList>)));
     QVector<QStringList> sites = siteVia;

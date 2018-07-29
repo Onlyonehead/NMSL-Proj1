@@ -384,7 +384,7 @@ void SystemCenter::on_pushButton_24_clicked() //delete
 void SystemCenter::on_pushButton_20_clicked()
 {
 
-    QtMap *qtMap = new QtMap("http://39.108.155.50/project1/src/warehouse.html");
+    QtMap *qtMap = new QtMap("http://kousz.top/repo/project1/src/warehouse.html");
     connect(this, SIGNAL(webReturn(QVector<QStringList>)),
             qtMap, SLOT(webInit(QVector<QStringList>)));
     emit webReturn(warehouse);

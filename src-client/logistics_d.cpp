@@ -125,7 +125,7 @@ void SystemCenter::on_logistics_showmap_clicked()
         return ;
     }
 
-    QtMap *qtMap = new QtMap("http://39.108.155.50/project1/src/auto_route.html");
+    QtMap *qtMap = new QtMap("http://kousz.top/repo/project1/src/auto_route.html");
     connect(this, SIGNAL(webReturn(QVector<QStringList>)),
             qtMap, SLOT(webInit(QVector<QStringList>)));
     QVector<QStringList> sites;
